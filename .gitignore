@@ -21,3 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+target/
+.idea/
+*.iml
+**/build-tools/node
+**/build-tools/node_modules
+**/package-lock.json
+**/bower_components/
+/.settings/
+
+.settings
+.classpath
+.project
