@@ -35,6 +35,10 @@ export class LeafletMap extends PolymerElement {
             items: {
                 type: Array,
                 notify: true
+            },
+            tile: {
+                type: Object,
+                notify: true
             }
         };
     }
@@ -51,7 +55,7 @@ export class LeafletMap extends PolymerElement {
         super.ready();
         this.map = new L.map(this.$.divMap);
 
-        var tile = L.tileLayer(
+        this.tile = L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 maxZoom: 18
