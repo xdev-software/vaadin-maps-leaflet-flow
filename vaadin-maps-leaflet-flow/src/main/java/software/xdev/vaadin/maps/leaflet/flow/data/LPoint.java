@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Point
+public class LPoint
 {
 	private List<Double> coords = new ArrayList<>();
 	
-	public Point(final double lat, final double lon)
+	public LPoint(final double lat, final double lon)
 	{
 		this.coords.add(lat);
 		this.coords.add(lon);

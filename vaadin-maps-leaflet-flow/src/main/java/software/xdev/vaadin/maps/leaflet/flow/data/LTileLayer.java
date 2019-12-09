@@ -1,4 +1,3 @@
-
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
 /*-
@@ -21,9 +20,6 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,17 +27,40 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 
-public class Center
+public class LTileLayer
 {
-
-	private List<Double> coordinates = new ArrayList<>();
+	private String link;
+	private String attribution;
 	private int zoom;
+	private String id;
 
-	public Center(final double lat, final double lon, final int zoom)
+	public LTileLayer(final String link, final String attribution, final int zoom, final String id)
 	{
-		this.coordinates.add(lat);
-		this.coordinates.add(lon);
+		super();
+		this.link = link;
+		this.attribution = attribution;
 		this.zoom = zoom;
+		this.id = id;
+	}
+
+	public String getLink()
+	{
+		return this.link;
+	}
+
+	public void setLink(final String link)
+	{
+		this.link = link;
+	}
+
+	public String getAttribution()
+	{
+		return this.attribution;
+	}
+
+	public void setAttribution(final String attribution)
+	{
+		this.attribution = attribution;
 	}
 
 	public int getZoom()
@@ -49,23 +68,19 @@ public class Center
 		return this.zoom;
 	}
 
-	/**
-	 * Sets the zoom level at the start
-	 * @param zoom
-	 */
 	public void setZoom(final int zoom)
 	{
 		this.zoom = zoom;
 	}
 
-	public List<Double> getCoordinates()
+	public String getId()
 	{
-		return this.coordinates;
+		return this.id;
 	}
 
-	public void setCoordinates(final List<Double> coordinates)
+	public void setId(final String id)
 	{
-		this.coordinates = coordinates;
+		this.id = id;
 	}
 
 	public JsonObject toJson()
@@ -74,7 +89,7 @@ public class Center
 		final ObjectMapper mapper = new ObjectMapper();
 		try
 		{
-			jsonObject.put("point", Json.parse(mapper.writeValueAsString(this)));
+			jsonObject.put("tile", Json.parse(mapper.writeValueAsString(this)));
 		}
 		catch(final JsonProcessingException e)
 		{

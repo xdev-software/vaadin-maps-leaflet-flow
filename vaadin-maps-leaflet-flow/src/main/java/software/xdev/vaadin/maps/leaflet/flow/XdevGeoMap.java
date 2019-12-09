@@ -29,15 +29,13 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.dom.ElementConstants;
 
-import software.xdev.vaadin.maps.leaflet.flow.data.Center;
-import software.xdev.vaadin.maps.leaflet.flow.data.Circle;
-import software.xdev.vaadin.maps.leaflet.flow.data.DivIcon;
-import software.xdev.vaadin.maps.leaflet.flow.data.MapIcon;
-import software.xdev.vaadin.maps.leaflet.flow.data.Marker;
-import software.xdev.vaadin.maps.leaflet.flow.data.Polygon;
-import software.xdev.vaadin.maps.leaflet.flow.data.TileLayer;
+import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
+import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
+import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
+import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
+import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
+import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
 @NpmPackage(value = "leaflet", version = "^1.6.0")
@@ -52,104 +50,54 @@ public class XdevGeoMap extends Component implements HasSize
 	private static final String ADD_MARKER_FUNCTION = "addMarker";
 	private static final String DELETE_FUNCTION = "deleteItem";
 
-	private Center center;
-	private final List<Object> items = new ArrayList<>();
+	private LCenter center;
+	private final List<LComponent> items = new ArrayList<>();
 
-	private final String id;
 
-	private String height = "100%";
-	private String width = "100%";
 
 	public XdevGeoMap(final double lat, final double lon, final int zoom)
 	{
 		super();
-		this.id = IdGenerator.generateId();
-		this.center = new Center(lat, lon, zoom);
-
-		this.setId(this.id);
-		this.setHeight(this.height);
-		this.setWidth(this.width);
+		this.center = new LCenter(lat, lon, zoom);
 		this.setViewPoint(this.center);
 	}
 
-	public void setViewPoint(final Center viewpoint)
+	public void setViewPoint(final LCenter viewpoint)
 	{
 		this.getElement().callJsFunction(SET_VIEW_POINT_FUNCTION, viewpoint.toJson());
 	}
 
-	public void setTileLayer(final TileLayer tl)
+	public void setTileLayer(final LTileLayer tl)
 	{
 		this.getElement().callJsFunction("setTileLayer", tl.toJson());
 	}
 
-	public void addMarker(final Marker obj, final DivIcon icon)
+	public void addLComponent(final LComponent ... lObjects)
 	{
-		this.items.add(obj);
-		this.getElement().callJsFunction(ADD_MARKER_FUNCTION, obj.toJson(), icon.toJson(), true);
+		for(final LComponent lObj : lObjects)
+		{
+			if(lObj instanceof LMarker)
+			{
+				final LMarker obj = (LMarker) lObj;
+				this.items.add(obj);
+				this.getElement().callJsFunction(ADD_MARKER_FUNCTION, obj.toJson());
+			}
+			if(lObj instanceof LPolygon)
+			{
+				final LPolygon obj = (LPolygon) lObj;
+				this.items.add(obj);
+				this.getElement().callJsFunction(ADD_POLYGON_FUNCTION, obj.toJson());
+			}
+			if(lObj instanceof LCircle)
+			{
+				final LCircle obj = (LCircle) lObj;
+				this.items.add(obj);
+				this.getElement().callJsFunction(ADD_CIRCLE_FUNCTION, obj.toJson());
+			}
+		}
 	}
 
-	public void addMarker(final Marker obj, final MapIcon icon)
-	{
-		this.items.add(obj);
-		this.getElement().callJsFunction(ADD_MARKER_FUNCTION, obj.toJson(), icon.toJson(), false);
-	}
-
-	public void addMarker(final Marker obj)
-	{
-		this.items.add(obj);
-		this.getElement().callJsFunction(ADD_MARKER_FUNCTION, obj.toJson());
-	}
-
-	public void addPolygon(final Polygon obj)
-	{
-		this.items.add(obj);
-		this.getElement().callJsFunction(ADD_POLYGON_FUNCTION, obj.toJson());
-	}
-
-	public void addCircle(final Circle obj)
-	{
-		this.items.add(obj);
-		this.getElement().callJsFunction(ADD_CIRCLE_FUNCTION, obj.toJson());
-	}
-
-	/**
-	 * Sets the height of the Maps component in px, em or %<br>
-	 * for example: "1000px", "10em", "75%"
-	 */
-	@Override
-	public void setHeight(final String height)
-	{
-		this.height = height;
-		this.getElement().getStyle().set(ElementConstants.STYLE_HEIGHT, height);
-	}
-
-	/**
-	 * Sets the width of the Maps component in px, em or %<br>
-	 * for example: "1000px", "10em", "75%"
-	 */
-	@Override
-	public void setWidth(final String width)
-	{
-		this.width = width;
-		this.getElement().getStyle().set(ElementConstants.STYLE_WIDTH, width);
-	}
-
-	/**
-	 * Sets width and height both to 100%
-	 */
-	@Override
-	public void setSizeFull()
-	{
-		this.setHeight("100%");
-		this.setWidth("100%");
-	}
-
-	public String getIdMap()
-	{
-		return this.id;
-	}
-
-	public Center getCenter()
+	public LCenter getCenter()
 	{
 		return this.center;
 	}
@@ -159,12 +107,13 @@ public class XdevGeoMap extends Component implements HasSize
 	 *
 	 * @param start
 	 */
-	public void setCenter(final Center start)
+	public void setCenter(final LCenter start)
 	{
 		this.center = start;
+		this.setViewPoint(start);
 	}
 
-	public List<Object> getItems()
+	public List<LComponent> getItems()
 	{
 		return this.items;
 	}
@@ -174,13 +123,16 @@ public class XdevGeoMap extends Component implements HasSize
 	 *
 	 * @param item
 	 */
-	public void deleteItem(final Object item)
+	public void removeItem(final LComponent ... items)
 	{
-		final int index = this.items.indexOf(item);
-
-		if(index != -1 && this.items.remove(item))
+		for(final LComponent item : items)
 		{
-			this.getElement().callJsFunction(DELETE_FUNCTION, index);
+			final int index = this.items.indexOf(item);
+
+			if(index != -1 && this.items.remove(item))
+			{
+				this.getElement().callJsFunction(DELETE_FUNCTION, index);
+			}
 		}
 	}
 }

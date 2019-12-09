@@ -25,9 +25,6 @@ export class LeafletMap extends PolymerElement {
 
     static get properties() {
         return {
-            id: {
-                type: String
-            },
             map: {
                 type: Object,
                 notify: true
@@ -50,6 +47,12 @@ export class LeafletMap extends PolymerElement {
     setViewPoint(obj) {
         this.map.setView(obj.point.coordinates, obj.point.zoom);
     }
+    
+    setTileLayer(layer)
+    {     
+        this.tile = L.tileLayer(layer.tile.link,{attribution: layer.tile.attribution, maxZoom: layer.tile.zoom, id: layer.tile.id}).addTo(this.map);
+        this.tile.bringToFront();
+    }
 
     _initMap() {
         super.ready();
@@ -65,37 +68,27 @@ export class LeafletMap extends PolymerElement {
         this.items = new Array();
     }
 
-    addMarker(obj, icon, divicon) {
-        var defaultIcon = new L.Icon({
-            iconUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png",
-            iconRetinaUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon-2x.png",
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
-            shadowSize: [41, 41]
-        });
+    addMarker(obj) {
+        // var lIcon = new L.Icon({
+        //     iconUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png",
+        //     iconRetinaUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon-2x.png",
+        //     iconSize: [25, 41],
+        //     iconAnchor: [12, 41],
+        //     popupAnchor: [1, -34],
+        //     shadowUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
+        //     shadowSize: [41, 41]
+        // });
 
-        var customIcon;
-        if (icon !== undefined && divicon == true) {
-            customIcon = new L.divIcon(icon.icon);
-        } else if (icon !== undefined && divicon == false) {
-            customIcon = new L.Icon(icon.icon);
+        console.log(obj);
+        var leafIcon;
+        if (obj.properties.icon.type == 'DivIcon') {
+            leafIcon = new L.divIcon(obj.properties.icon);
+        } else {
+            leafIcon = new L.Icon(obj.properties.icon);
         }
 
-        var item = L.geoJson(obj, {
-            pointToLayer: function (feature, latlng) {
-                if (icon === undefined) {
-                    return L.marker(latlng, {
-                        icon: defaultIcon
-                    });
-                } else {
-                    return L.marker(latlng, {
-                        icon: customIcon
-                    });
-                }
-            }
-        }).addTo(this.map);
+        var item = L.marker(obj.geometry.coordinates, {icon: leafIcon}).addTo(this.map);
+       
         if (obj.properties.popup != null) {
             item.bindPopup(obj.properties.popup);
         }

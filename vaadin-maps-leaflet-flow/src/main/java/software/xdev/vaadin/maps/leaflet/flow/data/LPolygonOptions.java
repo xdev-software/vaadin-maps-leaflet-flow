@@ -20,7 +20,7 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
-public class PolygonOptions
+public class LPolygonOptions
 {
 	private boolean stroke = true;
 	private String color = "#000000";
