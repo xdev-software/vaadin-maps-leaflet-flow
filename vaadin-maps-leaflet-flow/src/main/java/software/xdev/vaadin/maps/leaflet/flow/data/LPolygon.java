@@ -10,9 +10,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,39 +31,39 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 
-public class Polygon
+public class LPolygon implements LComponent
 {
-	private final PolygonGeometry geometry;
-	private final PolygonOptions properties;
+	private final LPolygonGeometry geometry;
+	private final LPolygonOptions properties;
 	
-	public Polygon(final Point... points)
+	public LPolygon(final LPoint... points)
 	{
 		final List<List<Double>> posis = new ArrayList<>();
-		this.properties = new PolygonOptions();
-		for(final Point p : points)
+		this.properties = new LPolygonOptions();
+		for(final LPoint p : points)
 		{
 			posis.add(p.getCoords());
 		}
-		this.geometry = new PolygonGeometry("Polygon", posis);
+		this.geometry = new LPolygonGeometry("Polygon", posis);
 	}
 	
 	/**
 	 * Create a new Polygon for marking a area on the map
-	 * 
+	 *
 	 * @param name
 	 * @param points
 	 *            List of points to draw the Polygon
 	 */
-	public Polygon(final List<Point> points)
+	public LPolygon(final List<LPoint> points)
 	{
 		final List<List<Double>> posis = new ArrayList<>();
-		for(final Point p : points)
+		for(final LPoint p : points)
 		{
 			posis.add(p.getCoords());
 		}
 		
-		this.properties = new PolygonOptions();
-		this.geometry = new PolygonGeometry("Polygon", posis);
+		this.properties = new LPolygonOptions();
+		this.geometry = new LPolygonGeometry("Polygon", posis);
 	}
 	
 	public boolean isStroke()
@@ -73,7 +73,7 @@ public class Polygon
 	
 	/**
 	 * Draws a border, default is true.
-	 * 
+	 *
 	 * @param stroke
 	 */
 	public void setStroke(final boolean stroke)
@@ -88,7 +88,7 @@ public class Polygon
 	
 	/**
 	 * Set a Color to the border.
-	 * 
+	 *
 	 * @param strokeColor
 	 */
 	public void setStrokeColor(final String strokeColor)
@@ -103,7 +103,7 @@ public class Polygon
 	
 	/**
 	 * Sets the opacity of the border.
-	 * 
+	 *
 	 * @param strokeOpacity
 	 */
 	public void setStrokeOpacity(final double strokeOpacity)
@@ -118,7 +118,7 @@ public class Polygon
 	
 	/**
 	 * Sets the width of the border.
-	 * 
+	 *
 	 * @param strokeWeight
 	 */
 	public void setStrokeWeight(final int strokeWeight)
@@ -138,7 +138,7 @@ public class Polygon
 	 * <li>bevel</li>
 	 * <li>miter-clip</li>
 	 * <li>arcs</li>
-	 * 
+	 *
 	 * @param lineJoin
 	 */
 	public void setLineJoin(final String lineJoin)
@@ -154,7 +154,7 @@ public class Polygon
 	/**
 	 * A string that defines the stroke dash pattern.<br>
 	 * For example: "2 1 3 1 2"
-	 * 
+	 *
 	 * @param dashArray
 	 */
 	public void setDashArray(final String dashArray)
@@ -170,7 +170,7 @@ public class Polygon
 	/**
 	 * A string that defines the distance into the dash pattern to start the dash.<br>
 	 * For example: "2" - The start of the dash array computation is pulled by 3 user units
-	 * 
+	 *
 	 * @param dashOffset
 	 */
 	public void setDashOffset(final String dashOffset)
@@ -185,7 +185,7 @@ public class Polygon
 	
 	/**
 	 * Whether to fill the path with color. Set it to false to disable filling.
-	 * 
+	 *
 	 * @param fill
 	 */
 	public void setFill(final boolean fill)
@@ -200,7 +200,7 @@ public class Polygon
 	
 	/**
 	 * Fill color.
-	 * 
+	 *
 	 * @param fillColor
 	 */
 	public void setFillColor(final String fillColor)
@@ -215,7 +215,7 @@ public class Polygon
 	
 	/**
 	 * Fill opacity.
-	 * 
+	 *
 	 * @param fillOpacity
 	 */
 	public void setFillOpacity(final double fillOpacity)
@@ -230,7 +230,7 @@ public class Polygon
 	
 	/**
 	 * Set Pop-up message.
-	 * 
+	 *
 	 * @param popup
 	 */
 	public void setPopup(final String popup)
@@ -247,7 +247,7 @@ public class Polygon
 	 * A string that defines how the inside of a shape is determined.<br>
 	 * <li>evenodd</li>
 	 * <li>nonzero</li>
-	 * 
+	 *
 	 * @param fillRule
 	 */
 	public void setFillRule(final String fillRule)
@@ -262,7 +262,7 @@ public class Polygon
 	
 	/**
 	 * Disable polyline clipping.
-	 * 
+	 *
 	 * @param noClip
 	 */
 	public void setNoClip(final boolean noClip)
@@ -278,7 +278,7 @@ public class Polygon
 	/**
 	 * How much to simplify the polyline on each zoom level.<br>
 	 * More means better performance and smoother look, and less means more accurate representation.
-	 * 
+	 *
 	 * @param smoothFactor
 	 */
 	public void setSmoothFactor(final double smoothFactor)

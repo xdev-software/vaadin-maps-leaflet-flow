@@ -10,9 +10,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,12 +28,12 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 
-public class Marker
+public class LMarker implements LComponent
 {
 	
 	private static final String MARKER_TYPE = "Point";
-	private final MarkerGeometry geometry;
-	private final MarkerOptions properties;
+	private LMarkerGeometry geometry;
+	private LMarkerOptions properties;
 	
 	/**
 	 * Creates a new Marker at the latitude, longitude
@@ -42,10 +42,40 @@ public class Marker
 	 * @param lat
 	 * @param lon
 	 */
-	public Marker(final double lat, final double lon)
+	public LMarker(final double lat, final double lon)
 	{
-		this.geometry = new MarkerGeometry(MARKER_TYPE, lat, lon);
-		this.properties = new MarkerOptions();
+		this.geometry = new LMarkerGeometry(MARKER_TYPE, lat, lon);
+		this.properties = new LMarkerOptions();
+	}
+	
+	public LIcon getIcon()
+	{
+		return this.properties.getIcon();
+	}
+	
+	public void setIcon(final LIcon icon)
+	{
+		this.properties.setIcon(icon);
+	}
+	
+	public LMarkerGeometry getGeometry()
+	{
+		return this.geometry;
+	}
+	
+	public void setGeometry(final LMarkerGeometry geometry)
+	{
+		this.geometry = geometry;
+	}
+	
+	public LMarkerOptions getProperties()
+	{
+		return this.properties;
+	}
+	
+	public void setProperties(final LMarkerOptions properties)
+	{
+		this.properties = properties;
 	}
 	
 	public double getLat()
@@ -94,6 +124,7 @@ public class Marker
 			jsonObject.put("type", Json.create("Feature"));
 			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
 			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
+			
 		}
 		catch(final JsonProcessingException e)
 		{

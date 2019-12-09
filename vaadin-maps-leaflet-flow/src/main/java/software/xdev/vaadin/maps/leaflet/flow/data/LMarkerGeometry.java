@@ -1,4 +1,3 @@
-
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
 /*-
@@ -10,9 +9,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,24 +24,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Point
+public class LMarkerGeometry
 {
-	private List<Double> coords = new ArrayList<>();
+	private String type;
+	private List<Double> coordinates = new ArrayList<>();
 	
-	public Point(final double lat, final double lon)
+	public LMarkerGeometry(final String type, final double lon, final double lat)
 	{
-		this.coords.add(lat);
-		this.coords.add(lon);
+		this.type = type;
+		this.coordinates.add(lon);
+		this.coordinates.add(lat);
 	}
 	
-	public List<Double> getCoords()
+	public String getType()
 	{
-		return this.coords;
+		return this.type;
 	}
 	
-	public void setCoords(final List<Double> point)
+	public void setType(final String type)
 	{
-		this.coords = point;
+		this.type = type;
+	}
+	
+	public List<Double> getCoordinates()
+	{
+		return this.coordinates;
+	}
+	
+	public void setCoordinates(final List<Double> coordinates)
+	{
+		this.coordinates = coordinates;
 	}
 	
 }

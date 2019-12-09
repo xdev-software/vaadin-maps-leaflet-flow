@@ -1,5 +1,4 @@
-
-package software.xdev.vaadin.maps.leaflet.flow;
+package software.xdev.vaadin.maps.leaflet.flow.data;
 
 /*-
  * #%L
@@ -21,23 +20,9 @@ package software.xdev.vaadin.maps.leaflet.flow;
  * #L%
  */
 
-public class IdGenerator
+public interface LComponent
 {
-	private IdGenerator()
-	{
-		// private constructor for utility class
-	}
-	
-	public static String generateId()
-	{
-		final String possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		final StringBuilder idStr = new StringBuilder();
-		
-		for(int i = 0; i < 10; i++)
-		{
-			idStr.append(possible.charAt((int)Math.floor(Math.random() * possible.length())));
-		}
-		return idStr.toString();
-	}
-	
+	/*
+	 * Marker Interface for Leaflet Components
+	 */
 }

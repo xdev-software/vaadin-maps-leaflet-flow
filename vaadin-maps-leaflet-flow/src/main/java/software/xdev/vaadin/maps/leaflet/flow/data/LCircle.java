@@ -10,9 +10,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,40 +28,40 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 
-public class Circle
+public class LCircle implements LComponent
 {
 	
-	private Point geometry;
-	private PolygonOptions properties;
+	private LPoint geometry;
+	private LPolygonOptions properties;
 	
 	/**
 	 * Creates a new Circle
 	 *
 	 * @param name
 	 */
-	public Circle(final double lat, final double lon, final double radius)
+	public LCircle(final double lat, final double lon, final double radius)
 	{
-		this.geometry = new Point(lat, lon);
-		this.properties = new PolygonOptions();
+		this.geometry = new LPoint(lat, lon);
+		this.properties = new LPolygonOptions();
 		this.properties.setRadius(radius);
 	}
 	
-	public Point getGeometry()
+	public LPoint getGeometry()
 	{
 		return this.geometry;
 	}
 	
-	public void setGeometry(final Point geometry)
+	public void setGeometry(final LPoint geometry)
 	{
 		this.geometry = geometry;
 	}
 	
-	public PolygonOptions getProperties()
+	public LPolygonOptions getProperties()
 	{
 		return this.properties;
 	}
 	
-	public void setProperties(final PolygonOptions properties)
+	public void setProperties(final LPolygonOptions properties)
 	{
 		this.properties = properties;
 	}

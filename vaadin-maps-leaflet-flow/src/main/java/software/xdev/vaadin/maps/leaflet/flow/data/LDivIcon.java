@@ -1,3 +1,4 @@
+
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
 /*-
@@ -9,9 +10,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,41 +21,46 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class MarkerGeometry
+public class LDivIcon extends LIcon
 {
-	private String type;
-	private List<Double> coordinates = new ArrayList<>();
-	
-	public MarkerGeometry(final String type, final double lon, final double lat)
+
+	private String className = "leaflet-div-icon";
+	private String html;
+
+	public LDivIcon()
 	{
-		this.type = type;
-		this.coordinates.add(lat);
-		this.coordinates.add(lon);
-		
+		this.setIconSize(25, 41);
+		this.setIconAnchor(0, 0);
+		super.setType("DivIcon");
 	}
-	
-	public String getType()
+
+	public String getClassName()
 	{
-		return this.type;
+		return this.className;
 	}
-	
-	public void setType(final String type)
+
+	/**
+	 * Sets a className for CSS formating.
+	 *
+	 * @param className
+	 */
+	public void setClassName(final String className)
 	{
-		this.type = type;
+		this.className = className;
 	}
-	
-	public List<Double> getCoordinates()
+
+	public String getHtml()
 	{
-		return this.coordinates;
+		return this.html;
 	}
-	
-	public void setCoordinates(final List<Double> coordinates)
+
+	/**
+	 * Custom HTML code to put inside the div element, empty by default. Alternatively, an instance of HTMLElement.
+	 *
+	 * @param html
+	 */
+	public void setHtml(final String html)
 	{
-		this.coordinates = coordinates;
+		this.html = html;
 	}
-	
 }
