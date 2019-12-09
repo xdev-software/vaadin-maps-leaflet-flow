@@ -28,32 +28,32 @@ public class LMarkerGeometry
 {
 	private String type;
 	private List<Double> coordinates = new ArrayList<>();
-
+	
 	public LMarkerGeometry(final String type, final double lon, final double lat)
 	{
 		this.type = type;
 		this.coordinates.add(lon);
 		this.coordinates.add(lat);
 	}
-
+	
 	public String getType()
 	{
 		return this.type;
 	}
-
+	
 	public void setType(final String type)
 	{
 		this.type = type;
 	}
-
+	
 	public List<Double> getCoordinates()
 	{
 		return this.coordinates;
 	}
-
+	
 	public void setCoordinates(final List<Double> coordinates)
 	{
 		this.coordinates = coordinates;
 	}
-
+	
 }

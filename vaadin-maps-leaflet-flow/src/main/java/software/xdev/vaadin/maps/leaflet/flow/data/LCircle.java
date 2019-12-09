@@ -30,10 +30,10 @@ import elemental.json.JsonObject;
 
 public class LCircle implements LComponent
 {
-
+	
 	private LPoint geometry;
 	private LPolygonOptions properties;
-
+	
 	/**
 	 * Creates a new Circle
 	 *
@@ -45,32 +45,32 @@ public class LCircle implements LComponent
 		this.properties = new LPolygonOptions();
 		this.properties.setRadius(radius);
 	}
-
+	
 	public LPoint getGeometry()
 	{
 		return this.geometry;
 	}
-
+	
 	public void setGeometry(final LPoint geometry)
 	{
 		this.geometry = geometry;
 	}
-
+	
 	public LPolygonOptions getProperties()
 	{
 		return this.properties;
 	}
-
+	
 	public void setProperties(final LPolygonOptions properties)
 	{
 		this.properties = properties;
 	}
-
+	
 	public boolean isStroke()
 	{
 		return this.properties.isStroke();
 	}
-
+	
 	/**
 	 * Draws a border, default is true.
 	 *
@@ -80,12 +80,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setStroke(stroke);
 	}
-
+	
 	public String getStrokeColor()
 	{
 		return this.properties.getColor();
 	}
-
+	
 	/**
 	 * Set a Color to the border.
 	 *
@@ -95,12 +95,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setColor(strokeColor);
 	}
-
+	
 	public double getStrokeOpacity()
 	{
 		return this.properties.getOpacity();
 	}
-
+	
 	/**
 	 * Sets the opacity of the border.
 	 *
@@ -110,12 +110,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setOpacity(strokeOpacity);
 	}
-
+	
 	public int getStrokeWeight()
 	{
 		return this.properties.getWeight();
 	}
-
+	
 	/**
 	 * Sets the width of the border.
 	 *
@@ -125,12 +125,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setWeight(strokeWeight);
 	}
-
+	
 	public String getLineJoin()
 	{
 		return this.properties.getLineJoin();
 	}
-
+	
 	/**
 	 * A string that defines shape to be used at the corners of the stroke.<br>
 	 * <li>miter</li>
@@ -145,12 +145,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setLineJoin(lineJoin);
 	}
-
+	
 	public String getDashArray()
 	{
 		return this.properties.getDashArray();
 	}
-
+	
 	/**
 	 * A string that defines the stroke dash pattern.<br>
 	 * For example: "2 1 3 1 2"
@@ -161,12 +161,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setDashArray(dashArray);
 	}
-
+	
 	public String getDashOffset()
 	{
 		return this.properties.getDashOffset();
 	}
-
+	
 	/**
 	 * A string that defines the distance into the dash pattern to start the dash.<br>
 	 * For example: "2" - The start of the dash array computation is pulled by 3 user units
@@ -177,12 +177,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setDashOffset(dashOffset);
 	}
-
+	
 	public boolean isFill()
 	{
 		return this.properties.isFill();
 	}
-
+	
 	/**
 	 * Whether to fill the path with color. Set it to false to disable filling.
 	 *
@@ -192,12 +192,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setFill(fill);
 	}
-
+	
 	public String getFillColor()
 	{
 		return this.properties.getFillColor();
 	}
-
+	
 	/**
 	 * Fill color.
 	 *
@@ -207,12 +207,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setFillColor(fillColor);
 	}
-
+	
 	public double getFillOpacity()
 	{
 		return this.properties.getFillOpacity();
 	}
-
+	
 	/**
 	 * Fill opacity.
 	 *
@@ -222,12 +222,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setFillOpacity(fillOpacity);
 	}
-
+	
 	public String getPopup()
 	{
 		return this.properties.getPopup();
 	}
-
+	
 	/**
 	 * Set Pop-up message.
 	 *
@@ -237,12 +237,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setPopup(popup);
 	}
-
+	
 	public String getFillRule()
 	{
 		return this.properties.getFillRule();
 	}
-
+	
 	/**
 	 * A string that defines how the inside of a shape is determined.<br>
 	 * <li>evenodd</li>
@@ -254,12 +254,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setFillRule(fillRule);
 	}
-
+	
 	public boolean isNoClip()
 	{
 		return this.properties.isNoClip();
 	}
-
+	
 	/**
 	 * Disable polyline clipping.
 	 *
@@ -269,12 +269,12 @@ public class LCircle implements LComponent
 	{
 		this.properties.setNoClip(noClip);
 	}
-
+	
 	public double getSmoothFactor()
 	{
 		return this.properties.getSmoothFactor();
 	}
-
+	
 	/**
 	 * How much to simplify the polyline on each zoom level.<br>
 	 * More means better performance and smoother look, and less means more accurate representation.
@@ -285,17 +285,17 @@ public class LCircle implements LComponent
 	{
 		this.properties.setSmoothFactor(smoothFactor);
 	}
-
+	
 	public void setRadius(final double radius)
 	{
 		this.properties.setRadius(radius);
 	}
-
+	
 	public double getRadius()
 	{
 		return this.properties.getRadius();
 	}
-
+	
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -310,8 +310,8 @@ public class LCircle implements LComponent
 		{
 			throw new RuntimeException(e);
 		}
-
+		
 		return jsonObject;
 	}
-
+	
 }

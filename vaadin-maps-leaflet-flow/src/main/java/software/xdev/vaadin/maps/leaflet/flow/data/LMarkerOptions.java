@@ -23,28 +23,28 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 public class LMarkerOptions
 {
 	private String popup;
-	private  LIcon icon;
-
+	private LIcon icon;
+	
 	public LMarkerOptions()
 	{
 		this.icon = new LIcon();
 	}
-
+	
 	public LIcon getIcon()
 	{
 		return this.icon;
 	}
-
+	
 	public void setIcon(final LIcon icon)
 	{
 		this.icon = icon;
 	}
-
+	
 	public String getPopup()
 	{
 		return this.popup;
 	}
-
+	
 	public void setPopup(final String popup)
 	{
 		this.popup = popup;

@@ -33,7 +33,7 @@ public class LTileLayer
 	private String attribution;
 	private int zoom;
 	private String id;
-
+	
 	public LTileLayer(final String link, final String attribution, final int zoom, final String id)
 	{
 		super();
@@ -42,47 +42,47 @@ public class LTileLayer
 		this.zoom = zoom;
 		this.id = id;
 	}
-
+	
 	public String getLink()
 	{
 		return this.link;
 	}
-
+	
 	public void setLink(final String link)
 	{
 		this.link = link;
 	}
-
+	
 	public String getAttribution()
 	{
 		return this.attribution;
 	}
-
+	
 	public void setAttribution(final String attribution)
 	{
 		this.attribution = attribution;
 	}
-
+	
 	public int getZoom()
 	{
 		return this.zoom;
 	}
-
+	
 	public void setZoom(final int zoom)
 	{
 		this.zoom = zoom;
 	}
-
+	
 	public String getId()
 	{
 		return this.id;
 	}
-
+	
 	public void setId(final String id)
 	{
 		this.id = id;
 	}
-
+	
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -95,7 +95,7 @@ public class LTileLayer
 		{
 			throw new RuntimeException(e);
 		}
-
+		
 		return jsonObject;
 	}
 }

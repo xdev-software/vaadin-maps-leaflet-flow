@@ -69,24 +69,13 @@ export class LeafletMap extends PolymerElement {
     }
 
     addMarker(obj) {
-        // var lIcon = new L.Icon({
-        //     iconUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png",
-        //     iconRetinaUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon-2x.png",
-        //     iconSize: [25, 41],
-        //     iconAnchor: [12, 41],
-        //     popupAnchor: [1, -34],
-        //     shadowUrl: "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png",
-        //     shadowSize: [41, 41]
-        // });
-
-        console.log(obj);
+      
         var leafIcon;
         if (obj.properties.icon.type == 'DivIcon') {
             leafIcon = new L.divIcon(obj.properties.icon);
         } else {
             leafIcon = new L.Icon(obj.properties.icon);
-        }
-
+        }    
         var item = L.marker(obj.geometry.coordinates, {icon: leafIcon}).addTo(this.map);
        
         if (obj.properties.popup != null) {

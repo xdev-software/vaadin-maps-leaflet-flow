@@ -35,7 +35,7 @@ public class LIcon
 	private String shadowUrl;
 	private final List<Integer> shadowSize = new ArrayList<>();
 	private final List<Integer> shadowAnchor = new ArrayList<>();
-
+	
 	public LIcon()
 	{
 		this.setIconSize(25, 41);
@@ -43,31 +43,27 @@ public class LIcon
 		this.setPopupAnchor(1, -34);
 		this.setShadowSize(41, 41);
 		this.setShadowAnchor(12, 41);
-		this.iconUrl ="https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png";
+		this.iconUrl = "https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png";
 		this.shadowUrl = "https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png";
-		this.type="Icon";
-
+		this.type = "Icon";
+		
 	}
-
+	
 	public String getType()
 	{
 		return this.type;
 	}
-
-
-
+	
 	public void setType(final String type)
 	{
 		this.type = type;
 	}
-
-
-
+	
 	public String getIconUrl()
 	{
 		return this.iconUrl;
 	}
-
+	
 	/**
 	 * Sets a icon url.
 	 *
@@ -77,12 +73,12 @@ public class LIcon
 	{
 		this.iconUrl = iconUrl;
 	}
-
+	
 	public List<Integer> getIconSize()
 	{
 		return this.iconSize;
 	}
-
+	
 	/**
 	 * Icon size with x, y in px
 	 *
@@ -94,12 +90,12 @@ public class LIcon
 		this.iconSize.add(x);
 		this.iconSize.add(y);
 	}
-
+	
 	public List<Integer> getIconAnchor()
 	{
 		return this.iconAnchor;
 	}
-
+	
 	/**
 	 * Anchor point of the icon in x, y px.
 	 *
@@ -107,17 +103,17 @@ public class LIcon
 	 */
 	public void setIconAnchor(final int x, final int y)
 	{
-
+		
 		this.iconAnchor.clear();
 		this.iconAnchor.add(x);
 		this.iconAnchor.add(y);
 	}
-
+	
 	public List<Integer> getPopupAnchor()
 	{
 		return this.popupAnchor;
 	}
-
+	
 	/**
 	 * Anchor point of the Pop-up message in x,y px.
 	 *
@@ -125,43 +121,43 @@ public class LIcon
 	 */
 	public void setPopupAnchor(final int x, final int y)
 	{
-
+		
 		this.popupAnchor.clear();
 		this.popupAnchor.add(x);
 		this.popupAnchor.add(y);
 	}
-
+	
 	public String getShadowUrl()
 	{
 		return this.shadowUrl;
 	}
-
+	
 	public void setShadowUrl(final String shadowUrl)
 	{
 		this.shadowUrl = shadowUrl;
 	}
-
+	
 	public List<Integer> getShadowSize()
 	{
 		return this.shadowSize;
 	}
-
+	
 	public void setShadowSize(final int x, final int y)
 	{
-
+		
 		this.shadowSize.clear();
 		this.shadowSize.add(x);
 		this.shadowSize.add(y);
 	}
-
+	
 	public List<Integer> getShadowAnchor()
 	{
 		return this.shadowAnchor;
 	}
-
+	
 	public void setShadowAnchor(final int x, final int y)
 	{
-
+		
 		this.shadowAnchor.clear();
 		this.shadowAnchor.add(x);
 		this.shadowAnchor.add(y);

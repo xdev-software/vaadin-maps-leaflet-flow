@@ -25,8 +25,6 @@ public class LDivIcon extends LIcon
 {
 
 	private String className = "leaflet-div-icon";
-//	private final List<Integer> iconSize = new ArrayList<>();
-//	private final List<Integer> iconAnchor = new ArrayList<>();
 	private String html;
 
 	public LDivIcon()
@@ -35,45 +33,6 @@ public class LDivIcon extends LIcon
 		this.setIconAnchor(0, 0);
 		super.setType("DivIcon");
 	}
-
-
-//	@Override
-//	public List<Integer> getIconSize()
-//	{
-//		return this.iconSize;
-//	}
-//
-//	/**
-//	 * Sets icon size in px.
-//	 *
-//	 * @param iconSize
-//	 */
-//	@Override
-//	public void setIconSize(final int x, final int y)
-//	{
-//		this.iconSize.clear();
-//		this.iconSize.add(x);
-//		this.iconSize.add(y);
-//	}
-
-//	@Override
-//	public List<Integer> getIconAnchor()
-//	{
-//		return this.iconAnchor;
-//	}
-//
-//	/**
-//	 * Anchor point vor the Icon image for fixing offsets
-//	 *
-//	 * @param iconAnchor
-//	 */
-//	@Override
-//	public void setIconAnchor(final int x, final int y)
-//	{
-//		this.iconAnchor.clear();
-//		this.iconAnchor.add(x);
-//		this.iconAnchor.add(y);
-//	}
 
 	public String getClassName()
 	{

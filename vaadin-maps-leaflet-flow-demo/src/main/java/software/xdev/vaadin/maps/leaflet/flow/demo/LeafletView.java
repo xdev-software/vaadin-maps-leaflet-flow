@@ -17,6 +17,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
 
+
 @Route("")
 public class LeafletView extends VerticalLayout
 {
@@ -26,19 +27,17 @@ public class LeafletView extends VerticalLayout
 	private XdevGeoMap map;
 	private boolean viewSwitch;
 
-	private LMarker xDev_Marker;
-	private LMarker zob_Marker;
-	private LMarker rathaus_Marker;
 
-	private LCircle range_Circle;
-	private LMarker pizza_Marker;
-	private LMarker kebab_Marker;
-	private LMarker asia_Marker;
-	private LMarker greek_Marker;
-	private LMarker bakery_Marker;
-	private LMarker leberkaese_Marker;
-	private LPolygon nocPlace_Polygon;
+	private LMarker markerZob;
+	private LMarker markerRathaus;
 
+	private LCircle circleRange;
+	private LMarker markerPizza;
+	private LMarker markerKebab;
+	private LMarker markerAsia;
+	private LMarker markerGreek;
+	private LMarker markerBakery;
+	private LMarker markerLeberkaese;
 
 
 	public LeafletView()
@@ -46,29 +45,43 @@ public class LeafletView extends VerticalLayout
 		this.mapTest();
 		this.button = new Button();
 		this.button.setText("Where do XDEV employees go for lunch break?");
-		this.button.addClickListener(this::button_onClick);
+		this.button.addClickListener(this::buttonOnClick);
 		this.add(this.button);
 	}
 
-	private void button_onClick(final ClickEvent<Button> event)
+	private void buttonOnClick(final ClickEvent<Button> event)
 	{
 
 		if(this.viewSwitch)
 		{
-			this.viewSwitch= false;
+			this.viewSwitch = false;
 
 			this.map.setViewPoint(new LCenter(49.675126, 12.160733, 16));
-			this.map.removeItem(this.rathaus_Marker,this.zob_Marker);
+			this.map.removeItem(this.markerRathaus, this.markerZob);
 
-			this.map.addLComponent(this.range_Circle,this.pizza_Marker,this.kebab_Marker,this.asia_Marker,this.greek_Marker,this.bakery_Marker,this.leberkaese_Marker);
+			this.map.addLComponent(
+				this.circleRange,
+				this.markerPizza,
+				this.markerKebab,
+				this.markerAsia,
+				this.markerGreek,
+				this.markerBakery,
+				this.markerLeberkaese);
 		}
 		else
 		{
 			this.viewSwitch = true;
 			this.map.setViewPoint(new LCenter(49.675126, 12.160733, 17));
-			this.map.addLComponent(this.rathaus_Marker, this.zob_Marker);
+			this.map.addLComponent(this.markerRathaus, this.markerZob);
 
-			this.map.removeItem(this.range_Circle,this.pizza_Marker,this.kebab_Marker,this.asia_Marker,this.greek_Marker,this.bakery_Marker,this.leberkaese_Marker);
+			this.map.removeItem(
+				this.circleRange,
+				this.markerPizza,
+				this.markerKebab,
+				this.markerAsia,
+				this.markerGreek,
+				this.markerBakery,
+				this.markerLeberkaese);
 		}
 	}
 
@@ -80,54 +93,61 @@ public class LeafletView extends VerticalLayout
 		this.map.setWidth("1000px");
 		this.add(this.map);
 
-		this.zob_Marker = new LMarker(49.673470, 12.160108);
+		this.markerZob = new LMarker(49.673470, 12.160108);
 
-		this.xDev_Marker = new LMarker(49.675126, 12.160733);
+		final LMarker markerXDev = new LMarker(49.675126, 12.160733);
 		final LIcon xDevLogo = new LIcon();
-		xDevLogo.setIconUrl("https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
+		xDevLogo.setIconUrl(
+			"https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
 		xDevLogo.setIconSize(70, 70);
 		xDevLogo.setIconAnchor(33, 55);
-		this.xDev_Marker.setPopup("<a href='https://www.xdev-software.de/'>Xdev-Software GmbH</a>");
-		this.xDev_Marker.setIcon(xDevLogo);
+		markerXDev.setPopup("<a href='https://www.xdev-software.de/'>Xdev-Software GmbH</a>");
+		markerXDev.setIcon(xDevLogo);
 
-		final LMarker info_Marker = new LMarker(49.674095, 12.162257);
+		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
 		final LDivIcon div = new LDivIcon();
 		div.setIconSize(265, 90);
-		div.setHtml("<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers, Popups, Polygon and other Stuff</p>");
-		info_Marker.setIcon(div);
+		div.setHtml(
+			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers, Popups, Polygon and other Stuff</p>");
+		markerInfo.setIcon(div);
 
 		this.getPunkte();
-		this.nocPlace_Polygon = new LPolygon(this.points);
-		this.nocPlace_Polygon.setFill(true);
-		this.nocPlace_Polygon.setFillColor("#3366ff");
-		this.nocPlace_Polygon.setFillOpacity(0.8);
-		this.nocPlace_Polygon.setStroke(false);
-		this.nocPlace_Polygon.setPopup("NOC-Nordoberpfalz Center");
+		final LPolygon polygonNoc = new LPolygon(this.points);
+		polygonNoc.setFill(true);
+		polygonNoc.setFillColor("#3366ff");
+		polygonNoc.setFillOpacity(0.8);
+		polygonNoc.setStroke(false);
+		polygonNoc.setPopup("NOC-Nordoberpfalz Center");
 
-		this.rathaus_Marker = new LMarker(49.675519, 12.163868);
-		this.rathaus_Marker.setPopup("Old Town Hall");
+		this.markerRathaus = new LMarker(49.675519, 12.163868);
+		this.markerRathaus.setPopup("Old Town Hall");
 
-		this.range_Circle = new LCircle(49.675126, 12.160733, 450);
+		this.circleRange = new LCircle(49.675126, 12.160733, 450);
 
-		this.pizza_Marker = new LMarker(49.674413, 12.160925);
-		this.pizza_Marker.setPopup("Pizza!");
+		this.markerPizza = new LMarker(49.674413, 12.160925);
+		this.markerPizza.setPopup("Pizza!");
 
-		this.kebab_Marker = new LMarker(49.673026, 12.156278);
-		this.kebab_Marker.setPopup("Kebab!");
+		this.markerKebab = new LMarker(49.673026, 12.156278);
+		this.markerKebab.setPopup("Kebab!");
 
-		this.asia_Marker = new LMarker(49.675039, 12.162127);
-		this.asia_Marker.setPopup("Asian Food");
+		this.markerAsia = new LMarker(49.675039, 12.162127);
+		this.markerAsia.setPopup("Asian Food");
 
-		this.greek_Marker = new LMarker(49.675126, 12.161899);
-		this.greek_Marker.setPopup("Greek Food");
+		this.markerGreek = new LMarker(49.675126, 12.161899);
+		this.markerGreek.setPopup("Greek Food");
 
-		this.bakery_Marker = new LMarker(49.674806, 12.160249);
-		this.bakery_Marker.setPopup("Fresh baked stuff");
+		this.markerBakery = new LMarker(49.674806, 12.160249);
+		this.markerBakery.setPopup("Fresh baked stuff");
 
-		this.leberkaese_Marker = new LMarker(49.673800, 12.160113);
-		this.leberkaese_Marker.setPopup("Fast food like Leberkäsesemmeln");
+		this.markerLeberkaese = new LMarker(49.673800, 12.160113);
+		this.markerLeberkaese.setPopup("Fast food like Leberkäsesemmeln");
 
-		this.map.addLComponent(this.xDev_Marker, info_Marker,this.zob_Marker,this.nocPlace_Polygon, this.rathaus_Marker);
+		this.map.addLComponent(
+			markerXDev,
+			markerInfo,
+			this.markerZob,
+			polygonNoc,
+			this.markerRathaus);
 
 	}
 
