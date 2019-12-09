@@ -43,33 +43,37 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 @JsModule("./leaflet/leafletCon.js")
 public class XdevGeoMap extends Component implements HasSize
 {
-	
+
 	private static final String SET_VIEW_POINT_FUNCTION = "setViewPoint";
 	private static final String ADD_CIRCLE_FUNCTION = "addCircle";
 	private static final String ADD_POLYGON_FUNCTION = "addPolygon";
 	private static final String ADD_MARKER_FUNCTION = "addMarker";
 	private static final String DELETE_FUNCTION = "deleteItem";
-	
+
 	private LCenter center;
 	private final List<LComponent> items = new ArrayList<>();
-	
+
 	public XdevGeoMap(final double lat, final double lon, final int zoom)
 	{
 		super();
 		this.center = new LCenter(lat, lon, zoom);
 		this.setViewPoint(this.center);
 	}
-	
+
 	public void setViewPoint(final LCenter viewpoint)
 	{
 		this.getElement().callJsFunction(SET_VIEW_POINT_FUNCTION, viewpoint.toJson());
 	}
-	
+
 	public void setTileLayer(final LTileLayer tl)
 	{
 		this.getElement().callJsFunction("setTileLayer", tl.toJson());
 	}
-	
+
+	/**
+	 * add a Leaflet Component to the map.
+	 * @param lObjects
+	 */
 	public void addLComponent(final LComponent... lObjects)
 	{
 		for(final LComponent lObj : lObjects)
@@ -94,12 +98,12 @@ public class XdevGeoMap extends Component implements HasSize
 			}
 		}
 	}
-	
+
 	public LCenter getCenter()
 	{
 		return this.center;
 	}
-	
+
 	/**
 	 * Starting Point of the map with latitude, longitude and zoom level
 	 *
@@ -110,12 +114,12 @@ public class XdevGeoMap extends Component implements HasSize
 		this.center = start;
 		this.setViewPoint(start);
 	}
-	
+
 	public List<LComponent> getItems()
 	{
 		return this.items;
 	}
-	
+
 	/**
 	 * Removes a map item
 	 *
@@ -126,7 +130,7 @@ public class XdevGeoMap extends Component implements HasSize
 		for(final LComponent item : items)
 		{
 			final int index = this.items.indexOf(item);
-			
+
 			if(index != -1 && this.items.remove(item))
 			{
 				this.getElement().callJsFunction(DELETE_FUNCTION, index);
