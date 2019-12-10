@@ -8,7 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.maps.leaflet.flow.XdevGeoMap;
+import software.xdev.vaadin.maps.leaflet.flow.LMap;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
 import software.xdev.vaadin.maps.leaflet.flow.data.LDivIcon;
@@ -24,7 +24,7 @@ public class LeafletView extends VerticalLayout
 
 	private final Button button;
 	private List<LPoint> points;
-	private XdevGeoMap map;
+	private LMap map;
 	private boolean viewSwitch;
 
 
@@ -88,7 +88,8 @@ public class LeafletView extends VerticalLayout
 	public void mapTest()
 	{
 		this.viewSwitch = true;
-		this.map = new XdevGeoMap(49.675126, 12.160733, 17);
+		this.map = new LMap(49.675126, 12.160733, 17);
+//		this.map = new LMap();
 		this.map.setHeight("700px");
 		this.map.setWidth("1000px");
 		this.add(this.map);

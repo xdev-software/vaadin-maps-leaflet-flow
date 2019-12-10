@@ -41,7 +41,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 @NpmPackage(value = "leaflet", version = "^1.6.0")
 @Tag("leaflet-map")
 @JsModule("./leaflet/leafletCon.js")
-public class XdevGeoMap extends Component implements HasSize
+public class LMap extends Component implements HasSize
 {
 
 	private static final String SET_VIEW_POINT_FUNCTION = "setViewPoint";
@@ -53,10 +53,17 @@ public class XdevGeoMap extends Component implements HasSize
 	private LCenter center;
 	private final List<LComponent> items = new ArrayList<>();
 
-	public XdevGeoMap(final double lat, final double lon, final int zoom)
+	public LMap(final double lat, final double lon, final int zoom)
 	{
 		super();
 		this.center = new LCenter(lat, lon, zoom);
+		this.setViewPoint(this.center);
+	}
+
+	public LMap()
+	{
+		super();
+		this.center = new LCenter(50.921273, 10.359164, 6);
 		this.setViewPoint(this.center);
 	}
 
