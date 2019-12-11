@@ -7,7 +7,7 @@
 
 	<groupId>de.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>vaadin-maps-leaflet-flow</name>
@@ -28,13 +28,11 @@
 
 	<properties>
 		<vaadin.version>14.0.14</vaadin.version>
-
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<license.licenseName>apache_v2</license.licenseName>
-		<drivers.dir>${project.basedir}/drivers</drivers.dir>
 		<jetty.version>9.4.15.v20190215</jetty.version>
 	</properties>
 
@@ -54,6 +52,15 @@
 		<repository>
 			<id>Vaadin Directory</id>
 			<url>https://maven.vaadin.com/vaadin-addons</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>github</id>
+			<name>GitHub xdev-software Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -128,6 +135,15 @@
 		</dependency>
 	</dependencies>
 
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub xdev-software Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/xdev-software/vaadin-maps-leaflet-flow</url>
+		</repository>
+	</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -184,9 +200,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-
-	</profiles>
-
 </project>
