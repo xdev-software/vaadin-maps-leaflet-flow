@@ -34,6 +34,14 @@ public class LDivIcon extends LIcon
 		super.setType("DivIcon");
 	}
 
+	public LDivIcon(final String html)
+	{
+		this.setHtml(html);
+		this.setIconSize(25, 41);
+		this.setIconAnchor(0, 0);
+		super.setType("DivIcon");
+	}
+
 	public String getClassName()
 	{
 		return this.className;

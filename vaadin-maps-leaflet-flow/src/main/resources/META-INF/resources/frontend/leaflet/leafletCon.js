@@ -54,6 +54,11 @@ export class LeafletMap extends PolymerElement {
         this.tile.bringToFront();
     }
 
+    setZoomLevel(zoom)
+    {
+        this.map.setZoom(zoom);
+    }
+
     _initMap() {
         super.ready();
         this.map = new L.map(this.$.divMap);
