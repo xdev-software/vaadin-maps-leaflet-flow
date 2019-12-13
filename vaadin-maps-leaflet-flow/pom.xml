@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.xdev-software</groupId>
+	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
@@ -16,7 +16,7 @@
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.de</url>
+		<url>https://xdev-software.com</url>
 	</organization>
 
 	<licenses>
