@@ -43,7 +43,6 @@ public class LIcon
 
 	public LIcon()
 	{
-//		this.setIconSize(25, 41);
 		this.setIconAnchor(12, 41);
 		this.setPopupAnchor(1, -34);
 		this.setShadowSize(41, 41);
@@ -55,7 +54,6 @@ public class LIcon
 	}
 	public LIcon(final String url)
 	{
-		this.setIconSize(40, 40);
 		this.setIconAnchor(0, 0);
 		this.setPopupAnchor(0, 0);
 		this.setShadowSize(0,0);
