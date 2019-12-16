@@ -33,27 +33,27 @@ import elemental.json.JsonObject;
 
 public class LCenter
 {
-
+	
 	private List<Double> coordinates = new ArrayList<>();
 	private int zoom;
-
+	
 	public LCenter(final double lat, final double lon, final int zoom)
 	{
 		this.coordinates.add(lat);
 		this.coordinates.add(lon);
 		this.zoom = zoom;
 	}
-
+	
 	public LCenter(final double lat, final double lon)
 	{
 		this(lat, lon, 6);
 	}
-
+	
 	public int getZoom()
 	{
 		return this.zoom;
 	}
-
+	
 	/**
 	 * Sets the zoom level at the start
 	 *
@@ -63,17 +63,17 @@ public class LCenter
 	{
 		this.zoom = zoom;
 	}
-
+	
 	public List<Double> getCoordinates()
 	{
 		return this.coordinates;
 	}
-
+	
 	public void setCoordinates(final List<Double> coordinates)
 	{
 		this.coordinates = coordinates;
 	}
-
+	
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -86,7 +86,7 @@ public class LCenter
 		{
 			throw new RuntimeException(e);
 		}
-
+		
 		return jsonObject;
 	}
 }
