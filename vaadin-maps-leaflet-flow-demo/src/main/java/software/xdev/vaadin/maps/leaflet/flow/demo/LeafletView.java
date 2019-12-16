@@ -107,8 +107,8 @@ public class LeafletView extends VerticalLayout
 
 		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
 		final LDivIcon div = new LDivIcon(
-			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers, Popups, Polygon and other Stuff</p>");
-		div.setIconSize(265, 90);
+			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,<br> Popups, Polygon and other Stuff</p>");
+//		div.setIconSize(265, 90);
 		// div.setHtml(
 		// "<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,
 		// Popups, Polygon and other Stuff</p>");

@@ -24,20 +24,17 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 public class LDivIcon extends LIcon
 {
 
-	private String className = "leaflet-div-icon";
+	private String className = "div-icon";
 	private String html;
 
 	public LDivIcon()
 	{
-		this.setIconSize(25, 41);
-		this.setIconAnchor(0, 0);
-		super.setType("DivIcon");
+		this("");
 	}
 
 	public LDivIcon(final String html)
 	{
 		this.setHtml(html);
-		this.setIconSize(25, 41);
 		this.setIconAnchor(0, 0);
 		super.setType("DivIcon");
 	}

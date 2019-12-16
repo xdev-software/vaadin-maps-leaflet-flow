@@ -24,11 +24,16 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 
 public class LIcon
 {
 	private String type;
 	private String iconUrl;
+
+	@JsonInclude(Include.NON_NULL)
 	private final List<Integer> iconSize = new ArrayList<>();
 	private final List<Integer> iconAnchor = new ArrayList<>();
 	private final List<Integer> popupAnchor = new ArrayList<>();
@@ -38,7 +43,7 @@ public class LIcon
 
 	public LIcon()
 	{
-		this.setIconSize(25, 41);
+//		this.setIconSize(25, 41);
 		this.setIconAnchor(12, 41);
 		this.setPopupAnchor(1, -34);
 		this.setShadowSize(41, 41);
