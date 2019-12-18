@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>de.xdev-software</groupId>
+	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
 	<version>1.0.1</version>
 	<packaging>war</packaging>
@@ -17,7 +17,7 @@
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.de</url>
+		<url>https://xdev-software.com</url>
 	</organization>
 	
 	<licenses>
@@ -57,7 +57,7 @@
 			<artifactId>vaadin-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.xdev-software</groupId>
+			<groupId>com.xdev-software</groupId>
 			<artifactId>vaadin-maps-leaflet-flow</artifactId>
 			<version>${project.version}</version>
 		</dependency>

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.xdev-software</groupId>
+	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -15,7 +15,7 @@
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.de</url>
+		<url>https://xdev-software.com</url>
 	</organization>
 
 	<modules>
