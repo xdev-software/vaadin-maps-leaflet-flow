@@ -8,7 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.maps.leaflet.flow.XdevGeoMap;
+import software.xdev.vaadin.maps.leaflet.flow.LMap;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
 import software.xdev.vaadin.maps.leaflet.flow.data.LDivIcon;
@@ -24,9 +24,8 @@ public class LeafletView extends VerticalLayout
 
 	private final Button button;
 	private List<LPoint> points;
-	private XdevGeoMap map;
+	private LMap map;
 	private boolean viewSwitch;
-
 
 	private LMarker markerZob;
 	private LMarker markerRathaus;
@@ -38,7 +37,6 @@ public class LeafletView extends VerticalLayout
 	private LMarker markerGreek;
 	private LMarker markerBakery;
 	private LMarker markerLeberkaese;
-
 
 	public LeafletView()
 	{
@@ -67,6 +65,7 @@ public class LeafletView extends VerticalLayout
 				this.markerGreek,
 				this.markerBakery,
 				this.markerLeberkaese);
+
 		}
 		else
 		{
@@ -88,7 +87,8 @@ public class LeafletView extends VerticalLayout
 	public void mapTest()
 	{
 		this.viewSwitch = true;
-		this.map = new XdevGeoMap(49.675126, 12.160733, 17);
+		this.map = new LMap(49.675126, 12.160733, 17);
+		// this.map = new LMap();
 		this.map.setHeight("700px");
 		this.map.setWidth("1000px");
 		this.add(this.map);
@@ -96,20 +96,23 @@ public class LeafletView extends VerticalLayout
 		this.markerZob = new LMarker(49.673470, 12.160108);
 
 		final LMarker markerXDev = new LMarker(49.675126, 12.160733);
-		final LIcon xDevLogo = new LIcon();
-		xDevLogo.setIconUrl(
+		final LIcon xDevLogo = new LIcon(
 			"https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
+		// xDevLogo.setIconUrl(
+		// "https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
 		xDevLogo.setIconSize(70, 70);
 		xDevLogo.setIconAnchor(33, 55);
 		markerXDev.setPopup("<a href='https://www.xdev-software.de/'>Xdev-Software GmbH</a>");
 		markerXDev.setIcon(xDevLogo);
 
 		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
-		final LDivIcon div = new LDivIcon();
-		div.setIconSize(265, 90);
-		div.setHtml(
-			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers, Popups, Polygon and other Stuff</p>");
-		markerInfo.setIcon(div);
+		final LDivIcon div = new LDivIcon(
+			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,<br> Popups, Polygon and other Stuff</p>");
+//		div.setIconSize(265, 90);
+		// div.setHtml(
+		// "<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,
+		// Popups, Polygon and other Stuff</p>");
+		markerInfo.setDivIcon(div);
 
 		this.getPunkte();
 		final LPolygon polygonNoc = new LPolygon(this.points);

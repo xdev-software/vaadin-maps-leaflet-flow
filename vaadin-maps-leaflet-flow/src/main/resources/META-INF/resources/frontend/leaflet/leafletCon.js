@@ -18,6 +18,15 @@ export class LeafletMap extends PolymerElement {
           width: 100%;
           height: 100%;
         }
+        .div-icon {
+        	background: #fff;
+        	border: 1px solid #666;
+        	height: auto;
+        	width: auto;
+        	padding-left: 5px;
+        	padding-right: 5px;
+        	white-space: nowrap;
+        }
       </style>
       <div id="divMap"></div>
     `;
@@ -52,6 +61,11 @@ export class LeafletMap extends PolymerElement {
     {     
         this.tile = L.tileLayer(layer.tile.link,{attribution: layer.tile.attribution, maxZoom: layer.tile.zoom, id: layer.tile.id}).addTo(this.map);
         this.tile.bringToFront();
+    }
+
+    setZoomLevel(zoom)
+    {
+        this.map.setZoom(zoom);
     }
 
     _initMap() {

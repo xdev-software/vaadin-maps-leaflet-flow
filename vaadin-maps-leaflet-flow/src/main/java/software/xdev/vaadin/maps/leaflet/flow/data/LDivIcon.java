@@ -23,22 +23,27 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 
 public class LDivIcon extends LIcon
 {
-
-	private String className = "leaflet-div-icon";
+	
+	private String className = "div-icon";
 	private String html;
-
+	
 	public LDivIcon()
 	{
-		this.setIconSize(25, 41);
+		this("");
+	}
+	
+	public LDivIcon(final String html)
+	{
+		this.setHtml(html);
 		this.setIconAnchor(0, 0);
 		super.setType("DivIcon");
 	}
-
+	
 	public String getClassName()
 	{
 		return this.className;
 	}
-
+	
 	/**
 	 * Sets a className for CSS formating.
 	 *
@@ -48,12 +53,12 @@ public class LDivIcon extends LIcon
 	{
 		this.className = className;
 	}
-
+	
 	public String getHtml()
 	{
 		return this.html;
 	}
-
+	
 	/**
 	 * Custom HTML code to put inside the div element, empty by default. Alternatively, an instance of HTMLElement.
 	 *

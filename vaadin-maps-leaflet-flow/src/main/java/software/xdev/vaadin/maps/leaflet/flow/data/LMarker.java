@@ -53,6 +53,16 @@ public class LMarker implements LComponent
 		return this.properties.getIcon();
 	}
 	
+	public void setDivIcon(final LDivIcon icon)
+	{
+		this.properties.setIcon(icon);
+	}
+	
+	public LIcon getDivIcon()
+	{
+		return this.properties.getIcon();
+	}
+	
 	public void setIcon(final LIcon icon)
 	{
 		this.properties.setIcon(icon);
