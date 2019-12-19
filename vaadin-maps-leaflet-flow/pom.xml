@@ -7,22 +7,37 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>vaadin-maps-leaflet-flow</name>
+	<description>${project.name}</description>
 
 	<inceptionYear>2019</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.com</url>
+		<url>https://www.xdev-software.de</url>
 	</organization>
+
+	<url>https://www.xdev-software.de</url>
+	<scm>
+		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
+		<connection>https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>XDEV Software</name>
+			<organization>XDEV Software Corp.</organization>
+			<url>https://www.xdev-software.de</url>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
 
@@ -56,16 +71,18 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-
-		<repository>
-			<id>github</id>
-			<name>GitHub xdev-software Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/xdev-software/vaadin-maps-leaflet-flow</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
@@ -135,22 +152,12 @@
 		</dependency>
 	</dependencies>
 
-
-	<distributionManagement>
-		<repository>
-			<id>github</id>
-			<name>GitHub xdev-software Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/xdev-software/vaadin-maps-leaflet-flow</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 				<version>2.0.0</version>
-
 				<executions>
 					<execution>
 						<id>first</id>
@@ -198,6 +205,82 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<doclint>none</doclint>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>ossrh</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+						<configuration>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<useReleaseProfile>false</useReleaseProfile>
+							<releaseProfiles>release</releaseProfiles>
+							<goals>deploy</goals>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
