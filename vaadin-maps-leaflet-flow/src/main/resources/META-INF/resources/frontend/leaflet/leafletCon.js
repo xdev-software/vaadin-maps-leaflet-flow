@@ -94,6 +94,18 @@ export class LeafletMap extends PolymerElement {
        
         if (obj.properties.popup != null) {
             item.bindPopup(obj.properties.popup);
+            
+        if (obj.token != "empty")
+        	{
+        	 var vaadinServer = this.$server;             
+             item.on('click', markerOnClick);
+             function markerOnClick(e)
+             	{
+                 	alert(obj.token);
+                 	vaadinServer.markerCall(obj.token);
+                }
+        	}
+       
         }
 
         this.items.push(item);
