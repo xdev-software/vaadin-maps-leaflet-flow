@@ -101,7 +101,6 @@ export class LeafletMap extends PolymerElement {
              item.on('click', markerOnClick);
              function markerOnClick(e)
              	{
-                 	alert(obj.token);
                  	vaadinServer.markerCall(obj.token);
                 }
         	}

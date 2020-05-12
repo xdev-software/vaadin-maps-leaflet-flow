@@ -35,7 +35,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
 import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
-import software.xdev.vaadin.maps.leaflet.flow.data.LMarkerObservable;
+import software.xdev.vaadin.maps.leaflet.flow.data.LMarkerEventListener;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
@@ -56,7 +56,7 @@ public class LMap extends Component implements HasSize
 
 	private LCenter center;
 	private final List<LComponent> items = new ArrayList<>();
-	private final LMarkerObservable observableMarker = new LMarkerObservable("");
+	private LMarkerEventListener listener;
 
 	public LMap(final double lat, final double lon, final int zoom)
 	{
@@ -155,17 +155,16 @@ public class LMap extends Component implements HasSize
 	}
 
 	@ClientCallable
-	private void markerCall(final String token)
+	private void markerCall(final String id)
 	{
-		this.observableMarker.setValue(token);
+		if(this.listener != null)
+		{
+			this.listener.onMarkerClickEvent(id);
+		}
 	}
 
-	/**
-	 * This Method is for adding an Observer.
-	 * @return an instance of the Observables Markers
-	 */
-	public LMarkerObservable getObservableMarker()
+	public void setListener(final LMarkerEventListener listener)
 	{
-		return this.observableMarker;
+		this.listener = listener;
 	}
 }

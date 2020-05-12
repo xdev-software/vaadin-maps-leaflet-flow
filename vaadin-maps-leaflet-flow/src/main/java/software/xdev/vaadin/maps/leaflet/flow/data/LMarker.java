@@ -36,6 +36,7 @@ public class LMarker implements LComponent
 	private LMarkerOptions properties;
 	private String token;
 
+
 	/**
 	 * Creates a new Marker at the latitude, longitude
 	 *

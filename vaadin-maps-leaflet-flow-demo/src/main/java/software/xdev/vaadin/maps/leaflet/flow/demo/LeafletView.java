@@ -2,8 +2,6 @@ package software.xdev.vaadin.maps.leaflet.flow.demo;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
@@ -21,7 +19,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
 
 
 @Route("")
-public class LeafletView extends VerticalLayout implements Observer
+public class LeafletView extends VerticalLayout
 {
 
 	private final Button button;
@@ -90,16 +88,20 @@ public class LeafletView extends VerticalLayout implements Observer
 	{
 		this.viewSwitch = true;
 		this.map = new LMap(49.675126, 12.160733, 17);
-		// this.map = new LMap();
+
 		this.map.setHeight("700px");
 		this.map.setWidth("1000px");
 		this.add(this.map);
+		this.map.setListener(e -> { System.out.println(e);}); // add some logic here for called Markers (token)
 
-		this.markerZob = new LMarker(49.673470, 12.160108);
+		this.markerZob = new LMarker(49.673470, 12.160108,"ZoB");
+		this.markerZob.setPopup("Central bus station");
 
 		final LMarker markerXDev = new LMarker(49.675126, 12.160733);
 		final LIcon xDevLogo = new LIcon(
 			"https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
+
+		// other option:
 		// xDevLogo.setIconUrl(
 		// "https://www.xing.com/img/custom/communities/communities_files/f/f/6/32758/large/XDEV_600x600_red.png?1438789458");
 		xDevLogo.setIconSize(70, 70);
@@ -110,6 +112,8 @@ public class LeafletView extends VerticalLayout implements Observer
 		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
 		final LDivIcon div = new LDivIcon(
 			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,<br> Popups, Polygon and other Stuff</p>");
+
+		// other option:
 		// div.setIconSize(265, 90);
 		// div.setHtml(
 		// "<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This Demo shows you different Markers,
@@ -126,6 +130,7 @@ public class LeafletView extends VerticalLayout implements Observer
 
 		this.markerRathaus = new LMarker(49.675519, 12.163868, "L-22556");
 		this.markerRathaus.setPopup("Old Town Hall");
+
 
 		this.circleRange = new LCircle(49.675126, 12.160733, 450);
 
@@ -153,8 +158,6 @@ public class LeafletView extends VerticalLayout implements Observer
 			this.markerZob,
 			polygonNoc,
 			this.markerRathaus);
-		this.map.getObservableMarker().addObserver(this);
-
 	}
 
 	public void getPunkte()
@@ -167,17 +170,4 @@ public class LeafletView extends VerticalLayout implements Observer
 			new LPoint(49.675306, 12.158499));
 
 	}
-
-	@Override
-	public void update(final Observable o, final Object arg)
-	{
-		if(o == this.map.getObservableMarker())
-		{
-			System.out.println(this.map.getObservableMarker().getValue());
-			// TODO Implement Logic here for Value
-		}
-
-
-	}
-
 }
