@@ -30,11 +30,13 @@ import elemental.json.JsonObject;
 
 public class LMarker implements LComponent
 {
-	
+
 	private static final String MARKER_TYPE = "Point";
 	private LMarkerGeometry geometry;
 	private LMarkerOptions properties;
-	
+	private String token;
+
+
 	/**
 	 * Creates a new Marker at the latitude, longitude
 	 *
@@ -44,77 +46,84 @@ public class LMarker implements LComponent
 	 */
 	public LMarker(final double lat, final double lon)
 	{
+		this(lat, lon, "empty");
+	}
+
+	public LMarker(final double lat, final double lon, final String token)
+	{
 		this.geometry = new LMarkerGeometry(MARKER_TYPE, lat, lon);
 		this.properties = new LMarkerOptions();
+		this.token = token;
 	}
-	
+
+
 	public LIcon getIcon()
 	{
 		return this.properties.getIcon();
 	}
-	
+
 	public void setDivIcon(final LDivIcon icon)
 	{
 		this.properties.setIcon(icon);
 	}
-	
+
 	public LIcon getDivIcon()
 	{
 		return this.properties.getIcon();
 	}
-	
+
 	public void setIcon(final LIcon icon)
 	{
 		this.properties.setIcon(icon);
 	}
-	
+
 	public LMarkerGeometry getGeometry()
 	{
 		return this.geometry;
 	}
-	
+
 	public void setGeometry(final LMarkerGeometry geometry)
 	{
 		this.geometry = geometry;
 	}
-	
+
 	public LMarkerOptions getProperties()
 	{
 		return this.properties;
 	}
-	
+
 	public void setProperties(final LMarkerOptions properties)
 	{
 		this.properties = properties;
 	}
-	
+
 	public double getLat()
 	{
 		return this.geometry.getCoordinates().get(0);
 	}
-	
+
 	public void setLat(final double lat)
 	{
 		this.geometry.getCoordinates().remove(0);
 		this.geometry.getCoordinates().set(0, lat);
 	}
-	
+
 	public double getLon()
 	{
 		return this.geometry.getCoordinates().get(1);
 	}
-	
+
 	public void setLon(final double lon)
 	{
 		this.geometry.getCoordinates().remove(1);
 		this.geometry.getCoordinates().set(1, lon);
 	}
-	
+
 	public String getPopup()
 	{
 		return this.properties.getPopup();
 	}
-	
+
 	/**
 	 * Sets a Pop-up to the Marker
 	 *
@@ -124,7 +133,17 @@ public class LMarker implements LComponent
 	{
 		this.properties.setPopup(popup);
 	}
-	
+
+	public String getToken()
+	{
+		return this.token;
+	}
+
+	public void setToken(final String token)
+	{
+		this.token = token;
+	}
+
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -134,13 +153,14 @@ public class LMarker implements LComponent
 			jsonObject.put("type", Json.create("Feature"));
 			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
 			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
-			
+			jsonObject.put("token", Json.create(this.token));
+
 		}
 		catch(final JsonProcessingException e)
 		{
 			throw new RuntimeException(e);
 		}
-		
+
 		return jsonObject;
 	}
 }
