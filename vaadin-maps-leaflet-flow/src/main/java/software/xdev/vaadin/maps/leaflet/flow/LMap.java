@@ -26,16 +26,19 @@ import java.util.List;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
 import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
-import software.xdev.vaadin.maps.leaflet.flow.data.LMarkerEventListener;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
@@ -56,7 +59,6 @@ public class LMap extends Component implements HasSize
 
 	private LCenter center;
 	private final List<LComponent> items = new ArrayList<>();
-	private LMarkerEventListener listener;
 
 	public LMap(final double lat, final double lon, final int zoom)
 	{
@@ -155,16 +157,29 @@ public class LMap extends Component implements HasSize
 	}
 
 	@ClientCallable
-	private void markerCall(final String id)
+	protected void onMarkerClick(final String tag)
 	{
-		if(this.listener != null)
-		{
-			this.listener.onMarkerClickEvent(id);
-		}
+		ComponentUtil.fireEvent(this, new MarkerClickEvent(this, true, tag));
+	}
+	
+	public Registration addMarkerClickListener(final ComponentEventListener<MarkerClickEvent> listener)
+	{
+		return ComponentUtil.addListener(this, MarkerClickEvent.class, listener);
 	}
 
-	public void setListener(final LMarkerEventListener listener)
+	public class MarkerClickEvent extends ComponentEvent<LMap>
 	{
-		this.listener = listener;
+		private final String tag;
+
+		public MarkerClickEvent(final LMap source, final boolean fromClient, final String tag)
+		{
+			super(source, fromClient);
+			this.tag = tag;
+		}
+
+		public String getTag()
+		{
+			return this.tag;
+		}
 	}
 }

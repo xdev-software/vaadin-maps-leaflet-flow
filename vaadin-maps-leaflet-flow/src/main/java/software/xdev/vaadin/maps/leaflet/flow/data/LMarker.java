@@ -34,7 +34,10 @@ public class LMarker implements LComponent
 	private static final String MARKER_TYPE = "Point";
 	private LMarkerGeometry geometry;
 	private LMarkerOptions properties;
-	private String token;
+	/**
+	 * Tag for custom meta-data
+	 */
+	private String tag;
 
 
 	/**
@@ -49,11 +52,11 @@ public class LMarker implements LComponent
 		this(lat, lon, "empty");
 	}
 
-	public LMarker(final double lat, final double lon, final String token)
+	public LMarker(final double lat, final double lon, final String tag)
 	{
 		this.geometry = new LMarkerGeometry(MARKER_TYPE, lat, lon);
 		this.properties = new LMarkerOptions();
-		this.token = token;
+		this.tag = tag;
 	}
 
 
@@ -134,14 +137,14 @@ public class LMarker implements LComponent
 		this.properties.setPopup(popup);
 	}
 
-	public String getToken()
+	public String getTag()
 	{
-		return this.token;
+		return this.tag;
 	}
 
-	public void setToken(final String token)
+	public void setTag(final String tag)
 	{
-		this.token = token;
+		this.tag = tag;
 	}
 
 	public JsonObject toJson()
@@ -153,7 +156,7 @@ public class LMarker implements LComponent
 			jsonObject.put("type", Json.create("Feature"));
 			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
 			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
-			jsonObject.put("token", Json.create(this.token));
+			jsonObject.put("tag", Json.create(this.tag));
 
 		}
 		catch(final JsonProcessingException e)

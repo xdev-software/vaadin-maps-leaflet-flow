@@ -92,7 +92,7 @@ public class LeafletView extends VerticalLayout
 		this.map.setHeight("700px");
 		this.map.setWidth("1000px");
 		this.add(this.map);
-		this.map.setListener(e -> { System.out.println(e);}); // add some logic here for called Markers (token)
+		this.map.addMarkerClickListener(ev -> { System.out.println(ev.getTag());}); // add some logic here for called Markers (token)
 
 		this.markerZob = new LMarker(49.673470, 12.160108,"ZoB");
 		this.markerZob.setPopup("Central bus station");
