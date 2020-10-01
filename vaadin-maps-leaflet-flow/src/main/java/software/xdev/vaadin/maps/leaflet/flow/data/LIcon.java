@@ -97,7 +97,8 @@ public class LIcon
 	/**
 	 * Icon size with x, y in px
 	 *
-	 * @param iconSize
+	 * @param x
+	 * @param y
 	 */
 	public void setIconSize(final int x, final int y)
 	{
@@ -114,11 +115,11 @@ public class LIcon
 	/**
 	 * Anchor point of the icon in x, y px.
 	 *
-	 * @param iconAnchor
+	 * @param x
+	 * @param y
 	 */
 	public void setIconAnchor(final int x, final int y)
 	{
-		
 		this.iconAnchor.clear();
 		this.iconAnchor.add(x);
 		this.iconAnchor.add(y);
@@ -132,7 +133,8 @@ public class LIcon
 	/**
 	 * Anchor point of the Pop-up message in x,y px.
 	 *
-	 * @param popupAnchor
+	 * @param x
+	 * @param y
 	 */
 	public void setPopupAnchor(final int x, final int y)
 	{
@@ -159,7 +161,6 @@ public class LIcon
 	
 	public void setShadowSize(final int x, final int y)
 	{
-		
 		this.shadowSize.clear();
 		this.shadowSize.add(x);
 		this.shadowSize.add(y);
@@ -172,7 +173,6 @@ public class LIcon
 	
 	public void setShadowAnchor(final int x, final int y)
 	{
-		
 		this.shadowAnchor.clear();
 		this.shadowAnchor.add(x);
 		this.shadowAnchor.add(y);

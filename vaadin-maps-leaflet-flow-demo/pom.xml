@@ -8,7 +8,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>Vaadin Maps Leaflet Flow Demo</name>
@@ -28,14 +28,20 @@
 	</licenses>
 
 	<properties>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<vaadin.version>14.0.14</vaadin.version>
-		<flow.version>2.0.1</flow.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<license.licenseName>apache_v2</license.licenseName>
+
+		<javaVersion>1.8</javaVersion>
+		<maven.compiler.source>${javaVersion}</maven.compiler.source>
+		<maven.compiler.target>${javaVersion}</maven.compiler.target>
+		<!-- Used for Java 11 -->
+		<!--<maven.compiler.release>${javaVersion}</maven.compiler.release> -->
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<license.licenseName>apache_v2</license.licenseName>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+
+		<!-- Dependency-Versions -->
+		<vaadin.version>14.3.7</vaadin.version>
 	</properties>
 
 
@@ -68,23 +74,12 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<filtering>false</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
-
 		<plugins>
 			<!-- Jetty plugin for easy testing without a server -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.11.v20180605</version>
+				<version>9.4.31.v20200723</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>

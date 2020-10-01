@@ -35,9 +35,10 @@ public class LCircle implements LComponent
 	private LPolygonOptions properties;
 	
 	/**
-	 * Creates a new Circle
-	 *
-	 * @param name
+	 * Creates a new circle
+	 * @param lat Latitude
+	 * @param lon Longitude
+	 * @param radius radius
 	 */
 	public LCircle(final double lat, final double lon, final double radius)
 	{
@@ -74,7 +75,7 @@ public class LCircle implements LComponent
 	/**
 	 * Draws a border, default is true.
 	 *
-	 * @param stroke
+	 * @param stroke stroke
 	 */
 	public void setStroke(final boolean stroke)
 	{
@@ -89,7 +90,7 @@ public class LCircle implements LComponent
 	/**
 	 * Set a Color to the border.
 	 *
-	 * @param strokeColor
+	 * @param strokeColor color of the stroke
 	 */
 	public void setStrokeColor(final String strokeColor)
 	{
@@ -104,7 +105,7 @@ public class LCircle implements LComponent
 	/**
 	 * Sets the opacity of the border.
 	 *
-	 * @param strokeOpacity
+	 * @param strokeOpacity opacity of the stroke
 	 */
 	public void setStrokeOpacity(final double strokeOpacity)
 	{
@@ -119,7 +120,7 @@ public class LCircle implements LComponent
 	/**
 	 * Sets the width of the border.
 	 *
-	 * @param strokeWeight
+	 * @param strokeWeight strokeWeight
 	 */
 	public void setStrokeWeight(final int strokeWeight)
 	{
@@ -133,13 +134,15 @@ public class LCircle implements LComponent
 	
 	/**
 	 * A string that defines shape to be used at the corners of the stroke.<br>
-	 * <li>miter</li>
-	 * <li>round</li>
-	 * <li>bevel</li>
-	 * <li>miter-clip</li>
-	 * <li>arcs</li>
+	 * <ul>
+	 * 	<li>miter</li>
+	 * 	<li>round</li>
+	 * 	<li>bevel</li>
+	 * 	<li>miter-clip</li>
+	 * 	<li>arcs</li>
+	 * </ul>
 	 *
-	 * @param lineJoin
+	 * @param lineJoin string that defines shape to be used at the corners of the stroke
 	 */
 	public void setLineJoin(final String lineJoin)
 	{
@@ -155,7 +158,7 @@ public class LCircle implements LComponent
 	 * A string that defines the stroke dash pattern.<br>
 	 * For example: "2 1 3 1 2"
 	 *
-	 * @param dashArray
+	 * @param dashArray string that defines the stroke dash pattern
 	 */
 	public void setDashArray(final String dashArray)
 	{
@@ -171,7 +174,7 @@ public class LCircle implements LComponent
 	 * A string that defines the distance into the dash pattern to start the dash.<br>
 	 * For example: "2" - The start of the dash array computation is pulled by 3 user units
 	 *
-	 * @param dashOffset
+	 * @param dashOffset  string that defines the distance into the dash pattern to start the dash
 	 */
 	public void setDashOffset(final String dashOffset)
 	{
@@ -184,9 +187,10 @@ public class LCircle implements LComponent
 	}
 	
 	/**
-	 * Whether to fill the path with color. Set it to false to disable filling.
+	 * Whether to fill the path with color.<br>
+	 * Set it to false to disable filling.
 	 *
-	 * @param fill
+	 * @param fill false to disable filling
 	 */
 	public void setFill(final boolean fill)
 	{
@@ -201,7 +205,7 @@ public class LCircle implements LComponent
 	/**
 	 * Fill color.
 	 *
-	 * @param fillColor
+	 * @param fillColor fillColor
 	 */
 	public void setFillColor(final String fillColor)
 	{
@@ -216,7 +220,7 @@ public class LCircle implements LComponent
 	/**
 	 * Fill opacity.
 	 *
-	 * @param fillOpacity
+	 * @param fillOpacity fillOpacity
 	 */
 	public void setFillOpacity(final double fillOpacity)
 	{
@@ -231,7 +235,7 @@ public class LCircle implements LComponent
 	/**
 	 * Set Pop-up message.
 	 *
-	 * @param popup
+	 * @param popup Message of the popup
 	 */
 	public void setPopup(final String popup)
 	{
@@ -245,10 +249,12 @@ public class LCircle implements LComponent
 	
 	/**
 	 * A string that defines how the inside of a shape is determined.<br>
-	 * <li>evenodd</li>
-	 * <li>nonzero</li>
+	 * <ul>
+	 * 	<li>evenodd</li>
+	 * 	<li>nonzero</li>
+	 * </ul>
 	 *
-	 * @param fillRule
+	 * @param fillRule string that defines how the inside of a shape is determined
 	 */
 	public void setFillRule(final String fillRule)
 	{
@@ -263,7 +269,7 @@ public class LCircle implements LComponent
 	/**
 	 * Disable polyline clipping.
 	 *
-	 * @param noClip
+	 * @param noClip true = disable polyline clipping
 	 */
 	public void setNoClip(final boolean noClip)
 	{
@@ -279,7 +285,7 @@ public class LCircle implements LComponent
 	 * How much to simplify the polyline on each zoom level.<br>
 	 * More means better performance and smoother look, and less means more accurate representation.
 	 *
-	 * @param smoothFactor
+	 * @param smoothFactor how much to simplify the polyline on each zoom level
 	 */
 	public void setSmoothFactor(final double smoothFactor)
 	{

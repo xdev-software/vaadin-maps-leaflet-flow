@@ -43,7 +43,6 @@ public class LMarker implements LComponent
 	/**
 	 * Creates a new Marker at the latitude, longitude
 	 *
-	 * @param name
 	 * @param lat
 	 * @param lon
 	 */
