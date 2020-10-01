@@ -3,7 +3,7 @@
 [![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Develop%20CI?label=build%20develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Develop+CI%22)
 
 # vaadin-maps-leaflet-flow
-Vaadin Flow Java API for Leaflet Maps Component (https://leafletjs.com/)
+Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
 <img src="demo.png" height=550></img>
 
