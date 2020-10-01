@@ -109,7 +109,6 @@
 				<dependency>
 					<groupId>com.vaadin</groupId>
 					<artifactId>flow-server-production-mode</artifactId>
-					<version>${flow.version}</version>
 				</dependency>
 			</dependencies>
 
