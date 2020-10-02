@@ -12,6 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
+    - name: Get original release version
+      id: orig
+      run: |
+        echo "::set-output name=version::$(echo ${{github.event.client_payload.value}} | cut -dv -f2)"
     
     - name: Create Release
       id: create_release
@@ -19,16 +24,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ steps.version.outputs.release }}
-        release_name: v${{ steps.version.outputs.release }}
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
         body: |
           ## Installation
           Add the following lines to your pom:
           ```XML
           <dependency>
              <groupId>com.xdev-software</groupId>
-             <artifactId>vaadin-date-range-picker</artifactId>
-             <version>${{ steps.version.outputs.release }}</version>
+             <artifactId>vaadin-maps-leaflet-flow</artifactId>
+             <version>${{ steps.orig.outputs.version }}}</version>
           </dependency>
           ```
         draft: false
@@ -67,7 +72,7 @@ jobs:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
   
   build_directory: # Build a ZIP that can be uploaded to Vaadin Directory
     runs-on: ubuntu-latest
@@ -82,13 +87,13 @@ jobs:
       
     - name: Build for Vaadin Directory
       run: mvn -B install -Pdirectory
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
       
     - name: Upload asset
       uses: actions/upload-artifact@v2
       with:
         name: vaadin-directory-files
-        path: vaadin-date-range-picker/target/vaadin-date-range-picker-*.zip
+        path: vaadin-maps-leaflet-flow/target/vaadin-maps-leaflet-flow-*.zip
         if-no-files-found: error
 
     - name: Download Release Asset Upload URL
@@ -105,7 +110,7 @@ jobs:
       id: version
       run: |
        echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
@@ -113,6 +118,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: vaadin-date-range-picker/target/vaadin-date-range-picker-${{ steps.version.outputs.release }}.zip
-        asset_name: vaadin-date-range-picker-${{ steps.version.outputs.release }}.zip
+        asset_path: vaadin-maps-leaflet-flow/target/vaadin-maps-leaflet-flow-${{ steps.version.outputs.release }}.zip
+        asset_name: vaadin-maps-leaflet-flow-${{ steps.version.outputs.release }}.zip
         asset_content_type: application/zip
