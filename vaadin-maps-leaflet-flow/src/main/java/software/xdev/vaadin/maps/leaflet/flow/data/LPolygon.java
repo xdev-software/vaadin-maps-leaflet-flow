@@ -50,7 +50,6 @@ public class LPolygon implements LComponent
 	/**
 	 * Create a new Polygon for marking a area on the map
 	 *
-	 * @param name
 	 * @param points
 	 *            List of points to draw the Polygon
 	 */

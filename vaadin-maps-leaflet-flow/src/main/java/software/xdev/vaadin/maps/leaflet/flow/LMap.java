@@ -141,7 +141,7 @@ public class LMap extends Component implements HasSize
 	/**
 	 * Removes a map item
 	 *
-	 * @param item
+	 * @param items
 	 */
 	public void removeItem(final LComponent... items)
 	{
