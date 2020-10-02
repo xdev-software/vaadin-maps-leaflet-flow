@@ -1,6 +1,6 @@
 [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Release%20CI)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Release+CI%22)
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-maps-leaflet-flow)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-maps-leaflet-flow)
-[![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Develop%20CI?label=build%20develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Develop+CI%22)
+[![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Develop%20CI/develop?label=build%20develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Develop+CI%22+branch%3Adevelop)
 
 # vaadin-maps-leaflet-flow
 Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
