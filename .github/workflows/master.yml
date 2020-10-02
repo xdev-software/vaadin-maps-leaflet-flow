@@ -21,17 +21,17 @@ jobs:
     
     - name: Un-SNAP demo
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-date-range-picker-demo
+      working-directory: vaadin-maps-leaflet-flow-demo
   
     - name: Un-SNAP 
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
   
     - name: Get version
       id: version
       run: |
        echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
   
     - name: Commit and Push
       run: |
@@ -58,11 +58,11 @@ jobs:
     
     - name: Inc Version and SNAP demo
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-date-range-picker-demo
+      working-directory: vaadin-maps-leaflet-flow-demo
   
     - name: Inc Version and SNAP 
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-date-range-picker
+      working-directory: vaadin-maps-leaflet-flow
 
     - name: Git Commit and Push
       run: |
