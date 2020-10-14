@@ -104,17 +104,6 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Save Release Asset Upload URL to File
-      shell: bash
-      run: |
-        echo '${{ steps.create_release.outputs.upload_url }}' > release_asset_upload_url.txt
-
-    - name: Upload Release Asset Upload URL
-      uses: actions/upload-artifact@v2
-      with:
-        name: release_asset_upload_url
-        path: release_asset_upload_url.txt
-
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
     needs: [prepare_release]
