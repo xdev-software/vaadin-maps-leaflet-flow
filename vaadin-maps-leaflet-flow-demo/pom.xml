@@ -74,6 +74,8 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
+		
 		<plugins>
 			<!-- Jetty plugin for easy testing without a server -->
 			<plugin>
