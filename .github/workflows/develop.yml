@@ -46,3 +46,10 @@ jobs:
           echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package -Pproduction"
           exit 1
         fi
+
+    - name: Upload demo files
+      uses: actions/upload-artifact@v2
+      with:
+        name: demo-files
+        path: vaadin-maps-leaflet-flow-demo/target/vaadin-maps-leaflet-flow-demo.war
+        if-no-files-found: error
