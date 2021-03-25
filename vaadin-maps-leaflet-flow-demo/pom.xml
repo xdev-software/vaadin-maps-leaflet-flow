@@ -41,7 +41,7 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>14.4.3</vaadin.version>
+		<vaadin.version>14.4.10</vaadin.version>
 	</properties>
 
 
@@ -81,7 +81,7 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.35.v20201120</version>
+				<version>9.4.38.v20210224</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>

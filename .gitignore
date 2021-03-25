@@ -21,3 +21,11 @@ drivers/
 error-screenshots/
 
 webpack.generated.js
+
+#JRebel
+rebel.xml
+
+#Vaadin
+package.json
+package-lock.json
+webpack.config.js
