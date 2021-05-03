@@ -10,10 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        java-version: '8'
+        distribution: 'adopt'
 
     - name: Cache local Maven repository
       uses: actions/cache@v2
@@ -116,10 +117,11 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull
     
-    - name: Set up JDK 1.8 Apache Maven Central
-      uses: actions/setup-java@v1
+    - name: Set up JDK 8 Apache Maven Central
+      uses: actions/setup-java@v2
       with: # running setup-java again overwrites the settings.xml
-        java-version: 1.8
+        java-version: '8'
+        distribution: 'adopt'
         server-id: ossrh
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN
@@ -146,10 +148,11 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull
     
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        java-version: '8'
+        distribution: 'adopt'
       
     - name: Build for Vaadin Directory
       run: mvn -B install -Pdirectory
@@ -192,9 +195,10 @@ jobs:
         git pull
 
     - name: Setup - Java
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        java-version: '8'
+        distribution: 'adopt'
 
     - name: Restore - Maven Cache
       uses: actions/cache@v1
