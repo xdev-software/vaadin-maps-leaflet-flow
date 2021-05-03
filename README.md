@@ -13,7 +13,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
 ## Run the Demo
 * Checkout the repo
-* Run ``mvn clean package``
+* Run ``mvn clean install``
 * Navigate into ``vaadin-maps-leaflet-flow-demo`` 
 * Run ``mvn jetty:run``
 * Open http://localhost:8080
