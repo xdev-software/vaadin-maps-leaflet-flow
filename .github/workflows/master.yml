@@ -237,7 +237,7 @@ jobs:
         echo "theme: jekyll-theme-tactile" > _config.yml
 
     - name: Deploy to Github pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
