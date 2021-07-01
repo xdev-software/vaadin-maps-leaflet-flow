@@ -30,6 +30,7 @@ import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.HasSize;
+import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
@@ -46,7 +47,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 @NpmPackage(value = "leaflet", version = "^1.6.0")
 @Tag("leaflet-map")
 @JsModule("./leaflet/leafletCon.js")
-public class LMap extends Component implements HasSize
+public class LMap extends Component implements HasSize, HasStyle
 {
 
 	private static final String SET_VIEW_POINT_FUNCTION = "setViewPoint";
@@ -65,6 +66,7 @@ public class LMap extends Component implements HasSize
 		super();
 		this.center = new LCenter(lat, lon, zoom);
 		this.setViewPoint(this.center);
+		this.getStyle().set("z-index", "1");
 	}
 
 	public LMap()
