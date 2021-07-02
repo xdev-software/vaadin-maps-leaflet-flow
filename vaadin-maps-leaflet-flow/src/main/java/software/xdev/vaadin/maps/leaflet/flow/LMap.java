@@ -68,6 +68,7 @@ public class LMap extends Component implements HasSize, HasStyle
 		super();
 		this.center = new LCenter(lat, lon, zoom);
 		this.setViewPoint(this.center);
+		this.addClassName("leaflet-map");
 	}
 
 	public LMap()
