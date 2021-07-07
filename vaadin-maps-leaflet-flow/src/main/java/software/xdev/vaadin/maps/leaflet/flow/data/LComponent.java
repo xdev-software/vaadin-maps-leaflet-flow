@@ -1,5 +1,7 @@
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
+import elemental.json.JsonObject;
+
 /*-
  * #%L
  * vaadin-maps-leaflet-flow
@@ -20,9 +22,23 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
+
+/**
+ * 
+ * Marker Interface for Leaflet Components
+ *
+ */
 public interface LComponent
 {
-	/*
-	 * Marker Interface for Leaflet Components
+	/**
+	 * Get the JavaScript Function for adding the component to a map
+	 * @return
 	 */
+	String getJsFunctionForAddingToMap();
+	
+	/**
+	 * The json data for e.g. adding the component to a map
+	 * @return
+	 */
+	JsonObject toJson();
 }

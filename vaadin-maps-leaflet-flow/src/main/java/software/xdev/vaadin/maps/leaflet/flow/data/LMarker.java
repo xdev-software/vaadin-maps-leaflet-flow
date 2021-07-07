@@ -146,6 +146,7 @@ public class LMarker implements LComponent
 		this.tag = tag;
 	}
 
+	@Override
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -164,5 +165,11 @@ public class LMarker implements LComponent
 		}
 
 		return jsonObject;
+	}
+
+	@Override
+	public String getJsFunctionForAddingToMap()
+	{
+		return "addMarker";
 	}
 }
