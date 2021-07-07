@@ -68,7 +68,7 @@ public class LMap extends Component implements HasSize, HasStyle
 		super();
 		this.center = new LCenter(lat, lon, zoom);
 		this.setViewPoint(this.center);
-		this.addClassName("leaflet-map");
+		this.setFixZIndexEnabled(true);
 	}
 
 	public LMap()
@@ -90,7 +90,18 @@ public class LMap extends Component implements HasSize, HasStyle
 	{
 		this.getElement().callJsFunction(TILE_LAYER_FUNCTION, tl.toJson());
 	}
-
+	
+	/**
+	 * This fixes situations where the leafletmap overlays components like Dialogs
+	 * 
+	 * @param enabled
+	 *            enable or disable the fix
+	 */
+	protected void setFixZIndexEnabled(final boolean enabled)
+	{
+		this.getStyle().set("z-index", enabled ? "1" : null);
+	}
+	
 	/**
 	 * add a Leaflet Component to the map.
 	 *
