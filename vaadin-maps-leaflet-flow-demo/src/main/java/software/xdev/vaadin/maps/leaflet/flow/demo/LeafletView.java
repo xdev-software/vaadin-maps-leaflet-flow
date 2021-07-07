@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -22,9 +25,23 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
 @Route("")
 public class LeafletView extends VerticalLayout
 {
-	
-	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
 	private boolean viewLunch = false;
+	
+	/**
+	 * UI-Components
+	 */
+	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
+	private final Button btnOpenDialog = new Button("Open dialog over map", ev ->
+	{
+		final Icon icoClose = VaadinIcon.CLOSE.create();
+		
+		final Dialog dialog = new Dialog(icoClose);
+		dialog.setWidth("50vw");
+		dialog.setHeight("50vh");
+		dialog.open();
+		
+		icoClose.addClickListener(iev -> dialog.close());
+	});
 	
 	private LMap map;
 	
@@ -44,7 +61,7 @@ public class LeafletView extends VerticalLayout
 		this.initMapComponents();
 		
 		this.btnLunch.addClickListener(this::btnLunchClick);
-		this.add(this.btnLunch);
+		this.add(this.btnLunch, this.btnOpenDialog);
 	}
 	
 	private void btnLunchClick(final ClickEvent<Button> event)
@@ -131,7 +148,6 @@ public class LeafletView extends VerticalLayout
 		
 		this.markerLeberkaese = new LMarker(49.673800, 12.160113);
 		this.markerLeberkaese.setPopup("Fast food like Leberkäsesemmeln");
-		
 		
 		this.map = new LMap(49.675126, 12.160733, 17);
 		
