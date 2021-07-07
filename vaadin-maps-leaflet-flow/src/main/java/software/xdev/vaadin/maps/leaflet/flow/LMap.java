@@ -32,7 +32,6 @@ import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.shared.Registration;
@@ -48,7 +47,6 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 @NpmPackage(value = "leaflet", version = "^1.6.0")
 @Tag("leaflet-map")
 @JsModule("./leaflet/leafletCon.js")
-@CssImport(value = "./styles/LeafletMap.css")
 public class LMap extends Component implements HasSize, HasStyle
 {
 
