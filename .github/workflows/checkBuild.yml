@@ -1,10 +1,14 @@
-name: Develop CI
-
+name: Check Build
 on:
+  workflow_dispatch:
   push:
     branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
   pull_request:
     branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
 
 jobs:
   build:
@@ -13,10 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        java-version: '8'
+        distribution: 'adopt'
 
     - name: Cache local Maven repository
       uses: actions/cache@v2

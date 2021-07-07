@@ -285,6 +285,7 @@ public class LPolygon implements LComponent
 		this.properties.setSmoothFactor(smoothFactor);
 	}
 	
+	@Override
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -301,6 +302,12 @@ public class LPolygon implements LComponent
 		}
 		
 		return jsonObject;
+	}
+
+	@Override
+	public String getJsFunctionForAddingToMap()
+	{
+		return "addPolygon";
 	}
 	
 }

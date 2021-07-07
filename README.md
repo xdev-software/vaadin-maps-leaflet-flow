@@ -1,7 +1,7 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/leafletmap-for-vaadin)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Master%20CI)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Master+CI%22)
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-maps-leaflet-flow)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-maps-leaflet-flow)
-[![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Develop%20CI/develop?label=build%20develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions?query=workflow%3A%22Develop+CI%22+branch%3Adevelop)
+[![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Check%20Build/develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+![Vaadin 14+](https://img.shields.io/badge/Vaadin%20Platform/Flow-14+-00b4f0.svg)
 
 # vaadin-maps-leaflet-flow
 Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
@@ -13,7 +13,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
 ## Run the Demo
 * Checkout the repo
-* Run ``mvn clean package``
+* Run ``mvn clean install``
 * Navigate into ``vaadin-maps-leaflet-flow-demo`` 
 * Run ``mvn jetty:run``
 * Open http://localhost:8080
@@ -25,7 +25,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 </details>
 
 
-## Releasing
+## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Release?label=Release)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/release.yml)
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
 When the release is finished do the following:

@@ -302,6 +302,7 @@ public class LCircle implements LComponent
 		return this.properties.getRadius();
 	}
 	
+	@Override
 	public JsonObject toJson()
 	{
 		final JsonObject jsonObject = Json.createObject();
@@ -318,6 +319,12 @@ public class LCircle implements LComponent
 		}
 		
 		return jsonObject;
+	}
+
+	@Override
+	public String getJsFunctionForAddingToMap()
+	{
+		return "addCircle";
 	}
 	
 }
