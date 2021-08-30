@@ -14,16 +14,9 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '8'
-        distribution: 'adopt'
+        distribution: 'temurin'
+        cache: 'maven'
 
-    - name: Cache local Maven repository
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-      
     - name: Build with Maven
       run: mvn -B clean package -Pproduction
       
@@ -121,7 +114,7 @@ jobs:
       uses: actions/setup-java@v2
       with: # running setup-java again overwrites the settings.xml
         java-version: '8'
-        distribution: 'adopt'
+        distribution: 'temurin'
         server-id: ossrh
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN
@@ -152,7 +145,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '8'
-        distribution: 'adopt'
+        distribution: 'temurin'
       
     - name: Build for Vaadin Directory
       run: mvn -B install -Pdirectory
@@ -198,15 +191,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '8'
-        distribution: 'adopt'
-
-    - name: Restore - Maven Cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-:  
+        distribution: 'temurin'
 
     - name: Build dependencies/licenses files
       run: mvn -B project-info-reports:dependencies
