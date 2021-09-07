@@ -20,3 +20,8 @@ updates:
     # Run it at a specific time so that we don't get emails all day long
     time: "00:00"
   open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "com.vaadin:vaadin-bom"
+    versions: ">=15.0.0"
+  - dependency-name: "org.eclipse.jetty:jetty-maven-plugin"
+    versions: ">=10.0.0"
