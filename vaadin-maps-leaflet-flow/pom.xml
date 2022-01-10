@@ -217,7 +217,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.2.1</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -311,7 +311,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.2.0</version>
+						<version>3.2.1</version>
 						<configuration>
 							<!-- Generated file that shouldn't be included in add-ons -->
 							<excludes>
