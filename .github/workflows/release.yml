@@ -152,7 +152,7 @@ jobs:
       working-directory: vaadin-maps-leaflet-flow
       
     - name: Upload asset
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: vaadin-directory-files
         path: vaadin-maps-leaflet-flow/target/vaadin-maps-leaflet-flow-*.zip
@@ -198,7 +198,7 @@ jobs:
       working-directory: vaadin-maps-leaflet-flow
 
     - name: Upload licenses - Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: dependencies-licenses
         path: vaadin-maps-leaflet-flow/target/site
