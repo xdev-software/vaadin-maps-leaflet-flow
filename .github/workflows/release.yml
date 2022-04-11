@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v3
       
     - name: Set up JDK 8
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
@@ -111,7 +111,7 @@ jobs:
         git pull
     
     - name: Set up JDK 8 Apache Maven Central
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with: # running setup-java again overwrites the settings.xml
         java-version: '8'
         distribution: 'temurin'
@@ -142,7 +142,7 @@ jobs:
         git pull
     
     - name: Set up JDK 8
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
@@ -188,7 +188,7 @@ jobs:
         git pull
 
     - name: Setup - Java
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
