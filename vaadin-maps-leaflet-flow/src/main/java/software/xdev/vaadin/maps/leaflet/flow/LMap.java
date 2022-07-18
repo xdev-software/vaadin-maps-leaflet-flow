@@ -40,6 +40,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
+import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
@@ -53,7 +54,9 @@ public class LMap extends Component implements HasSize, HasStyle
 	private static final String DELETE_FUNCTION = "deleteItem";
 	private static final String TILE_LAYER_FUNCTION = "setTileLayer";
 	private static final String SET_ZOOM_FUNCTION = "setZoomLevel";
-	
+	private static final String CENTER_AND_ZOOM_FUNCTION = "centerAndZoom";
+
+
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
 	
@@ -81,6 +84,11 @@ public class LMap extends Component implements HasSize, HasStyle
 	public void setViewPoint(final LCenter viewpoint)
 	{
 		this.getElement().callJsFunction(SET_VIEW_POINT_FUNCTION, viewpoint.toJson());
+	}
+
+	public void centerAndZoom(final LPoint noPoint, final LPoint sePoint)
+	{
+		this.getElement().callJsFunction(CENTER_AND_ZOOM_FUNCTION, noPoint.toJson(), sePoint.toJson());
 	}
 	
 	public void setTileLayer(final LTileLayer tl)

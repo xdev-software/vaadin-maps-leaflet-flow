@@ -68,6 +68,11 @@ export class LeafletMap extends PolymerElement {
         this.map.setZoom(zoom);
     }
 
+    centerAndZoom(noPoint, sePoint)
+    {
+        this.map.fitBounds([[sePoint.lat, sePoint.lon], [noPoint.lat, noPoint.lon]]);
+    }
+
     _initMap() {
         super.ready();
         this.map = new L.map(this.$.divMap);

@@ -11,6 +11,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
+import com.vaadin.flow.router.RouteAlias;
 import software.xdev.vaadin.maps.leaflet.flow.LMap;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
@@ -31,6 +32,7 @@ public class LeafletView extends VerticalLayout
 	 * UI-Components
 	 */
 	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
+	private final Button btnCenter = new Button("Caribbean center :)");
 	private final Button btnOpenDialog = new Button("Open dialog over map", ev ->
 	{
 		final Icon icoClose = VaadinIcon.CLOSE.create();
@@ -61,7 +63,7 @@ public class LeafletView extends VerticalLayout
 		this.initMapComponents();
 		
 		this.btnLunch.addClickListener(this::btnLunchClick);
-		this.add(this.btnLunch, this.btnOpenDialog);
+		this.add(this.btnLunch, this.btnOpenDialog,  this.btnCenter);
 	}
 	
 	private void btnLunchClick(final ClickEvent<Button> event)
@@ -164,7 +166,7 @@ public class LeafletView extends VerticalLayout
 			this.markerZob,
 			polygonNoc,
 			this.markerRathaus);
-		
+		this.btnCenter.addClickListener(e-> map.centerAndZoom(new LPoint(14.467727, -61.69703), new LPoint(16.33426,-60.921676)));
 		this.add(this.map);
 	}
 }

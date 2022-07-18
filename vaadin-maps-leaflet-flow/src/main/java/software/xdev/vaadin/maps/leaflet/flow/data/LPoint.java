@@ -21,28 +21,45 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
+import elemental.json.Json;
+import elemental.json.JsonObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class LPoint
 {
+	private Double lat;
+	private Double lon;
 	private List<Double> coords = new ArrayList<>();
 	
 	public LPoint(final double lat, final double lon)
 	{
-		this.coords.add(lat);
-		this.coords.add(lon);
+		this.lat = lat;
+		this.lon = lon;
+		coords.add(lat);
+		coords.add(lon);
 	}
 	
 	public List<Double> getCoords()
 	{
-		return this.coords;
+		return coords;
 	}
 	
 	public void setCoords(final List<Double> point)
 	{
 		this.coords = point;
+		this.lat = point.get(0);
+		this.lon = point.get(1);
+	}
+
+	public JsonObject toJson()
+	{
+		final JsonObject jsonObject = Json.createObject();
+		jsonObject.put("lat", Json.create(this.lat));
+		jsonObject.put("lon",  Json.create(this.lon));
+		return jsonObject;
 	}
 	
 }
