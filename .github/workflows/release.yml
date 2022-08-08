@@ -6,7 +6,7 @@ on:
 
 env:
   PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
-  DEMO_MAVEN_MODULE: ${{ env.PRIMARY_MAVEN_MODULE }}-demo
+  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
 
 jobs:
   check_code: # Validates the code (see develop.yml)
