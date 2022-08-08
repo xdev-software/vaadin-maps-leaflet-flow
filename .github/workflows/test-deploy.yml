@@ -3,6 +3,9 @@ name: Test Deployment
 on:
   workflow_dispatch:
 
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+
 jobs:
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
@@ -22,7 +25,7 @@ jobs:
 
     - name: Publish to OSSRH
       run: mvn -B deploy -Possrh
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}

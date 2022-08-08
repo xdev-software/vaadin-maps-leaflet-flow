@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
 
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+  DEMO_MAVEN_MODULE: ${{ env.PRIMARY_MAVEN_MODULE }}-demo
+
 jobs:
   check_code: # Validates the code (see develop.yml)
     runs-on: ubuntu-latest
@@ -63,11 +67,11 @@ jobs:
     
     - name: Un-SNAP demo
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-addon-template-demo
+      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
   
     - name: Un-SNAP 
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Get version
       id: version
@@ -75,7 +79,7 @@ jobs:
         version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "::set-output name=release::$version"
         echo "::set-output name=releasenumber::${version//[!0-9]/}"
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Commit and Push
       run: |
@@ -95,15 +99,15 @@ jobs:
         release_name: v${{ steps.version.outputs.release }}
         commitish: master
         body: |
-          ## [Changelog](https://github.com/xdev-software/vaadin-addon-template/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
-          See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/vaadin-addon-template/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
+          ## [Changelog](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
+          See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
 
           ## Installation
           Add the following lines to your pom:
           ```XML
           <dependency>
              <groupId>com.xdev-software</groupId>
-             <artifactId>vaadin-addon-template</artifactId>
+             <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
@@ -139,7 +143,7 @@ jobs:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
   build_directory: # Build a ZIP that can be uploaded to Vaadin Directory
     runs-on: ubuntu-latest
@@ -161,20 +165,20 @@ jobs:
       
     - name: Build for Vaadin Directory
       run: mvn -B install -Pdirectory
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
       
     - name: Upload asset
       uses: actions/upload-artifact@v3
       with:
         name: vaadin-directory-files
-        path: vaadin-addon-template/target/vaadin-addon-template-*.zip
+        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-*.zip
         if-no-files-found: error
 
     - name: Get version
       id: version
       run: |
        echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
@@ -182,8 +186,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.prepare_release.outputs.upload_url }}
-        asset_path: vaadin-addon-template/target/vaadin-addon-template-${{ steps.version.outputs.release }}.zip
-        asset_name: vaadin-addon-template-${{ steps.version.outputs.release }}.zip
+        asset_path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
+        asset_name: ${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
         asset_content_type: application/zip
 
   publish-pages:
@@ -208,19 +212,19 @@ jobs:
 
     - name: Build dependencies/licenses files
       run: mvn -B project-info-reports:dependencies
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload licenses - Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: dependencies-licenses
-        path: vaadin-addon-template/target/site
+        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/site
 
     - name: Generate docs/dependencies dir
       run: mkdir -p docs/dependencies
 
     - name: Move built files into docs/dependencies
-      run: mv vaadin-addon-template/target/site/* docs/dependencies
+      run: mv ${{ env.PRIMARY_MAVEN_MODULE }}/target/site/* docs/dependencies
 
     - name: Rename dependencies.html to index.html
       working-directory: docs/dependencies
@@ -258,11 +262,11 @@ jobs:
     
     - name: Inc Version and SNAP demo
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-addon-template-demo
+      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
   
     - name: Inc Version and SNAP 
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-addon-template
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Git Commit and Push
       run: |
