@@ -54,7 +54,6 @@ You should have the following things installed:
     * [Save Actions](https://plugins.jetbrains.com/plugin/7642-save-actions) - Provides save actions, like running the formatter or adding ``final`` to fields
     * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
     * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
-    * (Optional) [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper) - Better dependency overview
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``
   * Ensure that the JDK/Java-Version is correct
