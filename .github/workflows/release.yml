@@ -1,0 +1,280 @@
+name: Release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  check_code: # Validates the code (see develop.yml)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Cache local Maven repository
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+      
+    - name: Build with Maven
+      run: mvn -B clean package -Pproduction
+      
+    - name: Check for uncommited changes
+      run: |
+        if [[ "$(git status --porcelain)" != "" ]]; then
+          echo ----------------------------------------
+          echo git status
+          echo ----------------------------------------
+          git status
+          echo ----------------------------------------
+          echo git diff
+          echo ----------------------------------------
+          git diff
+          echo ----------------------------------------
+          echo Troubleshooting
+          echo ----------------------------------------
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package -Pproduction"
+          exit 1
+        fi
+
+  prepare_release:
+    runs-on: ubuntu-latest
+    needs: [check_code]
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Configure Git
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+      
+    - name: Un-SNAP root
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+    
+    - name: Un-SNAP demo
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      working-directory: vaadin-addon-template-demo
+  
+    - name: Un-SNAP 
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      working-directory: vaadin-addon-template
+  
+    - name: Get version
+      id: version
+      run: |
+        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "::set-output name=release::$version"
+        echo "::set-output name=releasenumber::${version//[!0-9]/}"
+      working-directory: vaadin-addon-template
+  
+    - name: Commit and Push
+      run: |
+        git add -A
+        git commit -m "Release ${{ steps.version.outputs.release }}"
+        git push origin
+        git tag v${{ steps.version.outputs.release }}
+        git push origin --tags
+    
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.version.outputs.release }}
+        release_name: v${{ steps.version.outputs.release }}
+        commitish: master
+        body: |
+          ## [Changelog](https://github.com/xdev-software/vaadin-addon-template/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
+          See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/vaadin-addon-template/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
+
+          ## Installation
+          Add the following lines to your pom:
+          ```XML
+          <dependency>
+             <groupId>com.xdev-software</groupId>
+             <artifactId>vaadin-addon-template</artifactId>
+             <version>${{ steps.version.outputs.release }}</version>
+          </dependency>
+          ```
+        draft: false
+        prerelease: false
+
+  publish_central: # Publish the code to central
+    runs-on: ubuntu-latest
+    needs: [prepare_release]
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+    
+    - name: Set up JDK Apache Maven Central
+      uses: actions/setup-java@v3
+      with: # running setup-java again overwrites the settings.xml
+        java-version: '11'
+        distribution: 'temurin'
+        server-id: ossrh
+        server-username: MAVEN_CENTRAL_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+
+    - name: Publish to Apache Maven Central
+      run: mvn -B deploy -Possrh
+      env:
+        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      working-directory: vaadin-addon-template
+  
+  build_directory: # Build a ZIP that can be uploaded to Vaadin Directory
+    runs-on: ubuntu-latest
+    needs: [prepare_release]
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+      
+    - name: Build for Vaadin Directory
+      run: mvn -B install -Pdirectory
+      working-directory: vaadin-addon-template
+      
+    - name: Upload asset
+      uses: actions/upload-artifact@v3
+      with:
+        name: vaadin-directory-files
+        path: vaadin-addon-template/target/vaadin-addon-template-*.zip
+        if-no-files-found: error
+
+    - name: Get version
+      id: version
+      run: |
+       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+      working-directory: vaadin-addon-template
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.prepare_release.outputs.upload_url }}
+        asset_path: vaadin-addon-template/target/vaadin-addon-template-${{ steps.version.outputs.release }}.zip
+        asset_name: vaadin-addon-template-${{ steps.version.outputs.release }}.zip
+        asset_content_type: application/zip
+
+  publish-pages:
+    name: Publish dependencies and licenses to github pages
+    runs-on: ubuntu-latest
+    needs: [prepare_release]
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+
+    - name: Setup - Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build dependencies/licenses files
+      run: mvn -B project-info-reports:dependencies
+      working-directory: vaadin-addon-template
+
+    - name: Upload licenses - Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dependencies-licenses
+        path: vaadin-addon-template/target/site
+
+    - name: Generate docs/dependencies dir
+      run: mkdir -p docs/dependencies
+
+    - name: Move built files into docs/dependencies
+      run: mv vaadin-addon-template/target/site/* docs/dependencies
+
+    - name: Rename dependencies.html to index.html
+      working-directory: docs/dependencies
+      run: mv dependencies.html index.html
+
+    - name: Copy Readme into docs (as index.md)
+      run: cp README.md docs/index.md
+
+    - name: Configure Pages
+      working-directory: docs
+      run: |-
+        echo "theme: jekyll-theme-tactile" > _config.yml
+
+    - name: Deploy to Github pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        enable_jekyll: true
+
+  after_release:
+    runs-on: ubuntu-latest
+    needs: [publish_central, build_directory]
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+        
+    - name: Inc Version and SNAP root
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+    
+    - name: Inc Version and SNAP demo
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+      working-directory: vaadin-addon-template-demo
+  
+    - name: Inc Version and SNAP 
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+      working-directory: vaadin-addon-template
+
+    - name: Git Commit and Push
+      run: |
+        git add -A
+        git commit -m "Preparing for next development iteration"
+        git push origin
+    
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_branch: "develop"
+        pr_title: "Sync back"
+        pr_body: "An automated PR to sync changes back"
+
