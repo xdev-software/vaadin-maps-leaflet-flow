@@ -17,6 +17,10 @@ env:
   REMOTE_URL: https://github.com/xdev-software/vaadin-addon-template.git
   REMOTE_BRANCH: master
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
