@@ -1,5 +1,10 @@
 name: Update from Template
 
+# This workflow keeps the repo up to date with changes from the template repo (REMOTE_URL)
+# It duplicates the REMOTE_BRANCH (into UPDATE_BRANCH) and tries to merge it into the 
+# this repos default branch (which is checked out here)
+# Note that this requires a PAT (Personal Access Token) - at best from a servicing account
+
 on:
   schedule:
     - cron: '55 2 * * 1'
@@ -17,7 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          # Required because otherwise there are always changes detected when executing diff/rev-list
           fetch-depth: 0
+          # If no PAT is used the following error occurs on a push:
+          # refusing to allow a GitHub App to create or update workflow `.github/workflows/xxx.yml` without `workflows` permission
+          token: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
       
       - name: Init Git
         run: |
@@ -59,9 +68,9 @@ jobs:
           git push -f -u origin ${{ env.UPDATE_BRANCH }}
           
           echo "Getting current branch"
-          currentbranch=$(git branch --show-current)
-          echo "Current branch is $currentbranch"
-          echo "::set-output name=currentbranch::$currentbranch"
+          current_branch=$(git branch --show-current)
+          echo "Current branch is $current_branch"
+          echo "::set-output name=current_branch::$current_branch"
 
           echo "::set-output name=abort::0"
           
@@ -71,7 +80,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: ${{ env.UPDATE_BRANCH }}
-          destination_branch: ${{ steps.main.outputs.currentbranch }}
-          pr_title: "Sync from template"
+          destination_branch: ${{ steps.main.outputs.current_branch }}
+          pr_title: "Update from template"
           pr_body: "An automated PR to sync changes from the template into this repo"
           
