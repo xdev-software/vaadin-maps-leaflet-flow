@@ -4,6 +4,8 @@ name: Update from Template
 # It duplicates the REMOTE_BRANCH (into UPDATE_BRANCH) and tries to merge it into the 
 # this repos default branch (which is checked out here)
 # Note that this requires a PAT (Personal Access Token) - at best from a servicing account
+# Also note that you should have at least once merged the template repo into the current repo manually
+# otherwise a "refusing to merge unrelated histories" error might occur.
 
 on:
   schedule:
