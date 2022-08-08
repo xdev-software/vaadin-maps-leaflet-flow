@@ -6,7 +6,7 @@ export class LeafletMap extends PolymerElement {
         return html `
       <link
         rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
       />
 
       <style>
