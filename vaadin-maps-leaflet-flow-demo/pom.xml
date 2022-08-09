@@ -6,11 +6,11 @@
 
 
 	<groupId>com.xdev-software</groupId>
-	<artifactId>vaadin-addon-template-demo</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<inceptionYear>2022</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
@@ -57,7 +57,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.xdev-software</groupId>
-			<artifactId>vaadin-addon-template</artifactId>
+			<artifactId>vaadin-maps-leaflet-flow</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
