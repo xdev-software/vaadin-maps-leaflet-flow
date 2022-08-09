@@ -114,13 +114,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.3</version>
 		</dependency>
-
-		<!-- Added to provide logging output as Vaadin uses -->
-		<!-- the unbound SLF4J no-operation (NOP) logger implementation -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
