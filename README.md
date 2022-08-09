@@ -6,7 +6,7 @@
 # vaadin-maps-leaflet-flow
 Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
-<img src="demo.png" height=550></img>
+![demo](assets/demo.png)
 
 
 ## Installation
@@ -31,7 +31,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 <details>
   <summary>Show example</summary>
   
-  ![demo](demo.gif)
+  ![demo](assets/demo.gif)
 </details>
 
 
