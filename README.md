@@ -33,6 +33,11 @@ View the [license of the current project](LICENSE) or the [summary including all
 
 
 ## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-addon-template/Release?label=Release)](https://github.com/xdev-software/vaadin-addon-template/actions/workflows/release.yml)
+
+Before releasing:
+* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-addon-template/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
+* Check the [changelog](CHANGELOG.md)
+
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
 When the release is finished do the following:
