@@ -20,7 +20,7 @@
 		<connection>https://github.com/xdev-software/vaadin-addon-template.git</connection>
 	</scm>
 
-	<inceptionYear>2020</inceptionYear>
+	<inceptionYear>2022</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
