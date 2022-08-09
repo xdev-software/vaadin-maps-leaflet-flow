@@ -64,15 +64,6 @@ public class LMap extends Component implements HasSize, HasStyle
 		this.setFixZIndexEnabled(true);
 	}
 	
-	/**
-	 * @deprecated Just used for demo purposes
-	 */
-	@Deprecated
-	public LMap()
-	{
-		this(50.921273, 10.359164, 6);
-	}
-	
 	public void setZoom(final int zoom)
 	{
 		this.getElement().callJsFunction(SET_ZOOM_FUNCTION, zoom);
