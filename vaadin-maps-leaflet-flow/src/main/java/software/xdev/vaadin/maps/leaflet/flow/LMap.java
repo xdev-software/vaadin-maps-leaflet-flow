@@ -43,7 +43,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
-@NpmPackage(value = "leaflet", version = "^1.8.0")
+@NpmPackage(value = "leaflet", version = "1.8.0")
 @Tag("leaflet-map")
 @JsModule("./leaflet/leafletCon.js")
 public class LMap extends Component implements HasSize, HasStyle
