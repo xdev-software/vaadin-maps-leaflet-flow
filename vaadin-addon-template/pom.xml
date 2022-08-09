@@ -11,8 +11,8 @@
 	<packaging>jar</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>DateRangePicker for Vaadin</name>
-	<description>DateRangePicker for Vaadin</description>
+	<name>vaadin-addon-template</name>
+	<description>vaadin-addon-template</description>
 	<url>https://github.com/xdev-software/vaadin-addon-template</url>
 
 	<scm>
