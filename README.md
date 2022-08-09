@@ -14,7 +14,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
 #### Compatibility with Vaadin
 
-| Vaadin version | DateRangePicker version |
+| Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
 | Vaadin 23+ (latest) | ``2+`` |
 | Vaadin 14 (LTS - former release model) | ``1.x`` |
@@ -40,12 +40,16 @@ View the [license of the current project](LICENSE) or the [summary including all
 
 
 ## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Release?label=Release)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/release.yml)
+
+Before releasing:
+* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-addon-template/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
+* Check the [changelog](CHANGELOG.md)
+
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
-* Add the release notes to the [GitHub release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest)
-* Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory)
+* Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory) and update the component there
 
 
 ## Developing
@@ -62,7 +66,6 @@ You should have the following things installed:
     * [Save Actions](https://plugins.jetbrains.com/plugin/7642-save-actions) - Provides save actions, like running the formatter or adding ``final`` to fields
     * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
     * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
-    * (Optional) [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper) - Better dependency overview
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``
   * Ensure that the JDK/Java-Version is correct
