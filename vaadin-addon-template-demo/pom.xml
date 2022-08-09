@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<groupId>com.xdev-software</groupId>
+	<artifactId>vaadin-addon-template-demo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<inceptionYear>2020</inceptionYear>
+
+	<organization>
+		<name>XDEV Software</name>
+		<url>https://xdev.software/en</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<license.licenseName>apache_v2</license.licenseName>
+
+		<javaVersion>11</javaVersion>
+		<maven.compiler.release>${javaVersion}</maven.compiler.release>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Dependency-Versions -->
+		<vaadin.version>23.1.4</vaadin.version>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+				<version>${vaadin.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.xdev-software</groupId>
+			<artifactId>vaadin-addon-template</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		
+		<plugins>
+			<!-- Jetty plugin for easy testing without a server -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>10.0.11</version>
+				<configuration>
+					<scan>1</scan>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-frontend</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>production</id>
+			<properties>
+				<vaadin.productionMode>true</vaadin.productionMode>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.vaadin</groupId>
+					<artifactId>flow-server-production-mode</artifactId>
+				</dependency>
+			</dependencies>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.vaadin</groupId>
+						<artifactId>vaadin-maven-plugin</artifactId>
+						<version>${vaadin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-frontend</goal>
+									<goal>build-frontend</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
