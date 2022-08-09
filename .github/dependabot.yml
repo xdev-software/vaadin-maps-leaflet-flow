@@ -21,7 +21,6 @@ updates:
     time: "00:00"
   open-pull-requests-limit: 10
   ignore:
-  - dependency-name: "com.vaadin:vaadin-bom"
-    versions: ">=15.0.0"
   - dependency-name: "org.eclipse.jetty:jetty-maven-plugin"
-    versions: ">=10.0.0"
+    # Version 11+ requires jakarta.* instead of javax.* (see https://www.eclipse.org/jetty/download.php#what-jetty-version)
+    versions: ">=11.0.0"

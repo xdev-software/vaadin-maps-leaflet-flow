@@ -1,0 +1,32 @@
+name: Test Deployment
+
+on:
+  workflow_dispatch:
+
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+
+jobs:
+  publish_central: # Publish the code to central
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK OSSRH
+      uses: actions/setup-java@v3
+      with: # running setup-java again overwrites the settings.xml
+        distribution: 'temurin'
+        java-version: '11'
+        server-id: ossrh
+        server-username: MAVEN_CENTRAL_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+
+    - name: Publish to OSSRH
+      run: mvn -B deploy -Possrh
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      env:
+        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
