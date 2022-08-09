@@ -30,14 +30,11 @@
 		<license.licenseName>apache_v2</license.licenseName>
 
 		<javaVersion>11</javaVersion>
-		<maven.compiler.source>${javaVersion}</maven.compiler.source>
-		<maven.compiler.target>${javaVersion}</maven.compiler.target>
 		<!-- Used for Java 11 -->
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
 		<vaadin.version>23.1.4</vaadin.version>
@@ -96,6 +93,22 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
