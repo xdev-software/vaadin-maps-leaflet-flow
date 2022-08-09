@@ -57,14 +57,12 @@ export class LeafletMap extends PolymerElement {
         this.map.setView(obj.point.coordinates, obj.point.zoom);
     }
     
-    setTileLayer(layer)
-    {     
+    setTileLayer(layer) {
         this.tile = L.tileLayer(layer.tile.link,{attribution: layer.tile.attribution, maxZoom: layer.tile.zoom, id: layer.tile.id}).addTo(this.map);
         this.tile.bringToFront();
     }
 
-    setZoomLevel(zoom)
-    {
+    setZoomLevel(zoom) {
         this.map.setZoom(zoom);
     }
 
