@@ -1,4 +1,5 @@
 name: Check Build
+
 on:
   workflow_dispatch:
   push:
@@ -10,18 +11,27 @@ on:
     paths-ignore: 
       - '**.md'
 
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        java: [11, 17]
+        distribution: [temurin]
+
     steps:
     - uses: actions/checkout@v3
       
-    - name: Set up JDK 8
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
-        distribution: 'temurin'
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
         cache: 'maven'
       
     - name: Build with Maven
@@ -48,6 +58,6 @@ jobs:
     - name: Upload demo files
       uses: actions/upload-artifact@v3
       with:
-        name: demo-files
-        path: vaadin-maps-leaflet-flow-demo/target/vaadin-maps-leaflet-flow-demo.war
+        name: demo-files-java-${{ matrix.java }}
+        path: ${{ env.DEMO_MAVEN_MODULE }}/target/${{ env.DEMO_MAVEN_MODULE }}.war
         if-no-files-found: error

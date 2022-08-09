@@ -9,7 +9,7 @@
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
 
 	<packaging>jar</packaging>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 
 	<name>LeafletMap for Vaadin</name>
 	<description>LeafletMap for Vaadin</description>
@@ -46,18 +46,15 @@
 	<properties>
 		<license.licenseName>apache_v2</license.licenseName>
 
-		<javaVersion>1.8</javaVersion>
-		<maven.compiler.source>${javaVersion}</maven.compiler.source>
-		<maven.compiler.target>${javaVersion}</maven.compiler.target>
+		<javaVersion>11</javaVersion>
 		<!-- Used for Java 11 -->
-		<!--<maven.compiler.release>${javaVersion}</maven.compiler.release> -->
+		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>14.8.14</vaadin.version>
+		<vaadin.version>23.1.4</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -98,36 +95,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.vaadin</groupId>
-			<!-- Replace artifactId with vaadin-core to use only free components -->
 			<artifactId>vaadin-core</artifactId>
-			<exclusions>
-				<!-- Webjars are only needed when running in Vaadin 13 compatibility 
-					mode -->
-				<exclusion>
-					<groupId>com.vaadin.webjar</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.insites</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymer</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymerelements</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.vaadin</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.webcomponents</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- JSON JACKSON -->
 		<dependency>
@@ -177,10 +145,18 @@
 					<execution>
 						<goals>
 							<goal>prepare-frontend</goal>
-							<goal>build-frontend</goal>
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -233,7 +209,7 @@
 					<!-- Generated file that shouldn't be included in add-ons -->
 					<excludes>
 						<exclude>
-							META-INF/VAADIN/config/flow-build-info.json
+							META-INF/VAADIN/
 						</exclude>
 					</excludes>
 				</configuration>
@@ -316,7 +292,7 @@
 							<!-- Generated file that shouldn't be included in add-ons -->
 							<excludes>
 								<exclude>
-									META-INF/VAADIN/config/flow-build-info.json
+									META-INF/VAADIN/
 								</exclude>
 							</excludes>
 						</configuration>
