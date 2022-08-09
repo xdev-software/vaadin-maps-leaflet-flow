@@ -31,17 +31,6 @@ public class LeafletView extends VerticalLayout
 	 * UI-Components
 	 */
 	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
-	private final Button btnOpenDialog = new Button("Open dialog over map", ev ->
-	{
-		final Icon icoClose = VaadinIcon.CLOSE.create();
-		
-		final Dialog dialog = new Dialog(icoClose);
-		dialog.setWidth("50vw");
-		dialog.setHeight("50vh");
-		dialog.open();
-		
-		icoClose.addClickListener(iev -> dialog.close());
-	});
 	
 	private LMap map;
 	
@@ -61,7 +50,20 @@ public class LeafletView extends VerticalLayout
 		this.initMapComponents();
 		
 		this.btnLunch.addClickListener(this::btnLunchClick);
-		this.add(this.btnLunch, this.btnOpenDialog);
+		
+		this.add(
+			this.btnLunch,
+			new Button("Open dialog over map", ev ->
+			{
+				final Icon icoClose = VaadinIcon.CLOSE.create();
+				
+				final Dialog dialog = new Dialog(icoClose);
+				dialog.setWidth("50vw");
+				dialog.setHeight("50vh");
+				dialog.open();
+				
+				icoClose.addClickListener(iev -> dialog.close());
+			}));
 	}
 	
 	private void btnLunchClick(final ClickEvent<Button> event)
