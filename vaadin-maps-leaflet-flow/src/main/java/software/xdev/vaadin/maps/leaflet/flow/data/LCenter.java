@@ -21,26 +21,19 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import elemental.json.Json;
-import elemental.json.JsonObject;
-
 
 public class LCenter
 {
+	private double lat;
 	
-	private List<Double> coordinates = new ArrayList<>();
+	private double lon;
+	
 	private int zoom;
 	
 	public LCenter(final double lat, final double lon, final int zoom)
 	{
-		this.coordinates.add(lat);
-		this.coordinates.add(lon);
+		this.lat = lat;
+		this.lon = lon;
 		this.zoom = zoom;
 	}
 	
@@ -64,29 +57,23 @@ public class LCenter
 		this.zoom = zoom;
 	}
 	
-	public List<Double> getCoordinates()
+	public double getLat()
 	{
-		return this.coordinates;
+		return this.lat;
 	}
 	
-	public void setCoordinates(final List<Double> coordinates)
+	public void setLat(final double lat)
 	{
-		this.coordinates = coordinates;
+		this.lat = lat;
 	}
 	
-	public JsonObject toJson()
+	public double getLon()
 	{
-		final JsonObject jsonObject = Json.createObject();
-		final ObjectMapper mapper = new ObjectMapper();
-		try
-		{
-			jsonObject.put("point", Json.parse(mapper.writeValueAsString(this)));
-		}
-		catch(final JsonProcessingException e)
-		{
-			throw new RuntimeException(e);
-		}
-		
-		return jsonObject;
+		return this.lon;
+	}
+	
+	public void setLon(final double lon)
+	{
+		this.lon = lon;
 	}
 }

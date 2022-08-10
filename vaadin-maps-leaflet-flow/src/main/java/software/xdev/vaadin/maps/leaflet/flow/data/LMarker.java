@@ -24,9 +24,6 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
-
 
 public class LMarker implements LComponent
 {
@@ -48,7 +45,7 @@ public class LMarker implements LComponent
 	 */
 	public LMarker(final double lat, final double lon)
 	{
-		this(lat, lon, "empty");
+		this(lat, lon, null);
 	}
 
 	public LMarker(final double lat, final double lon, final String tag)
@@ -109,23 +106,24 @@ public class LMarker implements LComponent
 		this.geometry.getCoordinates().remove(0);
 		this.geometry.getCoordinates().set(0, lat);
 	}
-
+	
 	public double getLon()
 	{
 		return this.geometry.getCoordinates().get(1);
 	}
-
+	
 	public void setLon(final double lon)
 	{
 		this.geometry.getCoordinates().remove(1);
 		this.geometry.getCoordinates().set(1, lon);
 	}
-
+	
+	@Override
 	public String getPopup()
 	{
 		return this.properties.getPopup();
 	}
-
+	
 	/**
 	 * Sets a Pop-up to the Marker
 	 *
@@ -135,41 +133,32 @@ public class LMarker implements LComponent
 	{
 		this.properties.setPopup(popup);
 	}
-
+	
 	public String getTag()
 	{
 		return this.tag;
 	}
-
+	
 	public void setTag(final String tag)
 	{
 		this.tag = tag;
 	}
-
+	
 	@Override
-	public JsonObject toJson()
+	public String buildClientJSItems() throws JsonProcessingException
 	{
-		final JsonObject jsonObject = Json.createObject();
 		final ObjectMapper mapper = new ObjectMapper();
-		try
-		{
-			jsonObject.put("type", Json.create("Feature"));
-			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
-			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
-			jsonObject.put("tag", Json.create(this.tag));
-
-		}
-		catch(final JsonProcessingException e)
-		{
-			throw new RuntimeException(e);
-		}
-
-		return jsonObject;
-	}
-
-	@Override
-	public String getJsFunctionForAddingToMap()
-	{
-		return "addMarker";
+		return "let item = L.marker("
+			+ mapper.writeValueAsString(this.geometry.getCoordinates()) + ","
+			+ "{icon: "
+			+ "new L."
+			+ (this.properties.getIcon() instanceof LDivIcon ? "divIcon" : "Icon")
+			+ "(" + mapper.writeValueAsString(this.properties.getIcon()) + ")"
+			+ " }"
+			+ ");"
+			+ (this.getTag() != null && !this.getTag().isBlank()
+			? ("\nvar vaadinServer = this.$server;"
+			+ "\nitem.on('click', function (e) { vaadinServer.onMarkerClick('" + this.tag + "') });")
+			: "");
 	}
 }

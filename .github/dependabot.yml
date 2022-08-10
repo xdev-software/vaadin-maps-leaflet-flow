@@ -4,6 +4,8 @@ updates:
   directory: "/"
   schedule:
     interval: daily
+    # Run it at a specific time so that we don't get emails all day long
+    time: "00:00"
   open-pull-requests-limit: 10
   ignore:
   - dependency-name: "*"
@@ -15,4 +17,10 @@ updates:
   directory: "/"
   schedule:
     interval: daily
+    # Run it at a specific time so that we don't get emails all day long
+    time: "00:00"
   open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "org.eclipse.jetty:jetty-maven-plugin"
+    # Version 11+ requires jakarta.* instead of javax.* (see https://www.eclipse.org/jetty/download.php#what-jetty-version)
+    versions: ">=11.0.0"
