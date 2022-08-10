@@ -27,9 +27,6 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
-
 
 public class LPolygon implements LComponent
 {
@@ -222,6 +219,7 @@ public class LPolygon implements LComponent
 		this.properties.setFillOpacity(fillOpacity);
 	}
 	
+	@Override
 	public String getPopup()
 	{
 		return this.properties.getPopup();
@@ -286,28 +284,13 @@ public class LPolygon implements LComponent
 	}
 	
 	@Override
-	public JsonObject toJson()
+	public String buildClientJSItems() throws JsonProcessingException
 	{
-		final JsonObject jsonObject = Json.createObject();
 		final ObjectMapper mapper = new ObjectMapper();
-		try
-		{
-			jsonObject.put("type", Json.create("Feature"));
-			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
-			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
-		}
-		catch(final JsonProcessingException e)
-		{
-			throw new RuntimeException(e);
-		}
-		
-		return jsonObject;
-	}
-
-	@Override
-	public String getJsFunctionForAddingToMap()
-	{
-		return "addPolygon";
+		return "let item = L.polygon("
+			+ mapper.writeValueAsString(this.geometry.getCoordinates()) + ","
+			+ mapper.writeValueAsString(this.properties)
+			+ ");";
 	}
 	
 }

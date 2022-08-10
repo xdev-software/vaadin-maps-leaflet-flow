@@ -27,19 +27,39 @@ import elemental.json.Json;
 import elemental.json.JsonObject;
 
 
+/**
+ * <b>Important: When using a TileServer you have to check the usage policy!</b>
+ *
+ * @see <a href="https://wiki.openstreetmap.org/wiki/Tile_servers">Tile servers</a>
+ */
 public class LTileLayer
 {
+	/**
+	 * OpenStreetMap's Standard tile layer
+	 *
+	 * @see <a href="https://operations.osmfoundation.org/policies/tiles/">Usage Policy</a>
+	 */
+	public static final LTileLayer DEFAULT_OPENSTREETMAP_TILE = new LTileLayer(
+		"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+		"© <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
+		18
+	);
+	
 	private String link;
 	private String attribution;
-	private int zoom;
+	private int maxZoom;
 	private String id;
 	
-	public LTileLayer(final String link, final String attribution, final int zoom, final String id)
+	public LTileLayer(final String link, final String attribution, final int maxZoom)
 	{
-		super();
+		this(link, attribution, maxZoom, null);
+	}
+	
+	public LTileLayer(final String link, final String attribution, final int maxZoom, final String id)
+	{
 		this.link = link;
 		this.attribution = attribution;
-		this.zoom = zoom;
+		this.maxZoom = maxZoom;
 		this.id = id;
 	}
 	
@@ -63,14 +83,14 @@ public class LTileLayer
 		this.attribution = attribution;
 	}
 	
-	public int getZoom()
+	public int getMaxZoom()
 	{
-		return this.zoom;
+		return this.maxZoom;
 	}
 	
-	public void setZoom(final int zoom)
+	public void setMaxZoom(final int maxZoom)
 	{
-		this.zoom = zoom;
+		this.maxZoom = maxZoom;
 	}
 	
 	public String getId()

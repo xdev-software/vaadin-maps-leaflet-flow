@@ -1,0 +1,9 @@
+.div-icon {
+    background: #fff;
+    border: 1px solid #666;
+    height: auto;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+}

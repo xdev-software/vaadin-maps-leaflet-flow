@@ -32,11 +32,15 @@ public class LDivIcon extends LIcon
 		this("");
 	}
 	
+	/**
+	 * <b>Ensure that you escape the html properly so that you don't accidentally introduce Serverside XSS</b>
+	 *
+	 * @param html
+	 */
 	public LDivIcon(final String html)
 	{
 		this.setHtml(html);
 		this.setIconAnchor(0, 0);
-		super.setType("DivIcon");
 	}
 	
 	public String getClassName()
@@ -61,6 +65,8 @@ public class LDivIcon extends LIcon
 	
 	/**
 	 * Custom HTML code to put inside the div element, empty by default. Alternatively, an instance of HTMLElement.
+	 * <br/>
+	 * <b>Ensure that you escape the html properly so that you don't accidentally introduce Serverside XSS</b>
 	 *
 	 * @param html
 	 */
