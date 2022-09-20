@@ -77,6 +77,8 @@ webpack.generated.js
 webpack.config.js
 tsconfig.json
 types.d.ts
+vite.config.ts
+vite.generated.ts
 /*/frontend/generated/
 /*/frontend/index.html
 
