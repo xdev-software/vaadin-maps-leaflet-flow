@@ -6,7 +6,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-	<version>2.0.1-SNAPSHOT</version>
+	<version>2.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>LeafletMap for Vaadin</name>
