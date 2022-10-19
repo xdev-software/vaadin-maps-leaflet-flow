@@ -47,6 +47,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
+import software.xdev.vaadin.maps.leaflet.flow.data.LLayerControl;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
@@ -101,6 +102,19 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ ");");
 	}
 	
+	public void setLayerControl(final LLayerControl layerControl)
+	{
+		try
+		{
+			final String addLayerControl = layerControl.buildClientJS() + "layerControl.addTo(" + CLIENT_MAP + ");";
+			this.getElement().executeJs(addLayerControl);
+		}
+		catch(JsonProcessingException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public void setTileLayer(final LTileLayer tl)
 	{
 		final String removeTileLayerIfPresent = "if (" + CLIENT_TILE_LAYER + ") {"
@@ -119,9 +133,8 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	
 	/**
 	 * This fixes situations where the leafletmap overlays components like Dialogs
-	 * 
-	 * @param enabled
-	 *            enable or disable the fix
+	 *
+	 * @param enabled enable or disable the fix
 	 */
 	protected void setFixZIndexEnabled(final boolean enabled)
 	{

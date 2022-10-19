@@ -25,7 +25,7 @@ public class LLayerGroup implements LComponent
 	
 	@Override public String buildClientJSItems()
 	{
-		StringBuilder stringBuilder = new StringBuilder("let layers = [];\nlet item = null;\n");
+		StringBuilder stringBuilder = new StringBuilder("let item = null;\nlet layers = [];\n");
 		
 		lComponents.forEach(lComponent -> {
 			try
