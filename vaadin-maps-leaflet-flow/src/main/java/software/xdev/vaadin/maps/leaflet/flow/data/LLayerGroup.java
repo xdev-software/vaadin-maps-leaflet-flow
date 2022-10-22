@@ -1,5 +1,7 @@
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
+import static org.apache.commons.text.StringEscapeUtils.escapeEcmaScript;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class LLayerGroup implements LComponent
 	
 	/**
 	 * Create a new layer group.
+	 *
 	 * @param lComponents the components to include in the layer group
 	 */
 	public LLayerGroup(final LComponent... lComponents)
@@ -25,13 +28,16 @@ public class LLayerGroup implements LComponent
 	
 	@Override public String buildClientJSItems()
 	{
-		StringBuilder stringBuilder = new StringBuilder("let item = null;\nlet layers = [];\n");
+		StringBuilder stringBuilder = new StringBuilder("let item = null;\nvar layers = [];\n");
 		
 		lComponents.forEach(lComponent -> {
 			try
 			{
 				// Work around for LComponent#buildClientJSItems() having "let"
 				stringBuilder.append(lComponent.buildClientJSItems().replaceFirst("let", ""))
+					.append((lComponent.getPopup() != null
+						? "item.bindPopup('" + escapeEcmaScript(lComponent.getPopup()) + "');\n"
+						: ""))
 					.append("\nlayers.push(item);\n");
 			}
 			catch(JsonProcessingException e)
@@ -51,6 +57,6 @@ public class LLayerGroup implements LComponent
 	 */
 	@Override public String getPopup()
 	{
-		return "";
+		return null;
 	}
 }
