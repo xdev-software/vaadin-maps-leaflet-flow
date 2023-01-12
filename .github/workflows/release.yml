@@ -8,6 +8,10 @@ env:
   PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
   DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   check_code: # Validates the code (see develop.yml)
     runs-on: ubuntu-latest
@@ -84,9 +88,7 @@ jobs:
     
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: shogo82148/actions-create-release@v1
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
@@ -104,8 +106,6 @@ jobs:
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
-        draft: false
-        prerelease: false
 
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
@@ -174,9 +174,7 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: shogo82148/actions-upload-release-asset@v1
       with:
         upload_url: ${{ needs.prepare_release.outputs.upload_url }}
         asset_path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
@@ -270,7 +268,6 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "develop"
         pr_title: "Sync back"
         pr_body: "An automated PR to sync changes back"
