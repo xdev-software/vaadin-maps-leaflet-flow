@@ -70,8 +70,8 @@ jobs:
       id: version
       run: |
         version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        echo "::set-output name=release::$version"
-        echo "::set-output name=releasenumber::${version//[!0-9]/}"
+        echo "release=$version" >> $GITHUB_OUTPUT
+        echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Commit and Push
@@ -170,7 +170,7 @@ jobs:
     - name: Get version
       id: version
       run: |
-       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+       echo "release=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload Release Asset

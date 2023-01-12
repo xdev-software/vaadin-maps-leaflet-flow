@@ -60,7 +60,7 @@ jobs:
             echo "Deleting origin branch that contains the updates - if present"
             git push -f origin --delete ${{ env.UPDATE_BRANCH }} || true
             
-            echo "::set-output name=abort::1"
+            echo "abort=1" >> $GITHUB_OUTPUT
             exit 0
           fi
           
@@ -76,9 +76,9 @@ jobs:
           echo "Getting current branch"
           current_branch=$(git branch --show-current)
           echo "Current branch is $current_branch"
-          echo "::set-output name=current_branch::$current_branch"
+          echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
 
-          echo "::set-output name=abort::0"
+          echo "abort=0" >> $GITHUB_OUTPUT
           
       - name: pull-request
         uses: repo-sync/pull-request@v2
