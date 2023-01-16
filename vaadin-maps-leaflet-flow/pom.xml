@@ -5,20 +5,20 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xdev-software</groupId>
-	<artifactId>vaadin-addon-template</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>vaadin-maps-leaflet-flow</artifactId>
+	<version>2.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>vaadin-addon-template</name>
-	<description>vaadin-addon-template</description>
-	<url>https://github.com/xdev-software/vaadin-addon-template</url>
+	<name>LeafletMap for Vaadin</name>
+	<description>LeafletMap for Vaadin</description>
+	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
-		<url>https://github.com/xdev-software/vaadin-addon-template</url>
-		<connection>https://github.com/xdev-software/vaadin-addon-template.git</connection>
+		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
+		<connection>https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
 	</scm>
 
-	<inceptionYear>2022</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
@@ -103,6 +103,18 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
+		</dependency>
+		<!-- JSON JACKSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 	</dependencies>
 
