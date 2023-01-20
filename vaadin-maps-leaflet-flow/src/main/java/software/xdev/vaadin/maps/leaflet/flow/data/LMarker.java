@@ -98,7 +98,6 @@ public class LMarker implements LComponent
 
 	public void setLat(final double lat)
 	{
-		this.geometry.getCoordinates().remove(0);
 		this.geometry.getCoordinates().set(0, lat);
 	}
 	
@@ -109,7 +108,6 @@ public class LMarker implements LComponent
 	
 	public void setLon(final double lon)
 	{
-		this.geometry.getCoordinates().remove(1);
 		this.geometry.getCoordinates().set(1, lon);
 	}
 	
