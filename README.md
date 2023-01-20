@@ -1,6 +1,7 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/leafletmap-for-vaadin)
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-maps-leaflet-flow)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-maps-leaflet-flow)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Check%20Build/develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-maps-leaflet-flow/checkBuild.yml?branch=develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_vaadin-maps-leaflet-flow&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_vaadin-maps-leaflet-flow)
 ![Vaadin 23+](https://img.shields.io/badge/Vaadin%20Platform/Flow-23+-00b4f0.svg)
 
 # vaadin-maps-leaflet-flow
@@ -39,10 +40,10 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 View the [license of the current project](LICENSE) or the [summary including all dependencies](https://xdev-software.github.io/vaadin-maps-leaflet-flow/dependencies/)
 
 
-## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-maps-leaflet-flow/Release?label=Release)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/release.yml)
+## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-maps-leaflet-flow/release.yml?branch=master)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/release.yml)
 
 Before releasing:
-* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-addon-template/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
+* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
 * Check the [changelog](CHANGELOG.md)
 
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
