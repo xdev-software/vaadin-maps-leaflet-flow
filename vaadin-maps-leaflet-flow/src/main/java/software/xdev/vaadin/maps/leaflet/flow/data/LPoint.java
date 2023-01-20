@@ -37,12 +37,12 @@ public class LPoint
 	
 	public Double getLat()
 	{
-		return coords[0];
+		return coords.get(0);
 	}
 
 	public Double getLon()
 	{
-		return coords[1];
+		return coords.get(1);
 	}
 	
 	public void setCoords(final List<Double> point)
