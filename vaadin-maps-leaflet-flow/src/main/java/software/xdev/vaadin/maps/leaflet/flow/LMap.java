@@ -85,6 +85,18 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		this.setViewPoint(this.center);
 	}
 	
+	public LMap(final double lat, final double lon, final int zoom, final LTileLayer tileLayer)
+	{
+		this(lat, lon, zoom);
+		this.setTileLayer(tileLayer);
+	}
+	
+	public LMap(final LTileLayer tileLayer)
+	{
+		this();
+		this.setTileLayer(tileLayer);
+	}
+	
 	public void setZoom(final int zoom)
 	{
 		this.getElement().executeJs(CLIENT_MAP + ".setZoom(" + zoom + ");");
