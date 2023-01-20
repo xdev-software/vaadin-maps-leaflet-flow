@@ -1,3 +1,8 @@
+## 2.0.3
+* Updated dependencies
+* Fixed problem with setting lon/lan in LMarker
+* Added constructors for LMap
+
 ## 2.0.2
 * Updated dependencies
 
