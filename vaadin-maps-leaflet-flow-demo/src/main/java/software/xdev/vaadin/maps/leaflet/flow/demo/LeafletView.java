@@ -35,7 +35,7 @@ public class LeafletView extends VerticalLayout
 	 * UI-Components
 	 */
 	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
-	private final Button btnCenter = new Button("Caribbean center)");
+	private final Button btnCenter = new Button("Center on Caribbean");
 	private LMap map;
 	
 	private LMarker markerZob;
