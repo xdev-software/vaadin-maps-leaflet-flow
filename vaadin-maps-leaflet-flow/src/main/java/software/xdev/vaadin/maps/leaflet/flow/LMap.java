@@ -112,8 +112,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 
 	public void centerAndZoom(final LPoint noPoint, final LPoint sePoint)
 	{
-		//this.getElement().callJsFunction(CENTER_AND_ZOOM_FUNCTION, noPoint.toJson(), sePoint.toJson());
-		this.getElement().executeJs(CLIENT_MAP + ".centerAndZoom("
+		this.getElement().executeJs(CLIENT_MAP + ".fitBounds("
 			+ "[" + noPoint.getLat() + ", " + noPoint.getLon() + "],"
 			+ "[" + sePoint.getLat() + ", " + sePoint.getLon() + "]"
 			+ ");");
