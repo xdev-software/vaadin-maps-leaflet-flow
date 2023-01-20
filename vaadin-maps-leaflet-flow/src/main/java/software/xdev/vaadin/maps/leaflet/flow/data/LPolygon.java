@@ -1,34 +1,28 @@
-
-package software.xdev.vaadin.maps.leaflet.flow.data;
-
-/*-
- * #%L
- * vaadin-maps-leaflet-flow
- * %%
- * Copyright (C) 2019 XDEV Software
- * %%
+/*
+ * Copyright © 2019 XDEV Software (https://xdev.software/en)
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * #L%
  */
+
+package software.xdev.vaadin.maps.leaflet.flow.data;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import elemental.json.Json;
-import elemental.json.JsonObject;
 
 
 public class LPolygon implements LComponent
@@ -222,6 +216,7 @@ public class LPolygon implements LComponent
 		this.properties.setFillOpacity(fillOpacity);
 	}
 	
+	@Override
 	public String getPopup()
 	{
 		return this.properties.getPopup();
@@ -286,28 +281,13 @@ public class LPolygon implements LComponent
 	}
 	
 	@Override
-	public JsonObject toJson()
+	public String buildClientJSItems() throws JsonProcessingException
 	{
-		final JsonObject jsonObject = Json.createObject();
 		final ObjectMapper mapper = new ObjectMapper();
-		try
-		{
-			jsonObject.put("type", Json.create("Feature"));
-			jsonObject.put("geometry", Json.parse(mapper.writeValueAsString(this.geometry)));
-			jsonObject.put("properties", Json.parse(mapper.writeValueAsString(this.properties)));
-		}
-		catch(final JsonProcessingException e)
-		{
-			throw new RuntimeException(e);
-		}
-		
-		return jsonObject;
-	}
-
-	@Override
-	public String getJsFunctionForAddingToMap()
-	{
-		return "addPolygon";
+		return "let item = L.polygon("
+			+ mapper.writeValueAsString(this.geometry.getCoordinates()) + ","
+			+ mapper.writeValueAsString(this.properties)
+			+ ");";
 	}
 	
 }

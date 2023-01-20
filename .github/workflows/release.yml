@@ -4,19 +4,27 @@ on:
   push:
     branches: [ master ]
 
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   check_code: # Validates the code (see develop.yml)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
       
-    - name: Set up JDK 8
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
         cache: 'maven'
-
+      
     - name: Build with Maven
       run: mvn -B clean package -Pproduction
       
@@ -56,17 +64,19 @@ jobs:
     
     - name: Un-SNAP demo
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-maps-leaflet-flow-demo
+      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
   
     - name: Un-SNAP 
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: vaadin-maps-leaflet-flow
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Get version
       id: version
       run: |
-       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      working-directory: vaadin-maps-leaflet-flow
+        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "release=$version" >> $GITHUB_OUTPUT
+        echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Commit and Push
       run: |
@@ -78,25 +88,24 @@ jobs:
     
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: shogo82148/actions-create-release@v1
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
         commitish: master
         body: |
+          ## [Changelog](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
+          See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
+
           ## Installation
           Add the following lines to your pom:
           ```XML
           <dependency>
              <groupId>com.xdev-software</groupId>
-             <artifactId>vaadin-maps-leaflet-flow</artifactId>
+             <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
-        draft: false
-        prerelease: false
 
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
@@ -110,10 +119,10 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull
     
-    - name: Set up JDK 8 Apache Maven Central
+    - name: Set up JDK Apache Maven Central
       uses: actions/setup-java@v3
       with: # running setup-java again overwrites the settings.xml
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
         server-id: ossrh
         server-username: MAVEN_CENTRAL_USERNAME
@@ -127,7 +136,7 @@ jobs:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: vaadin-maps-leaflet-flow
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
   build_directory: # Build a ZIP that can be uploaded to Vaadin Directory
     runs-on: ubuntu-latest
@@ -141,37 +150,35 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull
     
-    - name: Set up JDK 8
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
       
     - name: Build for Vaadin Directory
       run: mvn -B install -Pdirectory
-      working-directory: vaadin-maps-leaflet-flow
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
       
     - name: Upload asset
       uses: actions/upload-artifact@v3
       with:
         name: vaadin-directory-files
-        path: vaadin-maps-leaflet-flow/target/vaadin-maps-leaflet-flow-*.zip
+        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-*.zip
         if-no-files-found: error
 
     - name: Get version
       id: version
       run: |
-       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-      working-directory: vaadin-maps-leaflet-flow
+       echo "release=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: shogo82148/actions-upload-release-asset@v1
       with:
         upload_url: ${{ needs.prepare_release.outputs.upload_url }}
-        asset_path: vaadin-maps-leaflet-flow/target/vaadin-maps-leaflet-flow-${{ steps.version.outputs.release }}.zip
-        asset_name: vaadin-maps-leaflet-flow-${{ steps.version.outputs.release }}.zip
+        asset_path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
+        asset_name: ${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
         asset_content_type: application/zip
 
   publish-pages:
@@ -190,24 +197,25 @@ jobs:
     - name: Setup - Java
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
+        cache: 'maven'
 
     - name: Build dependencies/licenses files
       run: mvn -B project-info-reports:dependencies
-      working-directory: vaadin-maps-leaflet-flow
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload licenses - Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: dependencies-licenses
-        path: vaadin-maps-leaflet-flow/target/site
+        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/site
 
     - name: Generate docs/dependencies dir
       run: mkdir -p docs/dependencies
 
     - name: Move built files into docs/dependencies
-      run: mv vaadin-maps-leaflet-flow/target/site/* docs/dependencies
+      run: mv ${{ env.PRIMARY_MAVEN_MODULE }}/target/site/* docs/dependencies
 
     - name: Rename dependencies.html to index.html
       working-directory: docs/dependencies
@@ -245,11 +253,11 @@ jobs:
     
     - name: Inc Version and SNAP demo
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-maps-leaflet-flow-demo
+      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
   
     - name: Inc Version and SNAP 
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: vaadin-maps-leaflet-flow
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Git Commit and Push
       run: |
@@ -260,7 +268,6 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "develop"
         pr_title: "Sync back"
         pr_body: "An automated PR to sync changes back"

@@ -1,41 +1,45 @@
-
-package software.xdev.vaadin.maps.leaflet.flow;
-
-/*-
- * #%L
- * vaadin-maps-leaflet-flow
- * %%
- * Copyright (C) 2019 XDEV Software
- * %%
+/*
+ * Copyright © 2019 XDEV Software (https://xdev.software/en)
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * #L%
  */
+
+package software.xdev.vaadin.maps.leaflet.flow;
+
+
+
+import static org.apache.commons.text.StringEscapeUtils.escapeEcmaScript;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
+import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
@@ -44,56 +48,91 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
-@NpmPackage(value = "leaflet", version = "^1.6.0")
+@NpmPackage(value = "leaflet", version = "1.8.0")
 @Tag("leaflet-map")
-@JsModule("./leaflet/leafletCon.js")
-public class LMap extends Component implements HasSize, HasStyle
+@JsModule("leaflet/dist/leaflet.js")
+@CssImport("leaflet/dist/leaflet.css")
+@CssImport("./leaflet/leaflet-custom.css")
+public class LMap extends Component implements HasSize, HasStyle, HasComponents
 {
-	private static final String SET_VIEW_POINT_FUNCTION = "setViewPoint";
-		
-	private static final String DELETE_FUNCTION = "deleteItem";
-	private static final String TILE_LAYER_FUNCTION = "setTileLayer";
-	private static final String SET_ZOOM_FUNCTION = "setZoomLevel";
-	private static final String CENTER_AND_ZOOM_FUNCTION = "centerAndZoom";
-
-
+	private static final String CLIENT_MAP = "this.map";
+	private static final String CLIENT_COMPONENTS = "this.components";
+	private static final String CLIENT_TILE_LAYER = "this.tilelayer";
+	private final Div divMap = new Div();
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
 	
-	public LMap(final double lat, final double lon, final int zoom)
-	{
-		this.center = new LCenter(lat, lon, zoom);
-		this.setViewPoint(this.center);
-		this.setFixZIndexEnabled(true);
-	}
-	
-	/**
-	 * @deprecated Just used for demo purposes
-	 */
-	@Deprecated
 	public LMap()
 	{
-		this(50.921273, 10.359164, 6);
+		// Default constructor
+		this.setFixZIndexEnabled(true);
+		
+		this.divMap.setSizeFull();
+		this.add(this.divMap);
+		
+		// bind map to div
+		this.getElement().executeJs(CLIENT_MAP + "="
+			+ "new L.map(this.getElementsByTagName('div')[0]);");
+		this.getElement().executeJs(CLIENT_COMPONENTS + "="
+			+ "new Array();");
+	}
+	
+	public LMap(final double lat, final double lon, final int zoom)
+	{
+		this();
+		
+		this.setCenter(new LCenter(lat, lon, zoom));
+		this.setViewPoint(this.center);
+	}
+	
+	public LMap(final double lat, final double lon, final int zoom, final LTileLayer tileLayer)
+	{
+		this(lat, lon, zoom);
+		this.setTileLayer(tileLayer);
+	}
+	
+	public LMap(final LTileLayer tileLayer)
+	{
+		this();
+		this.setTileLayer(tileLayer);
 	}
 	
 	public void setZoom(final int zoom)
 	{
-		this.getElement().callJsFunction(SET_ZOOM_FUNCTION, zoom);
+		this.getElement().executeJs(CLIENT_MAP + ".setZoom(" + zoom + ");");
 	}
 	
 	public void setViewPoint(final LCenter viewpoint)
 	{
-		this.getElement().callJsFunction(SET_VIEW_POINT_FUNCTION, viewpoint.toJson());
+		this.getElement().executeJs(CLIENT_MAP + ".setView("
+			+ "[" + viewpoint.getLat() + ", " + viewpoint.getLon() + "], "
+			+ viewpoint.getZoom()
+			+ ");");
 	}
 
 	public void centerAndZoom(final LPoint noPoint, final LPoint sePoint)
 	{
-		this.getElement().callJsFunction(CENTER_AND_ZOOM_FUNCTION, noPoint.toJson(), sePoint.toJson());
+		//this.getElement().callJsFunction(CENTER_AND_ZOOM_FUNCTION, noPoint.toJson(), sePoint.toJson());
+		this.getElement().executeJs(CLIENT_MAP + ".centerAndZoom("
+			+ "[" + noPoint.getLat() + ", " + noPoint.getLon() + "],"
+			+ "[" + sePoint.getLat() + ", " + sePoint.getLon() + "]"
+			+ ");");
 	}
 	
 	public void setTileLayer(final LTileLayer tl)
 	{
-		this.getElement().callJsFunction(TILE_LAYER_FUNCTION, tl.toJson());
+		final String removeTileLayerIfPresent = "if (" + CLIENT_TILE_LAYER + ") {"
+			+ CLIENT_MAP + ".removeLayer(" + CLIENT_TILE_LAYER + ");"
+			+ "}";
+		final String addTileLayer = CLIENT_TILE_LAYER + " = L.tileLayer("
+			+ "'" + escapeEcmaScript(tl.getLink()) + "'"
+			+ ",{"
+			+ "attribution: '" + escapeEcmaScript(tl.getAttribution()) + "'"
+			+ ", maxZoom: " + tl.getMaxZoom()
+			+ (tl.getId() != null ? ", id: '" + escapeEcmaScript(tl.getId()) + "'" : "")
+			+ "}"
+			+ ").addTo(" + CLIENT_MAP + ");";
+		this.getElement().executeJs(removeTileLayerIfPresent + "\n" + addTileLayer);
 	}
 	
 	/**
@@ -109,21 +148,6 @@ public class LMap extends Component implements HasSize, HasStyle
 	
 	/**
 	 * add Leaflet component(s) to the map
-	 *
-	 * @param lObjects
-	 * 
-	 * @deprecated Use {@link LMap#addLComponents(LComponent...)} instead
-	 */
-	@Deprecated
-	public void addLComponent(final LComponent... lObjects)
-	{
-		this.addLComponents(lObjects);
-	}
-	
-	/**
-	 * add Leaflet component(s) to the map
-	 *
-	 * @param lComponents
 	 */
 	public void addLComponents(final LComponent... lComponents)
 	{
@@ -132,8 +156,6 @@ public class LMap extends Component implements HasSize, HasStyle
 	
 	/**
 	 * add Leaflet components to the map
-	 *
-	 * @param lComponents
 	 */
 	public void addLComponents(final Collection<LComponent> lComponents)
 	{
@@ -146,27 +168,23 @@ public class LMap extends Component implements HasSize, HasStyle
 	protected void addLComponent(final LComponent lComponent)
 	{
 		this.getComponents().add(lComponent);
-		this.getElement().callJsFunction(lComponent.getJsFunctionForAddingToMap(), lComponent.toJson());
+		try
+		{
+			this.getElement().executeJs(lComponent.buildClientJSItems() + "\n"
+				+ "item.addTo(" + CLIENT_MAP + ");\n"
+				+ (lComponent.getPopup() != null
+				? "item.bindPopup('" + escapeEcmaScript(lComponent.getPopup()) + "');\n"
+				: "")
+				+ CLIENT_COMPONENTS + ".push(item);");
+		}
+		catch(final JsonProcessingException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
-	
-	/**
-	 * Removes a map item
-	 *
-	 * @param items
-	 * 
-	 * @deprecated Use {@link LMap#removeComponents(LComponent...)}
-	 */
-	@Deprecated
-	public void removeItem(final LComponent... items)
-	{
-		this.removeLComponents(items);
-	}
-	
 	
 	/**
 	 * remove Leaflet component(s) to the map
-	 *
-	 * @param lComponents
 	 */
 	public void removeLComponents(final LComponent... lComponents)
 	{
@@ -175,8 +193,6 @@ public class LMap extends Component implements HasSize, HasStyle
 	
 	/**
 	 * remove Leaflet components to the map
-	 *
-	 * @param lComponents
 	 */
 	public void removeLComponents(final Collection<LComponent> lComponents)
 	{
@@ -192,25 +208,14 @@ public class LMap extends Component implements HasSize, HasStyle
 		
 		if(index != -1 && this.components.remove(lComponent))
 		{
-			this.getElement().callJsFunction(DELETE_FUNCTION, index);
+			this.getElement().executeJs("let delItem = " + CLIENT_COMPONENTS + "[" + index + "];\n"
+				+ "delItem.remove();\n"
+				+ CLIENT_COMPONENTS + ".splice(" + index + ",1);");
 		}
 	}
 	
 	/**
-	 * 
-	 * @return
-	 * 
-	 * @deprecated Use {@link LMap#getComponents()}
-	 */
-	@Deprecated
-	public List<LComponent> getItems()
-	{
-		return this.components;
-	}
-	
-	/**
 	 * Returns a new component list
-	 * @return
 	 */
 	public List<LComponent> getComponents()
 	{
@@ -224,8 +229,6 @@ public class LMap extends Component implements HasSize, HasStyle
 	
 	/**
 	 * Starting Point of the map with latitude, longitude and zoom level
-	 *
-	 * @param start
 	 */
 	public void setCenter(final LCenter start)
 	{
@@ -233,6 +236,10 @@ public class LMap extends Component implements HasSize, HasStyle
 		this.setViewPoint(start);
 	}
 	
+	public Div getDivMap()
+	{
+		return this.divMap;
+	}
 	
 	@ClientCallable
 	protected void onMarkerClick(final String tag)
@@ -259,5 +266,13 @@ public class LMap extends Component implements HasSize, HasStyle
 		{
 			return this.tag;
 		}
+	}
+	
+	@Override
+	protected void onAttach(final AttachEvent attachEvent)
+	{
+		// https://stackoverflow.com/q/53879753
+		this.getElement().executeJs("let tempMap = " + CLIENT_MAP + "\n"
+			+ "setTimeout(function () { tempMap.invalidateSize(true); }, 100);");
 	}
 }

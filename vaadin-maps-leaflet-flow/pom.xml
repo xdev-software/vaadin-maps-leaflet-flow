@@ -1,19 +1,17 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-
+	<version>2.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<version>1.1.1-cer</version>
 
 	<name>LeafletMap for Vaadin</name>
 	<description>LeafletMap for Vaadin</description>
-	<url>https://www.xdev-software.de</url>
+	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
 		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
@@ -24,14 +22,14 @@
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://www.xdev-software.de</url>
+		<url>https://xdev.software/en</url>
 	</organization>
 
 	<developers>
 		<developer>
 			<name>XDEV Software</name>
 			<organization>XDEV Software</organization>
-			<url>https://www.xdev-software.de</url>
+			<url>https://xdev.software/en</url>
 		</developer>
 	</developers>
 
@@ -44,20 +42,14 @@
 	</licenses>
 
 	<properties>
-		<license.licenseName>apache_v2</license.licenseName>
-
-		<javaVersion>1.8</javaVersion>
-		<maven.compiler.source>${javaVersion}</maven.compiler.source>
-		<maven.compiler.target>${javaVersion}</maven.compiler.target>
-		<!-- Used for Java 11 -->
-		<!--<maven.compiler.release>${javaVersion}</maven.compiler.release> -->
+		<javaVersion>11</javaVersion>
+		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>14.8.14</vaadin.version>
+		<vaadin.version>23.3.4</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -84,6 +76,18 @@
 		</repository>
 	</repositories>
 
+	<pluginRepositories>
+		<!-- The order of definitions matters. Explicitly defining central here 
+			to make sure it has the highest priority. -->
+		<pluginRepository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -98,71 +102,49 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.vaadin</groupId>
-			<!-- Replace artifactId with vaadin-core to use only free components -->
 			<artifactId>vaadin-core</artifactId>
-			<exclusions>
-				<!-- Webjars are only needed when running in Vaadin 13 compatibility 
-					mode -->
-				<exclusion>
-					<groupId>com.vaadin.webjar</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.insites</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymer</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymerelements</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.vaadin</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.webcomponents</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- JSON JACKSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.13.3</version>
+			<version>2.14.1</version>
 		</dependency>
 
-		<!-- Added to provide logging output as Vaadin uses -->
-		<!-- the unbound SLF4J no-operation (NOP) logger implementation -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>2.0.0</version>
+				<version>4.1</version>
+				<configuration>
+					<properties>
+						<email>${project.organization.url}</email>
+					</properties>
+					<licenseSets>
+						<licenseSet>
+							<header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+							<includes>
+								<include>src/main/java/**</include>
+								<include>src/test/java/**</include>
+							</includes>
+						</licenseSet>
+					</licenseSets>
+				</configuration>
 				<executions>
 					<execution>
 						<id>first</id>
 						<goals>
-							<goal>update-file-header</goal>
+							<goal>format</goal>
 						</goals>
 						<phase>process-sources</phase>
-						<configuration>
-							<roots>
-								<root>src/main/java</root>
-								<root>src/test/java</root>
-							</roots>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -177,15 +159,26 @@
 					<execution>
 						<goals>
 							<goal>prepare-frontend</goal>
-							<goal>build-frontend</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+					<compilerArgs>
+						<arg>-proc:none</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.4.0</version>
+				<version>3.4.1</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -217,7 +210,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.2</version>
+				<version>3.3.0</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -230,10 +223,10 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 						</manifestEntries>
 					</archive>
-					<!-- Generated file that shouldn't be included in add-ons -->
+					<!-- VAADIN files that shouldn't be included in add-ons -->
 					<excludes>
 						<exclude>
-							META-INF/VAADIN/config/flow-build-info.json
+							META-INF/VAADIN/
 						</exclude>
 					</excludes>
 				</configuration>
@@ -248,7 +241,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
 			<id>ossrh</id>
@@ -276,7 +268,7 @@
 							</execution>
 						</executions>
 					</plugin>
-
+					
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -300,7 +292,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-assembly-plugin</artifactId>
-						<version>3.4.0</version>
+						<version>3.4.2</version>
 						<configuration>
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
@@ -319,12 +311,12 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.2.2</version>
+						<version>3.3.0</version>
 						<configuration>
-							<!-- Generated file that shouldn't be included in add-ons -->
+							<!-- VAADIN files that shouldn't be included in add-ons -->
 							<excludes>
 								<exclude>
-									META-INF/VAADIN/config/flow-build-info.json
+									META-INF/VAADIN/
 								</exclude>
 							</excludes>
 						</configuration>
