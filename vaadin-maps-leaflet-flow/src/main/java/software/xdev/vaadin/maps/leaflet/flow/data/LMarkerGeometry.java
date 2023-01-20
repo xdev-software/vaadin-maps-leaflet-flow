@@ -26,11 +26,11 @@ public class LMarkerGeometry
 	private String type;
 	private List<Double> coordinates = new ArrayList<>();
 	
-	public LMarkerGeometry(final String type, final double lon, final double lat)
+	public LMarkerGeometry(final String type, final double lat, final double lon)
 	{
 		this.type = type;
-		this.coordinates.add(lon);
 		this.coordinates.add(lat);
+		this.coordinates.add(lon);
 	}
 	
 	public String getType()
