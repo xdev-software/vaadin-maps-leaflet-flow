@@ -43,7 +43,7 @@ View the [license of the current project](LICENSE) or the [summary including all
 ## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-maps-leaflet-flow/release.yml?branch=master)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/release.yml)
 
 Before releasing:
-* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-addon-template/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
+* Consider doing a [test-deployment](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
 * Check the [changelog](CHANGELOG.md)
 
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
