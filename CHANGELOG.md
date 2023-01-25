@@ -20,3 +20,4 @@
 * Shrunk the jar
 * Removed default leafletmap tile layer; has to be set manually due to usage policy
 * Updated dependency versions
+Change something
