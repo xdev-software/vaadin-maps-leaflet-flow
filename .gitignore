@@ -109,3 +109,6 @@ ObjectStore/
 .idea/codeStyles/*
 !.idea/codeStyles/codeStyleConfig.xml
 !.idea/codeStyles/Project.xml
+
+# Prohibit changes to managed run configuration
+.run/*
