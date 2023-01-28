@@ -26,23 +26,23 @@ public class LPoint
 	
 	public LPoint(final double lat, final double lon)
 	{
-		coords.add(lat);
-		coords.add(lon);
+		this.coords.add(lat);
+		this.coords.add(lon);
 	}
 	
 	public List<Double> getCoords()
 	{
-		return coords;
+		return this.coords;
 	}
 	
 	public Double getLat()
 	{
-		return coords.get(0);
+		return this.coords.get(0);
 	}
 
 	public Double getLon()
 	{
-		return coords.get(1);
+		return this.coords.get(1);
 	}
 	
 	public void setCoords(final List<Double> point)
