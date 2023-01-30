@@ -44,6 +44,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
+import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
@@ -58,7 +59,6 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	private static final String CLIENT_COMPONENTS = "this.components";
 	private static final String CLIENT_TILE_LAYER = "this.tilelayer";
 	private final Div divMap = new Div();
-	
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
 	
@@ -108,6 +108,20 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ "[" + viewpoint.getLat() + ", " + viewpoint.getLon() + "], "
 			+ viewpoint.getZoom()
 			+ ");");
+	}
+	
+	/**
+	 * Uses fitBounds https://leafletjs.com/reference.html#map-fitbounds
+	 * to compute zoom level and center coordinates to zoom the map on the given rectangle
+	 * @param noPoint : Top let point on the map
+	 * @param sePoint : Bottom right point on the map
+	 */
+	public void centerAndZoom(final LPoint noPoint, final LPoint sePoint)
+	{
+		this.getElement().executeJs(CLIENT_MAP + ".fitBounds(["
+			+ "[" + noPoint.getLat() + ", " + noPoint.getLon() + "],"
+			+ "[" + sePoint.getLat() + ", " + sePoint.getLon() + "]"
+			+ "]);");
 	}
 	
 	public void setTileLayer(final LTileLayer tl)

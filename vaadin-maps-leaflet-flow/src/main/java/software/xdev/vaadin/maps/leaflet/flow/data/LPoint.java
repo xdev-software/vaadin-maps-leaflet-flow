@@ -35,9 +35,19 @@ public class LPoint
 		return this.coords;
 	}
 	
+	public Double getLat()
+	{
+		return this.coords.get(0);
+	}
+
+	public Double getLon()
+	{
+		return this.coords.get(1);
+	}
+	
 	public void setCoords(final List<Double> point)
 	{
 		this.coords = point;
 	}
-	
+
 }
