@@ -159,7 +159,6 @@
 						<artifactId>spring-boot-maven-plugin</artifactId>
 						<configuration>
 							<mainClass>${mainClass}</mainClass>
-							<fork>true</fork>
 						</configuration>
 						<executions>
 							<execution>
