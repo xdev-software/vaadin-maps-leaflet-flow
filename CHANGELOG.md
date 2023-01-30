@@ -1,3 +1,6 @@
+## 2.0.4
+* Added method ``centerAndZoom`` in ``LMap``
+
 ## 2.0.3
 * Updated dependencies
 * Fixed problem with setting lon/lan in LMarker
