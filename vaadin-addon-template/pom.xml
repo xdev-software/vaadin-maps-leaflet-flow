@@ -265,44 +265,5 @@
 				</plugins>
 			</build>
 		</profile>
-		<profile>
-			<id>directory</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<version>3.5.0</version>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<descriptors>
-								<descriptor>assembly/assembly.xml</descriptor>
-							</descriptors>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>single</goal>
-								</goals>
-								<phase>install</phase>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.3.0</version>
-						<configuration>
-							<!-- VAADIN files that shouldn't be included in add-ons -->
-							<excludes>
-								<exclude>
-									META-INF/VAADIN/
-								</exclude>
-							</excludes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 	</profiles>
 </project>

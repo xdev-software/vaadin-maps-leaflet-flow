@@ -57,4 +57,4 @@ If the ``develop`` is ready for release, create a pull request to the ``master``
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
-* Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory) and update the component there
+* Ensure that [Vaadin Directory](https://vaadin.com/directory) syncs the update and maybe update the component / version there
