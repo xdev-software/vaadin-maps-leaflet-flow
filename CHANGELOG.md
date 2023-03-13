@@ -1,5 +1,6 @@
 ## 2.0.4
 * Added method ``centerAndZoom`` in ``LMap``
+* Updated various dependencies
 
 ## 2.0.3
 * Updated dependencies
