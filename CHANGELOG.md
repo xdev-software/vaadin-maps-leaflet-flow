@@ -1,5 +1,6 @@
 ## 2.0.4
 * Added method ``centerAndZoom`` in ``LMap``
+* Fixed a problem where an invalid ``iconSize`` was transferred to leaflet which caused a client side exception (#199)
 * Updated various dependencies
 
 ## 2.0.3
