@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 XDEV Software (https://xdev.software/en)
+ * Copyright © 2019 XDEV Software (https://xdev.software)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package software.xdev.vaadin.maps.leaflet.flow.data;
 
 import java.util.ArrayList;
@@ -35,9 +34,19 @@ public class LPoint
 		return this.coords;
 	}
 	
+	public Double getLat()
+	{
+		return this.coords.get(0);
+	}
+
+	public Double getLon()
+	{
+		return this.coords.get(1);
+	}
+	
 	public void setCoords(final List<Double> point)
 	{
 		this.coords = point;
 	}
-	
+
 }

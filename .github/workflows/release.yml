@@ -137,49 +137,6 @@ jobs:
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
-  
-  build_directory: # Build a ZIP that can be uploaded to Vaadin Directory
-    runs-on: ubuntu-latest
-    needs: [prepare_release]
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Init Git and pull
-      run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git pull
-    
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-      
-    - name: Build for Vaadin Directory
-      run: mvn -B install -Pdirectory
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
-      
-    - name: Upload asset
-      uses: actions/upload-artifact@v3
-      with:
-        name: vaadin-directory-files
-        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-*.zip
-        if-no-files-found: error
-
-    - name: Get version
-      id: version
-      run: |
-       echo "release=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
-
-    - name: Upload Release Asset
-      uses: shogo82148/actions-upload-release-asset@v1
-      with:
-        upload_url: ${{ needs.prepare_release.outputs.upload_url }}
-        asset_path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
-        asset_name: ${{ env.PRIMARY_MAVEN_MODULE }}-${{ steps.version.outputs.release }}.zip
-        asset_content_type: application/zip
 
   publish-pages:
     name: Publish dependencies and licenses to github pages
@@ -238,7 +195,7 @@ jobs:
 
   after_release:
     runs-on: ubuntu-latest
-    needs: [publish_central, build_directory]
+    needs: [publish_central]
     steps:
     - uses: actions/checkout@v3
       
