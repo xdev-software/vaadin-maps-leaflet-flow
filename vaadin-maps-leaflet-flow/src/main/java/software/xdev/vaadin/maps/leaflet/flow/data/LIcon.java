@@ -28,7 +28,7 @@ public class LIcon
 {
 	private String iconUrl;
 	
-	@JsonInclude(Include.NON_NULL)
+	@JsonInclude(Include.NON_EMPTY)
 	private final List<Integer> iconSize = new ArrayList<>();
 	private final List<Integer> iconAnchor = new ArrayList<>();
 	private final List<Integer> popupAnchor = new ArrayList<>();
