@@ -20,12 +20,3 @@ updates:
     # Run it at a specific time so that we don't get emails all day long
     time: "00:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: "org.yaml:snakeyaml"
-    # Version 2+ requires Spring Boot 3
-    versions: ">=2.0.0"
-  - dependency-name: "org.springframework.boot:*"
-    # Version 3+ requires Vaadin 24
-    versions: ">=3.0.0"
-  - dependency-name: "com.vaadin:*"
-    versions: ">=24.0.0"

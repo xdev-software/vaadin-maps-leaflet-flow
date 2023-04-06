@@ -42,14 +42,14 @@
 	</licenses>
 
 	<properties>
-		<javaVersion>11</javaVersion>
+		<javaVersion>17</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>23.3.7</vaadin.version>
+		<vaadin.version>24.0.3</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
