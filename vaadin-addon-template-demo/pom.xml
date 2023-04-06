@@ -134,16 +134,19 @@
 	<profiles>
 		<profile>
 			<id>production</id>
-			<properties>
-				<vaadin.productionMode>true</vaadin.productionMode>
-			</properties>
 			<dependencies>
+				<!-- Exclude development dependencies from production -->
 				<dependency>
 					<groupId>com.vaadin</groupId>
-					<artifactId>flow-server-production-mode</artifactId>
+					<artifactId>vaadin-core</artifactId>
+					<exclusions>
+						<exclusion>
+							<groupId>com.vaadin</groupId>
+							<artifactId>vaadin-dev</artifactId>
+						</exclusion>
+					</exclusions>
 				</dependency>
 			</dependencies>
-
 			<build>
 				<plugins>
 					<plugin>
