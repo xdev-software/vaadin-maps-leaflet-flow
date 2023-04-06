@@ -81,6 +81,7 @@ vite.config.ts
 vite.generated.ts
 /*/frontend/generated/
 /*/frontend/index.html
+/*/src/main/dev-bundle/
 
 #custom
 .flattened-pom.xml

@@ -20,7 +20,7 @@ We encourage you to read the [contribution instructions by GitHub](https://guide
 ### Software Requirements
 You should have the following things installed:
 * Git
-* Java 11 or 17 - should be as unmodified as possible (Recommended: [Eclipse Adoptium](https://adoptium.net/temurin/releases/))
+* Java 17 - should be as unmodified as possible (Recommended: [Eclipse Adoptium](https://adoptium.net/temurin/releases/))
 * Maven
 
 ### Recommended setup
