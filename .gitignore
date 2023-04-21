@@ -87,10 +87,6 @@ vite.generated.ts
 .flattened-pom.xml
 .tern-project
 
-# Ignore Testcontainer generic folders
-PutObjectStoreDirHere/
-ObjectStore/
-
 # == IntelliJ ==
 *.iml
 *.ipr
