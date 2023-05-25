@@ -168,6 +168,7 @@ public class LeafletView extends VerticalLayout
 		
 		this.map = new LMap(49.675126, 12.160733, 17);
 		this.map.setTileLayer(LTileLayer.DEFAULT_OPENSTREETMAP_TILE);
+		this.map.enableMarkerCluster();
 		
 		this.map.setSizeFull();
 		// add some logic here for called Markers (token)
