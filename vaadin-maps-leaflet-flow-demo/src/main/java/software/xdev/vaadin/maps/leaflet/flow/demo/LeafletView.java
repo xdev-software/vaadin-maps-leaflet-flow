@@ -122,7 +122,7 @@ public class LeafletView extends VerticalLayout
 		xDevLogo.setIconSize(100, 20);
 		xDevLogo.setIconAnchor(50, 0);
 		markerXDev.setPopup("<a href='https://xdev.software/en' target='" + AnchorTarget.BLANK.getValue() + "'>XDEV Software GmbH</a>");
-		markerXDev.setIcon(xDevLogo);
+		//markerXDev.setIcon(xDevLogo);
 		
 		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
 		final LDivIcon div = new LDivIcon(
@@ -174,10 +174,11 @@ public class LeafletView extends VerticalLayout
 		this.map.addMarkerClickListener(ev -> System.out.println(ev.getTag()));
 		
 		this.map.addLComponents(
-			markerXDev,
-			markerInfo,
+			//markerXDev,
+			//markerInfo,
 			this.markerZob,
-			polygonNoc,
+			//polygonNoc,
 			this.markerRathaus);
+		this.map.addMarkerCluster();
 	}
 }

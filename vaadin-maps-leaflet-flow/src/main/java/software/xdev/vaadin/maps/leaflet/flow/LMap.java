@@ -36,6 +36,7 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
@@ -48,15 +49,21 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
 @NpmPackage(value = "leaflet", version = "1.8.0")
+@NpmPackage(value = "leaflet.markercluster", version = "1.4.1")
 @Tag("leaflet-map")
 @JsModule("leaflet/dist/leaflet.js")
+@JavaScript(value = "leaflet.markercluster/dist/leaflet.markercluster.js")
 @CssImport("leaflet/dist/leaflet.css")
 @CssImport("./leaflet/leaflet-custom.css")
+@CssImport("leaflet.markercluster/dist/MarkerCluster.Default.css")
+@CssImport("leaflet.markercluster/dist/MarkerCluster.css")
 public class LMap extends Component implements HasSize, HasStyle, HasComponents
 {
 	private static final String CLIENT_MAP = "this.map";
 	private static final String CLIENT_COMPONENTS = "this.components";
 	private static final String CLIENT_TILE_LAYER = "this.tilelayer";
+	private static final String CLIENT_CLUSTER_LAYER = "this.cluserlayer";
+
 	private final Div divMap = new Div();
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
@@ -68,12 +75,13 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		
 		this.divMap.setSizeFull();
 		this.add(this.divMap);
-		
 		// bind map to div
 		this.getElement().executeJs(CLIENT_MAP + "="
 			+ "new L.map(this.getElementsByTagName('div')[0]);");
 		this.getElement().executeJs(CLIENT_COMPONENTS + "="
 			+ "new Array();");
+		this.getElement().executeJs(CLIENT_CLUSTER_LAYER + "="
+				+ "L.markerClusterGroup();");
 	}
 	
 	public LMap(final double lat, final double lon, final int zoom)
@@ -107,6 +115,10 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ "[" + viewpoint.getLat() + ", " + viewpoint.getLon() + "], "
 			+ viewpoint.getZoom()
 			+ ");");
+	}
+
+	public void addMarkerCluster() {
+		this.getElement().executeJs(CLIENT_MAP + ".addLayer("+CLIENT_CLUSTER_LAYER+");");
 	}
 	
 	/**
@@ -175,7 +187,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		try
 		{
 			this.getElement().executeJs(lComponent.buildClientJSItems() + "\n"
-				+ "item.addTo(" + CLIENT_MAP + ");\n"
+				+ CLIENT_CLUSTER_LAYER + ".addLayer(item);\n"
 				+ (lComponent.getPopup() != null
 				? "item.bindPopup('" + escapeEcmaScript(lComponent.getPopup()) + "');\n"
 				: "")
@@ -213,7 +225,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		if(index != -1 && this.components.remove(lComponent))
 		{
 			this.getElement().executeJs("let delItem = " + CLIENT_COMPONENTS + "[" + index + "];\n"
-				+ "delItem.remove();\n"
+				+ CLIENT_CLUSTER_LAYER+".removeLayer(delItem);\n"
 				+ CLIENT_COMPONENTS + ".splice(" + index + ",1);");
 		}
 	}
