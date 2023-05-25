@@ -67,6 +67,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	private final Div divMap = new Div();
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
+	private boolean clusterEnabled = false;
 	
 	public LMap()
 	{
@@ -80,8 +81,6 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ "new L.map(this.getElementsByTagName('div')[0]);");
 		this.getElement().executeJs(CLIENT_COMPONENTS + "="
 			+ "new Array();");
-		this.getElement().executeJs(CLIENT_CLUSTER_LAYER + "="
-				+ "L.markerClusterGroup();");
 	}
 	
 	public LMap(final double lat, final double lon, final int zoom)
@@ -116,9 +115,21 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ viewpoint.getZoom()
 			+ ");");
 	}
+	
+	public void enableMarkerCluster()
+	{
+		if(!this.clusterEnabled)
+		{
+			this.getElement().executeJs(CLIENT_CLUSTER_LAYER + "="
+				+ "L.markerClusterGroup();");
+			this.clusterEnabled = true;
+		}
+	}
 
-	public void addMarkerCluster() {
-		this.getElement().executeJs(CLIENT_MAP + ".addLayer("+CLIENT_CLUSTER_LAYER+");");
+	public boolean addMarkerCluster() {
+		if (this.clusterEnabled)
+			this.getElement().executeJs(CLIENT_MAP + ".addLayer("+CLIENT_CLUSTER_LAYER+");");
+		return clusterEnabled;
 	}
 	
 	/**
@@ -186,12 +197,25 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		this.getComponents().add(lComponent);
 		try
 		{
-			this.getElement().executeJs(lComponent.buildClientJSItems() + "\n"
-				+ CLIENT_CLUSTER_LAYER + ".addLayer(item);\n"
-				+ (lComponent.getPopup() != null
-				? "item.bindPopup('" + escapeEcmaScript(lComponent.getPopup()) + "');\n"
-				: "")
-				+ CLIENT_COMPONENTS + ".push(item);");
+			final StringBuilder sb = new StringBuilder(lComponent.buildClientJSItems());
+			sb.append("\n");
+			if (this.clusterEnabled)
+			{
+				sb.append(CLIENT_CLUSTER_LAYER);
+				sb.append(".addLayer(item);\n");
+			} else {
+				sb.append("item.addTo(");
+				sb.append(CLIENT_MAP);
+				sb.append(");\n");
+			}
+			if (lComponent.getPopup() != null) {
+				sb.append("item.bindPopup('");
+				sb.append(escapeEcmaScript(lComponent.getPopup()));
+				sb.append("');\n");
+			}
+			sb.append(CLIENT_COMPONENTS);
+			sb.append(".push(item);");
+			this.getElement().executeJs(sb.toString());
 		}
 		catch(final JsonProcessingException e)
 		{
@@ -225,7 +249,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		if(index != -1 && this.components.remove(lComponent))
 		{
 			this.getElement().executeJs("let delItem = " + CLIENT_COMPONENTS + "[" + index + "];\n"
-				+ CLIENT_CLUSTER_LAYER+".removeLayer(delItem);\n"
+				+ (this.clusterEnabled ? (CLIENT_CLUSTER_LAYER+".removeLayer(delItem);\n"):"delItem.remove();\n")
 				+ CLIENT_COMPONENTS + ".splice(" + index + ",1);");
 		}
 	}
