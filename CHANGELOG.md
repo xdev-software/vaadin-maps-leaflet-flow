@@ -1,3 +1,8 @@
+## 3.0.0
+* Adds support for Vaadin 24+, drops support for Vaadin 23<br/>
+  <i>If you are still using Vaadin 23, use the ``2.x`` versions.</i>
+  * Requires Java 17+
+
 ## 2.0.4
 * Added method ``centerAndZoom`` in ``LMap``
 * Fixed a problem where an invalid ``iconSize`` was transferred to leaflet which caused a client side exception (#199)
@@ -12,12 +17,10 @@
 * Updated dependencies
 
 ## 2.0.1
-
 * Updated dependencies
   * Vaadin 23.2
 
 ## 2.0.0
-
 * Update to Vaadin 23
   * Removed deprecated polymer-connector - replaced by ``executeJs``
 * Fixed a problem where the map was not rendered/aligned correctly

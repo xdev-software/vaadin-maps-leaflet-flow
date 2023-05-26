@@ -17,7 +17,8 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
-| Vaadin 23+ (latest) | ``2+`` |
+| Vaadin 24+ (latest) | ``3+`` |
+| Vaadin 23 | ``2.x`` |
 | Vaadin 14 (LTS - former release model) | ``1.x`` |
 
 
