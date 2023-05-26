@@ -44,6 +44,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LComponent;
+import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
@@ -199,7 +200,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 		{
 			final StringBuilder sb = new StringBuilder(lComponent.buildClientJSItems());
 			sb.append("\n");
-			if (this.clusterEnabled)
+			if (this.clusterEnabled && (lComponent instanceof LMarker))
 			{
 				sb.append(CLIENT_CLUSTER_LAYER);
 				sb.append(".addLayer(item);\n");
