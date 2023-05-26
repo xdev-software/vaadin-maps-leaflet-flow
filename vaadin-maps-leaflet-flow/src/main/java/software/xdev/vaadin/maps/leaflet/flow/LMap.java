@@ -117,16 +117,38 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 			+ ");");
 	}
 	
-	public void enableMarkerCluster()
+	/**
+	 * Creates the MarkerClusterGroup layer to enable clustering LMarkers clustering
+	 * @param showAlerts : if true, Cluster color will depend on the alert state of its LMarkers (defined by custom CSS) if false, default MarkerCluster css is used
+	 */
+	public void enableMarkerCluster(boolean showAlerts)
 	{
 		if(!this.clusterEnabled)
 		{
-			this.getElement().executeJs(CLIENT_CLUSTER_LAYER + "="
-				+ "L.markerClusterGroup();");
+			if(showAlerts)
+			{
+				this.getElement().executeJs(CLIENT_CLUSTER_LAYER + "="
+					+ "L.markerClusterGroup({iconCreateFunction: function(cluster) {\n"
+					+ "let markers = cluster.getAllChildMarkers();\n"
+					+ "let cname = 'cluster-ok';\n"
+					+ "for (var i = 0; i< markers.length; i++) {\n"
+					+ "if (markers[i].options.alert_state) {\n"
+					+ "cname = 'cluster-nok';\nbreak;\n}\n"
+					+ "}\n"
+					+ "return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', "
+					+ "className: 'marker-cluster ' + cname, iconSize: new L.Point(40, 40) });"
+					+ "}});");
+			} else {
+				this.getElement().executeJs(CLIENT_CLUSTER_LAYER +  " = L.markerClusterGroup();");
+			}
 			this.clusterEnabled = true;
 		}
 	}
-
+	
+	/**
+	 * Once all LMarkers have been added to the map, adds the MarkerCluster and enable clustering
+	 * @return true if clustering has been enabled, false if enableMarkerCluster has not been called prior to this call
+	 */
 	public boolean addMarkerCluster() {
 		if (this.clusterEnabled)
 			this.getElement().executeJs(CLIENT_MAP + ".addLayer("+CLIENT_CLUSTER_LAYER+");");

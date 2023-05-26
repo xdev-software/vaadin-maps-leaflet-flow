@@ -21,6 +21,7 @@ public class LMarkerOptions
 {
 	private String popup;
 	private LIcon icon;
+	private boolean alertState = false;
 	
 	public LMarkerOptions()
 	{
@@ -45,5 +46,13 @@ public class LMarkerOptions
 	public void setPopup(final String popup)
 	{
 		this.popup = popup;
+	}
+	
+	public void setAlertState(boolean state) {
+		this.alertState = state;
+	}
+	
+	public boolean getAlertState() {
+		return this.alertState;
 	}
 }

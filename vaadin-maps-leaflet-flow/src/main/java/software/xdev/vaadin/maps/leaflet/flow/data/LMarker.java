@@ -136,6 +136,22 @@ public class LMarker implements LComponent
 		this.tag = tag;
 	}
 	
+	/**
+	 * Sets this LMarkers alert state to be used when alertMode has been enabled on MarkerCluster.
+	 * This needs to be called prior to adding the component to the map
+	 * @param state
+	 */
+	public void setAlertState(boolean state) {
+		this.properties.setAlertState(state);
+	}
+	
+	/**
+	 * @return Marker's alert state
+	 */
+	public boolean getAlertState() {
+		return this.properties.getAlertState();
+	}
+	
 	@Override
 	public String buildClientJSItems() throws JsonProcessingException
 	{
@@ -148,6 +164,7 @@ public class LMarker implements LComponent
 			+ "(" + mapper.writeValueAsString(this.properties.getIcon()) + ")"
 			+ " }"
 			+ ");"
+			+ "item.options.alert_state="+this.properties.getAlertState()+";"
 			+ (this.getTag() != null && !this.getTag().isBlank()
 			? ("\nvar vaadinServer = this.$server;"
 			+ "\nitem.on('click', function (e) { vaadinServer.onMarkerClick('" + this.tag + "') });")

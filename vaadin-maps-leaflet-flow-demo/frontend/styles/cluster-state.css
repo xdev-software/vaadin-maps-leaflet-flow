@@ -1,0 +1,14 @@
+
+.cluster-ok {
+    background-color: rgba(181, 226, 140, 0.6);
+}
+.cluster-ok div {
+    background-color: rgba(110, 204, 57, 0.6);
+}
+
+.cluster-nok {
+    background-color: rgba(253, 156, 115, 0.6);
+}
+.cluster-nok div {
+    background-color: rgba(241, 128, 23, 0.6);
+}

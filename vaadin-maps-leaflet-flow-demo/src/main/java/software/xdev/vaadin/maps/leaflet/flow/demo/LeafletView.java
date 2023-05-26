@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.AnchorTarget;
 import com.vaadin.flow.component.icon.Icon;
@@ -27,6 +28,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
 @Route("")
+@CssImport("./styles/cluster-state.css")
 public class LeafletView extends VerticalLayout
 {
 	private boolean viewLunch = false;
@@ -103,6 +105,8 @@ public class LeafletView extends VerticalLayout
 	{
 		this.markerZob = new LMarker(49.673470, 12.160108, "ZoB");
 		this.markerZob.setPopup("Central bus station");
+		this.markerZob.setAlertState(true); //Cluster will be red once it includes this Marker upon zoom-out
+		
 		
 		final LMarker markerXDev = new LMarker(49.675806677512824, 12.160990185846394);
 		final LIcon xDevLogo = new LIcon(
@@ -168,7 +172,7 @@ public class LeafletView extends VerticalLayout
 		
 		this.map = new LMap(49.675126, 12.160733, 17);
 		this.map.setTileLayer(LTileLayer.DEFAULT_OPENSTREETMAP_TILE);
-		this.map.enableMarkerCluster();
+		this.map.enableMarkerCluster(true);
 		
 		this.map.setSizeFull();
 		// add some logic here for called Markers (token)
