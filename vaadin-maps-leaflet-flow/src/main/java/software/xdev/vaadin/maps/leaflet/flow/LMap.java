@@ -69,6 +69,7 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	private LCenter center;
 	private final List<LComponent> components = new ArrayList<>();
 	private boolean clusterEnabled = false;
+	private boolean clusterLayerAdded = false;
 	
 	public LMap()
 	{
@@ -150,9 +151,14 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	 * @return true if clustering has been enabled, false if enableMarkerCluster has not been called prior to this call
 	 */
 	public boolean addMarkerCluster() {
-		if (this.clusterEnabled)
-			this.getElement().executeJs(CLIENT_MAP + ".addLayer("+CLIENT_CLUSTER_LAYER+");");
-		return clusterEnabled;
+		boolean added = false;
+		if (this.clusterEnabled && !this.clusterLayerAdded)
+		{
+			this.getElement().executeJs(CLIENT_MAP + ".addLayer(" + CLIENT_CLUSTER_LAYER + ");");
+			this.clusterLayerAdded = true;
+			added = true;
+		}
+		return added;
 	}
 	
 	/**
