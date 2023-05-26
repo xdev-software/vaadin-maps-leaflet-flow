@@ -105,6 +105,7 @@ public class LeafletView extends VerticalLayout
 	{
 		this.markerZob = new LMarker(49.673470, 12.160108, "ZoB");
 		this.markerZob.setPopup("Central bus station");
+		this.markerZob.setToolip("Alert state=true");
 		this.markerZob.setAlertState(true); //Cluster will be red once it includes this Marker upon zoom-out
 		
 		

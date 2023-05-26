@@ -20,6 +20,7 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 public class LMarkerOptions
 {
 	private String popup;
+	private String tooltip;
 	private LIcon icon;
 	private boolean alertState = false;
 	
@@ -46,6 +47,16 @@ public class LMarkerOptions
 	public void setPopup(final String popup)
 	{
 		this.popup = popup;
+	}
+	
+	public String getTooltip()
+	{
+		return this.tooltip;
+	}
+	
+	public void setTooltip(final String tooltip)
+	{
+		this.tooltip = tooltip;
 	}
 	
 	public void setAlertState(boolean state) {

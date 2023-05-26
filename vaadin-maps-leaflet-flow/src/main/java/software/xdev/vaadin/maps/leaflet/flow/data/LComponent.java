@@ -31,4 +31,5 @@ public interface LComponent
 	String buildClientJSItems() throws JsonProcessingException;
 	
 	String getPopup();
+	String getTooltip();
 }

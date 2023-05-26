@@ -236,6 +236,22 @@ public class LCircle implements LComponent
 		this.properties.setPopup(popup);
 	}
 	
+	@Override
+	public String getTooltip()
+	{
+		return this.properties.getTooltip();
+	}
+	
+	/**
+	 * Sets a Tooltip to the Marker
+	 *
+	 * @param toolip
+	 */
+	public void setToolip(final String toolip)
+	{
+		this.properties.setTooltip(toolip);
+	}
+	
 	public String getFillRule()
 	{
 		return this.properties.getFillRule();

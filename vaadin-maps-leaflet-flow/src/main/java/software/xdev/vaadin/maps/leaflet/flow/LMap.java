@@ -242,6 +242,11 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 				sb.append(escapeEcmaScript(lComponent.getPopup()));
 				sb.append("');\n");
 			}
+			if (lComponent.getTooltip() != null) {
+				sb.append("item.bindTooltip('");
+				sb.append(escapeEcmaScript(lComponent.getTooltip()));
+				sb.append("');\n");
+			}
 			sb.append(CLIENT_COMPONENTS);
 			sb.append(".push(item);");
 			this.getElement().executeJs(sb.toString());

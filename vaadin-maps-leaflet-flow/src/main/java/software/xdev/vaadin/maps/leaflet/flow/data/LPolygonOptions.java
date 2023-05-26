@@ -39,6 +39,8 @@ public class LPolygonOptions
 	private double radius;
 	
 	private String popup;
+	private String tooltip;
+	
 	
 	public double getRadius()
 	{
@@ -195,4 +197,14 @@ public class LPolygonOptions
 		this.popup = popup;
 	}
 	
+	
+	public String getTooltip()
+	{
+		return this.tooltip;
+	}
+	
+	public void setTooltip(final String tooltip)
+	{
+		this.tooltip = tooltip;
+	}
 }
