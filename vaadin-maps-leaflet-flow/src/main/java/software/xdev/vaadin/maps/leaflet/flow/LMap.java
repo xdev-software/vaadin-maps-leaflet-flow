@@ -162,6 +162,22 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	}
 	
 	/**
+	 * Removes the MarkerCluster Layer from the map, disabling clustering
+	 * @return true if layer removed, false otherwise
+	 */
+	public boolean removeMarkerCluster() {
+		boolean removed = false;
+		if (this.clusterLayerAdded)
+		{
+			this.getElement().executeJs(CLIENT_MAP + ".removeLayer(" + CLIENT_CLUSTER_LAYER + ");");
+			this.clusterLayerAdded = false;
+			this.clusterEnabled = false;
+			removed = true;
+		}
+		return removed;
+	}
+	
+	/**
 	 * Uses fitBounds https://leafletjs.com/reference.html#map-fitbounds
 	 * to compute zoom level and center coordinates to zoom the map on the given rectangle
 	 * @param noPoint : Top let point on the map
