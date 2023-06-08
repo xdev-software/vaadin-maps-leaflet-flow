@@ -35,7 +35,7 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.0.5</vaadin.version>
+		<vaadin.version>24.1.0</vaadin.version>
 
 		<org.springframework.boot.version>3.1.0</org.springframework.boot.version>
 	</properties>
