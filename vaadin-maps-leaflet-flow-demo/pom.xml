@@ -16,16 +16,7 @@
 		<url>https://xdev.software</url>
 	</organization>
 
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-
 	<properties>
-		<license.licenseName>apache_v2</license.licenseName>
-
 		<javaVersion>17</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
@@ -35,7 +26,7 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.0.5</vaadin.version>
+		<vaadin.version>24.1.0</vaadin.version>
 
 		<org.springframework.boot.version>3.1.0</org.springframework.boot.version>
 	</properties>
