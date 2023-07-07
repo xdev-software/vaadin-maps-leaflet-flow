@@ -1,4 +1,5 @@
 ## 3.0.1
+* Fixed ``divIcon`` being displayed incorrectly [due to a default ``iconSize`` of ``12px``](https://github.com/Leaflet/Leaflet/issues/4238) #246
 * Updated dependencies
   * Updated leaflet to [``1.9.4``](https://github.com/Leaflet/Leaflet/blob/b6b56f6e707142c177fad2f67827a5007e56736a/CHANGELOG.md#194-2023-05-18) #247
 
