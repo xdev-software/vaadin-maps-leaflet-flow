@@ -18,7 +18,9 @@ package software.xdev.vaadin.maps.leaflet.flow.data;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -28,8 +30,8 @@ public class LIcon
 {
 	private String iconUrl;
 	
-	@JsonInclude(Include.NON_EMPTY)
-	private final List<Integer> iconSize = new ArrayList<>();
+	@JsonInclude(value = Include.CUSTOM, valueFilter = IconSizeFilter.class)
+	private List<Integer> iconSize = new ArrayList<>();
 	private final List<Integer> iconAnchor = new ArrayList<>();
 	private final List<Integer> popupAnchor = new ArrayList<>();
 	private String shadowUrl;
@@ -68,8 +70,6 @@ public class LIcon
 	
 	/**
 	 * Sets a icon url.
-	 *
-	 * @param iconUrl
 	 */
 	public void setIconUrl(final String iconUrl)
 	{
@@ -83,15 +83,15 @@ public class LIcon
 	
 	/**
 	 * Icon size with x, y in px
-	 *
-	 * @param x
-	 * @param y
 	 */
 	public void setIconSize(final int x, final int y)
 	{
-		this.iconSize.clear();
-		this.iconSize.add(x);
-		this.iconSize.add(y);
+		this.setIconSize(new ArrayList<>(List.of(x, y)));
+	}
+	
+	public void setIconSize(final List<Integer> iconSize)
+	{
+		this.iconSize = iconSize;
 	}
 	
 	public List<Integer> getIconAnchor()
@@ -101,9 +101,6 @@ public class LIcon
 	
 	/**
 	 * Anchor point of the icon in x, y px.
-	 *
-	 * @param x
-	 * @param y
 	 */
 	public void setIconAnchor(final int x, final int y)
 	{
@@ -119,9 +116,6 @@ public class LIcon
 	
 	/**
 	 * Anchor point of the Pop-up message in x,y px.
-	 *
-	 * @param x
-	 * @param y
 	 */
 	public void setPopupAnchor(final int x, final int y)
 	{
@@ -163,5 +157,29 @@ public class LIcon
 		this.shadowAnchor.clear();
 		this.shadowAnchor.add(x);
 		this.shadowAnchor.add(y);
+	}
+	
+	public static class IconSizeFilter
+	{
+		@SuppressWarnings("java:S1206") // Filter only uses equals
+		@Override
+		public boolean equals(final Object obj)
+		{
+			// true = filter out; false = keep
+			
+			// Null is allowed
+			if(obj == null)
+			{
+				return false;
+			}
+			
+			// Filter out empty collection
+			return Optional.of(obj)
+				.filter(Collection.class::isInstance)
+				.map(Collection.class::cast)
+				.map(Collection::isEmpty)
+				// Wrong type (not a collection)
+				.orElse(true);
+		}
 	}
 }

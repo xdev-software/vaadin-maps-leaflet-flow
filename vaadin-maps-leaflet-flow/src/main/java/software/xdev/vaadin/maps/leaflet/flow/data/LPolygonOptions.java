@@ -47,8 +47,6 @@ public class LPolygonOptions
 	
 	/**
 	 * Only for Circle
-	 * 
-	 * @param radius
 	 */
 	public void setRadius(final double radius)
 	{

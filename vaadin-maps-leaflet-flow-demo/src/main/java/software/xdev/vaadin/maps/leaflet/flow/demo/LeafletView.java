@@ -13,7 +13,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import com.vaadin.flow.router.RouteAlias;
 import software.xdev.vaadin.maps.leaflet.flow.LMap;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCenter;
 import software.xdev.vaadin.maps.leaflet.flow.data.LCircle;
@@ -35,7 +34,6 @@ public class LeafletView extends VerticalLayout
 	 * UI-Components
 	 */
 	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
-	private final Button btnCenter = new Button("Center on Caribbean");
 	private LMap map;
 	
 	private LMarker markerZob;
@@ -61,7 +59,9 @@ public class LeafletView extends VerticalLayout
 		hlButtonContainer.setSpacing(false);
 		hlButtonContainer.add(
 			this.btnLunch,
-			this.btnCenter,
+			new Button("Center on Caribbean", e -> this.map.centerAndZoom(
+				new LPoint(14.467727, -61.69703),
+				new LPoint(16.33426, -60.921676))),
 			new Button("Open dialog over map", ev ->
 			{
 				final Icon icoClose = VaadinIcon.CLOSE.create();
@@ -73,7 +73,6 @@ public class LeafletView extends VerticalLayout
 				
 				icoClose.addClickListener(iev -> dialog.close());
 			}));
-		this.btnCenter.addClickListener(e-> map.centerAndZoom(new LPoint(14.467727, -61.69703), new LPoint(16.33426,-60.921676)));
 		this.add(this.map, hlButtonContainer);
 		this.setSizeFull();
 	}
@@ -106,29 +105,33 @@ public class LeafletView extends VerticalLayout
 		
 		final LMarker markerXDev = new LMarker(49.675806677512824, 12.160990185846394);
 		final LIcon xDevLogo = new LIcon(
-			// Important replace # with %23!
-			"data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1000\" height=\"200\" viewBox=\"0 0 18300 4500\" style=\"background-color:rgba(180,180,180,0.7)\">\n"
-				+ "  <defs>\n"
-				+ "    <style>\n"
-				+ "      .fil0{fill:%23d71e23}\n"
-				+ "    </style>\n"
-				+ "  </defs>\n"
-				+ "  <g>\n"
-				+ "    <path class=\"fil0\" d=\"M9763 10965h-920l-17-6-1503-588-1506 588-11 4-13 2-1562 148-1102 105 1064-369 2311-801-1638-633-683-263h1609l16 6 1515 588 1521-588 10-4 9-1 1388-211 1177-178-1131 441-2177 849 1675 647 682 264zM25514 9520l-1909 1442-22 17h-693l-23-19-1765-1440-285-233h907l22 17 1490 1178 1395-1177 23-19h1171zM20426 10961h-4015V9260h4126l-1 127-1 99v126h-112l-3041-3 2 322 3038 3h110l2 124 1 83 2 128h-3146v352l3035-6h112v346z\" transform=\"translate(-5400 -7700)\"/>\n"
-				+ "    <path class=\"fil0\" d=\"M10994 9275h2026a12150 12150 0 0 1 1368 73c292 35 559 83 798 143h1c290 73 510 158 659 254 165 106 248 229 248 368 0 134-85 254-254 359-151 94-375 180-672 256-292 76-618 132-977 170-359 37-751 56-1174 56h-2102V9275h79zm917 1354h1106c300 0 574-14 822-41 247-27 469-67 665-121h1a2470 2470 0 0 0 277-96c176-79 264-164 264-256 0-60-39-118-117-173-92-66-234-125-425-178-197-55-418-96-665-123-248-27-522-41-822-41h-1106v1029z\" transform=\"translate(-5400 -7700)\"/>\n"
-				+ "  </g>\n"
-				+ "</svg>");
+			"""
+				data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="200" viewBox="0 0 18300 4500" style="background-color:rgba(180,180,180,0.7)">
+				  <defs>
+				    <style>
+				      .fil0{fill:%23d71e23}
+				    </style>
+				  </defs>
+				  <g>
+				    <path class="fil0" d="M9763 10965h-920l-17-6-1503-588-1506 588-11 4-13 2-1562 148-1102 105 1064-369 2311-801-1638-633-683-263h1609l16 6 1515 588 1521-588 10-4 9-1 1388-211 1177-178-1131 441-2177 849 1675 647 682 264zM25514 9520l-1909 1442-22 17h-693l-23-19-1765-1440-285-233h907l22 17 1490 1178 1395-1177 23-19h1171zM20426 10961h-4015V9260h4126l-1 127-1 99v126h-112l-3041-3 2 322 3038 3h110l2 124 1 83 2 128h-3146v352l3035-6h112v346z" transform="translate(-5400 -7700)"/>
+				    <path class="fil0" d="M10994 9275h2026a12150 12150 0 0 1 1368 73c292 35 559 83 798 143h1c290 73 510 158 659 254 165 106 248 229 248 368 0 134-85 254-254 359-151 94-375 180-672 256-292 76-618 132-977 170-359 37-751 56-1174 56h-2102V9275h79zm917 1354h1106c300 0 574-14 822-41 247-27 469-67 665-121h1a2470 2470 0 0 0 277-96c176-79 264-164 264-256 0-60-39-118-117-173-92-66-234-125-425-178-197-55-418-96-665-123-248-27-522-41-822-41h-1106v1029z" transform="translate(-5400 -7700)"/>
+				  </g>
+				</svg>
+				""");
 		
 		xDevLogo.setIconSize(100, 20);
 		xDevLogo.setIconAnchor(50, 0);
-		markerXDev.setPopup("<a href='https://xdev.software/en' target='" + AnchorTarget.BLANK.getValue() + "'>XDEV Software GmbH</a>");
+		markerXDev.setPopup(
+			"<a href='https://xdev.software/en' target='" + AnchorTarget.BLANK.getValue() + "'>XDEV Software "
+				+ "GmbH</a>");
 		markerXDev.setIcon(xDevLogo);
 		
 		final LMarker markerInfo = new LMarker(49.674095, 12.162257);
-		final LDivIcon div = new LDivIcon(
-			"<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p><p>This demo shows you different markers,<br> popups, polygons and other stuff</p>");
 		
-		markerInfo.setDivIcon(div);
+		markerInfo.setDivIcon(new LDivIcon("""
+			<p><center><b>Welcome to Weiden in der Oberpfalz!</b></center></p>
+			<p>This demo shows you different markers,<br> popups, polygons and other stuff</p>
+			"""));
 		
 		final LPolygon polygonNoc = new LPolygon(
 			Arrays.asList(

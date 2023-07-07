@@ -33,9 +33,6 @@ public class LMarker implements LComponent
 
 	/**
 	 * Creates a new Marker at the latitude, longitude
-	 *
-	 * @param lat
-	 * @param lon
 	 */
 	public LMarker(final double lat, final double lon)
 	{
@@ -118,8 +115,6 @@ public class LMarker implements LComponent
 	
 	/**
 	 * Sets a Pop-up to the Marker
-	 *
-	 * @param popup
 	 */
 	public void setPopup(final String popup)
 	{

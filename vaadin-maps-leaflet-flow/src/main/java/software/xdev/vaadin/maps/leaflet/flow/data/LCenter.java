@@ -45,8 +45,6 @@ public class LCenter
 	
 	/**
 	 * Sets the zoom level at the start
-	 *
-	 * @param zoom
 	 */
 	public void setZoom(final int zoom)
 	{

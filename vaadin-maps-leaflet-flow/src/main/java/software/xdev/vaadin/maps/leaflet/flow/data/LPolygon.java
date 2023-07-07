@@ -65,8 +65,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Draws a border, default is true.
-	 *
-	 * @param stroke
 	 */
 	public void setStroke(final boolean stroke)
 	{
@@ -80,8 +78,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Set a Color to the border.
-	 *
-	 * @param strokeColor
 	 */
 	public void setStrokeColor(final String strokeColor)
 	{
@@ -95,8 +91,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Sets the opacity of the border.
-	 *
-	 * @param strokeOpacity
 	 */
 	public void setStrokeOpacity(final double strokeOpacity)
 	{
@@ -110,8 +104,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Sets the width of the border.
-	 *
-	 * @param strokeWeight
 	 */
 	public void setStrokeWeight(final int strokeWeight)
 	{
@@ -130,8 +122,6 @@ public class LPolygon implements LComponent
 	 * <li>bevel</li>
 	 * <li>miter-clip</li>
 	 * <li>arcs</li>
-	 *
-	 * @param lineJoin
 	 */
 	public void setLineJoin(final String lineJoin)
 	{
@@ -146,8 +136,6 @@ public class LPolygon implements LComponent
 	/**
 	 * A string that defines the stroke dash pattern.<br>
 	 * For example: "2 1 3 1 2"
-	 *
-	 * @param dashArray
 	 */
 	public void setDashArray(final String dashArray)
 	{
@@ -162,8 +150,6 @@ public class LPolygon implements LComponent
 	/**
 	 * A string that defines the distance into the dash pattern to start the dash.<br>
 	 * For example: "2" - The start of the dash array computation is pulled by 3 user units
-	 *
-	 * @param dashOffset
 	 */
 	public void setDashOffset(final String dashOffset)
 	{
@@ -177,8 +163,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Whether to fill the path with color. Set it to false to disable filling.
-	 *
-	 * @param fill
 	 */
 	public void setFill(final boolean fill)
 	{
@@ -192,8 +176,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Fill color.
-	 *
-	 * @param fillColor
 	 */
 	public void setFillColor(final String fillColor)
 	{
@@ -207,8 +189,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Fill opacity.
-	 *
-	 * @param fillOpacity
 	 */
 	public void setFillOpacity(final double fillOpacity)
 	{
@@ -223,8 +203,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Set Pop-up message.
-	 *
-	 * @param popup
 	 */
 	public void setPopup(final String popup)
 	{
@@ -240,8 +218,6 @@ public class LPolygon implements LComponent
 	 * A string that defines how the inside of a shape is determined.<br>
 	 * <li>evenodd</li>
 	 * <li>nonzero</li>
-	 *
-	 * @param fillRule
 	 */
 	public void setFillRule(final String fillRule)
 	{
@@ -255,8 +231,6 @@ public class LPolygon implements LComponent
 	
 	/**
 	 * Disable polyline clipping.
-	 *
-	 * @param noClip
 	 */
 	public void setNoClip(final boolean noClip)
 	{
@@ -271,8 +245,6 @@ public class LPolygon implements LComponent
 	/**
 	 * How much to simplify the polyline on each zoom level.<br>
 	 * More means better performance and smoother look, and less means more accurate representation.
-	 *
-	 * @param smoothFactor
 	 */
 	public void setSmoothFactor(final double smoothFactor)
 	{
