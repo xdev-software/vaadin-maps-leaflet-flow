@@ -110,15 +110,16 @@ public class LMap extends Component implements HasSize, HasStyle, HasComponents
 	}
 	
 	/**
-	 * Uses fitBounds https://leafletjs.com/reference.html#map-fitbounds
-	 * to compute zoom level and center coordinates to zoom the map on the given rectangle
-	 * @param noPoint : Top let point on the map
-	 * @param sePoint : Bottom right point on the map
+	 * Uses <a href="https://leafletjs.com/reference.html#map-fitbounds">fitBounds</a> to compute zoom level and center
+	 * coordinates to zoom the map on the given rectangle
+	 *
+	 * @param nwPoint Top let point on the map
+	 * @param sePoint Bottom right point on the map
 	 */
-	public void centerAndZoom(final LPoint noPoint, final LPoint sePoint)
+	public void centerAndZoom(final LPoint nwPoint, final LPoint sePoint)
 	{
 		this.getElement().executeJs(CLIENT_MAP + ".fitBounds(["
-			+ "[" + noPoint.getLat() + ", " + noPoint.getLon() + "],"
+			+ "[" + nwPoint.getLat() + ", " + nwPoint.getLon() + "],"
 			+ "[" + sePoint.getLat() + ", " + sePoint.getLon() + "]"
 			+ "]);");
 	}
