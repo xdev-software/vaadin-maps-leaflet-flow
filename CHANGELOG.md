@@ -1,3 +1,7 @@
+## 3.0.1
+* Updated dependencies
+  * Updated leaflet to [``1.9.4``](https://github.com/Leaflet/Leaflet/blob/b6b56f6e707142c177fad2f67827a5007e56736a/CHANGELOG.md#194-2023-05-18) #247
+
 ## 3.0.0
 * Adds support for Vaadin 24+, drops support for Vaadin 23<br/>
   <i>If you are still using Vaadin 23, use the ``2.x`` versions.</i>
