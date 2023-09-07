@@ -6,7 +6,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
-	<version>3.0.2</version>
+	<version>3.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<organization>
