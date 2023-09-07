@@ -22,6 +22,7 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LIcon;
 import software.xdev.vaadin.maps.leaflet.flow.data.LMarker;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LPolygon;
+import software.xdev.vaadin.maps.leaflet.flow.data.LPolyline;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
@@ -142,9 +143,17 @@ public class LeafletView extends VerticalLayout
 				new LPoint(49.675306, 12.158499)));
 		polygonNoc.setFill(true);
 		polygonNoc.setFillColor("#3366ff");
-		polygonNoc.setFillOpacity(0.8);
+		polygonNoc.setFillOpacity(0.5);
 		polygonNoc.setStroke(false);
 		polygonNoc.setPopup("NOC-Nordoberpfalz Center");
+		
+		final LPolyline polylineRouteZOB = new LPolyline(List.of(
+			new LPoint(49.673800, 12.160113),
+			new LPoint(49.67391927694611, 12.160769132769188),
+			new LPoint(49.67567078571473, 12.160428926167304)
+		));
+		polylineRouteZOB.setStrokeOpacity(0.5);
+		polylineRouteZOB.setPopup("Route to ZOB");
 		
 		this.markerRathaus = new LMarker(49.675519, 12.163868, "L-22556");
 		this.markerRathaus.setPopup("Old Town Hall");
@@ -181,6 +190,7 @@ public class LeafletView extends VerticalLayout
 			markerInfo,
 			this.markerZob,
 			polygonNoc,
+			polylineRouteZOB,
 			this.markerRathaus);
 	}
 }
