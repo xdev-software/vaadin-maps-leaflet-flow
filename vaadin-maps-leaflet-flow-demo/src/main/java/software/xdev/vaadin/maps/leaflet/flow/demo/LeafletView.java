@@ -37,16 +37,17 @@ public class LeafletView extends VerticalLayout
 	private final Button btnLunch = new Button("Where do XDEV employees go for lunch?");
 	private LMap map;
 	
-	private LMarker markerZob;
-	private LMarker markerRathaus;
+	private final LMarker markerZob = new LMarker(49.673470, 12.160108, "ZoB");
+	private final LMarker markerRathaus = new LMarker(49.675519, 12.163868, "L-22556");
 	
-	private LCircle circleRange;
-	private LMarker markerPizza;
-	private LMarker markerKebab;
-	private LMarker markerAsia;
-	private LMarker markerGreek;
-	private LMarker markerBakery;
-	private LMarker markerLeberkaese;
+	private final LCircle circleRange = new LCircle(49.675126, 12.160733, 450);
+	private final LMarker markerPizza = new LMarker(49.674413, 12.160925);
+	private final LMarker markerKebab = new LMarker(49.673026, 12.156278);
+	private final LMarker markerAsia = new LMarker(49.675039, 12.162127);
+	private final LMarker markerGreek = new LMarker(49.675126, 12.161899);
+	private final LMarker markerBakery = new LMarker(49.674806, 12.160249);
+	private final LMarker markerSchnitzel = new LMarker(49.673800, 12.160113);
+	private final LMarker markerBratwurst = new LMarker(49.674907, 12.161937);
 	
 	public LeafletView()
 	{
@@ -90,7 +91,8 @@ public class LeafletView extends VerticalLayout
 			this.markerAsia,
 			this.markerGreek,
 			this.markerBakery,
-			this.markerLeberkaese);
+			this.markerSchnitzel,
+			this.markerBratwurst);
 		
 		this.map.setViewPoint(new LCenter(49.675126, 12.160733, this.viewLunch ? 16 : 17));
 		this.map.removeLComponents(this.viewLunch ? normalComponents : lunchComponents);
@@ -101,7 +103,6 @@ public class LeafletView extends VerticalLayout
 	
 	private void initMapComponents()
 	{
-		this.markerZob = new LMarker(49.673470, 12.160108, "ZoB");
 		this.markerZob.setPopup("Central bus station");
 		
 		final LMarker markerXDev = new LMarker(49.675806677512824, 12.160990185846394);
@@ -155,28 +156,21 @@ public class LeafletView extends VerticalLayout
 		polylineRouteZOB.setStrokeOpacity(0.5);
 		polylineRouteZOB.setPopup("Route to ZOB");
 		
-		this.markerRathaus = new LMarker(49.675519, 12.163868, "L-22556");
 		this.markerRathaus.setPopup("Old Town Hall");
 		
-		this.circleRange = new LCircle(49.675126, 12.160733, 450);
-		
-		this.markerPizza = new LMarker(49.674413, 12.160925);
 		this.markerPizza.setPopup("Pizza!");
 		
-		this.markerKebab = new LMarker(49.673026, 12.156278);
 		this.markerKebab.setPopup("Kebab!");
 		
-		this.markerAsia = new LMarker(49.675039, 12.162127);
 		this.markerAsia.setPopup("Asian Food");
 		
-		this.markerGreek = new LMarker(49.675126, 12.161899);
 		this.markerGreek.setPopup("Greek Food");
 		
-		this.markerBakery = new LMarker(49.674806, 12.160249);
 		this.markerBakery.setPopup("Fresh baked stuff");
 		
-		this.markerLeberkaese = new LMarker(49.673800, 12.160113);
-		this.markerLeberkaese.setPopup("Fast food like Leberkäsesemmeln");
+		this.markerSchnitzel.setPopup("Fast food like Schnitzel");
+		
+		this.markerBratwurst.setPopup("Bratwurst");
 		
 		this.map = new LMap(49.675126, 12.160733, 17);
 		this.map.setTileLayer(LTileLayer.DEFAULT_OPENSTREETMAP_TILE);
