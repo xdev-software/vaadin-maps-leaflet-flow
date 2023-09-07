@@ -1,3 +1,6 @@
+## 3.0.2
+* Added support for Polyline #266 (thanks to @blitzdose)
+
 ## 3.0.1
 * Fixed ``divIcon`` being displayed incorrectly [due to a default ``iconSize`` of ``12px``](https://github.com/Leaflet/Leaflet/issues/4238) #246
 * Updated dependencies
