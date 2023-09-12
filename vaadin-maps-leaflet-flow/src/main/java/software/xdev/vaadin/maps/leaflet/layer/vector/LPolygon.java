@@ -7,19 +7,22 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#polygon">Leaflet docs</a>
+ */
 public class LPolygon extends LPolyline
 {
 	public LPolygon(
 		final LComponentManagementRegistry compReg,
-		final Collection<LLatLng> latLngs,
-		final LPolygonOptions options)
+		final Collection<?> latLngs,
+		final LPolylineOptions options)
 	{
 		super(compReg, "L.polygon", latLngs, options);
 	}
 	
 	public LPolygon(
 		final LComponentManagementRegistry compReg,
-		final Collection<LLatLng> latLngs)
+		final Collection<?> latLngs)
 	{
 		this(compReg, latLngs, null);
 	}

@@ -1,17 +1,24 @@
 package software.xdev.vaadin.maps.leaflet.flow.demo;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 import elemental.json.JsonObject;
 import elemental.json.JsonValue;
+import software.xdev.vaadin.maps.leaflet.MapContainer;
 import software.xdev.vaadin.maps.leaflet.basictypes.LDivIcon;
 import software.xdev.vaadin.maps.leaflet.basictypes.LDivIconOptions;
 import software.xdev.vaadin.maps.leaflet.basictypes.LIcon;
@@ -21,6 +28,8 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LLatLngBounds;
 import software.xdev.vaadin.maps.leaflet.basictypes.LPoint;
 import software.xdev.vaadin.maps.leaflet.controls.LControlLayers;
 import software.xdev.vaadin.maps.leaflet.controls.LControlLayersOptions;
+import software.xdev.vaadin.maps.leaflet.controls.LControlScale;
+import software.xdev.vaadin.maps.leaflet.controls.LControlScaleOptions;
 import software.xdev.vaadin.maps.leaflet.layer.LLayer;
 import software.xdev.vaadin.maps.leaflet.layer.LLayerGroup;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LImageOverlay;
@@ -29,7 +38,10 @@ import software.xdev.vaadin.maps.leaflet.layer.raster.LVideoOverlay;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LVideoOverlayOptions;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LMarker;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LMarkerOptions;
+import software.xdev.vaadin.maps.leaflet.layer.vector.LCircle;
+import software.xdev.vaadin.maps.leaflet.layer.vector.LCircleOptions;
 import software.xdev.vaadin.maps.leaflet.layer.vector.LPolygon;
+import software.xdev.vaadin.maps.leaflet.layer.vector.LPolyline;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
 import software.xdev.vaadin.maps.leaflet.map.LMapLocateOptions;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
@@ -38,28 +50,32 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 @Route("")
 public class LeafletView extends VerticalLayout
 {
+	private static final Logger LOG = LoggerFactory.getLogger(LeafletView.class);
 	private static final String ID = "leaflet-demo-view";
+	
+	private final LComponentManagementRegistry reg;
+	private final LMap map;
+	private final HorizontalLayout hlButtons = new HorizontalLayout();
 	
 	public LeafletView()
 	{
 		this.setId(ID);
 		
-		final Div mapContainer = new Div();
+		this.reg = new LComponentManagementRegistry(this);
+		
+		final MapContainer mapContainer = new MapContainer(this.reg);
 		mapContainer.setSizeFull();
 		this.add(mapContainer);
-		
 		this.setSizeFull();
 		
-		final LComponentManagementRegistry reg = new LComponentManagementRegistry(this);
+		this.map = mapContainer.getlMap();
 		
-		final LMap map = new LMap(reg, mapContainer);
+		final LLatLng center = new LLatLng(this.reg, 49.675126, 12.160733);
+		this.map.setView(center, 17);
 		
-		final LLatLng center = new LLatLng(reg, 49.675126, 12.160733);
-		map.setView(center, 17);
-		
-		final LTileLayer tlOSM = LTileLayer.createDefaultForOpenStreetMapTileServer(reg);
+		final LTileLayer tlOSM = LTileLayer.createDefaultForOpenStreetMapTileServer(this.reg);
 		final LTileLayer tlOSMHOT = new LTileLayer(
-			reg,
+			this.reg,
 			"https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'",
 			19,
 			"&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, Tiles style by"
@@ -67,7 +83,7 @@ public class LeafletView extends VerticalLayout
 				+ "by <a href=\"https://openstreetmap.fr/\" target=\"_blank\">OpenStreetMap France</a>"
 		);
 		final LTileLayer tlTopo = new LTileLayer(
-			reg,
+			this.reg,
 			"https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
 			16,
 			"Map data: &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, <a "
@@ -75,20 +91,20 @@ public class LeafletView extends VerticalLayout
 				+ ".org\">OpenTopoMap</a> (<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>"
 		);
 		
-		final LDivIcon divIconInfo = new LDivIcon(reg, new LDivIconOptions()
+		final LDivIcon divIconInfo = new LDivIcon(this.reg, new LDivIconOptions()
 			.withHtml("""
 				<div style="white-space:nowrap; padding: 0.5em">
 				<center><b>Welcome to Weiden in der Oberpfalz!</b></center>
 				This demo shows you different markers,<br> popups, polygons and other stuff
 				</div>
 				""")
-			.withIconSize(new LPoint(reg, -1, -1)));
-		new LMarker(
-			reg,
-			new LLatLng(reg, 49.674662, 12.162869),
-			new LMarkerOptions().withIcon(divIconInfo)).addTo(map);
+			.withIconSize(new LPoint(this.reg, -1, -1)));
+		final LMarker markerInfo = new LMarker(
+			this.reg,
+			new LLatLng(this.reg, 49.674662, 12.162869),
+			new LMarkerOptions().withIcon(divIconInfo));
 		
-		final LIcon iconXDEV = new LIcon(reg, new LIconOptions()
+		final LIcon iconXDEV = new LIcon(this.reg, new LIconOptions()
 			.withIconUrl("""
 				data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="200" viewBox="0 0 18300 4500" style="background-color:rgba(180,180,180,0.7)">
 				  <defs>
@@ -102,59 +118,130 @@ public class LeafletView extends VerticalLayout
 				  </g>
 				</svg>
 				""")
-			.withIconSize(new LPoint(reg, 125, 25)));
+			.withIconSize(new LPoint(this.reg, 125, 25)));
 		
+		final LLatLng locationXDEV = new LLatLng(this.reg, 49.675806, 12.1609901);
 		final LMarker markerXDEV =
-			new LMarker(reg, new LLatLng(reg, 49.675806, 12.1609901), new LMarkerOptions().withIcon(iconXDEV));
-		markerXDEV.bindPopup("<a href='https://xdev.software' target='_blank'>XDEV Software GmbH</a>");
-		markerXDEV.on("click", "e => document.getElementById('" + ID + "').$server.markerClicked(e.latlng)");
+			new LMarker(this.reg, locationXDEV, new LMarkerOptions().withIcon(iconXDEV))
+				.bindPopup("<a href='https://xdev.software' target='_blank'>XDEV Software GmbH</a>");
 		
 		final LPolygon polygonNOC = new LPolygon(
-			reg,
-			new LLatLng(reg, 49.674883, 12.159098),
-			new LLatLng(reg, 49.675719, 12.160248),
-			new LLatLng(reg, 49.676080, 12.159985),
-			new LLatLng(reg, 49.675750, 12.158008),
-			new LLatLng(reg, 49.675306, 12.158499));
+			this.reg,
+			new LLatLng(this.reg, 49.674883, 12.159098),
+			new LLatLng(this.reg, 49.675719, 12.160248),
+			new LLatLng(this.reg, 49.676080, 12.159985),
+			new LLatLng(this.reg, 49.675750, 12.158008),
+			new LLatLng(this.reg, 49.675306, 12.158499));
+		polygonNOC.bindPopup("NOC - NordOberpfalz Center")
+			.bindTooltip("This is a tooltip<br/>You can click to open the popup");
 		
-		final LMarker markerPizza = new LMarker(reg, new LLatLng(reg, 49.674413, 12.160925))
+		final LCircle circleFood = new LCircle(
+			this.reg,
+			locationXDEV,
+			new LCircleOptions()
+				.withRadius(300d)
+				.withStroke(true)
+				.withColor("#000")
+				.withFill(false));
+		
+		final LMarker markerPizza = new LMarker(this.reg, new LLatLng(this.reg, 49.674413, 12.160925))
 			.bindPopup("Pizza");
 		
-		final LMarker markerSchnitzel = new LMarker(reg, new LLatLng(reg, 49.673800, 12.160113))
+		final LLatLng locationSchnitzel = new LLatLng(this.reg, 49.673800, 12.160113);
+		final LMarker markerSchnitzel = new LMarker(this.reg, locationSchnitzel)
 			.bindPopup("Schnitzel");
 		
-		final LLayerGroup lLayerGroupPlaces = new LLayerGroup(reg)
-			.addLayer(markerXDEV)
-			.addLayer(polygonNOC);
-		final LLayerGroup lLayerGroupFood = new LLayerGroup(reg, markerPizza, markerSchnitzel);
+		final LPolyline polylineToSchnitzel = new LPolyline(
+			this.reg,
+			locationXDEV,
+			new LLatLng(this.reg, 49.675631, 12.160430),
+			new LLatLng(this.reg, 49.673919, 12.160769),
+			locationSchnitzel)
+			.bindPopup("Route to Schnitzel");
 		
+		final LLayerGroup lLayerGroupPlaces = new LLayerGroup(this.reg)
+			.addLayer(markerXDEV)
+			.addLayer(polygonNOC)
+			.addLayer(markerInfo);
+		final LLayerGroup lLayerGroupFood =
+			new LLayerGroup(this.reg, markerPizza, markerSchnitzel, circleFood, polylineToSchnitzel);
+		
+		// Add default layers
+		this.map
+			.addLayer(tlOSM)
+			.addLayer(lLayerGroupPlaces);
+		
+		this.addControls(tlOSM, tlOSMHOT, tlTopo, lLayerGroupPlaces, lLayerGroupFood);
+		
+		this.hlButtons.setWidthFull();
+		this.add(this.hlButtons);
+		
+		this.addEventDemo();
+		
+		this.addLocateDemo();
+		this.addMapMethodsDemo(center);
+		this.addImageOverlayDemo();
+		this.addVideoOverlayDemo();
+		this.addComplexPolygonDemo();
+		
+		this.addOpenDialogOverMapDemo();
+	}
+	
+	private void addControls(
+		final LTileLayer tlOSM,
+		final LTileLayer tlOSMHOT,
+		final LTileLayer tlTopo,
+		final LLayerGroup lLayerGroupPlaces,
+		final LLayerGroup lLayerGroupFood)
+	{
+		// Use LinkedHashMap for order
 		final LinkedHashMap<String, LLayer<?>> baseLayers = new LinkedHashMap<>();
 		baseLayers.put("OSM", tlOSM);
 		baseLayers.put("OSM HOT", tlOSMHOT);
 		baseLayers.put("TOPO", tlTopo);
-		new LControlLayers(
-			reg,
+		final LControlLayers lControlLayers = new LControlLayers(
+			this.reg,
 			baseLayers,
 			new LControlLayersOptions().withCollapsed(false))
 			.addOverlay(lLayerGroupPlaces, "Places")
 			.addOverlay(lLayerGroupFood, "Food")
-			.addTo(map);
+			.addTo(this.map);
+		// Apply manual patch for https://github.com/Leaflet/Leaflet/issues/9009 as this was not released yet
+		this.map.on(
+			"resize",
+			lControlLayers.clientComponentJsAccessor() + "._expandIfNotCollapsed",
+			lControlLayers.clientComponentJsAccessor());
 		
-		// Add default layers
-		map.addLayer(tlOSM)
-			.addLayer(lLayerGroupPlaces);
+		new LControlScale(this.reg, new LControlScaleOptions()).addTo(this.map);
+	}
+	
+	private void addEventDemo()
+	{
+		// See also https://vaadin.com/docs/latest/create-ui/element-api/client-server-rpc
+		this.map.on("click", "e => document.getElementById('" + ID + "').$server.mapClicked(e.latlng)");
+	}
+	
+	// This server side method will be called when the map is clicked
+	@ClientCallable
+	public void mapClicked(final JsonValue input)
+	{
+		if(!(input instanceof final JsonObject obj))
+		{
+			return;
+		}
 		
-		final HorizontalLayout hlButtons = new HorizontalLayout();
-		hlButtons.setWidthFull();
-		this.add(hlButtons);
-		
-		map.on(
+		LOG.info("Map clicked - lat: {}, lng: {}", obj.getNumber("lat"), obj.getNumber("lng"));
+	}
+	
+	private void addLocateDemo()
+	{
+		this.map.on(
 			"locationerror",
 			"e => alert('Failed to locate: ' "
 				+ "+ '\\nCode: ' + e.code "
 				+ "+ '\\nMessage: ' + e.message"
 				+ ")");
-		map.on(
+		this.map.on(
 			"locationfound",
 			"e => alert('Location successful: '"
 				+ "+ '\\nLocation: ' + e.latlng "
@@ -165,52 +252,131 @@ public class LeafletView extends VerticalLayout
 				+ "+ '\\nHeading: ' + e.heading"
 				+ "+ '\\nSpeed: ' + e.speed "
 				+ ")");
-		hlButtons.add(new Button("Locate", ev -> map.locate(new LMapLocateOptions().withSetView(true))));
-		
+		this.hlButtons.add(new Button("Locate", ev -> this.map.locate(new LMapLocateOptions().withSetView(true))));
+	}
+	
+	private void addMapMethodsDemo(final LLatLng center)
+	{
+		this.hlButtons.add(new Button("Center on Weiden", ev -> this.map.setView(center, 17)));
+	}
+	
+	private void addImageOverlayDemo()
+	{
 		final LImageOverlay imageOverlay = new LImageOverlay(
-			reg,
+			this.reg,
 			"https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
 			new LLatLngBounds(
-				reg,
-				new LLatLng(reg, 40.712216, -74.22655),
-				new LLatLng(reg, 40.773941, -74.12544)
+				this.reg,
+				new LLatLng(this.reg, 40.712216, -74.22655),
+				new LLatLng(this.reg, 40.773941, -74.12544)
 			)
 		);
-		hlButtons.add(this.createToggleButton(
+		this.hlButtons.add(this.createToggleButton(
 			"Show image",
 			"Hide image",
 			() -> {
-				imageOverlay.addTo(map);
-				map.setView(new LLatLng(reg, 40.74, -74.17), 12);
+				imageOverlay.addTo(this.map);
+				this.map.setView(new LLatLng(this.reg, 40.74, -74.17), 12);
 			},
 			imageOverlay::remove
 		));
-		
+	}
+	
+	private void addVideoOverlayDemo()
+	{
 		final LVideoOverlay videoOverlay = new LVideoOverlay(
-			reg,
+			this.reg,
 			"https://www.mapbox.com/bites/00188/patricia_nasa.webm",
 			new LLatLngBounds(
-				reg,
-				new LLatLng(reg, 32, -130),
-				new LLatLng(reg, 13, -100)
+				this.reg,
+				new LLatLng(this.reg, 32, -130),
+				new LLatLng(this.reg, 13, -100)
 			),
 			new LVideoOverlayOptions().withAttribution(
 				"<a href='https://www.youtube.com/watch?v=ZcxBOQTOb2Q'>NASA</a>"));
-		hlButtons.add(this.createToggleButton(
+		this.hlButtons.add(this.createToggleButton(
 			"Show video",
 			"Hide video",
 			() -> {
-				videoOverlay.addTo(map);
+				videoOverlay.addTo(this.map);
 				// Start video 30s in (otherwise no hurricane - boring)
 				videoOverlay.invokeSelf(".getElement().currentTime=30");
 				
-				map.setView(new LLatLng(reg, 20, -115), 5);
+				this.map.setView(new LLatLng(this.reg, 20, -115), 5);
 				
 				// Play otherwise stops after hiding
 				videoOverlay.invokeSelf(".getElement()?.play()");
 			},
 			videoOverlay::remove
 		));
+	}
+	
+	private void addComplexPolygonDemo()
+	{
+		// See also 38.871008516069516, -77.0559701487416
+		final LPolygon pentagon = new LPolygon(
+			this.reg,
+			List.of(
+				List.of(
+					List.of(
+						new LLatLng(this.reg, 38.872923, -77.054687),
+						new LLatLng(this.reg, 38.870639, -77.053252),
+						new LLatLng(this.reg, 38.868895, -77.055569),
+						new LLatLng(this.reg, 38.870071, -77.058473),
+						new LLatLng(this.reg, 38.872570, -77.057877)
+					),
+					List.of(
+						new LLatLng(this.reg, 38.871749, -77.055494),
+						new LLatLng(this.reg, 38.870866, -77.054932),
+						new LLatLng(this.reg, 38.870225, -77.055829),
+						new LLatLng(this.reg, 38.870650, -77.056901),
+						new LLatLng(this.reg, 38.871607, -77.056723)
+					)
+				),
+				List.of(
+					new LLatLng(this.reg, 38.871107, -77.055903),
+					new LLatLng(this.reg, 38.870990, -77.055831),
+					new LLatLng(this.reg, 38.870899, -77.055950),
+					new LLatLng(this.reg, 38.870961, -77.056104),
+					new LLatLng(this.reg, 38.871089, -77.056072)
+				)
+			));
+		final String imageLink =
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Building_and_ship_comparison_to_the_Pentagon2"
+				+ ".svg/260px-Building_and_ship_comparison_to_the_Pentagon2.svg.png";
+		pentagon.bindPopup("<a href='https://en.wikipedia.org/wiki/The_Pentagon' target='_blank'>"
+			+ "<center><b>The Pentagon</b></center><br>"
+			+ "<img style='width:12em' src='" + imageLink + "'>"
+			+ "</a>");
+		this.hlButtons.add(this.createToggleButton(
+			"Show complex polygon",
+			"Hide complex polygon",
+			() -> {
+				pentagon.addTo(this.map);
+				pentagon.openPopup();
+				
+				this.map.setView(new LLatLng(this.reg, 38.871008, -77.055970), 17);
+			},
+			pentagon::remove
+		));
+	}
+	
+	private void addOpenDialogOverMapDemo()
+	{
+		this.hlButtons.add(
+			new Button("Open dialog", ev ->
+			{
+				final Icon icoClose = VaadinIcon.CLOSE.create();
+				
+				final Dialog dialog = new Dialog(icoClose);
+				dialog.setDraggable(true);
+				dialog.setResizable(true);
+				dialog.setWidth("70vw");
+				dialog.setHeight("70vh");
+				dialog.open();
+				
+				icoClose.addClickListener(iev -> dialog.close());
+			}));
 	}
 	
 	private Button createToggleButton(
@@ -234,16 +400,5 @@ public class LeafletView extends VerticalLayout
 		);
 		btn.setDisableOnClick(true);
 		return btn;
-	}
-	
-	@ClientCallable
-	public void markerClicked(final JsonValue input)
-	{
-		if(!(input instanceof final JsonObject obj))
-		{
-			return;
-		}
-		
-		System.out.println("Marker clicked: lat: " + obj.getNumber("lat") + ", lng: " + obj.getNumber("lng"));
 	}
 }

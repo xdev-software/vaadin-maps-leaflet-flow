@@ -47,7 +47,6 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
-// TODO
 @NpmPackage(value = "leaflet", version = "1.9.4")
 @Tag("leaflet-map")
 @JsModule("leaflet/dist/leaflet.js")

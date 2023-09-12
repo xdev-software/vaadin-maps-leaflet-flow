@@ -1,5 +1,6 @@
 package software.xdev.vaadin.maps.leaflet.layer.vector;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +9,19 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#polyline">Leaflet docs</a>
+ */
 public class LPolyline extends LPath<LPolyline>
 {
+	protected LPolyline(
+		final LComponentManagementRegistry compReg,
+		final String jsConstructorCallExpression,
+		final Serializable... parameters)
+	{
+		super(compReg, jsConstructorCallExpression, parameters);
+	}
+	
 	protected LPolyline(
 		final LComponentManagementRegistry compReg,
 		final String constructorMethod,

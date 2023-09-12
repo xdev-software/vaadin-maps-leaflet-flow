@@ -2,16 +2,14 @@ package software.xdev.vaadin.maps.leaflet.layer.vector;
 
 import java.io.Serializable;
 
-import software.xdev.vaadin.maps.leaflet.layer.LLayer;
+import software.xdev.vaadin.maps.leaflet.base.has.LHasSetLatLng;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
-/**
- * @see <a href="https://leafletjs.com/reference.html#renderer">Leaflet docs</a>
- */
-public abstract class LRenderer<S extends LRenderer<S>> extends LLayer<S>
+public abstract class LAbstractCircle<S extends LAbstractCircle<S>> extends LPath<S>
+	implements LHasSetLatLng<S>
 {
-	protected LRenderer(
+	protected LAbstractCircle(
 		final LComponentManagementRegistry compReg,
 		final String jsConstructorCallExpression,
 		final Serializable... parameters)

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import software.xdev.vaadin.maps.leaflet.base.LBaseComponent;
 import software.xdev.vaadin.maps.leaflet.base.LComponent;
 import software.xdev.vaadin.maps.leaflet.base.LEvented;
+import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LPopup;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LPopupOptions;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LTooltip;
@@ -135,6 +136,32 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 		return this.self();
 	}
 	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet Docs</a>
+	 */
+	public S openPopup(final LLatLng latLng)
+	{
+		this.invokeSelf(".openPopup(" + (latLng != null ? latLng.clientComponentJsAccessor() : "") + ")");
+		return this.self();
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet Docs</a>
+	 */
+	public S openPopup()
+	{
+		return this.openPopup(null);
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-closepopup">Leaflet Docs</a>
+	 */
+	public S closePopup()
+	{
+		this.invokeSelf(".closePopup()");
+		return this.self();
+	}
+	
 	// endregion
 	// region Tooltip
 	
@@ -180,6 +207,32 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	public S toggleTooltip()
 	{
 		this.invokeSelf(".toggleTooltip()");
+		return this.self();
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet Docs</a>
+	 */
+	public S openTooltip(final LLatLng latLng)
+	{
+		this.invokeSelf(".openTooltip(" + (latLng != null ? latLng.clientComponentJsAccessor() : "") + ")");
+		return this.self();
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet Docs</a>
+	 */
+	public S openTooltip()
+	{
+		return this.openPopup(null);
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#layer-closetooltip">Leaflet Docs</a>
+	 */
+	public S closeTooltip()
+	{
+		this.invokeSelf(".closeTooltip()");
 		return this.self();
 	}
 	

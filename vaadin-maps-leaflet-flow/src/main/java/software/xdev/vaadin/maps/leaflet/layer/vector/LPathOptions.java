@@ -20,7 +20,7 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 	private String fillColor;
 	private Double fillOpacity;
 	private String fillRule;
-	private LRenderer<?> renderer;
+	// No support for renderer as leaflet automatically selects the best renderer
 	private String className;
 	
 	public Boolean getStroke()
@@ -51,7 +51,7 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 	
 	public S withColor(final String color)
 	{
-		this.withColor(color);
+		this.setColor(color);
 		return this.self();
 	}
 	
@@ -212,22 +212,6 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 	public S withFillRule(final String fillRule)
 	{
 		this.setFillRule(fillRule);
-		return this.self();
-	}
-	
-	public LRenderer<?> getRenderer()
-	{
-		return this.renderer;
-	}
-	
-	public void setRenderer(final LRenderer<?> renderer)
-	{
-		this.renderer = renderer;
-	}
-	
-	public S withRenderer(final LRenderer<?> renderer)
-	{
-		this.setRenderer(renderer);
 		return this.self();
 	}
 	
