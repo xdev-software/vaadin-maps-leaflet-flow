@@ -32,8 +32,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 import software.xdev.vaadin.maps.leaflet.base.RawString;
 
 
-// TODO Interface
-public class LComponentManagementRegistry extends Composite<Div> implements AutoCloseable
+public class LComponentManagementRegistry extends Composite<Div>
 {
 	protected static final AtomicLong NEXT_ID = new AtomicLong(1);
 	
@@ -197,11 +196,5 @@ public class LComponentManagementRegistry extends Composite<Div> implements Auto
 	{
 		this.getElement().executeJs(this.clientComponents() + ".clear();");
 		this.clientMapSize.set(0);
-	}
-	
-	@Override
-	public void close()
-	{
-		this.clear();
 	}
 }
