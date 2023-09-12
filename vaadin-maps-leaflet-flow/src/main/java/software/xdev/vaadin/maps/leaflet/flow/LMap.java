@@ -47,11 +47,11 @@ import software.xdev.vaadin.maps.leaflet.flow.data.LPoint;
 import software.xdev.vaadin.maps.leaflet.flow.data.LTileLayer;
 
 
+// TODO
 @NpmPackage(value = "leaflet", version = "1.9.4")
 @Tag("leaflet-map")
 @JsModule("leaflet/dist/leaflet.js")
 @CssImport("leaflet/dist/leaflet.css")
-@CssImport("./leaflet/leaflet-custom.css")
 public class LMap extends Component implements HasSize, HasStyle, HasComponents
 {
 	private static final String CLIENT_MAP = "this.map";
