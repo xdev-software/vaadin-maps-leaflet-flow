@@ -1,13 +1,18 @@
 package software.xdev.vaadin.maps.leaflet.flow.demo;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vaadin.flow.component.ClientCallable;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.Icon;
@@ -44,7 +49,7 @@ import software.xdev.vaadin.maps.leaflet.layer.vector.LPolygon;
 import software.xdev.vaadin.maps.leaflet.layer.vector.LPolyline;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
 import software.xdev.vaadin.maps.leaflet.map.LMapLocateOptions;
-import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
+import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementRegistry;
 
 
 @Route("")
@@ -53,7 +58,7 @@ public class LeafletView extends VerticalLayout
 	private static final Logger LOG = LoggerFactory.getLogger(LeafletView.class);
 	private static final String ID = "leaflet-demo-view";
 	
-	private final LComponentManagementRegistry reg;
+	private final LDefaultComponentManagementRegistry reg;
 	private final LMap map;
 	private final HorizontalLayout hlButtons = new HorizontalLayout();
 	
@@ -61,7 +66,7 @@ public class LeafletView extends VerticalLayout
 	{
 		this.setId(ID);
 		
-		this.reg = new LComponentManagementRegistry(this);
+		this.reg = new LDefaultComponentManagementRegistry(this);
 		
 		final MapContainer mapContainer = new MapContainer(this.reg);
 		mapContainer.setSizeFull();
@@ -183,6 +188,7 @@ public class LeafletView extends VerticalLayout
 		this.addImageOverlayDemo();
 		this.addVideoOverlayDemo();
 		this.addComplexPolygonDemo();
+		this.addMemoryTestDemo();
 		
 		this.addOpenDialogOverMapDemo();
 	}
@@ -258,6 +264,7 @@ public class LeafletView extends VerticalLayout
 	private void addMapMethodsDemo(final LLatLng center)
 	{
 		this.hlButtons.add(new Button("Center on Weiden", ev -> this.map.setView(center, 17)));
+		this.hlButtons.add(new Button("FlyTo to Weiden", ev -> this.map.flyTo(center, 17)));
 	}
 	
 	private void addImageOverlayDemo()
@@ -358,6 +365,110 @@ public class LeafletView extends VerticalLayout
 				this.map.setView(new LLatLng(this.reg, 38.871008, -77.055970), 17);
 			},
 			pentagon::remove
+		));
+	}
+	
+	@SuppressWarnings("java:S5413") // Yes it's used correctly
+	private void addMemoryTestDemo()
+	{
+		final AtomicBoolean abort = new AtomicBoolean(false);
+		
+		this.hlButtons.add(this.createToggleButton(
+			"Start memory test",
+			"Stop memory test",
+			() -> {
+				this.map.setView(new LLatLng(this.reg, 0, 0), 12);
+				
+				abort.set(false);
+				
+				final int bulkSize = 100;
+				final int sizeWhenStartRemoving = 1_000;
+				final int endWhen = 100_000;
+				
+				final AtomicLong totallyAdded = new AtomicLong(0);
+				final Random random = new Random(1);
+				final UI ui = UI.getCurrent();
+				
+				CompletableFuture.runAsync(() -> {
+					try
+					{
+						final List<LMarker> markers = new ArrayList<>();
+						while(!abort.get() && totallyAdded.get() < endWhen)
+						{
+							LOG.info("Totally added markers: {}; Adding bulk", totallyAdded);
+							
+							for(int i = 0; i < bulkSize; i++)
+							{
+								if(markers.size() > sizeWhenStartRemoving)
+								{
+									final LMarker removed = markers.remove(0);
+									
+									ui.accessSynchronously(removed::remove);
+								}
+								final double lat = random.nextDouble(-100, 100);
+								final double lng = random.nextDouble(-100, 100);
+								final double v = random.nextDouble();
+								
+								ui.accessSynchronously(() ->
+									markers.add(
+										new LMarker(
+											this.reg,
+											new LLatLng(
+												this.reg,
+												lat,
+												lng))
+											.bindPopup("Random double: " + v)
+											.addTo(this.map)));
+							}
+							
+							totallyAdded.set(totallyAdded.get() + bulkSize);
+							
+							LOG.info("Added {}x markers; Performing GC", bulkSize);
+							System.gc();
+							LOG.info("Finished GC; Syncing with client");
+							ui.accessSynchronously(this.reg::freeUpClient);
+							
+							if(!abort.get())
+							{
+								LOG.info("Waiting a moment");
+								Thread.sleep(10);
+							}
+						}
+						
+						LOG.info("Ending; Clearing...");
+						markers.forEach(m -> ui.accessSynchronously(m::remove));
+						markers.clear();
+						
+						for(int i = 0; i < 2; i++)
+						{
+							System.gc();
+							
+							Thread.sleep(100);
+							
+							ui.accessSynchronously(this.reg::freeUpClient);
+						}
+						
+						LOG.info("Done - Browser should no longer allocate a lot of RAM now");
+						
+						ui.accessSynchronously(() -> this.reg.execJs(
+							"alert('Finished memory test!'"
+								+ "+'\\nTracked components on client (less is better): ' "
+								+ "+ document.getElementById('"
+								+ this.reg.getId().orElseThrow()
+								+ "').lComponents.size);"));
+					}
+					catch(final InterruptedException ex)
+					{
+						Thread.currentThread().interrupt();
+						LOG.warn("Got interrupted", ex);
+					}
+					catch(final Exception ex)
+					{
+						LOG.error("Unexpected problem while testing", ex);
+					}
+				});
+			},
+			() -> abort.set(true)
 		));
 	}
 	

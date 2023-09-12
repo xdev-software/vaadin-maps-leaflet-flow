@@ -3,6 +3,9 @@ package software.xdev.vaadin.maps.leaflet.map;
 import software.xdev.vaadin.maps.leaflet.basictypes.LPoint;
 
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#padding-options">Leaflet docs</a>
+ */
 public class LMapPaddingOptions implements LMapPaddingBaseOptions<LMapPaddingOptions>
 {
 	private LPoint paddingTopLeft;

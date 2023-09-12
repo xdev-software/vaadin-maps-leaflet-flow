@@ -94,7 +94,6 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet Docs</a>
 	 */
-	@SuppressWarnings("resource")
 	public S bindPopup(final String content, final LPopupOptions options)
 	{
 		this.invokeSelf(".bindPopup($0, " + this.componentRegistry().writeOptionsOptionalParameter(options) + ")", content);
@@ -168,7 +167,6 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet Docs</a>
 	 */
-	@SuppressWarnings("resource")
 	public S bindTooltip(final String content, final LTooltipOptions options)
 	{
 		this.invokeSelf(".bindTooltip($0, " + this.componentRegistry().writeOptionsOptionalParameter(options) + ")", content);

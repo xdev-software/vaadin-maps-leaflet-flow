@@ -3,6 +3,9 @@ package software.xdev.vaadin.maps.leaflet.map;
 import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#pan-options">Leaflet docs</a>
+ */
 public interface LMapPanBaseOptions<S extends LMapPanBaseOptions<S>> extends LComponentOptions<S>
 {
 	Boolean getAnimate();

@@ -5,9 +5,8 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
 import software.xdev.vaadin.maps.leaflet.basictypes.LLatLngBounds;
 import software.xdev.vaadin.maps.leaflet.layer.LLayer;
 
-// TODO with and abstraction?
 /**
- * <a href="https://leafletjs.com/reference.html#map-example">Documentation</a>
+ * <a href="https://leafletjs.com/reference.html#map-example">Leaflet docs</a>
  */
 public class LMapOptions implements LComponentOptions<LMapOptions>
 {

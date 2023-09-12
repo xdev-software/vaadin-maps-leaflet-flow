@@ -1,5 +1,8 @@
 package software.xdev.vaadin.maps.leaflet.map;
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#pan-options">Leaflet docs</a>
+ */
 public class LMapPanOptions implements LMapPanBaseOptions<LMapPanOptions>
 {
 	private Boolean animate;

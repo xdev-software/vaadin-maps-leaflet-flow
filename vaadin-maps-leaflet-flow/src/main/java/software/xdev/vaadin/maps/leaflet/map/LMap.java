@@ -19,7 +19,6 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 /**
  * @see <a href="https://leafletjs.com/reference.html#map">Leaflet Docs</a>
  */
-@SuppressWarnings("resource")
 public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 {
 	// region Init
@@ -557,7 +556,6 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-locate">Leaflet docs</a>
 	 */
-	@SuppressWarnings("resource")
 	public LMap locate(final LMapLocateOptions options)
 	{
 		this.invokeSelf(".locate(" + this.componentRegistry().writeOptions(options) + ")");

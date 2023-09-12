@@ -25,7 +25,6 @@ public abstract class LPath<S extends LPath<S>> extends LInteractiveLayer<S>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#polyline-setstyle">Leaflet docs</a>
 	 */
-	@SuppressWarnings("resource")
 	public S setStyle(final LPathOptions<?> options)
 	{
 		this.invokeSelf(".setStyle(" + this.componentRegistry().writeOptionsOrEmptyObject(options) + ")");
