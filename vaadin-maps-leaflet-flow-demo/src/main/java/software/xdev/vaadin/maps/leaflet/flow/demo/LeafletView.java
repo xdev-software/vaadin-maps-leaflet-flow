@@ -144,7 +144,7 @@ public class LeafletView extends VerticalLayout
 			this.reg,
 			locationXDEV,
 			new LCircleOptions()
-				.withRadius(300d)
+				.withRadius(400d)
 				.withStroke(true)
 				.withColor("#000")
 				.withFill(false));
