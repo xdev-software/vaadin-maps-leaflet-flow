@@ -16,6 +16,7 @@
 * All Leaflet elements are now tracked on the client and on the server and can therefore be modified/reused.
   * Before it was only possible to create an element and then send it to the client
   * However keep in mind when creating a lot of elements that you may have to free up memory on the client (manually)
+* Integrated default Leaflet resources
 
 ## 3.0.2
 * Added support for Polyline #266 (thanks to @blitzdose)
