@@ -17,7 +17,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#map">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#map">Leaflet docs</a>
  */
 public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 {
@@ -100,7 +100,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	// region Layer/Controls
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-addcontrol">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-addcontrol">Leaflet docs</a>
 	 */
 	public LMap addControl(final LControl<?> control)
 	{
@@ -109,7 +109,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-removecontrol">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-removecontrol">Leaflet docs</a>
 	 */
 	public LMap removeControl(final LControl<?> control)
 	{
@@ -118,7 +118,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-addlayer">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-addlayer">Leaflet docs</a>
 	 */
 	public LMap addLayer(final LLayer<?> layer)
 	{
@@ -127,7 +127,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-removelayer">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-removelayer">Leaflet docs</a>
 	 */
 	public LMap removeLayer(final LLayer<?> layer)
 	{
@@ -136,7 +136,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-openpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-openpopup">Leaflet docs</a>
 	 */
 	public LMap openPopup(final LPopup popup)
 	{
@@ -145,7 +145,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-closepopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-closepopup">Leaflet docs</a>
 	 */
 	public LMap closePopup(final LPopup popup)
 	{
@@ -154,7 +154,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-closepopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-closepopup">Leaflet docs</a>
 	 */
 	public LMap closePopup()
 	{
@@ -163,7 +163,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-opentooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-opentooltip">Leaflet docs</a>
 	 */
 	public LMap openTooltip(final LTooltip tooltip)
 	{
@@ -172,7 +172,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-closetooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-closetooltip">Leaflet docs</a>
 	 */
 	public LMap closeTooltip(final LTooltip tooltip)
 	{
@@ -181,7 +181,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#map-closetooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#map-closetooltip">Leaflet docs</a>
 	 */
 	public LMap closeTooltip()
 	{

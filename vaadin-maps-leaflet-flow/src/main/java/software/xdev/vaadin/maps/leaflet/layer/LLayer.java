@@ -15,7 +15,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#layer">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#layer">Leaflet docs</a>
  */
 public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> implements LEvented<S>
 {
@@ -30,7 +30,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	// region Add/Remove
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet docs</a>
 	 */
 	protected S addTo(final LComponent<?> lComponent)
 	{
@@ -39,7 +39,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet docs</a>
 	 */
 	public S addTo(final LMap map)
 	{
@@ -47,7 +47,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-addto">Leaflet docs</a>
 	 */
 	public S addTo(final LLayerGroup layerGroup)
 	{
@@ -55,7 +55,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-remove">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-remove">Leaflet docs</a>
 	 */
 	public S remove()
 	{
@@ -64,7 +64,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet docs</a>
 	 */
 	protected S removeFrom(final LComponent<?> lComponent)
 	{
@@ -73,7 +73,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet docs</a>
 	 */
 	public S removeFrom(final LMap map)
 	{
@@ -81,7 +81,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-removefrom">Leaflet docs</a>
 	 */
 	public S removeFrom(final LLayerGroup layerGroup)
 	{
@@ -92,7 +92,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	// region Popup
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet docs</a>
 	 */
 	public S bindPopup(final String content, final LPopupOptions options)
 	{
@@ -101,7 +101,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet docs</a>
 	 */
 	public S bindPopup(final String content)
 	{
@@ -109,7 +109,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindpopup">Leaflet docs</a>
 	 */
 	public S bindPopup(final LPopup popup)
 	{
@@ -118,7 +118,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-unbindpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-unbindpopup">Leaflet docs</a>
 	 */
 	public S unbindPopup()
 	{
@@ -127,7 +127,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-togglepopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-togglepopup">Leaflet docs</a>
 	 */
 	public S togglePopup()
 	{
@@ -136,7 +136,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet docs</a>
 	 */
 	public S openPopup(final LLatLng latLng)
 	{
@@ -145,7 +145,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-openpopup">Leaflet docs</a>
 	 */
 	public S openPopup()
 	{
@@ -153,7 +153,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-closepopup">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-closepopup">Leaflet docs</a>
 	 */
 	public S closePopup()
 	{
@@ -165,7 +165,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	// region Tooltip
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet docs</a>
 	 */
 	public S bindTooltip(final String content, final LTooltipOptions options)
 	{
@@ -174,7 +174,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet docs</a>
 	 */
 	public S bindTooltip(final String content)
 	{
@@ -182,7 +182,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-bindtooltip">Leaflet docs</a>
 	 */
 	public S bindTooltip(final LTooltip tooltip)
 	{
@@ -191,7 +191,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-unbindtooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-unbindtooltip">Leaflet docs</a>
 	 */
 	public S unbindTooltip()
 	{
@@ -200,7 +200,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-toggletooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-toggletooltip">Leaflet docs</a>
 	 */
 	public S toggleTooltip()
 	{
@@ -209,7 +209,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet docs</a>
 	 */
 	public S openTooltip(final LLatLng latLng)
 	{
@@ -218,7 +218,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-opentooltip">Leaflet docs</a>
 	 */
 	public S openTooltip()
 	{
@@ -226,7 +226,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layer-closetooltip">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layer-closetooltip">Leaflet docs</a>
 	 */
 	public S closeTooltip()
 	{

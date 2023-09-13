@@ -5,7 +5,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#latlng">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#latlng">Leaflet docs</a>
  */
 public class LLatLng extends LBaseComponent<LLatLng>
 {

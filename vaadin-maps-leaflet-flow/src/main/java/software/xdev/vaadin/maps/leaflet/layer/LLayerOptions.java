@@ -4,7 +4,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#layer-option">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#layer-option">Leaflet docs</a>
  */
 public abstract class LLayerOptions<S extends LLayerOptions<S>> implements LComponentOptions<S>
 {

@@ -12,7 +12,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#divoverlay">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#divoverlay">Leaflet docs</a>
  */
 public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractiveLayer<S>
 	implements LHasBringTo<S>, LHasSetLatLng<S>
@@ -26,7 +26,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-openon">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-openon">Leaflet docs</a>
 	 */
 	public S openOn(final LMap map)
 	{
@@ -35,7 +35,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-close">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-close">Leaflet docs</a>
 	 */
 	public S close()
 	{
@@ -44,7 +44,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-toggle">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-toggle">Leaflet docs</a>
 	 */
 	public S toggle(final LLayer<?> layer)
 	{
@@ -53,7 +53,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-toggle">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-toggle">Leaflet docs</a>
 	 */
 	public S toggle()
 	{
@@ -61,7 +61,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-setcontent">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-setcontent">Leaflet docs</a>
 	 */
 	public S setContent(final String content)
 	{
@@ -70,7 +70,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-setcontent">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-setcontent">Leaflet docs</a>
 	 */
 	public S setContent(final LComponent<?> content)
 	{
@@ -79,7 +79,7 @@ public abstract class LDivOverlay<S extends LDivOverlay<S>> extends LInteractive
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-update">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#divoverlay-update">Leaflet docs</a>
 	 */
 	public S update()
 	{

@@ -1,14 +1,14 @@
 package software.xdev.vaadin.maps.leaflet.base;
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#evented">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#evented">Leaflet docs</a>
  */
 public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 {
 	// region On/Off/Once
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet docs</a>
 	 */
 	default S on(final String type, final String function, final String context)
 	{
@@ -22,7 +22,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet docs</a>
 	 */
 	default S on(final String type, final String function)
 	{
@@ -30,7 +30,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet docs</a>
 	 */
 	default S on(final String eventMap)
 	{
@@ -39,7 +39,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet docs</a>
 	 */
 	default S off(final String type, final String function, final String context)
 	{
@@ -53,7 +53,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet docs</a>
 	 */
 	default S off(final String type)
 	{
@@ -61,7 +61,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet docs</a>
 	 */
 	default S off()
 	{
@@ -70,7 +70,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet docs</a>
 	 */
 	default S once(final String type, final String function, final String context)
 	{
@@ -84,7 +84,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet docs</a>
 	 */
 	default S once(final String type, final String function)
 	{
@@ -92,7 +92,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet docs</a>
 	 */
 	default S once(final String eventMap)
 	{
@@ -104,7 +104,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	// region Fire/Listens
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet docs</a>
 	 */
 	default S fire(final String type, final String data, final Boolean propagate)
 	{
@@ -116,7 +116,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet docs</a>
 	 */
 	default S fire(final String type, final String data)
 	{
@@ -124,7 +124,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-fire">Leaflet docs</a>
 	 */
 	default S fire(final String type)
 	{
@@ -135,7 +135,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	// region Event Parent
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-addeventparent">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-addeventparent">Leaflet docs</a>
 	 */
 	default S addEventParent(final LEvented<?> obj)
 	{
@@ -144,7 +144,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#evented-removeeventparent">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#evented-removeeventparent">Leaflet docs</a>
 	 */
 	default S removeEventParent(final LEvented<?> obj)
 	{

@@ -1,7 +1,7 @@
 package software.xdev.vaadin.maps.leaflet.layer;
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#interactive-layer-option">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#interactive-layer-option">Leaflet docs</a>
  */
 public abstract class LInteractiveLayerOptions<S extends LInteractiveLayerOptions<S>> extends LLayerOptions<S>
 {

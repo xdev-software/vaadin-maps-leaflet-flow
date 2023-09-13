@@ -6,7 +6,7 @@ import software.xdev.vaadin.maps.leaflet.layer.LInteractiveLayerOptions;
 
 
 /**
- * <a href="https://leafletjs.com/reference.html#marker">Leaflet Docs</a>
+ * <a href="https://leafletjs.com/reference.html#marker">Leaflet docs</a>
  */
 public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 {

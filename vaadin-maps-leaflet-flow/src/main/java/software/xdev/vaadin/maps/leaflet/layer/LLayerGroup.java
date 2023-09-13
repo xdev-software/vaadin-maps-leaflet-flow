@@ -37,7 +37,7 @@ public class LLayerGroup extends LLayer<LLayerGroup> implements LHasSetZIndex<LL
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layergroup-addlayer">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layergroup-addlayer">Leaflet docs</a>
 	 */
 	public LLayerGroup addLayer(final LLayer<?> layer)
 	{
@@ -46,7 +46,7 @@ public class LLayerGroup extends LLayer<LLayerGroup> implements LHasSetZIndex<LL
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layergroup-removelayer">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layergroup-removelayer">Leaflet docs</a>
 	 */
 	public LLayerGroup removeLayer(final LLayer<?> layer)
 	{
@@ -55,7 +55,7 @@ public class LLayerGroup extends LLayer<LLayerGroup> implements LHasSetZIndex<LL
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#layergroup-clearlayers">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#layergroup-clearlayers">Leaflet docs</a>
 	 */
 	public LLayerGroup clearLayers()
 	{

@@ -4,7 +4,7 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LPoint;
 import software.xdev.vaadin.maps.leaflet.layer.LInteractiveLayerOptions;
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#divoverlay-option">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#divoverlay-option">Leaflet docs</a>
  */
 public abstract class LDivOverlayOptions<S extends LDivOverlayOptions<S>> extends LInteractiveLayerOptions<S>
 {

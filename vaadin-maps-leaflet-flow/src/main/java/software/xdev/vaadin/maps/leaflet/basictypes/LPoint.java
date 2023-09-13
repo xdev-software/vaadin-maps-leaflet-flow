@@ -5,7 +5,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#point">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#point">Leaflet docs</a>
  */
 public class LPoint extends LBaseComponent<LPoint>
 {

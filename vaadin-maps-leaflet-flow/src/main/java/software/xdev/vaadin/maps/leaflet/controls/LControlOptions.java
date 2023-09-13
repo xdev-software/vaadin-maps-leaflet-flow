@@ -4,7 +4,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#control">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#control">Leaflet docs</a>
  */
 public abstract class LControlOptions<S extends LControlOptions<S>> implements LComponentOptions<S>
 {

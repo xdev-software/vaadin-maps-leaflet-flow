@@ -8,7 +8,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#control">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#control">Leaflet docs</a>
  */
 public abstract class LControl<S extends LControl<S>> extends LBaseComponent<S>
 {
@@ -21,7 +21,7 @@ public abstract class LControl<S extends LControl<S>> extends LBaseComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#control-setposition">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#control-setposition">Leaflet docs</a>
 	 */
 	public S setPosition(final String position)
 	{
@@ -30,7 +30,7 @@ public abstract class LControl<S extends LControl<S>> extends LBaseComponent<S>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#control-addto">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#control-addto">Leaflet docs</a>
 	 */
 	public S addTo(final LMap map)
 	{

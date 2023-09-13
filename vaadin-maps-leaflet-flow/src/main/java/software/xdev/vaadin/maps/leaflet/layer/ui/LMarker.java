@@ -9,7 +9,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#marker">Leaflet Docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#marker">Leaflet docs</a>
  */
 public class LMarker extends LInteractiveLayer<LMarker>
 	implements LHasSetLatLng<LMarker>, LHasOpacity<LMarker>
@@ -32,7 +32,7 @@ public class LMarker extends LInteractiveLayer<LMarker>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#marker-setzindexoffset">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#marker-setzindexoffset">Leaflet docs</a>
 	 */
 	public LMarker setZIndexOffset(final Integer offset)
 	{
@@ -41,7 +41,7 @@ public class LMarker extends LInteractiveLayer<LMarker>
 	}
 	
 	/**
-	 * @see <a href="https://leafletjs.com/reference.html#marker-seticon">Leaflet Docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#marker-seticon">Leaflet docs</a>
 	 */
 	public LMarker setIcon(final LIcon icon)
 	{
