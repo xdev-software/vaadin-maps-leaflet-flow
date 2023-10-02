@@ -16,7 +16,7 @@
 package software.xdev.vaadin.maps.leaflet.basictypes;
 
 /**
- * <a href="https://leafletjs.com/reference.html#divicon">Documentation</a>
+ * @see <a href="https://leafletjs.com/reference.html#divicon">Leaflet docs</a>
  */
 public class LDivIconOptions extends LAbstractIconOptions<LDivIconOptions>
 {

@@ -23,6 +23,11 @@ import software.xdev.vaadin.maps.leaflet.base.LComponent;
 import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
+/**
+ * Used for tracking components (on the client).
+ * <p/>
+ * Links components from server (Java) and client (JS) so that they can be reused and/or manipulated after creation.
+ */
 public interface LComponentManagementRegistry
 {
 	// region Write Options

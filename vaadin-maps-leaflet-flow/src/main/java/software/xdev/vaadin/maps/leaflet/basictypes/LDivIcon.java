@@ -19,7 +19,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * <a href="https://leafletjs.com/reference.html#divicon">Documentation</a>
+ * @see <a href="https://leafletjs.com/reference.html#divicon">Leaflet docs</a>
  */
 public class LDivIcon extends LIcon
 {

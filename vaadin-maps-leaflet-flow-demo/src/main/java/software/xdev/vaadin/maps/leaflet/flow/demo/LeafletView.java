@@ -368,6 +368,9 @@ public class LeafletView extends VerticalLayout
 		));
 	}
 	
+	/**
+	 * Used for testing if memory on the client side is freed up correctly when handling a lot of components
+	 */
 	// S5413 - Yes it's used correctly
 	// S2245 - This is a reproducible demo
 	// S1215 - This is a memory test and we don't rely on random GC collects
@@ -377,8 +380,8 @@ public class LeafletView extends VerticalLayout
 		final AtomicBoolean abort = new AtomicBoolean(false);
 		
 		this.hlButtons.add(this.createToggleButton(
-			"Start memory test",
-			"Stop memory test",
+			"Start browser memory test",
+			"Stop browser memory test",
 			() -> {
 				this.map.setView(new LLatLng(this.reg, 0, 0), 12);
 				

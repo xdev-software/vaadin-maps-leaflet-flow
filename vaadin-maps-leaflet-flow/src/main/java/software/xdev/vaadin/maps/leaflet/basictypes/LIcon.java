@@ -19,6 +19,9 @@ import software.xdev.vaadin.maps.leaflet.base.LBaseComponent;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
+/**
+ * @see <a href="https://leafletjs.com/reference.html#icon">Leaflet docs</a>
+ */
 public class LIcon extends LBaseComponent<LIcon>
 {
 	protected LIcon(

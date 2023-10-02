@@ -2,7 +2,7 @@
 ⚠️<i>This release contains breaking changes</i>
 
 * The complete API got reworked and now has the [same structure as Leaflet](https://leafletjs.com/reference.html).
-* Implemented a lot of new Leaflet APIs - Currently around 90% of the Leaflet API are implemented. These include the most useful bits:
+* Added lots of new Leaflet APIs - currently around 90% of the Leaflet API are implemented. These include the most useful bits:
   * GeoLocation
   * A lot of new methods for Map
   * Tooltips & Popups
@@ -11,9 +11,9 @@
   * Controls for Scale, Layers, ...
   * and much more
 * Abstracted the elements similar to how this is done inside Leaflet itself so that they can easily be extended
-* The API only supports sending instructions to the client. Retrieving client side data is not supported as it can't be data integrity guaranteed (data on client can be modified).
+* The API only supports sending instructions to the client. Retrieving client side data is not supported as data integrity can't be guaranteed (client-side data can be modified by users).
   * Event listeners can still be registered but this needs to be done manually. A example is available in the demo.
-* All Leaflet elements are now tracked on the client and on the server and can therefore be modified/reused.
+* All Leaflet elements are now tracked on the client and on the server and can therefore be modified/reused (using ``LComponentManagementRegistry``).
   * Before it was only possible to create an element and then send it to the client
   * However keep in mind when creating a lot of elements that you may have to free up memory on the client (manually)
 * Integrated default Leaflet resources
