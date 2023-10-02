@@ -64,10 +64,13 @@ public class LeafletView extends VerticalLayout
 	
 	public LeafletView()
 	{
+		// Add an Id to the current view so that we can later find it in JS and do a callback
 		this.setId(ID);
 		
+		// Create the registry which allows reusing components and invoking methods
 		this.reg = new LDefaultComponentManagementRegistry(this);
 		
+		// Create and add the MapContainer (which will contain the map) to the UI
 		final MapContainer mapContainer = new MapContainer(this.reg);
 		mapContainer.setSizeFull();
 		this.add(mapContainer);
@@ -103,6 +106,7 @@ public class LeafletView extends VerticalLayout
 				This demo shows you different markers,<br> popups, polygons and other stuff
 				</div>
 				""")
+			// Set the icon size to unlimited otherwise the div collapses
 			.withIconSize(new LPoint(this.reg, -1, -1)));
 		final LMarker markerInfo = new LMarker(
 			this.reg,
