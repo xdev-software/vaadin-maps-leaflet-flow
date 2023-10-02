@@ -5,7 +5,7 @@
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
 # vaadin-maps-leaflet-flow
-Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
+Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
 
 ![demo](assets/demo.png)
 
