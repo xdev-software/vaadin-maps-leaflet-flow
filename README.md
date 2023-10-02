@@ -34,7 +34,7 @@ To get started it's recommended to have a look at the demo (notably at the [mini
 <details>
   <summary>Show example</summary>
   
-  ![demo](assets/demo.gif)
+  ![demo](assets/demo.avif)
 </details>
 
 ## Support
