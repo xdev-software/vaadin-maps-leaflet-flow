@@ -111,7 +111,7 @@
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>4.2</version>
+				<version>4.3</version>
 				<configuration>
 					<properties>
 						<email>${project.organization.url}</email>
@@ -166,7 +166,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.5.0</version>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
