@@ -27,6 +27,11 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
  * Used for tracking components (on the client).
  * <p/>
  * Links components from server (Java) and client (JS) so that they can be reused and/or manipulated after creation.
+ *
+ * @apiNote Manual invocation of these methods is normally not required.<br/>
+ * The only use cases when its required are<br/>
+ * a) when creating a (custom) LComponent<br/>
+ * b) when handling huge amounts of LComponents and needing to freeing up memory on the client side
  */
 public interface LComponentManagementRegistry
 {
@@ -83,6 +88,7 @@ public interface LComponentManagementRegistry
 	
 	/**
 	 * Tries to free up unused components on the client.
+	 *
 	 * @implNote Freeing up is only executed when the server detects that a component on server side vanished (got
 	 * garbage collected). If this is true a full resync of all tracked elements with the client is triggered.
 	 */
