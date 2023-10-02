@@ -19,14 +19,17 @@ public class MinimalisticDemo extends VerticalLayout
 	
 	public MinimalisticDemo()
 	{
+		// Let the view use 100% of the site
+		this.setSizeFull();
+		
 		// Create the registry which is needed so that components can be reused and their methods invoked
+		// Note: You normally don't need to invoke any methods of the registry and just hand it over to the components
 		final LComponentManagementRegistry reg = new LDefaultComponentManagementRegistry(this);
 		
 		// Create and add the MapContainer (which contains the map) to the UI
 		final MapContainer mapContainer = new MapContainer(reg);
 		mapContainer.setSizeFull();
 		this.add(mapContainer);
-		this.setSizeFull();
 		
 		final LMap map = mapContainer.getlMap();
 		
@@ -40,7 +43,7 @@ public class MinimalisticDemo extends VerticalLayout
 		new LMarker(reg, new LLatLng(reg, 49.6756, 12.1610))
 			// Bind a popup which is displayed when clicking the marker
 			.bindPopup("XDEV Software")
-			// Add a component to the map
+			// Add it to the map
 			.addTo(map);
 	}
 }
