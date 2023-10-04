@@ -5,7 +5,10 @@
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
 # vaadin-maps-leaflet-flow
-Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
+Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
+
+This API wraps the Leaflet API in a Vaadin friendly way.
+To get started it's recommended to have a look at the demo (notably at the [minimalistic example](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/MinimalisticDemo.java))
 
 ![demo](assets/demo.png)
 
@@ -31,7 +34,7 @@ Vaadin Flow Java API for [Leaflet Maps](https://leafletjs.com/) Component
 <details>
   <summary>Show example</summary>
   
-  ![demo](assets/demo.gif)
+  ![demo](assets/demo.avif)
 </details>
 
 ## Support
