@@ -11,6 +11,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -184,6 +185,7 @@ public class ComplexDemo extends AbstractDemo
 		this.addImageOverlayDemo();
 		this.addVideoOverlayDemo();
 		this.addComplexPolygonDemo();
+		this.addRetrieveClientSideDataDemo();
 		
 		this.addOpenDialogOverMapDemo();
 	}
@@ -361,6 +363,17 @@ public class ComplexDemo extends AbstractDemo
 			},
 			pentagon::remove
 		));
+	}
+	
+	private void addRetrieveClientSideDataDemo()
+	{
+		// Note: Usage is not recommended as clientside data can be manipulated
+		this.hlButtons.add(
+			new Button(
+				"Get bounds",
+				ev -> this.map.invokeSelfReturn(".getBounds()")
+					.then(v -> Notification.show(v.toJson())))
+		);
 	}
 	
 	private void addOpenDialogOverMapDemo()
