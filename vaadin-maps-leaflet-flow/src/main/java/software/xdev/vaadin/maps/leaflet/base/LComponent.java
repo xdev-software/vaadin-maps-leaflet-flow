@@ -36,6 +36,14 @@ public interface LComponent<S extends LComponent<S>>
 		return this.componentRegistry().execJs(this.clientComponentJsAccessor() + payload, params);
 	}
 	
+	/**
+	 * @apiNote Usage is not recommended as clientside data can be manipulated
+	 */
+	default PendingJavaScriptResult invokeSelfReturn(final String payload, final Serializable... params)
+	{
+		return this.componentRegistry().execJs("return " + this.clientComponentJsAccessor() + payload, params);
+	}
+	
 	@SuppressWarnings("unchecked")
 	default S self()
 	{

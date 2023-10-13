@@ -1,3 +1,7 @@
+## 4.0.1
+* Added shortcut method ``invokeSelfReturn`` #282
+* Updated dependencies
+
 ## 4.0.0
 ⚠️<i>This release contains breaking changes</i>
 
