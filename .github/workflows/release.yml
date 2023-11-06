@@ -105,6 +105,9 @@ jobs:
              <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
+
+          ### Additional notes
+          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.whitelisted-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
           ```
 
   publish_central: # Publish the code to central
