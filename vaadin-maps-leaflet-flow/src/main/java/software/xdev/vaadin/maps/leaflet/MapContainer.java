@@ -68,9 +68,7 @@ public class MapContainer extends Composite<Div> implements HasSize, HasStyle, H
 		this.getContent().setSizeFull();
 		this.fixZIndex();
 		
-		this.lMap = new LMap(
-			reg,
-			this.getContent());
+		this.lMap = new LMap(reg, this.getContent());
 		this.fixInitialSizeAfterCreation();
 	}
 	
