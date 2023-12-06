@@ -1,5 +1,6 @@
-## 4.0.2
+## 4.1.0
 * Provide a workaround that fixes a problem where certain methods didn't work instantly after the map was created #305
+* Moved some container specific methods to ``MapContainer``
 
 ## 4.0.1
 * Added shortcut method ``invokeSelfReturn`` #282
