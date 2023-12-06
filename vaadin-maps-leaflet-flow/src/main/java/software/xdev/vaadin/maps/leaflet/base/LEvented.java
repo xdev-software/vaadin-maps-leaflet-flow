@@ -103,7 +103,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	 */
 	default S once(final String type, final String function)
 	{
-		return this.on(type, function, null);
+		return this.once(type, function, null);
 	}
 	
 	/**
