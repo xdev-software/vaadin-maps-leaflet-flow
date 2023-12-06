@@ -6,7 +6,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
-	<version>4.1.0-SNAPSHOT</version>
+	<version>4.1.0</version>
 	<packaging>jar</packaging>
 
 	<inceptionYear>2019</inceptionYear>
