@@ -1,3 +1,6 @@
+## 4.0.2
+* Provide a workaround that fixes a problem where certain methods didn't work instantly after the map was created #305
+
 ## 4.0.1
 * Added shortcut method ``invokeSelfReturn`` #282
 * Updated dependencies

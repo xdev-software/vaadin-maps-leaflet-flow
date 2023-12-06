@@ -15,6 +15,9 @@
  */
 package software.xdev.vaadin.maps.leaflet;
 
+import java.util.function.Consumer;
+
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
@@ -26,6 +29,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 
+import software.xdev.vaadin.maps.leaflet.basictypes.LLatLngBounds;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
@@ -41,11 +45,64 @@ public class MapContainer extends Composite<Div> implements HasSize, HasStyle, H
 {
 	private final LMap lMap;
 	
+	private Consumer<LMap> afterInitialResize;
+	
 	public MapContainer(final LComponentManagementRegistry reg)
 	{
+		this(reg, null);
+	}
+	
+	/**
+	 * @param afterInitialResize This is called after the map was initially resized/is ready.
+	 *                           <p/>
+	 *                           This is ONLY required when calling certain methods like e.g.
+	 *                           {@link LMap#fitBounds(LLatLngBounds)} instantly after the map is created.
+	 *                           <p/>
+	 *                           For performance reasons it's highly recommended to only use this when required.
+	 */
+	public MapContainer(
+		final LComponentManagementRegistry reg,
+		final Consumer<LMap> afterInitialResize)
+	{
+		this.afterInitialResize = afterInitialResize;
 		this.getContent().setSizeFull();
+		this.fixZIndex();
 		
-		this.lMap = new LMap(reg, this.getContent());
+		this.lMap = new LMap(
+			reg,
+			this.getContent());
+		this.fixInitialSizeAfterCreation();
+	}
+	
+	protected String ensureId()
+	{
+		// Id is auto assigned by LMap so this will never throw
+		return this.getContent().getId().orElseThrow();
+	}
+	
+	protected void fixZIndex()
+	{
+		LMap.fixZIndex(this.getContent());
+	}
+	
+	protected void fixInitialSizeAfterCreation()
+	{
+		this.lMap.fixInvalidSizeAfterCreation(this.afterInitialResize != null
+			? "document.getElementById('" + this.ensureId() + "').$server.onInitialResize();"
+			: null);
+	}
+	
+	@ClientCallable
+	public void onInitialResize()
+	{
+		if(this.afterInitialResize == null)
+		{
+			return;
+		}
+		
+		this.afterInitialResize.accept(this.getlMap());
+		// Free up
+		this.afterInitialResize = null;
 	}
 	
 	public LMap getlMap()

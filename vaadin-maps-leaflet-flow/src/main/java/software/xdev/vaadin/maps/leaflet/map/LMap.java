@@ -50,8 +50,6 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		final LMapOptions options)
 	{
 		super(compReg, "L.map($0" + compReg.writeOptionsOptionalParameter(options) + ")", id);
-		// https://stackoverflow.com/q/53879753
-		this.fixInvalidSizeAfterCreation();
 	}
 	
 	public LMap(
@@ -66,23 +64,6 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		final Div bindDiv,
 		final LMapOptions options)
 	{
-		this(compReg, bindDiv, options, true);
-	}
-	
-	public LMap(
-		final LComponentManagementRegistry compReg,
-		final Div bindDiv,
-		final boolean fixDivZIndex)
-	{
-		this(compReg, bindDiv, null, fixDivZIndex);
-	}
-	
-	public LMap(
-		final LComponentManagementRegistry compReg,
-		final Div bindDiv,
-		final LMapOptions options,
-		final boolean fixDivZIndex)
-	{
 		this(
 			compReg,
 			bindDiv.getId().orElseGet(() -> {
@@ -91,10 +72,6 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 				return dynamicId;
 			}),
 			options);
-		if(fixDivZIndex)
-		{
-			fixZIndex(bindDiv);
-		}
 	}
 	
 	/**
@@ -105,10 +82,15 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		div.getStyle().set("z-index", "1");
 	}
 	
-	protected void fixInvalidSizeAfterCreation()
+	public void fixInvalidSizeAfterCreation(final String callback)
 	{
+		// https://stackoverflow.com/q/53879753
+		// This should no longer be required starting in Leaflet v2 https://github.com/Leaflet/Leaflet/pull/8612
 		this.componentRegistry().execJs("let tempMap = " + this.clientComponentJsAccessor() + "; "
-			+ "setTimeout(function () { tempMap.invalidateSize(false); }, 100)");
+			+ "setTimeout(function () { "
+			+ "  tempMap.invalidateSize(false); "
+			+ (callback != null ? callback : "")
+			+ " }, 100)");
 	}
 	
 	// endregion
