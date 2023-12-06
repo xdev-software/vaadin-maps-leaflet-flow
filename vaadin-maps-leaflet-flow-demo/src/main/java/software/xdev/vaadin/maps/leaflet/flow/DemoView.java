@@ -15,6 +15,7 @@ import com.vaadin.flow.router.Route;
 
 import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 
 
@@ -54,6 +55,12 @@ public class DemoView extends Composite<VerticalLayout>
 				MinimalisticDemo.NAV,
 				"Minimalistic",
 				"Showcasing the simplest form of using the API"
+			),
+			new Example(
+				InitialResizeDemo.NAV,
+				"Initial resize",
+				"Some map methods - when called instantly after the map is created - will not work correctly."
+					+ " This example shows how to workaround this restriction."
 			),
 			new Example(
 				ComplexDemo.NAV,
