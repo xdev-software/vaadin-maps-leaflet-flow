@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v4
       
     - name: Set up JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -123,7 +123,7 @@ jobs:
         git pull
     
     - name: Set up JDK Apache Maven Central
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with: # running setup-java again overwrites the settings.xml
         java-version: '17'
         distribution: 'temurin'
@@ -155,7 +155,7 @@ jobs:
         git pull
 
     - name: Setup - Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
