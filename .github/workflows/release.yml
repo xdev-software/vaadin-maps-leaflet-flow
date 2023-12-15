@@ -163,7 +163,7 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload licenses - Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dependencies-licenses
         path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/site
