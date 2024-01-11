@@ -18,7 +18,8 @@ package software.xdev.vaadin.maps.leaflet.map;
 /**
  * @see <a href="https://leafletjs.com/reference.html#zoom/pan-options">Leaflet docs</a>
  */
-public class LMapZoomPanOptions implements LMapZoomBaseOptions<LMapZoomPanOptions>, LMapPanBaseOptions<LMapZoomPanOptions>
+public class LMapZoomPanOptions
+	implements LMapZoomBaseOptions<LMapZoomPanOptions>, LMapPanBaseOptions<LMapZoomPanOptions>
 {
 	private Boolean animate;
 	private Double duration;

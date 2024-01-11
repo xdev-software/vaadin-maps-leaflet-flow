@@ -27,7 +27,10 @@ public class LTooltip extends LDivOverlay<LTooltip>
 		final LTooltipOptions options,
 		final LLayer<?> source)
 	{
-		super(compReg, "L.tooltip(" + compReg.writeOptions(options) + (source != null ? ", " + source.clientComponentJsAccessor() : "") + ")");
+		super(compReg, "L.tooltip("
+			+ compReg.writeOptions(options)
+			+ (source != null ? ", " + source.clientComponentJsAccessor() : "")
+			+ ")");
 	}
 	
 	public LTooltip(
@@ -47,7 +50,10 @@ public class LTooltip extends LDivOverlay<LTooltip>
 		final LLatLng latLng,
 		final LTooltipOptions options)
 	{
-		super(compReg, "L.tooltip(" + latLng.clientComponentJsAccessor() + compReg.writeOptionsOptionalParameter(options) + ")");
+		super(compReg, "L.tooltip("
+			+ latLng.clientComponentJsAccessor()
+			+ compReg.writeOptionsOptionalParameter(options)
+			+ ")");
 	}
 	
 	public LTooltip(

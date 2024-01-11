@@ -23,6 +23,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementReg
 
 
 @Route(FreeingUpResourceBenchmarkDemo.NAV)
+@SuppressWarnings("checkstyle:MagicNumber")
 public class FreeingUpResourceBenchmarkDemo extends AbstractDemo
 {
 	public static final String NAV = "/freeing-up-resources-benchmark";

@@ -29,6 +29,7 @@ public class LLatLngBounds extends LBaseComponent<LLatLngBounds>
 		final LLatLng corner1,
 		final LLatLng corner2)
 	{
-		super(compReg, "L.latLngBounds(" + corner1.clientComponentJsAccessor() + "," + corner2.clientComponentJsAccessor() + ")");
+		super(compReg, "L.latLngBounds(" + corner1.clientComponentJsAccessor()
+			+ "," + corner2.clientComponentJsAccessor() + ")");
 	}
 }
