@@ -82,6 +82,8 @@ vite.generated.ts
 /*/frontend/generated/
 /*/frontend/index.html
 /*/src/main/dev-bundle/
+/*/src/main/bundles/
+*.lock
 
 #custom
 .flattened-pom.xml
