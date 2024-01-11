@@ -61,3 +61,24 @@ jobs:
         name: demo-files-java-${{ matrix.java }}
         path: ${{ env.DEMO_MAVEN_MODULE }}/target/${{ env.DEMO_MAVEN_MODULE }}.jar
         if-no-files-found: error
+
+  code-style:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [17]
+        distribution: [temurin]
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
+        cache: 'maven'
+
+    - name: Run Checkstyle
+      run: mvn -B checkstyle:check -P checkstyle -T2C
