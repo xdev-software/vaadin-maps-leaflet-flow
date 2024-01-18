@@ -101,7 +101,7 @@ jobs:
           Add the following lines to your pom:
           ```XML
           <dependency>
-             <groupId>com.xdev-software</groupId>
+             <groupId>software.xdev</groupId>
              <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
@@ -133,8 +133,8 @@ jobs:
     - name: Publish to Apache Maven Central
       run: mvn -B deploy -Possrh
       env:
-        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
