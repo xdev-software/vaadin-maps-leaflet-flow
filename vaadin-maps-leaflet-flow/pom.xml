@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xdev-software</groupId>
+	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
 	<version>4.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.2</vaadin.version>
+		<vaadin.version>24.3.3</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -91,11 +91,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
 			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 
@@ -103,6 +103,13 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
+			<exclusions>
+				<!-- https://github.com/vaadin/flow/issues/18449 -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>copilot</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- JSON JACKSON -->
 		<dependency>
@@ -268,7 +275,7 @@
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 							<!-- Sometimes OSSRH is really slow -->
 							<stagingProgressTimeoutMinutes>30</stagingProgressTimeoutMinutes>
 							<autoReleaseAfterClose>true</autoReleaseAfterClose>

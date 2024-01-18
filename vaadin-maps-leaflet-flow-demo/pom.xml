@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xdev-software</groupId>
+	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
 	<version>4.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -26,7 +26,7 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.2</vaadin.version>
+		<vaadin.version>24.3.3</vaadin.version>
 
 		<org.springframework.boot.version>3.2.1</org.springframework.boot.version>
 	</properties>
@@ -58,9 +58,16 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
+			<exclusions>
+				<!-- https://github.com/vaadin/flow/issues/18449 -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>copilot</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.xdev-software</groupId>
+			<groupId>software.xdev</groupId>
 			<artifactId>vaadin-maps-leaflet-flow</artifactId>
 			<version>${project.version}</version>
 		</dependency>
