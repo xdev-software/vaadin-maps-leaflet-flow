@@ -1,3 +1,7 @@
+## 4.1.1
+* ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
+* Updated dependencies
+
 ## 4.1.0
 * Provide a workaround that fixes a problem where certain methods didn't work instantly after the map was created #305
 * Moved some container specific methods to ``MapContainer``
