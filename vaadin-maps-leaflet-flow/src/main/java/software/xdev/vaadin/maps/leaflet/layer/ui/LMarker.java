@@ -43,7 +43,10 @@ public class LMarker extends LInteractiveLayer<LMarker>
 	{
 		super(
 			compReg,
-			"L.marker(" + compReg.clientComponentJsAccessor(latLng) + compReg.writeOptionsOptionalParameter(options) + ")");
+			"L.marker("
+				+ compReg.clientComponentJsAccessor(latLng)
+				+ compReg.writeOptionsOptionalParameter(options)
+				+ ")");
 	}
 	
 	/**

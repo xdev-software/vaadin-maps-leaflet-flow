@@ -27,7 +27,10 @@ public class LPopup extends LDivOverlay<LPopup>
 		final LPopupOptions options,
 		final LLayer<?> source)
 	{
-		super(compReg, "L.popup(" + compReg.writeOptions(options) + (source != null ? ", " + source.clientComponentJsAccessor() : "") + ")");
+		super(compReg, "L.popup("
+			+ compReg.writeOptions(options)
+			+ (source != null ? ", " + source.clientComponentJsAccessor() : "")
+			+ ")");
 	}
 	
 	public LPopup(
@@ -47,7 +50,10 @@ public class LPopup extends LDivOverlay<LPopup>
 		final LLatLng latLng,
 		final LPopupOptions options)
 	{
-		super(compReg, "L.popup(" + latLng.clientComponentJsAccessor() + compReg.writeOptionsOptionalParameter(options) + ")");
+		super(compReg, "L.popup("
+			+ latLng.clientComponentJsAccessor()
+			+ compReg.writeOptionsOptionalParameter(options)
+			+ ")");
 	}
 	
 	public LPopup(

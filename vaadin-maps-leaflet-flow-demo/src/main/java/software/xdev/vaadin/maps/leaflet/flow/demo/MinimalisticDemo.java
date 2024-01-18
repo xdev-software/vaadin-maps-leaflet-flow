@@ -13,6 +13,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementReg
 
 
 @Route(MinimalisticDemo.NAV)
+@SuppressWarnings("checkstyle:MagicNumber")
 public class MinimalisticDemo extends VerticalLayout
 {
 	public static final String NAV = "/minimalistic";

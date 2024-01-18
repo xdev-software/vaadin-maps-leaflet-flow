@@ -60,6 +60,7 @@ public class LTileLayer extends LGridLayer<LTileLayer>
 	 * Use OpenStreetMap's tile server <br/>
 	 * <b>Important: By using this you accept the <a href="https://operations.osmfoundation.org/policies/tiles/">Usage Policy</a></b>
 	 */
+	@SuppressWarnings("checkstyle:MagicNumber") // Default max Zoom
 	public static LTileLayer createDefaultForOpenStreetMapTileServer(final LComponentManagementRegistry compReg)
 	{
 		return new LTileLayer(

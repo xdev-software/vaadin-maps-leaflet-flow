@@ -47,6 +47,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementReg
 
 
 @Route(ComplexDemo.NAV)
+@SuppressWarnings("checkstyle:MagicNumber")
 public class ComplexDemo extends AbstractDemo
 {
 	public static final String NAV = "/complex";
@@ -106,6 +107,7 @@ public class ComplexDemo extends AbstractDemo
 			new LLatLng(this.reg, 49.674662, 12.162869),
 			new LMarkerOptions().withIcon(divIconInfo));
 		
+		@SuppressWarnings("checkstyle:LineLength")
 		final LIcon iconXDEV = new LIcon(this.reg, new LIconOptions()
 			.withIconUrl("""
 				data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="200" viewBox="0 0 18300 4500" style="background-color:rgba(180,180,180,0.7)">

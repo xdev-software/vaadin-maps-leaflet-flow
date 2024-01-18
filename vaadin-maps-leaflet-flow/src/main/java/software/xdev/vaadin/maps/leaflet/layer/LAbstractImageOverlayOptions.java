@@ -15,7 +15,8 @@
  */
 package software.xdev.vaadin.maps.leaflet.layer;
 
-public abstract class LAbstractImageOverlayOptions<S extends LAbstractImageOverlayOptions<S>> extends LInteractiveLayerOptions<S>
+public abstract class LAbstractImageOverlayOptions<S extends LAbstractImageOverlayOptions<S>>
+	extends LInteractiveLayerOptions<S>
 {
 	private Double opacity;
 	private String alt;

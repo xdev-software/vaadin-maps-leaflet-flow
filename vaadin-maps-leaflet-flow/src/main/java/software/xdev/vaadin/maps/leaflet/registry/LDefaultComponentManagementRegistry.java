@@ -122,7 +122,9 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	{
 		final int currentId = this.nextComponentId.getAndIncrement();
 		this.getElement()
-			.executeJs(this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");", parameters);
+			.executeJs(
+				this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");",
+				parameters);
 		this.clientMapSize.incrementAndGet();
 		this.componentIndexMap.put(component, currentId);
 		

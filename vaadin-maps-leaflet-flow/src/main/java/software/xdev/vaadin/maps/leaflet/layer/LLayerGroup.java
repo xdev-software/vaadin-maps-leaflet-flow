@@ -36,10 +36,14 @@ public class LLayerGroup extends LLayer<LLayerGroup> implements LHasSetZIndex<LL
 			compReg,
 			"L.layerGroup("
 				+ (layers != null
-				? "[" + Stream.of(layers).map(LLayer::clientComponentJsAccessor).collect(Collectors.joining(",")) + "]"
+				? "[" + Stream.of(layers)
+				.map(LLayer::clientComponentJsAccessor)
+				.collect(Collectors.joining(",")) + "]"
 				: "")
 				+ (options != null
-				? ", ["+ Stream.of(options).map(compReg::writeOptionsOrEmptyObject).collect(Collectors.joining(","))+ "]"
+				? ", [" + Stream.of(options)
+				.map(compReg::writeOptionsOrEmptyObject)
+				.collect(Collectors.joining(",")) + "]"
 				: "")
 				+ ")");
 	}
