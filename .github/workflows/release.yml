@@ -6,7 +6,6 @@ on:
 
 env:
   PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
-  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
 
 permissions:
   contents: write
@@ -58,17 +57,16 @@ jobs:
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
-      
-    - name: Un-SNAP root
-      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-    
-    - name: Un-SNAP demo
-      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
   
     - name: Un-SNAP 
-      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      run: |
+        modules=("") # root
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        for i in "${modules[@]}"
+        do
+            echo "Processing $i/pom.xml"
+            (cd "$i" && mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
+        done
   
     - name: Get version
       id: version
@@ -204,17 +202,16 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git pull
-        
-    - name: Inc Version and SNAP root
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-    
-    - name: Inc Version and SNAP demo
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: ${{ env.DEMO_MAVEN_MODULE }}
-  
+
     - name: Inc Version and SNAP 
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      run: |
+        modules=("") # root
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        for i in "${modules[@]}"
+        do
+            echo "Processing $i/pom.xml"
+            (cd "$i" && mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
+        done
 
     - name: Git Commit and Push
       run: |
