@@ -61,7 +61,7 @@ jobs:
     - name: Un-SNAP 
       run: |
         modules=("") # root
-        modules+=($(grep -oP '(?<=module>)[^<]+' 'pom.xml'))
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
@@ -206,7 +206,7 @@ jobs:
     - name: Inc Version and SNAP 
       run: |
         modules=("") # root
-        modules+=($(grep -oP '(?<=module>)[^<]+' 'pom.xml'))
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
