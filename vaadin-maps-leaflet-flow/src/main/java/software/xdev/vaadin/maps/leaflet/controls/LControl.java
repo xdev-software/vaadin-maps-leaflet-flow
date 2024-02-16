@@ -56,7 +56,7 @@ public abstract class LControl<S extends LControl<S>> extends LBaseComponent<S>
 	/**
 	 * The possible values of position
 	 *
-	 * @see <a href="https://leafletjs.com/reference.html#control-position>Leaflet docs</a>
+	 * @see <a href="https://leafletjs.com/reference.html#control-position">Leaflet docs</a>
 	 */
 	public static final class Positions
 	{
