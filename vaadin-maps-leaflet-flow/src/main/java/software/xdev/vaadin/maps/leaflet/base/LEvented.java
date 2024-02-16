@@ -16,6 +16,9 @@
 package software.xdev.vaadin.maps.leaflet.base;
 
 /**
+ * @apiNote
+ * Data integrity when retrieving client side data can't be assured.
+ * Use at your own risk!
  * @see <a href="https://leafletjs.com/reference.html#evented">Leaflet docs</a>
  */
 public interface LEvented<S extends LEvented<S>> extends LComponent<S>
