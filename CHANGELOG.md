@@ -1,6 +1,8 @@
 ## 4.2.0
 * Fixed some invalid built JavaScript commands #330
 * Add basic support for CRS #333
+* Added a few new showcase demos
+* Updated dependencies
 
 ## 4.1.1
 * ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
