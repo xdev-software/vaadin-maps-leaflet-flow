@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.3</vaadin.version>
+		<vaadin.version>24.3.5</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
