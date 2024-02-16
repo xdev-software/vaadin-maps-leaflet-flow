@@ -36,7 +36,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 public interface LComponentManagementRegistry
 {
 	// region Write Options
-	String writeOptionsOptionalParameter(final LComponentOptions<?> options);
+	String writeOptionsOptionalNextParameter(final LComponentOptions<?> options);
 	
 	String writeOptions(final LComponentOptions<?> options);
 	

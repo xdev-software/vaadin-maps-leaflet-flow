@@ -44,10 +44,11 @@ public class LImageOverlay extends LInteractiveLayer<LImageOverlay>
 		final LLatLngBounds bounds,
 		final LImageOverlayOptions options)
 	{
-		super(compReg,
+		super(
+			compReg,
 			"L.imageOverlay($0, "
-			+ bounds.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options) + ")",
+				+ bounds.clientComponentJsAccessor()
+				+ compReg.writeOptionsOptionalNextParameter(options) + ")",
 			imageUrl);
 	}
 	

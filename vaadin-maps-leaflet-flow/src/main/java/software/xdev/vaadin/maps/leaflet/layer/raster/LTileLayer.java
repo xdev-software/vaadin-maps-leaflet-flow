@@ -44,7 +44,7 @@ public class LTileLayer extends LGridLayer<LTileLayer>
 		final String urlTemplate,
 		final LTileLayerOptions options)
 	{
-		super(compReg, "L.tileLayer($0" + compReg.writeOptionsOptionalParameter(options) + ")", urlTemplate);
+		super(compReg, "L.tileLayer($0" + compReg.writeOptionsOptionalNextParameter(options) + ")", urlTemplate);
 	}
 	
 	public LTileLayer(

@@ -36,9 +36,9 @@ public class LControlLayers extends LControl<LControlLayers>
 		final LControlLayersOptions options)
 	{
 		super(compReg, "L.control.layers("
-			+ (baselayers != null ? convertLayerMapToString(baselayers) : "")
+			+ (baselayers != null ? convertLayerMapToString(baselayers) : "{}")
 			+ "," + (overlays != null ? convertLayerMapToString(overlays) : "{}")
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

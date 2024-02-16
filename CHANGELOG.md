@@ -1,3 +1,6 @@
+## 4.2.0
+* Fixed some invalid built JavaScript commands #330
+
 ## 4.1.1
 * ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
 * Updated dependencies

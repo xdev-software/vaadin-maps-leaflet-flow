@@ -35,7 +35,7 @@ public class LSVGOverlay extends LImageOverlay
 		super(compReg,
 			"L.svgOverlay($0, "
 				+ bounds.clientComponentJsAccessor()
-				+ compReg.writeOptionsOptionalParameter(options)
+				+ compReg.writeOptionsOptionalNextParameter(options)
 				+ ")",
 			svg);
 	}

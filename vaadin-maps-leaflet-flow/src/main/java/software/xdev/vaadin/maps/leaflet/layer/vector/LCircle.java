@@ -31,7 +31,7 @@ public class LCircle extends LAbstractCircle<LCircle>
 	{
 		super(compReg, "L.circle("
 			+ latLng.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

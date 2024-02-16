@@ -31,7 +31,7 @@ public class LRectangle extends LPolyline
 	{
 		super(compReg, "L.rectangle("
 			+ bounds.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

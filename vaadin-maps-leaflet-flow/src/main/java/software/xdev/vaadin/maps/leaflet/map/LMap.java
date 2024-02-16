@@ -49,7 +49,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		final String id,
 		final LMapOptions options)
 	{
-		super(compReg, "L.map($0" + compReg.writeOptionsOptionalParameter(options) + ")", id);
+		super(compReg, "L.map($0" + compReg.writeOptionsOptionalNextParameter(options) + ")", id);
 	}
 	
 	public LMap(
@@ -197,7 +197,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		this.invokeSelf(".setView("
 			+ center.clientComponentJsAccessor()
 			+ "," + zoom
-			+ this.componentRegistry().writeOptionsOptionalParameter(options)
+			+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 			+ ")");
 		return this.self();
 	}
@@ -217,7 +217,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	{
 		this.invokeSelf(".zoomIn("
 			+ (delta != null ? delta : "")
-			+ this.componentRegistry().writeOptionsOptionalParameter(options)
+			+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 			+ ")");
 		return this.self();
 	}
@@ -245,7 +245,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	{
 		this.invokeSelf(".zoomOut("
 			+ (delta != null ? delta : "")
-			+ this.componentRegistry().writeOptionsOptionalParameter(options)
+			+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 			+ ")");
 		return this.self();
 	}
@@ -275,7 +275,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 			".setZoomAround("
 				+ latLng.clientComponentJsAccessor()
 				+ ",$0"
-				+ this.componentRegistry().writeOptionsOptionalParameter(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")",
 			zoom);
 		return this.self();
@@ -298,7 +298,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 			".setZoomAround("
 				+ point.clientComponentJsAccessor()
 				+ ",$0"
-				+ this.componentRegistry().writeOptionsOptionalParameter(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")",
 			zoom);
 		return this.self();
@@ -320,7 +320,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		this.invokeSelf(
 			".fitBounds("
 				+ bounds.clientComponentJsAccessor()
-				+ this.componentRegistry().writeOptionsOptionalParameter(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")");
 		return this.self();
 	}
@@ -404,7 +404,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 			".flyTo("
 				+ latLng.clientComponentJsAccessor()
 				+ (zoom != null ? "," + zoom : "")
-				+ this.componentRegistry().writeOptions(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")");
 		return this.self();
 	}
@@ -433,7 +433,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		this.invokeSelf(
 			".flyToBounds("
 				+ bounds.clientComponentJsAccessor()
-				+ this.componentRegistry().writeOptions(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")");
 		return this.self();
 	}
@@ -484,7 +484,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		this.invokeSelf(
 			".panInsideBounds("
 				+ bounds.clientComponentJsAccessor()
-				+ this.componentRegistry().writeOptions(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")");
 		return this.self();
 	}
@@ -505,7 +505,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 		this.invokeSelf(
 			".panInside("
 				+ latLng.clientComponentJsAccessor()
-				+ this.componentRegistry().writeOptions(options)
+				+ this.componentRegistry().writeOptionsOptionalNextParameter(options)
 				+ ")");
 		return this.self();
 	}

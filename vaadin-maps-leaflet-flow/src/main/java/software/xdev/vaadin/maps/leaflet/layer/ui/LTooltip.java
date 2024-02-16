@@ -52,7 +52,7 @@ public class LTooltip extends LDivOverlay<LTooltip>
 	{
 		super(compReg, "L.tooltip("
 			+ latLng.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	
