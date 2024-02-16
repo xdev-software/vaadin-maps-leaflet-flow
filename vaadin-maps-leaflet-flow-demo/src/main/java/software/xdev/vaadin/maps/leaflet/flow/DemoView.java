@@ -17,6 +17,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 
 
 @PageTitle("Leaflet + Vaadin demos")
@@ -66,6 +67,11 @@ public class DemoView extends Composite<VerticalLayout>
 				ComplexDemo.NAV,
 				"Complex",
 				"A complex example with various leaflet components and methods"
+			),
+			new Example(
+				NotOfThisEarthDemo.NAV,
+				"Not of this earth",
+				"Displays a map that is not from this earth"
 			),
 			new Example(
 				FreeingUpResourceBenchmarkDemo.NAV,

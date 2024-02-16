@@ -31,6 +31,7 @@ import com.vaadin.flow.component.html.Div;
 
 import software.xdev.vaadin.maps.leaflet.basictypes.LLatLngBounds;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
+import software.xdev.vaadin.maps.leaflet.map.LMapOptions;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
@@ -49,7 +50,14 @@ public class MapContainer extends Composite<Div> implements HasSize, HasStyle, H
 	
 	public MapContainer(final LComponentManagementRegistry reg)
 	{
-		this(reg, null);
+		this(reg, (LMapOptions)null);
+	}
+	
+	public MapContainer(
+		final LComponentManagementRegistry reg,
+		final LMapOptions options)
+	{
+		this(reg, options, null);
 	}
 	
 	/**
@@ -64,11 +72,27 @@ public class MapContainer extends Composite<Div> implements HasSize, HasStyle, H
 		final LComponentManagementRegistry reg,
 		final Consumer<LMap> afterInitialResize)
 	{
+		this(reg, null, afterInitialResize);
+	}
+	
+	/**
+	 * @param afterInitialResize This is called after the map was initially resized/is ready.
+	 *                           <p/>
+	 *                           This is ONLY required when calling certain methods like e.g.
+	 *                           {@link LMap#fitBounds(LLatLngBounds)} instantly after the map is created.
+	 *                           <p/>
+	 *                           For performance reasons it's highly recommended to only use this when required.
+	 */
+	public MapContainer(
+		final LComponentManagementRegistry reg,
+		final LMapOptions options,
+		final Consumer<LMap> afterInitialResize)
+	{
 		this.afterInitialResize = afterInitialResize;
 		this.getContent().setSizeFull();
 		this.fixZIndex();
 		
-		this.lMap = new LMap(reg, this.getContent());
+		this.lMap = new LMap(reg, this.getContent(), options);
 		this.fixInitialSizeAfterCreation();
 	}
 	
