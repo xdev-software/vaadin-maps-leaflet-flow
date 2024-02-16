@@ -18,6 +18,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDem
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
 
 
 @PageTitle("Leaflet + Vaadin demos")
@@ -72,6 +73,11 @@ public class DemoView extends Composite<VerticalLayout>
 				NotOfThisEarthDemo.NAV,
 				"Not of this earth",
 				"Displays a map that is not from this earth"
+			),
+			new Example(
+				WatermarkControlDemo.NAV,
+				"Watermark-Control",
+				"Creates a custom control interface"
 			),
 			new Example(
 				FreeingUpResourceBenchmarkDemo.NAV,
