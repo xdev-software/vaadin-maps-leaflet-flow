@@ -52,7 +52,7 @@ public class LPopup extends LDivOverlay<LPopup>
 	{
 		super(compReg, "L.popup("
 			+ latLng.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

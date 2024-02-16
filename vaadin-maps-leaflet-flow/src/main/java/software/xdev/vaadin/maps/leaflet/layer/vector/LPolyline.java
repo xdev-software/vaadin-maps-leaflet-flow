@@ -45,7 +45,7 @@ public class LPolyline extends LPath<LPolyline>
 	{
 		super(compReg, constructorMethod + "("
 			+ convertMultiLatLngs(latLngs)
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

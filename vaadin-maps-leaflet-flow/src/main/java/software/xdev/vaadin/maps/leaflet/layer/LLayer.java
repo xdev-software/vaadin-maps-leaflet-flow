@@ -112,7 +112,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	public S bindPopup(final String content, final LPopupOptions options)
 	{
 		this.invokeSelf(
-			".bindPopup($0, " + this.componentRegistry().writeOptionsOptionalParameter(options) + ")",
+			".bindPopup($0" + this.componentRegistry().writeOptionsOptionalNextParameter(options) + ")",
 			content);
 		return this.self();
 	}
@@ -187,7 +187,7 @@ public abstract class LLayer<S extends LLayer<S>> extends LBaseComponent<S> impl
 	public S bindTooltip(final String content, final LTooltipOptions options)
 	{
 		this.invokeSelf(
-			".bindTooltip($0, " + this.componentRegistry().writeOptionsOptionalParameter(options) + ")",
+			".bindTooltip($0" + this.componentRegistry().writeOptionsOptionalNextParameter(options) + ")",
 			content);
 		return this.self();
 	}

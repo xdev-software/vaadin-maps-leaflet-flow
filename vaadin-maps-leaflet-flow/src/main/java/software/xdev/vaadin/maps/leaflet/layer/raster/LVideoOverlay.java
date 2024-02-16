@@ -33,7 +33,7 @@ public class LVideoOverlay extends LImageOverlay
 		super(compReg,
 			"L.videoOverlay($0, "
 				+ bounds.clientComponentJsAccessor()
-				+ compReg.writeOptionsOptionalParameter(options)
+				+ compReg.writeOptionsOptionalNextParameter(options)
 				+ ")",
 			video);
 	}

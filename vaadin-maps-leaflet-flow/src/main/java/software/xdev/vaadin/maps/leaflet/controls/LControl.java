@@ -52,4 +52,21 @@ public abstract class LControl<S extends LControl<S>> extends LBaseComponent<S>
 		this.invokeSelf(".addTo(" + map.clientComponentJsAccessor() + ")");
 		return this.self();
 	}
+	
+	/**
+	 * The possible values of position
+	 *
+	 * @see <a href="https://leafletjs.com/reference.html#control-position">Leaflet docs</a>
+	 */
+	public static final class Positions
+	{
+		public static final String TOP_LEFT = "topleft";
+		public static final String TOP_RIGHT = "topright";
+		public static final String BOTTOM_LEFT = "bottomleft";
+		public static final String BOTTOM_RIGHT = "bottomright";
+		
+		private Positions()
+		{
+		}
+	}
 }

@@ -31,7 +31,7 @@ public class LCircleMarker extends LAbstractCircle<LCircleMarker>
 	{
 		super(compReg, "L.circleMarker("
 			+ latLng.clientComponentJsAccessor()
-			+ compReg.writeOptionsOptionalParameter(options)
+			+ compReg.writeOptionsOptionalNextParameter(options)
 			+ ")");
 	}
 	

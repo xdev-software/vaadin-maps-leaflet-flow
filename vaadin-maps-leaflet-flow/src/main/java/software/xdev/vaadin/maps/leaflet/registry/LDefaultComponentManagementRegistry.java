@@ -76,7 +76,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	}
 	
 	@Override
-	public String writeOptionsOptionalParameter(final LComponentOptions<?> options)
+	public String writeOptionsOptionalNextParameter(final LComponentOptions<?> options)
 	{
 		return options == null ? "" : (", " + this.writeOptionsOrEmptyObject(options));
 	}

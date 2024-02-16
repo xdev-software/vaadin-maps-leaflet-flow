@@ -59,7 +59,8 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 	// Boolean|String
 	private Object touchZoom;
 	private Boolean bounceAtZoomLimits;
-	// CRS is currently not implemented - the default used one should be sufficient
+	
+	private Object crs;
 	private LLatLng center;
 	private Integer zoom;
 	private Integer minZoom;
@@ -470,6 +471,22 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 	public LMapOptions withBounceAtZoomLimits(final Boolean bounceAtZoomLimits)
 	{
 		this.setBounceAtZoomLimits(bounceAtZoomLimits);
+		return this.self();
+	}
+	
+	public Object getCrs()
+	{
+		return this.crs;
+	}
+	
+	public void setCrs(final Object crs)
+	{
+		this.crs = crs;
+	}
+	
+	public LMapOptions withCrs(final Object crs)
+	{
+		this.setCrs(crs);
 		return this.self();
 	}
 	

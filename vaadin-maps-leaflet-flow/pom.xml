@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-	<version>4.1.2-SNAPSHOT</version>
+	<version>4.2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>LeafletMap for Vaadin</name>
@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.3</vaadin.version>
+		<vaadin.version>24.3.5</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -296,7 +296,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.12.7</version>
+								<version>10.13.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
