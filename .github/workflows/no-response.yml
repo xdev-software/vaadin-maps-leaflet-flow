@@ -17,11 +17,10 @@ jobs:
         with:
           debug-only: true
           days-before-issue-stale: 7
-          days-before-issue-close: 7
+          days-before-issue-close: 3
           only-labels: "waiting-for-response"
           labels-to-remove-when-unstale: "waiting-for-response"
-          stale-issue-message: "This issue is stale because there has been no response to a request for more information for 7 days."
-          close-issue-message: "This issue was closed because there was no response to a request for more information for 14 days."
+          stale-issue-message: "This issue will be closed soon because there has been no response."
           days-before-pr-stale: -1
           days-before-pr-close: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
