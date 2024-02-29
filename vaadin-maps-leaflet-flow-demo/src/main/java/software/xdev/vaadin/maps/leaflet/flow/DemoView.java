@@ -17,6 +17,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
 
@@ -35,6 +36,7 @@ public class DemoView extends Composite<VerticalLayout>
 				
 				final Span spDesc = new Span(example.desc());
 				spDesc.getStyle().set("font-size", "90%");
+				spDesc.getStyle().set("white-space", "pre");
 				
 				final VerticalLayout vl = new VerticalLayout(anchor, spDesc);
 				vl.setSpacing(false);
@@ -78,6 +80,12 @@ public class DemoView extends Composite<VerticalLayout>
 				WatermarkControlDemo.NAV,
 				"Watermark-Control",
 				"Creates a custom control interface"
+			),
+			new Example(
+				MultiLayerWithPyramidDemo.NAV,
+				"Multi-Layer",
+				"using Pyramids ▲ and more...\n"
+					+ "Showcases a selection of different layers and how they can be displayed on a map"
 			),
 			new Example(
 				FreeingUpResourceBenchmarkDemo.NAV,
