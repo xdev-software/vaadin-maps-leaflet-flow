@@ -28,7 +28,7 @@
 		<!-- Dependency-Versions -->
 		<vaadin.version>24.3.5</vaadin.version>
 
-		<org.springframework.boot.version>3.2.2</org.springframework.boot.version>
+		<org.springframework.boot.version>3.2.3</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -191,7 +191,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.13.0</version>
+								<version>10.14.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
