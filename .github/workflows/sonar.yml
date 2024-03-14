@@ -56,7 +56,7 @@ jobs:
 
       - name: Build with Maven
         run: |
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -DskipTests \
             -Dsonar.projectKey=${{ env.SONARCLOUD_ORG }}_${{ github.event.repository.name }} \
             -Dsonar.organization=${{ env.SONARCLOUD_ORG }} \

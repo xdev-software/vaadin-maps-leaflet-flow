@@ -25,7 +25,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with Maven
-      run: mvn -B clean package
+      run: ./mvnw -B clean package
       
     - name: Check for uncommited changes
       run: |
@@ -41,7 +41,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
           exit 1
         fi
 
@@ -65,13 +65,13 @@ jobs:
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
+            (cd "$i" && ../mvnw -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
         done
   
     - name: Get version
       id: version
       run: |
-        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        version=$(../mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "release=$version" >> $GITHUB_OUTPUT
         echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
@@ -129,7 +129,7 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to Apache Maven Central
-      run: mvn -B deploy -Possrh
+      run: ../mvnw -B deploy -Possrh
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
@@ -210,7 +210,7 @@ jobs:
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
+            (cd "$i" && ../mvnw -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
         done
 
     - name: Git Commit and Push

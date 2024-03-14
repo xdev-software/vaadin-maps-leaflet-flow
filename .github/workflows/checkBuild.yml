@@ -43,7 +43,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with Maven
-      run: mvn -B clean package
+      run: ./mvnw -B clean package
       
     - name: Check for uncommited changes
       run: |
@@ -59,7 +59,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
           exit 1
         fi
 
@@ -89,4 +89,4 @@ jobs:
         cache: 'maven'
 
     - name: Run Checkstyle
-      run: mvn -B checkstyle:check -P checkstyle -T2C
+      run: ./mvnw -B checkstyle:check -P checkstyle -T2C
