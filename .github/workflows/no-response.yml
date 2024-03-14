@@ -19,7 +19,7 @@ jobs:
           days-before-issue-close: 3
           only-labels: "waiting-for-response"
           labels-to-remove-when-unstale: "waiting-for-response"
-          stale-issue-message: "This issue will be closed soon because there has been no response."
+          stale-issue-message: "This issue will be closed soon because there has been no further activity."
           days-before-pr-stale: -1
           days-before-pr-close: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
