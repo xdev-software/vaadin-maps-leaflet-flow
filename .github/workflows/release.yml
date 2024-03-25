@@ -60,12 +60,13 @@ jobs:
   
     - name: Un-SNAP 
       run: |
+        mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
         modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && ../mvnw -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
+            (cd "$i" && $mvnwPath -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
         done
   
     - name: Get version
@@ -205,12 +206,13 @@ jobs:
 
     - name: Inc Version and SNAP 
       run: |
+        mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
         modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && ../mvnw -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
+            (cd "$i" && $mvnwPath -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
         done
 
     - name: Git Commit and Push
