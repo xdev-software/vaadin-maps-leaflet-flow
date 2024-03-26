@@ -15,7 +15,7 @@
 
 	<scm>
 		<url>https://github.com/xdev-software/standard-maven-template</url>
-		<connection>https://github.com/xdev-software/standard-maven-template.git</connection>
+		<connection>scm:git:https://github.com/xdev-software/standard-maven-template.git</connection>
 	</scm>
 
 	<inceptionYear>2023</inceptionYear>
