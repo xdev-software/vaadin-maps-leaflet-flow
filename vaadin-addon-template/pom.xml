@@ -15,7 +15,7 @@
 
 	<scm>
 		<url>https://github.com/xdev-software/vaadin-addon-template</url>
-		<connection>https://github.com/xdev-software/vaadin-addon-template.git</connection>
+		<connection>scm:git:https://github.com/xdev-software/vaadin-addon-template.git</connection>
 	</scm>
 
 	<inceptionYear>2022</inceptionYear>
@@ -114,6 +114,20 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>4.0.0-M13</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.5.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>com.mycila</groupId>
@@ -236,7 +250,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.2.1</version>
+						<version>3.2.2</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
