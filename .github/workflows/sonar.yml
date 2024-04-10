@@ -27,8 +27,7 @@ jobs:
   sonar:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
-    # Dependabot PRs have no access to secrets (SONAR_TOKEN) -> Ignore them
-    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'dependabot/') }}
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
     steps:
       - uses: actions/checkout@v4
         with:
