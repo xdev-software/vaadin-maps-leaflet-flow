@@ -161,7 +161,7 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Deploy to Github pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
