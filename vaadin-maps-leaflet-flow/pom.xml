@@ -15,7 +15,7 @@
 
 	<scm>
 		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
-		<connection>https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
+		<connection>scm:git:https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
 	</scm>
 
 	<inceptionYear>2019</inceptionYear>
@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.5</vaadin.version>
+		<vaadin.version>24.3.9</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -126,6 +126,20 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>4.0.0-M13</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.5.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>com.mycila</groupId>
@@ -174,7 +188,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
+				<version>3.13.0</version>
 				<configuration>
 					<release>${maven.compiler.release}</release>
 					<compilerArgs>
@@ -203,7 +217,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -248,7 +262,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.1.0</version>
+						<version>3.2.2</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -296,7 +310,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.14.0</version>
+								<version>10.15.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>

@@ -26,9 +26,9 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.5</vaadin.version>
+		<vaadin.version>24.3.9</vaadin.version>
 
-		<org.springframework.boot.version>3.2.3</org.springframework.boot.version>
+		<org.springframework.boot.version>3.2.4</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -118,7 +118,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
+				<version>3.13.0</version>
 				<configuration>
 					<release>${maven.compiler.release}</release>
 					<compilerArgs>
@@ -191,7 +191,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.14.0</version>
+								<version>10.15.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
