@@ -8,7 +8,6 @@
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/template-placeholder/releases/latest#Installation)
 
-
 ## Support
 If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
 
