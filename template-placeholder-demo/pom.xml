@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>software.xdev</groupId>
-	<artifactId>template-placeholder-demo</artifactId>
+	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -66,7 +66,7 @@
 		</dependency>
 		<dependency>
 			<groupId>software.xdev-software</groupId>
-			<artifactId>template-placeholder</artifactId>
+			<artifactId>vaadin-maps-leaflet-flow</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
