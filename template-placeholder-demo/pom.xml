@@ -65,7 +65,7 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>software.xdev-software</groupId>
+			<groupId>software.xdev</groupId>
 			<artifactId>template-placeholder</artifactId>
 			<version>${project.version}</version>
 		</dependency>
