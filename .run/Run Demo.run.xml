@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Demo" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="software.xdev.vaadin.Application" />
-    <module name="vaadin-addon-template-demo" />
+    <module name="template-placeholder-demo" />
     <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
     <extension name="coverage">
       <pattern>

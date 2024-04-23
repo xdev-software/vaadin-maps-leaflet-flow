@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>software.xdev</groupId>
-	<artifactId>vaadin-addon-template-demo</artifactId>
+	<artifactId>template-placeholder-demo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -68,7 +68,7 @@
 		</dependency>
 		<dependency>
 			<groupId>software.xdev-software</groupId>
-			<artifactId>vaadin-addon-template</artifactId>
+			<artifactId>template-placeholder</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
