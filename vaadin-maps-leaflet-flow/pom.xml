@@ -9,8 +9,8 @@
 	<version>4.2.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LeafletMap for Vaadin</name>
-	<description>LeafletMap for Vaadin</description>
+	<name>vaadin-maps-leaflet-flow</name>
+	<description>vaadin-maps-leaflet-flow</description>
 	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
@@ -231,7 +231,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.1</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -262,7 +262,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.2.2</version>
+						<version>3.2.4</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>

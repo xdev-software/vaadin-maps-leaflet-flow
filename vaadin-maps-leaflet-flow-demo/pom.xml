@@ -9,8 +9,6 @@
 	<version>4.2.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<inceptionYear>2019</inceptionYear>
-
 	<organization>
 		<name>XDEV Software</name>
 		<url>https://xdev.software</url>
@@ -28,7 +26,7 @@
 		<!-- Dependency-Versions -->
 		<vaadin.version>24.3.9</vaadin.version>
 
-		<org.springframework.boot.version>3.2.4</org.springframework.boot.version>
+		<org.springframework.boot.version>3.2.5</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
