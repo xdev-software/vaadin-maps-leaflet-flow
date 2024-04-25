@@ -49,13 +49,25 @@ import software.xdev.vaadin.maps.leaflet.base.RawString;
 
 public class LDefaultComponentManagementRegistry extends Composite<Div> implements LComponentManagementRegistry
 {
-	protected static final AtomicLong NEXT_ID = new AtomicLong(1);
+	protected static AtomicLong NEXT_ID = new AtomicLong(1);
+	protected static AtomicInteger NEXT_COMPONENT_ID = new AtomicInteger(1);
 	
 	protected Map<LComponent<?>, Integer> componentIndexMap = new WeakHashMap<>();
-	protected AtomicInteger nextComponentId = new AtomicInteger(1);
 	protected AtomicInteger clientMapSize = new AtomicInteger(0);
 	
 	protected final ObjectWriter optionsWriter;
+	
+	public static LDefaultComponentManagementRegistry withNextId(final AtomicLong nextId, final AtomicInteger nextComponentId, final HasComponents parent)
+	{
+		return withNextId(nextId, nextComponentId, parent, getDefaultWriterForOptions());
+	}
+	
+	public static LDefaultComponentManagementRegistry withNextId(final AtomicLong nextId, final AtomicInteger nextComponentId, final HasComponents parent, final ObjectWriter optionsWriter)
+	{
+		NEXT_ID = nextId;
+		NEXT_COMPONENT_ID = nextComponentId;
+		return new LDefaultComponentManagementRegistry(parent, optionsWriter);
+	}
 	
 	public LDefaultComponentManagementRegistry(final HasComponents parent)
 	{
@@ -74,7 +86,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		// Attach to parent
 		parent.add(this);
 	}
-	
+
 	@Override
 	public String writeOptionsOptionalNextParameter(final LComponentOptions<?> options)
 	{
@@ -120,7 +132,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		final String jsConstructorCallExpression,
 		final Serializable... parameters)
 	{
-		final int currentId = this.nextComponentId.getAndIncrement();
+		final int currentId = this.NEXT_COMPONENT_ID.getAndIncrement();
 		this.getElement()
 			.executeJs(
 				this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");",

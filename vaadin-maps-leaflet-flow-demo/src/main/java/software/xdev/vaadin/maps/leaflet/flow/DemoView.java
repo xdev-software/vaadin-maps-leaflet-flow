@@ -18,6 +18,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDem
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.MultipleMapsDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
 
@@ -59,6 +60,11 @@ public class DemoView extends Composite<VerticalLayout>
 				MinimalisticDemo.NAV,
 				"Minimalistic",
 				"Showcasing the simplest form of using the API"
+			),
+			new Example(
+				MultipleMapsDemo.NAV,
+				"Multiple maps",
+				"Showcasing multiple concurrent maps in the same UI"
 			),
 			new Example(
 				InitialResizeDemo.NAV,
