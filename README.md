@@ -5,15 +5,18 @@
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
 # vaadin-maps-leaflet-flow
-Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
-
-This API wraps the Leaflet API in a Vaadin friendly way.
-To get started it's recommended to have a look at the demo (notably at the [minimalistic example](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/MinimalisticDemo.java))
+A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
 
 ![demo](assets/demo.png)
 
+## Usage
+
+This API wraps the Leaflet API in a Vaadin friendly way.<br/>It uses a similar structure (classes, methods) as the [Leaflet JavaScript API](https://leafletjs.com/reference.html).
+
+To get started it's recommended to have a look at the [demo](./vaadin-maps-leaflet-flow-demo), notably the [minimalistic example](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/MinimalisticDemo.java).
+
 > [!NOTE]
-> The API only supports sending instructions to the client.<br/>
+> **The API only supports sending instructions to the client**<br/>
 > Due to data integrity retrieving client-side data (that can be modified by users) is not supported.
 > * Event listeners can still be registered but this needs to be done manually.<br/>[An example is available in the demo](https://github.com/xdev-software/vaadin-maps-leaflet-flow/blob/5a008511935105ea977187112cd0053c7de33e19/vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/ComplexDemo.java#L223).
 
@@ -25,9 +28,6 @@ To get started it's recommended to have a look at the demo (notably at the [mini
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
 | Vaadin 24+ (latest) | ``3+`` |
-| Vaadin 23 | ``2.x`` |
-| Vaadin 14 (LTS - former release model) | ``1.x`` |
-
 
 ## Run the Demo
 * Checkout the repo
