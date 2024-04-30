@@ -13,12 +13,10 @@ A Vaadin Template Repo
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/template-placeholder/releases/latest#Installation)
 
-
 ## Run the Demo
 * Checkout the repo
 * Run ``mvn install && mvn -f template-placeholder-demo spring-boot:run``
 * Open http://localhost:8080
-
 
 <details>
   <summary>Show example</summary>
