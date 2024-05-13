@@ -119,7 +119,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>4.0.0-M13</version>
+					<version>4.0.0-M14</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -132,7 +132,7 @@
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>4.3</version>
+				<version>4.5</version>
 				<configuration>
 					<properties>
 						<email>${project.organization.url}</email>
@@ -303,6 +303,7 @@
 						</dependencies>
 						<configuration>
 							<configLocation>../.config/checkstyle/checkstyle.xml</configLocation>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						</configuration>
 						<executions>
 							<execution>

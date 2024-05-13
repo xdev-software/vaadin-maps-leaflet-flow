@@ -27,6 +27,7 @@ You should have the following things installed:
   * Install the following plugins:
     * [Save Actions](https://plugins.jetbrains.com/plugin/22113) - Provides save actions, like running the formatter or adding ``final`` to fields
     * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
+      * You may consider disabling telemetry in the settings under ``Tools > Sonarlint -> About``
     * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``
