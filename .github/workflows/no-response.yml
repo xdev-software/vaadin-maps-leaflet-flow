@@ -17,6 +17,7 @@ jobs:
         with:
           days-before-issue-stale: 7
           days-before-issue-close: 3
+          stale-issue-label: "stale"
           only-labels: "waiting-for-response"
           labels-to-remove-when-unstale: "waiting-for-response"
           stale-issue-message: "This issue will be closed soon because there has been no further activity."
