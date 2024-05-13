@@ -24,7 +24,6 @@ To get started it's recommended to have a look at the [demo](./vaadin-maps-leafl
 [Installation guide of the latest release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest#Installation)
 
 #### Compatibility with Vaadin
-
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
 | Vaadin 24+ (latest) | ``3+`` |
@@ -33,7 +32,6 @@ To get started it's recommended to have a look at the [demo](./vaadin-maps-leafl
 * Checkout the repo
 * Run ``mvn install && mvn -f vaadin-maps-leaflet-flow-demo spring-boot:run``
 * Open http://localhost:8080
-
 
 <details>
   <summary>Show example</summary>

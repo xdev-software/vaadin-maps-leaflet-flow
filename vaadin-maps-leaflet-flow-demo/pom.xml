@@ -24,7 +24,7 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.9</vaadin.version>
+		<vaadin.version>24.3.12</vaadin.version>
 
 		<org.springframework.boot.version>3.2.5</org.springframework.boot.version>
 	</properties>
@@ -189,11 +189,12 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.15.0</version>
+								<version>10.16.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
 							<configLocation>../.config/checkstyle/checkstyle.xml</configLocation>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						</configuration>
 						<executions>
 							<execution>
