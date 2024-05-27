@@ -27,7 +27,7 @@ jobs:
   sonar:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
+    if: ${{ !(github.event_name == 'pull_request' && startsWith(github.head_ref, 'renovate/')) && secrets.SONAR_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
         with:
