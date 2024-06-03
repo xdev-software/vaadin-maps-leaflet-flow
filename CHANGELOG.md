@@ -1,3 +1,8 @@
+## 4.2.1
+* Handle ``LEvented#off`` in the same way as ``LEvented#on``
+  * Fix incorrect formatting leading to JS error
+* Updated dependencies
+
 ## 4.2.0
 * Fixed some invalid built JavaScript commands #330
 * Add basic support for CRS #333

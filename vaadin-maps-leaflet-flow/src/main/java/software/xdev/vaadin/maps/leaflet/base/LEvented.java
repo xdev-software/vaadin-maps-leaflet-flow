@@ -63,11 +63,19 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	{
 		this.invokeSelf(".off("
 				+ "$0,"
-				+ (function != null ? "," + function : "")
+				+ function
 				+ (context != null ? "," + context : "")
 				+ ")",
 			type);
 		return this.self();
+	}
+	
+	/**
+	 * @see <a href="https://leafletjs.com/reference.html#evented-off">Leaflet docs</a>
+	 */
+	default S off(final String type, final String function)
+	{
+		return this.off(type, function, null);
 	}
 	
 	/**
