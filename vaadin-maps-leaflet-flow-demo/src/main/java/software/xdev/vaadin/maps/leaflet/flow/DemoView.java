@@ -14,6 +14,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.EventDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
@@ -70,6 +71,11 @@ public class DemoView extends Composite<VerticalLayout>
 				ComplexDemo.NAV,
 				"Complex",
 				"A complex example with various leaflet components and methods"
+			),
+			new Example(
+				EventDemo.NAV,
+				"Event",
+				"A showcase how events can work"
 			),
 			new Example(
 				NotOfThisEarthDemo.NAV,
