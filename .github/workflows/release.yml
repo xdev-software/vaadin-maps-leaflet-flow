@@ -25,7 +25,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with Maven
-      run: mvn -B clean package -Pproduction
+      run: ./mvnw -B clean package -Pproduction
       
     - name: Check for uncommited changes
       run: |
@@ -41,7 +41,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package -Pproduction"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package -Pproduction"
           exit 1
         fi
 
@@ -60,18 +60,19 @@ jobs:
   
     - name: Un-SNAP 
       run: |
+        mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
         modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
+            (cd "$i" && $mvnwPath -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
         done
   
     - name: Get version
       id: version
       run: |
-        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        version=$(../mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "release=$version" >> $GITHUB_OUTPUT
         echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
@@ -106,7 +107,7 @@ jobs:
           ```
 
           ### Additional notes
-          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.whitelisted-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
+          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
 
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
@@ -132,7 +133,7 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to Apache Maven Central
-      run: mvn -B deploy -Possrh
+      run: ../mvnw -B deploy -Possrh
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
@@ -140,7 +141,6 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
   publish-pages:
-    name: Publish dependencies and licenses to github pages
     runs-on: ubuntu-latest
     needs: [prepare_release]
     steps:
@@ -159,40 +159,15 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    - name: Build dependencies/licenses files
-      run: mvn -B project-info-reports:dependencies
+    - name: Build site
+      run: ../mvnw -B site
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
-    - name: Upload licenses - Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: dependencies-licenses
-        path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/site
-
-    - name: Generate docs/dependencies dir
-      run: mkdir -p docs/dependencies
-
-    - name: Move built files into docs/dependencies
-      run: mv ${{ env.PRIMARY_MAVEN_MODULE }}/target/site/* docs/dependencies
-
-    - name: Rename dependencies.html to index.html
-      working-directory: docs/dependencies
-      run: mv dependencies.html index.html
-
-    - name: Copy Readme into docs (as index.md)
-      run: cp README.md docs/index.md
-
-    - name: Configure Pages
-      working-directory: docs
-      run: |-
-        echo "theme: jekyll-theme-tactile" > _config.yml
-
     - name: Deploy to Github pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        enable_jekyll: true
+        publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
 
   after_release:
     runs-on: ubuntu-latest
@@ -208,12 +183,13 @@ jobs:
 
     - name: Inc Version and SNAP 
       run: |
+        mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
         modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
-            (cd "$i" && mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
+            (cd "$i" && $mvnwPath -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
         done
 
     - name: Git Commit and Push

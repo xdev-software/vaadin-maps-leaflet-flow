@@ -7,6 +7,7 @@ on:
     paths-ignore: 
       - '**.md'
       - '.config/**'
+      - '.github/**'
       - '.idea/**'
       - 'assets/**'
   pull_request:
@@ -14,6 +15,7 @@ on:
     paths-ignore: 
       - '**.md'
       - '.config/**'
+      - '.github/**'
       - '.idea/**'
       - 'assets/**'
 
@@ -41,7 +43,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with Maven
-      run: mvn -B clean package -Pproduction
+      run: ./mvnw -B clean package -Pproduction
       
     - name: Check for uncommited changes
       run: |
@@ -57,7 +59,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package -Pproduction"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package -Pproduction"
           exit 1
         fi
 
@@ -70,6 +72,7 @@ jobs:
 
   code-style:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
 
     strategy:
       matrix:
@@ -87,4 +90,4 @@ jobs:
         cache: 'maven'
 
     - name: Run Checkstyle
-      run: mvn -B checkstyle:check -P checkstyle -T2C
+      run: ./mvnw -B checkstyle:check -P checkstyle -T2C
