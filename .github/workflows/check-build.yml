@@ -1,0 +1,93 @@
+name: Check Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+      - '.config/**'
+      - '.github/**'
+      - '.idea/**'
+      - 'assets/**'
+  pull_request:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+      - '.config/**'
+      - '.github/**'
+      - '.idea/**'
+      - 'assets/**'
+
+env:
+  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
+  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [17, 21]
+        distribution: [temurin]
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
+        cache: 'maven'
+      
+    - name: Build with Maven
+      run: ./mvnw -B clean package
+      
+    - name: Check for uncommited changes
+      run: |
+        if [[ "$(git status --porcelain)" != "" ]]; then
+          echo ----------------------------------------
+          echo git status
+          echo ----------------------------------------
+          git status
+          echo ----------------------------------------
+          echo git diff
+          echo ----------------------------------------
+          git diff
+          echo ----------------------------------------
+          echo Troubleshooting
+          echo ----------------------------------------
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
+          exit 1
+        fi
+
+    - name: Upload demo files
+      uses: actions/upload-artifact@v4
+      with:
+        name: demo-files-java-${{ matrix.java }}
+        path: ${{ env.DEMO_MAVEN_MODULE }}/target/${{ env.DEMO_MAVEN_MODULE }}.jar
+        if-no-files-found: error
+
+  code-style:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
+
+    strategy:
+      matrix:
+        java: [17]
+        distribution: [temurin]
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
+        cache: 'maven'
+
+    - name: Run Checkstyle
+      run: ./mvnw -B checkstyle:check -P checkstyle -T2C
