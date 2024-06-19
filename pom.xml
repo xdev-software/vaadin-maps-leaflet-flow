@@ -73,6 +73,7 @@
 						<version>3.23.0</version>
 						<configuration>
 							<includeTests>true</includeTests>
+							<printFailingErrors>true</printFailingErrors>
 							<rulesets>
 								<ruleset>.config/pmd/ruleset.xml</ruleset>
 							</rulesets>
