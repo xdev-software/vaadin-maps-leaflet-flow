@@ -1,3 +1,6 @@
+## 4.2.2
+* Deduplicated ``tLMapZoomPanOptions``
+
 ## 4.2.1
 * Handle ``LEvented#off`` in the same way as ``LEvented#on``
   * Fix incorrect formatting leading to JS error
