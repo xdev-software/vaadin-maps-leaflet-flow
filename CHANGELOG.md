@@ -1,4 +1,5 @@
-## 4.2.2
+## 4.3.0
+* Updated to Vaadin 24.4
 * Deduplicated ``tLMapZoomPanOptions``
 
 ## 4.2.1
