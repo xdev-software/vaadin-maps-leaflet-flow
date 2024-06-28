@@ -67,7 +67,7 @@ public class FreeingUpResourceBenchmarkDemo extends AbstractDemo
 	// S5413 - Yes it's used correctly
 	// S2245 - This is a reproducible demo
 	// S1215 - This is a memory test and we don't rely on random GC collects
-	@SuppressWarnings({"java:S5413", "java:S2245", "java:S1215", "java:S3776"})
+	@SuppressWarnings({"java:S5413", "java:S2245", "java:S1215", "java:S3776", "PMD"})
 	private void addMemoryTestDemo()
 	{
 		final AtomicBoolean abort = new AtomicBoolean(false);

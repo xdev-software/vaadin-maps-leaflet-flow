@@ -1,4 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "rebaseWhen": "behind-base-branch"
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "description": "Ignore project internal dependencies",
+      "packagePattern": "^software.xdev:vaadin-maps-leaflet-flow",
+      "datasources": [
+        "maven"
+      ],
+      "enabled": false
+    }
+  ]
 }

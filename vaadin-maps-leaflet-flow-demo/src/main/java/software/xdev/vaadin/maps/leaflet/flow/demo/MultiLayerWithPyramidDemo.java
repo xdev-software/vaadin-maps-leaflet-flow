@@ -2,7 +2,6 @@ package software.xdev.vaadin.maps.leaflet.flow.demo;
 
 import java.util.List;
 
-import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.router.Route;
@@ -22,6 +21,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementReg
 public class MultiLayerWithPyramidDemo extends HorizontalLayout
 {
 	public static final String NAV = "/multilayer";
+	private static final String WIKIPEDIA_THUMB = "https://upload.wikimedia.org/wikipedia/commons/thumb/";
 	
 	private static final List<BuildingData> DATA = List.of(
 		new BuildingComplex(
@@ -30,14 +30,19 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 				new Building(
 					"Great Pyramid of Giza",
 					"https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+					WIKIPEDIA_THUMB + "e/e3/Kheops-Pyramid.jpg/320px-Kheops-Pyramid.jpg",
 					createRectangleDataPoints(29.980138, 31.133104, 29.978121, 31.135367)),
 				new Building(
 					"Pyramid of Khafre",
 					"https://en.wikipedia.org/wiki/Pyramid_of_Khafre",
+					WIKIPEDIA_THUMB + "e/e4/Khephren_009.jpg/320px-Khephren_009.jpg",
 					createRectangleDataPoints(29.976912, 31.129671, 29.974964, 31.1318537)),
 				new Building(
 					"Pyramid of Menkaure",
 					"https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+					WIKIPEDIA_THUMB
+						+ "3/38/Cairo%2C_Gizeh%2C_Pyramid_of_Menkaure%2C_Egypt%2C_Oct_2005"
+						+ ".jpg/320px-Cairo%2C_Gizeh%2C_Pyramid_of_Menkaure%2C_Egypt%2C_Oct_2005.jpg",
 					createRectangleDataPoints(29.972898, 31.127787, 29.972039, 31.1287585)))
 		),
 		new BuildingComplex(
@@ -46,6 +51,8 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 				new Building(
 					"Sphinx 🐈",
 					"https://en.wikipedia.org/wiki/Great_Sphinx_of_Giza",
+					WIKIPEDIA_THUMB
+						+ "f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg/320px-Great_Sphinx_of_Giza_-_20080716a.jpg",
 					List.of(
 						new DataPoint(29.975283598029613, 31.137253754493454),
 						new DataPoint(29.97535970910997, 31.137377101561537),
@@ -66,6 +73,7 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 				new Building(
 					"Tomb of Queen Khentkaus I",
 					"https://en.wikipedia.org/wiki/Pyramid_of_Khentkaus_I",
+					"https://upload.wikimedia.org/wikipedia/commons/b/b6/Tomb_of_Khentkaus_I.jpg",
 					createRectangleDataPoints(29.973586, 31.135233, 29.973164, 31.135737)
 				)
 			)
@@ -144,7 +152,11 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 		new LPolygon(this.reg, building.dataPoints().stream()
 			.map(dp -> new LLatLng(this.reg, dp.lat(), dp.lng()))
 			.toList())
-			.bindPopup(new Anchor(building.url(), building.name()).getElement().getOuterHTML())
+			.bindPopup(
+				"<a href='" + building.url() + "' target='_blank'>"
+					+ "<center><b>" + building.name() + "</b></center><br>"
+					+ "<img style='width:12em' src='" + building.imageUrl() + "'>"
+					+ "</a>")
 			.addTo(this.activeLayerGroup);
 	}
 	
@@ -167,6 +179,7 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 	record Building(
 		String name,
 		String url,
+		String imageUrl,
 		List<DataPoint> dataPoints
 	) implements BuildingData
 	{

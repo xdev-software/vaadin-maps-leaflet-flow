@@ -15,9 +15,13 @@
  */
 package software.xdev.vaadin.maps.leaflet.map;
 
-/**
- * @see <a href="https://leafletjs.com/reference.html#pan-options">Leaflet docs</a>
- */
-public class LMapPanOptions extends AbstractLMapPanOptions<LMapPanOptions>
+public class AbstractLMapZoomPanOptions<T extends AbstractLMapZoomPanOptions<T>>
+	extends AbstractLMapPanOptions<T>
+	implements LMapZoomBaseOptions<T>
 {
+	@Override
+	public T withAnimate(final Boolean animate)
+	{
+		return LMapZoomBaseOptions.super.withAnimate(animate);
+	}
 }
