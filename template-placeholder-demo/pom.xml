@@ -61,13 +61,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
-			<exclusions>
-				<!-- https://github.com/vaadin/flow/issues/18449 -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>copilot</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>software.xdev</groupId>
