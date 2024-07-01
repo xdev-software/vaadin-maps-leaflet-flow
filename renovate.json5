@@ -9,6 +9,16 @@
         "maven"
       ],
       "enabled": false
+    },
+    {
+      "description": "Group net.sourceforge.pmd",
+      "matchPackagePatterns": [
+        "^net.sourceforge.pmd"
+      ],
+      "datasources": [
+        "maven"
+      ],
+      "groupName": "net.sourceforge.pmd"
     }
   ]
 }
