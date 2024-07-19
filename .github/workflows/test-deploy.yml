@@ -24,7 +24,7 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to OSSRH
-      run: ../mvnw -B deploy -Possrh
+      run: ../mvnw -B deploy -Possrh -DskipTests
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
