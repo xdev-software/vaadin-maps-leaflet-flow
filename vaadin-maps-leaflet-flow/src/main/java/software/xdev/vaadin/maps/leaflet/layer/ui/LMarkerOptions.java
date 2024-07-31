@@ -35,6 +35,7 @@ public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 	private Double riseOffset;
 	private String shadowPane;
 	private Boolean autoPanFocus;
+	private Boolean draggable;
 	
 	public LIcon getIcon()
 	{
@@ -193,6 +194,22 @@ public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 	public LMarkerOptions withAutoPanFocus(final Boolean autoPanFocus)
 	{
 		this.setAutoPanFocus(autoPanFocus);
+		return this.self();
+	}
+
+	public Boolean getDraggable()
+	{
+		return this.draggable;
+	}
+
+	public void setDraggable(final Boolean draggable)
+	{
+		this.draggable = draggable;
+	}
+
+	public LMarkerOptions withDraggable(final Boolean draggable)
+	{
+		this.setDraggable(draggable);
 		return this.self();
 	}
 }
