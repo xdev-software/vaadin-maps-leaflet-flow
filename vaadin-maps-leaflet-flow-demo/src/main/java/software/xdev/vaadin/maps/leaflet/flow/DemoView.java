@@ -1,6 +1,7 @@
 package software.xdev.vaadin.maps.leaflet.flow;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Composite;
@@ -101,7 +102,64 @@ public class DemoView extends Composite<VerticalLayout>
 		));
 	}
 	
-	record Example(String route, String name, String desc)
-	{
-	}
+	static final class Example
+		{
+			private final String route;
+			private final String name;
+			private final String desc;
+			
+			Example(String route, String name, String desc)
+			{
+				this.route = route;
+				this.name = name;
+				this.desc = desc;
+			}
+			
+			public String route()
+			{
+				return route;
+			}
+			
+			public String name()
+			{
+				return name;
+			}
+			
+			public String desc()
+			{
+				return desc;
+			}
+			
+			@Override
+			public boolean equals(Object obj)
+			{
+				if(obj == this)
+				{
+					return true;
+				}
+				if(obj == null || obj.getClass() != this.getClass())
+				{
+					return false;
+				}
+				var that = (Example)obj;
+				return Objects.equals(this.route, that.route) &&
+					   Objects.equals(this.name, that.name) &&
+					   Objects.equals(this.desc, that.desc);
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return Objects.hash(route, name, desc);
+			}
+			
+			@Override
+			public String toString()
+			{
+				return "Example[" +
+					   "route=" + route + ", " +
+					   "name=" + name + ", " +
+					   "desc=" + desc + ']';
+			}
+		}
 }

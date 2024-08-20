@@ -1,6 +1,9 @@
 package software.xdev.vaadin.maps.leaflet.flow.demo;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.treegrid.TreeGrid;
@@ -130,12 +133,14 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 			ev.getFirstSelectedItem().ifPresent(buildingData -> {
 				this.activeLayerGroup = new LLayerGroup(this.reg);
 				
-				if(buildingData instanceof final BuildingComplex complex)
+				if(buildingData instanceof BuildingComplex)
 				{
+					final BuildingComplex complex = (BuildingComplex)buildingData;
 					complex.buildings().forEach(this::createPolygonAndAddToActiveLayerGroup);
 				}
-				else if(buildingData instanceof final Building building)
+				else if(buildingData instanceof Building)
 				{
+					final Building building = (Building)buildingData;
 					this.createPolygonAndAddToActiveLayerGroup(building);
 				}
 				
@@ -151,7 +156,7 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 	{
 		new LPolygon(this.reg, building.dataPoints().stream()
 			.map(dp -> new LLatLng(this.reg, dp.lat(), dp.lng()))
-			.toList())
+			.collect(Collectors.toList()))
 			.bindPopup(
 				"<a href='" + building.url() + "' target='_blank'>"
 					+ "<center><b>" + building.name() + "</b></center><br>"
@@ -160,33 +165,141 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 			.addTo(this.activeLayerGroup);
 	}
 	
-	record BuildingComplex(
-		String name,
-		List<Building> buildings
-	) implements BuildingData
+	final static class BuildingComplex implements BuildingData
 	{
+		private final String name;
+		private final List<Building> buildings;
+		
+		BuildingComplex(
+			String name,
+			List<Building> buildings
+		)
+		{
+			this.name = name;
+			this.buildings = buildings;
+		}
+		
+		public String name()
+		{
+			return name;
+		}
+		
+		public List<Building> buildings()
+		{
+			return buildings;
+		}
+		
+		@Override
+		public boolean equals(Object obj)
+		{
+			if(obj == this)
+			{
+				return true;
+			}
+			if(obj == null || obj.getClass() != this.getClass())
+			{
+				return false;
+			}
+			var that = (BuildingComplex)obj;
+			return Objects.equals(this.name, that.name) &&
+				   Objects.equals(this.buildings, that.buildings);
+		}
+		
+		@Override
+		public int hashCode()
+		{
+			return Objects.hash(name, buildings);
+		}
+		
+		@Override
+		public String toString()
+		{
+			return "BuildingComplex[" +
+				   "name=" + name + ", " +
+				   "buildings=" + buildings + ']';
+		}
+	
 		@Override
 		public List<BuildingData> nested()
 		{
 			return this.buildings()
 				.stream()
 				.map(BuildingData.class::cast)
-				.toList();
+				.collect(Collectors.toList());
 		}
 	}
 	
-	
-	record Building(
-		String name,
-		String url,
-		String imageUrl,
-		List<DataPoint> dataPoints
-	) implements BuildingData
+	final static class Building implements BuildingData
 	{
+		private final String name;
+		private final String url;
+		private final String imageUrl;
+		private final List<DataPoint> dataPoints;
+		
+		Building(
+			String name,
+			String url,
+			String imageUrl,
+			List<DataPoint> dataPoints
+		)
+		{
+			this.name = name;
+			this.url = url;
+			this.imageUrl = imageUrl;
+			this.dataPoints = dataPoints;
+		}
+		
+		
+		
+		@Override
+		public boolean equals(Object obj)
+		{
+			if(obj == this)
+			{
+				return true;
+			}
+			if(obj == null || obj.getClass() != this.getClass())
+			{
+				return false;
+			}
+			var that = (Building)obj;
+			return Objects.equals(this.name, that.name) &&
+				   Objects.equals(this.url, that.url) &&
+				   Objects.equals(this.imageUrl, that.imageUrl) &&
+				   Objects.equals(this.dataPoints, that.dataPoints);
+		}
+		
+		@Override
+		public int hashCode()
+		{
+			return Objects.hash(name, url, imageUrl, dataPoints);
+		}
+		
+		@Override
+		public String name()
+		{
+			return name;
+		}
+		
 		@Override
 		public List<BuildingData> nested()
 		{
 			return List.of();
+		}
+		
+		public List<DataPoint> dataPoints()
+		{
+			return dataPoints;
+		}
+		
+		public String url()
+		{
+			return url;
+		}
+		
+		public String imageUrl()
+		{
+			return imageUrl;
 		}
 	}
 	
@@ -209,7 +322,55 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 		);
 	}
 	
-	record DataPoint(double lat, double lng)
-	{
-	}
+	final static class DataPoint
+		{
+			private final double lat;
+			private final double lng;
+			
+			DataPoint(double lat, double lng)
+			{
+				this.lat = lat;
+				this.lng = lng;
+			}
+			
+			public double lat()
+			{
+				return lat;
+			}
+			
+			public double lng()
+			{
+				return lng;
+			}
+			
+			@Override
+			public boolean equals(Object obj)
+			{
+				if(obj == this)
+				{
+					return true;
+				}
+				if(obj == null || obj.getClass() != this.getClass())
+				{
+					return false;
+				}
+				var that = (DataPoint)obj;
+				return Double.doubleToLongBits(this.lat) == Double.doubleToLongBits(that.lat) &&
+					   Double.doubleToLongBits(this.lng) == Double.doubleToLongBits(that.lng);
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return Objects.hash(lat, lng);
+			}
+			
+			@Override
+			public String toString()
+			{
+				return "DataPoint[" +
+					   "lat=" + lat + ", " +
+					   "lng=" + lng + ']';
+			}
+		}
 }

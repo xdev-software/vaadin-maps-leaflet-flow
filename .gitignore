@@ -74,6 +74,8 @@ tsconfig.json
 types.d.ts
 vite.config.ts
 vite.generated.ts
+/frontend/
+/*/frontend/
 /*/src/main/frontend/generated/
 /*/src/main/frontend/index.html
 /*/src/main/dev-bundle/
@@ -103,3 +105,5 @@ vite.generated.ts
 .idea/codeStyles/*
 !.idea/codeStyles/codeStyleConfig.xml
 !.idea/codeStyles/Project.xml
+
+

@@ -169,13 +169,14 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		if(this.clientMapSize.get() != this.componentIndexMap.size())
 		{
 			final Collection<Integer> ids = this.componentIndexMap.values();
-			this.getElement().executeJs("""
-				let activeIds = [%s];
-				let components = %s;
-				Array.from(components.keys()).filter(i => !activeIds.includes(i)).forEach(i => components.delete(i));
-				""".formatted(
-				ids.stream().map(String::valueOf).collect(Collectors.joining(",")),
-				this.clientComponents()));
+			this.getElement().executeJs(("let activeIds = [%s];\n" +
+							
+										 "let components = %s;\n" +
+										 "Array.from(components.keys()).filter(i => !activeIds.includes(i)).forEach(i "
+										 + "=> components.delete(i));\n"),
+				
+					ids.stream().map(String::valueOf).collect(Collectors.joining(",")),
+					this.clientComponents());
 			this.clientMapSize.set(ids.size());
 		}
 	}

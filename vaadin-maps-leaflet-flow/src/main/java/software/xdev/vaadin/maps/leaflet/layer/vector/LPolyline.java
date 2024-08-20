@@ -79,7 +79,7 @@ public class LPolyline extends LPath<LPolyline>
 			return convertLatLngs(latLngsData.stream()
 				.filter(LLatLng.class::isInstance)
 				.map(LLatLng.class::cast)
-				.toList());
+				.collect(Collectors.toList()));
 		}
 		
 		return "["

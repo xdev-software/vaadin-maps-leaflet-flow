@@ -104,8 +104,8 @@ public class FreeingUpResourceBenchmarkDemo extends AbstractDemo
 									
 									ui.accessSynchronously(removed::remove);
 								}
-								final double lat = random.nextDouble(-100, 100);
-								final double lng = random.nextDouble(-100, 100);
+								final double lat = random.nextDouble() * 200 - 100;
+								final double lng = random.nextDouble() * 200 - 100;
 								final double v = random.nextDouble();
 								
 								ui.accessSynchronously(() ->
