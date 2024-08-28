@@ -1,3 +1,6 @@
+## 4.3.1
+* Add "draggable" property to LMarkerOptions #413 (thanks to @ChristianHoesel)
+
 ## 4.3.0
 * Updated to Vaadin 24.4
 * Deduplicated ``tLMapZoomPanOptions``
