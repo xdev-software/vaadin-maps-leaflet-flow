@@ -1,3 +1,6 @@
+## 4.4.0
+* Added support for [GeoJSON](https://leafletjs.com/reference.html#geojson) and [FeatureGroup](https://leafletjs.com/reference.html#featuregroup) #438
+
 ## 4.3.1
 * Add "draggable" property to LMarkerOptions #413 (thanks to @ChristianHoesel)
 

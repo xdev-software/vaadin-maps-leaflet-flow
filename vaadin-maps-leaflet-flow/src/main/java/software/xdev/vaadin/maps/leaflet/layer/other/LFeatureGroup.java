@@ -13,27 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer;
+package software.xdev.vaadin.maps.leaflet.layer.other;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import software.xdev.vaadin.maps.leaflet.layer.LAbstractLayerGroup;
+import software.xdev.vaadin.maps.leaflet.layer.LLayer;
+import software.xdev.vaadin.maps.leaflet.layer.LLayerOptions;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#layergroup">Leaflet docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#featuregroup">Leaflet docs</a>
  */
-public class LLayerGroup extends LAbstractLayerGroup<LLayerGroup>
+public class LFeatureGroup extends LAbstractLayerGroup<LFeatureGroup>
 {
-	public LLayerGroup(
+	public LFeatureGroup(
 		final LComponentManagementRegistry compReg,
 		final LLayer<?>[] layers,
 		final LLayerOptions<?>[] options)
 	{
 		super(
 			compReg,
-			"L.layerGroup("
+			"L.featureGroup("
 				+ (layers != null
 				? "[" + Stream.of(layers)
 				.map(LLayer::clientComponentJsAccessor)
@@ -47,7 +50,7 @@ public class LLayerGroup extends LAbstractLayerGroup<LLayerGroup>
 				+ ")");
 	}
 	
-	public LLayerGroup(
+	public LFeatureGroup(
 		final LComponentManagementRegistry compReg,
 		final LLayer<?>... layers)
 	{

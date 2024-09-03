@@ -16,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.EventDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.GeoJSONDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
@@ -92,6 +93,11 @@ public class DemoView extends Composite<VerticalLayout>
 				"Multi-Layer",
 				"using Pyramids ▲ and more...\n"
 					+ "Showcases a selection of different layers and how they can be displayed on a map"
+			),
+			new Example(
+				GeoJSONDemo.NAV,
+				"GeoJSON",
+				"Showcases how GeoJSON can be used"
 			),
 			new Example(
 				FreeingUpResourceBenchmarkDemo.NAV,
