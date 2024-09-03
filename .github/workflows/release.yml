@@ -160,7 +160,7 @@ jobs:
         cache: 'maven'
 
     - name: Build site
-      run: ../mvnw -B site -DskipTests
+      run: ../mvnw -B compile site -DskipTests -T2C
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Deploy to Github pages

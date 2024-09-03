@@ -1,3 +1,7 @@
+## 4.4.0
+* Added support for [GeoJSON](https://leafletjs.com/reference.html#geojson) and [FeatureGroup](https://leafletjs.com/reference.html#featuregroup) #438
+* Add "draggable" property to LMarkerOptions #413 (thanks to @ChristianHoesel)
+
 ## 4.3.0
 * Updated to Vaadin 24.4
 * Deduplicated ``tLMapZoomPanOptions``

@@ -105,7 +105,9 @@ public class ComplexDemo extends AbstractDemo
 		final LMarker markerInfo = new LMarker(
 			this.reg,
 			new LLatLng(this.reg, 49.674662, 12.162869),
-			new LMarkerOptions().withIcon(divIconInfo));
+			new LMarkerOptions()
+				.withIcon(divIconInfo)
+				.withDraggable(true));
 		
 		@SuppressWarnings("checkstyle:LineLength")
 		final LIcon iconXDEV = new LIcon(this.reg, new LIconOptions()

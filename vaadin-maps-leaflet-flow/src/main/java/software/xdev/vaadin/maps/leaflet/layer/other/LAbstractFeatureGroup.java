@@ -13,24 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer.vector;
+package software.xdev.vaadin.maps.leaflet.layer.other;
 
 import java.io.Serializable;
 
 import software.xdev.vaadin.maps.leaflet.base.has.LHasBringTo;
-import software.xdev.vaadin.maps.leaflet.base.has.LHasRedraw;
 import software.xdev.vaadin.maps.leaflet.base.has.LHasSetStylePath;
-import software.xdev.vaadin.maps.leaflet.layer.LInteractiveLayer;
+import software.xdev.vaadin.maps.leaflet.layer.LAbstractLayerGroup;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
 /**
- * @see <a href="https://leafletjs.com/reference.html#path">Leaflet docs</a>
+ * @see <a href="https://leafletjs.com/reference.html#featuregroup">Leaflet docs</a>
  */
-public abstract class LPath<S extends LPath<S>> extends LInteractiveLayer<S>
-	implements LHasBringTo<S>, LHasRedraw<S>, LHasSetStylePath<S>
+public class LAbstractFeatureGroup<S extends LAbstractFeatureGroup<S>> extends LAbstractLayerGroup<S>
+	implements LHasBringTo<S>, LHasSetStylePath<S>
 {
-	protected LPath(
+	protected LAbstractFeatureGroup(
 		final LComponentManagementRegistry compReg,
 		final String jsConstructorCallExpression,
 		final Serializable... parameters)
