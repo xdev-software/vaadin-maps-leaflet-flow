@@ -73,8 +73,8 @@ jobs:
 
   checkstyle:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
+    timeout-minutes: 15
 
     strategy:
       matrix:
@@ -96,8 +96,8 @@ jobs:
 
   pmd:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'renovate/') }}
+    timeout-minutes: 15
 
     strategy:
       matrix:
