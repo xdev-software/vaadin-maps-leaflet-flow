@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Demo" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="software.xdev.Application" />
+    <option name="MAIN_CLASS_NAME" value="software.xdev.vaadin.Application" />
     <module name="template-placeholder-demo" />
     <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="software.xdev.*" />
+        <option name="PATTERN" value="software.xdev.vaadin.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
