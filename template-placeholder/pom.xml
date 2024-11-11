@@ -103,8 +103,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
-			<!-- "provided" to prevent conflicts in final project. It's assumed that Vaadin is already present -->
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
