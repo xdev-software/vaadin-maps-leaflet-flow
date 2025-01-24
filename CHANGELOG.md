@@ -1,4 +1,4 @@
-## 4.4.1
+## 4.5.0
 * Added support for [WMS](https://leafletjs.com/reference.html#tilelayer-wms) #486
 * Updated dependencies
 
