@@ -33,6 +33,8 @@ import software.xdev.vaadin.maps.leaflet.layer.LLayer;
 import software.xdev.vaadin.maps.leaflet.layer.LLayerGroup;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LImageOverlay;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LTileLayer;
+import software.xdev.vaadin.maps.leaflet.layer.raster.LTileLayerWMS;
+import software.xdev.vaadin.maps.leaflet.layer.raster.LTileLayerWMSOptions;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LVideoOverlay;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LVideoOverlayOptions;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LMarker;
@@ -89,8 +91,25 @@ public class ComplexDemo extends AbstractDemo
 			"https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
 			16,
 			"Map data: &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, <a "
-				+ "href=\"http://viewfinderpanoramas.org\">SRTM</a> | Map style: &copy; <a href=\"https://opentopomap"
+				+ "href=\"https://viewfinderpanoramas.org\">SRTM</a> | Map style: &copy; <a href=\"https://opentopomap"
 				+ ".org\">OpenTopoMap</a> (<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>"
+		);
+		final LTileLayerWMS tlWMS = new LTileLayerWMS(
+			this.reg,
+			"https://ows.mundialis.de/services/service?",
+			"TOPO-WMS,OSM-Overlay-WMS",
+			11,
+			"&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, "
+				+ "<a href=\"https://www.terrestris.de/en/demos/\">Terrestris/Mundialis</a>"
+		);
+		final LTileLayerWMS tlWMSUSWeatherData = new LTileLayerWMS(
+			this.reg,
+			"https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+			new LTileLayerWMSOptions()
+				.withLayers("nexrad-n0r-900913")
+				.withFormat("image/png")
+				.withTransparent(true)
+				.withAttribution("Weather data © 2012 IEM Nexrad")
 		);
 		
 		final LDivIcon divIconInfo = new LDivIcon(this.reg, new LDivIconOptions()
@@ -177,7 +196,7 @@ public class ComplexDemo extends AbstractDemo
 			.addLayer(tlOSM)
 			.addLayer(lLayerGroupPlaces);
 		
-		this.addControls(tlOSM, tlOSMHOT, tlTopo, lLayerGroupPlaces, lLayerGroupFood);
+		this.addControls(tlOSM, tlOSMHOT, tlTopo, tlWMS, lLayerGroupPlaces, lLayerGroupFood, tlWMSUSWeatherData);
 		
 		this.hlButtons.setWidthFull();
 		this.add(this.hlButtons);
@@ -198,20 +217,24 @@ public class ComplexDemo extends AbstractDemo
 		final LTileLayer tlOSM,
 		final LTileLayer tlOSMHOT,
 		final LTileLayer tlTopo,
+		final LTileLayerWMS tlWMS,
 		final LLayerGroup lLayerGroupPlaces,
-		final LLayerGroup lLayerGroupFood)
+		final LLayerGroup lLayerGroupFood,
+		final LTileLayerWMS tlWMSUSWeatherData)
 	{
 		// Use LinkedHashMap for order
 		final LinkedHashMap<String, LLayer<?>> baseLayers = new LinkedHashMap<>();
 		baseLayers.put("OSM", tlOSM);
 		baseLayers.put("OSM HOT", tlOSMHOT);
 		baseLayers.put("TOPO", tlTopo);
+		baseLayers.put("WMS", tlWMS);
 		final LControlLayers lControlLayers = new LControlLayers(
 			this.reg,
 			baseLayers,
 			new LControlLayersOptions().withCollapsed(false))
 			.addOverlay(lLayerGroupPlaces, "Places")
 			.addOverlay(lLayerGroupFood, "Food")
+			.addOverlay(tlWMSUSWeatherData, "US Weather data")
 			.addTo(this.map);
 		// Apply manual patch for https://github.com/Leaflet/Leaflet/issues/9009 as this was not released yet
 		this.map.on(

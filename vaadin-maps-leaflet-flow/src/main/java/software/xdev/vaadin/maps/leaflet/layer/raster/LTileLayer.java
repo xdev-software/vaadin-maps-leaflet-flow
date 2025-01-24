@@ -15,7 +15,6 @@
  */
 package software.xdev.vaadin.maps.leaflet.layer.raster;
 
-import software.xdev.vaadin.maps.leaflet.layer.LGridLayer;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
@@ -30,7 +29,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
  *
  * @see <a href="https://wiki.openstreetmap.org/wiki/Raster_tile_providers">List of raster tile providers</a>
  */
-public class LTileLayer extends LGridLayer<LTileLayer>
+public class LTileLayer extends LAbstractTileLayer<LTileLayer>
 {
 	public LTileLayer(
 		final LComponentManagementRegistry compReg,
