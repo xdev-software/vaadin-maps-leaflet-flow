@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
-	<version>4.4.1-SNAPSHOT</version>
+	<version>4.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<organization>
@@ -40,12 +40,12 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>3.5.0</version>
+						<version>3.6.0</version>
 						<dependencies>
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.18.1</version>
+								<version>10.21.1</version>
 							</dependency>
 						</dependencies>
 						<configuration>
@@ -70,7 +70,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-pmd-plugin</artifactId>
-						<version>3.25.0</version>
+						<version>3.26.0</version>
 						<configuration>
 							<includeTests>true</includeTests>
 							<printFailingErrors>true</printFailingErrors>
@@ -82,12 +82,12 @@
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-core</artifactId>
-								<version>7.5.0</version>
+								<version>7.9.0</version>
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-java</artifactId>
-								<version>7.5.0</version>
+								<version>7.9.0</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -99,7 +99,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jxr-plugin</artifactId>
-						<version>3.5.0</version>
+						<version>3.6.0</version>
 					</plugin>
 				</plugins>
 			</reporting>

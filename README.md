@@ -23,6 +23,11 @@ To get started it's recommended to have a look at the [demo](./vaadin-maps-leafl
 ## Installation
 [Installation guide of the latest release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest#Installation)
 
+#### Static resources
+Please note that Leaflet uses a few default icons for various components (e.g. Markers).<br/>
+These are also shipped with the library and can be found inside [``META-INF/resources``](./vaadin-maps-leaflet-flow/src/main/resources/META-INF/resources/).<br/>
+You might have to fine tune your security configuration to allow these.
+
 #### Compatibility with Vaadin
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |

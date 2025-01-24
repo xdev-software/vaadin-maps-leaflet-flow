@@ -1,3 +1,7 @@
+## 4.5.0
+* Added support for [WMS](https://leafletjs.com/reference.html#tilelayer-wms) #486
+* Updated dependencies
+
 ## 4.4.0
 * Added support for [GeoJSON](https://leafletjs.com/reference.html#geojson) and [FeatureGroup](https://leafletjs.com/reference.html#featuregroup) #438
 * Add "draggable" property to LMarkerOptions #413 (thanks to @ChristianHoesel)

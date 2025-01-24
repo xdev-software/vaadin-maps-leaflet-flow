@@ -15,9 +15,22 @@
  */
 package software.xdev.vaadin.maps.leaflet.layer.raster;
 
+import java.io.Serializable;
+
+import software.xdev.vaadin.maps.leaflet.layer.LGridLayer;
+import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
+
+
 /**
- * @see <a href="https://leafletjs.com/reference.html#tilelayer-option">Leaflet docs</a>
+ * Represents a <a href="https://leafletjs.com/reference.html#tilelayer">tile layer</a>.
  */
-public class LTileLayerOptions extends LAbstractTileLayerOptions<LTileLayerOptions>
+public abstract class LAbstractTileLayer<S extends LAbstractTileLayer<S>> extends LGridLayer<S>
 {
+	protected LAbstractTileLayer(
+		final LComponentManagementRegistry compReg,
+		final String jsConstructorCallExpression,
+		final Serializable... parameters)
+	{
+		super(compReg, jsConstructorCallExpression, parameters);
+	}
 }
