@@ -13,8 +13,8 @@ A Vaadin Template Repo
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/template-placeholder/releases/latest#Installation)
 
-### Additional notes
-* [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
+### Spring-Boot
+* You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
 
 ## Run the Demo
 * Checkout the repo
