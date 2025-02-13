@@ -18,7 +18,21 @@ To get started it's recommended to have a look at the [demo](./vaadin-maps-leafl
 > [!NOTE]
 > **The API only supports sending instructions to the client**<br/>
 > Due to data integrity retrieving client-side data (that can be modified by users) is not supported.
-> * Event listeners can still be registered but this needs to be done manually.<br/>[An example is available in the demo](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/EventDemo.java).
+> 
+> Event listeners can still be registered but this needs to be done manually. An example is available [in the demo](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/EventDemo.java).
+> 
+> <details><summary>The following code snippet is a simplification of an even more <a href="./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/ComplexDemo.java#L251">complex example</a> which sends (unvalidated!) client side data back to the server (click to expand)</summary>
+>
+> ```java
+> this.map.on("click", "e => document.getElementById('" + ID + "').$server.mapClicked(e.latlng.lat, e.latng.lng)");
+> ...
+> @ClientCallable
+> public void mapClicked(double lat, double lng)
+> {
+>   LOG.info("Map clicked - lat: {}, lng: {}", lat, lng);
+> }
+> ```
+> </details>
 
 ## Installation
 [Installation guide of the latest release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest#Installation)
