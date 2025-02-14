@@ -22,6 +22,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 /**
  * @see <a href="https://leafletjs.com/reference.html#circlemarker">Leaflet docs</a>
  */
+@SuppressWarnings("java:S110")
 public class LCircleMarker extends LAbstractCircle<LCircleMarker>
 {
 	public LCircleMarker(
