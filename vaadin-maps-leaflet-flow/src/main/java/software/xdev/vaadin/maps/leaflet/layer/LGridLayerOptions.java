@@ -25,19 +25,19 @@ public abstract class LGridLayerOptions<S extends LGridLayerOptions<S>> extends 
 {
 	// Number|Point
 	private Object tileSize;
-	private Double opacity;
+	private Number opacity;
 	private Boolean updateWhenIdle;
 	private Boolean updateWhenZooming;
-	private Integer updateInterval;
-	private Integer zIndex;
+	private Number updateInterval;
+	private Number zIndex;
 	private LLatLngBounds latLngBounds;
-	private Integer minZoom;
-	private Integer maxZoom;
-	private Integer minNativeZoom;
-	private Integer maxNativeZoom;
+	private Number minZoom;
+	private Number maxZoom;
+	private Number minNativeZoom;
+	private Number maxNativeZoom;
 	private Boolean noWrap;
 	private String className;
-	private Integer keepBuffer;
+	private Number keepBuffer;
 	
 	public Object getTileSize()
 	{
@@ -55,17 +55,17 @@ public abstract class LGridLayerOptions<S extends LGridLayerOptions<S>> extends 
 		return this.self();
 	}
 	
-	public Double getOpacity()
+	public Number getOpacity()
 	{
 		return this.opacity;
 	}
 	
-	public void setOpacity(final Double opacity)
+	public void setOpacity(final Number opacity)
 	{
 		this.opacity = opacity;
 	}
 	
-	public S withOpacity(final Double opacity)
+	public S withOpacity(final Number opacity)
 	{
 		this.setOpacity(opacity);
 		return this.self();
@@ -103,33 +103,33 @@ public abstract class LGridLayerOptions<S extends LGridLayerOptions<S>> extends 
 		return this.self();
 	}
 	
-	public Integer getUpdateInterval()
+	public Number getUpdateInterval()
 	{
 		return this.updateInterval;
 	}
 	
-	public void setUpdateInterval(final Integer updateInterval)
+	public void setUpdateInterval(final Number updateInterval)
 	{
 		this.updateInterval = updateInterval;
 	}
 	
-	public S withUpdateInterval(final Integer updateInterval)
+	public S withUpdateInterval(final Number updateInterval)
 	{
 		this.setUpdateInterval(updateInterval);
 		return this.self();
 	}
 	
-	public Integer getzIndex()
+	public Number getzIndex()
 	{
 		return this.zIndex;
 	}
 	
-	public void setzIndex(final Integer zIndex)
+	public void setzIndex(final Number zIndex)
 	{
 		this.zIndex = zIndex;
 	}
 	
-	public S withZIndex(final Integer zIndex)
+	public S withZIndex(final Number zIndex)
 	{
 		this.setzIndex(zIndex);
 		return this.self();
@@ -151,65 +151,65 @@ public abstract class LGridLayerOptions<S extends LGridLayerOptions<S>> extends 
 		return this.self();
 	}
 	
-	public Integer getMinZoom()
+	public Number getMinZoom()
 	{
 		return this.minZoom;
 	}
 	
-	public void setMinZoom(final Integer minZoom)
+	public void setMinZoom(final Number minZoom)
 	{
 		this.minZoom = minZoom;
 	}
 	
-	public S withMinZoom(final Integer minZoom)
+	public S withMinZoom(final Number minZoom)
 	{
 		this.setMinZoom(minZoom);
 		return this.self();
 	}
 	
-	public Integer getMaxZoom()
+	public Number getMaxZoom()
 	{
 		return this.maxZoom;
 	}
 	
-	public void setMaxZoom(final Integer maxZoom)
+	public void setMaxZoom(final Number maxZoom)
 	{
 		this.maxZoom = maxZoom;
 	}
 	
-	public S withMaxZoom(final Integer maxZoom)
+	public S withMaxZoom(final Number maxZoom)
 	{
 		this.setMaxZoom(maxZoom);
 		return this.self();
 	}
 	
-	public Integer getMinNativeZoom()
+	public Number getMinNativeZoom()
 	{
 		return this.minNativeZoom;
 	}
 	
-	public void setMinNativeZoom(final Integer minNativeZoom)
+	public void setMinNativeZoom(final Number minNativeZoom)
 	{
 		this.minNativeZoom = minNativeZoom;
 	}
 	
-	public S withMinNativeZoom(final Integer minNativeZoom)
+	public S withMinNativeZoom(final Number minNativeZoom)
 	{
 		this.setMinNativeZoom(minNativeZoom);
 		return this.self();
 	}
 	
-	public Integer getMaxNativeZoom()
+	public Number getMaxNativeZoom()
 	{
 		return this.maxNativeZoom;
 	}
 	
-	public void setMaxNativeZoom(final Integer maxNativeZoom)
+	public void setMaxNativeZoom(final Number maxNativeZoom)
 	{
 		this.maxNativeZoom = maxNativeZoom;
 	}
 	
-	public S withMaxNativeZoom(final Integer maxNativeZoom)
+	public S withMaxNativeZoom(final Number maxNativeZoom)
 	{
 		this.setMaxNativeZoom(maxNativeZoom);
 		return this.self();
@@ -247,17 +247,17 @@ public abstract class LGridLayerOptions<S extends LGridLayerOptions<S>> extends 
 		return this.self();
 	}
 	
-	public Integer getKeepBuffer()
+	public Number getKeepBuffer()
 	{
 		return this.keepBuffer;
 	}
 	
-	public void setKeepBuffer(final Integer keepBuffer)
+	public void setKeepBuffer(final Number keepBuffer)
 	{
 		this.keepBuffer = keepBuffer;
 	}
 	
-	public S withKeepBuffer(final Integer keepBuffer)
+	public S withKeepBuffer(final Number keepBuffer)
 	{
 		this.setKeepBuffer(keepBuffer);
 		return this.self();

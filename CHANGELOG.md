@@ -1,3 +1,6 @@
+## 4.6.0
+* Changed all occurrences of ``Integer`` and ``Double`` to ``Number`` for improved compatibility with Leaflet's API
+
 ## 4.5.0
 * Added support for [WMS](https://leafletjs.com/reference.html#tilelayer-wms) #486
 * Updated dependencies

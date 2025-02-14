@@ -45,7 +45,7 @@ public class LCircleMarker extends LAbstractCircle<LCircleMarker>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#circlemarker-setradius">Leaflet docs</a>
 	 */
-	public LCircleMarker setRadius(final Integer radius)
+	public LCircleMarker setRadius(final Number radius)
 	{
 		this.invokeSelf(".setRadius($0)", radius);
 		return this.self();

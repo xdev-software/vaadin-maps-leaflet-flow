@@ -20,22 +20,22 @@ package software.xdev.vaadin.maps.leaflet.controls;
  */
 public class LControlScaleOptions extends LControlOptions<LControlScaleOptions>
 {
-	private Integer maxWidth;
+	private Number maxWidth;
 	private Boolean metric;
 	private Boolean imperial;
 	private Boolean updateWhenIdle;
 	
-	public Integer getMaxWidth()
+	public Number getMaxWidth()
 	{
 		return this.maxWidth;
 	}
 	
-	public void setMaxWidth(final Integer maxWidth)
+	public void setMaxWidth(final Number maxWidth)
 	{
 		this.maxWidth = maxWidth;
 	}
 	
-	public LControlScaleOptions withMaxWidth(final Integer maxWidth)
+	public LControlScaleOptions withMaxWidth(final Number maxWidth)
 	{
 		this.setMaxWidth(maxWidth);
 		return this.self();

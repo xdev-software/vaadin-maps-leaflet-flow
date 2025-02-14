@@ -19,8 +19,8 @@ public class AbstractLMapPanOptions<T extends AbstractLMapPanOptions<T>>
 	implements LMapPanBaseOptions<T>
 {
 	private Boolean animate;
-	private Double duration;
-	private Double easeLinearity;
+	private Number duration;
+	private Number easeLinearity;
 	private Boolean noMoveStart;
 	
 	@Override
@@ -42,25 +42,25 @@ public class AbstractLMapPanOptions<T extends AbstractLMapPanOptions<T>>
 	}
 	
 	@Override
-	public Double getDuration()
+	public Number getDuration()
 	{
 		return this.duration;
 	}
 	
 	@Override
-	public void setDuration(final Double duration)
+	public void setDuration(final Number duration)
 	{
 		this.duration = duration;
 	}
 	
 	@Override
-	public Double getEaseLinearity()
+	public Number getEaseLinearity()
 	{
 		return this.easeLinearity;
 	}
 	
 	@Override
-	public void setEaseLinearity(final Double easeLinearity)
+	public void setEaseLinearity(final Number easeLinearity)
 	{
 		this.easeLinearity = easeLinearity;
 	}

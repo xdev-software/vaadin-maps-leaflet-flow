@@ -20,7 +20,7 @@ public class LTooltipOptions extends LDivOverlayOptions<LTooltipOptions>
 	private String direction;
 	private Boolean permanent;
 	private Boolean sticky;
-	private Double opacity;
+	private Number opacity;
 	
 	public String getDirection()
 	{
@@ -70,17 +70,17 @@ public class LTooltipOptions extends LDivOverlayOptions<LTooltipOptions>
 		return this.self();
 	}
 	
-	public Double getOpacity()
+	public Number getOpacity()
 	{
 		return this.opacity;
 	}
 	
-	public void setOpacity(final Double opacity)
+	public void setOpacity(final Number opacity)
 	{
 		this.opacity = opacity;
 	}
 	
-	public LTooltipOptions withOpacity(final Double opacity)
+	public LTooltipOptions withOpacity(final Number opacity)
 	{
 		this.setOpacity(opacity);
 		return this.self();

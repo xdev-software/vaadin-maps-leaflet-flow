@@ -46,7 +46,7 @@ public class LCircle extends LAbstractCircle<LCircle>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#circle-setradius">Leaflet docs</a>
 	 */
-	public LCircle setRadius(final Double radius)
+	public LCircle setRadius(final Number radius)
 	{
 		this.invokeSelf(".setRadius($0)", radius);
 		return this.self();

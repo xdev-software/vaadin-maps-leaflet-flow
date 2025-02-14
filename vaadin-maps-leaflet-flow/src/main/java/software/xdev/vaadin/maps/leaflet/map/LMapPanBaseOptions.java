@@ -21,6 +21,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 /**
  * @see <a href="https://leafletjs.com/reference.html#pan-options">Leaflet docs</a>
  */
+@SuppressWarnings("unused")
 public interface LMapPanBaseOptions<S extends LMapPanBaseOptions<S>> extends LComponentOptions<S>
 {
 	Boolean getAnimate();
@@ -33,21 +34,21 @@ public interface LMapPanBaseOptions<S extends LMapPanBaseOptions<S>> extends LCo
 		return this.self();
 	}
 	
-	Double getDuration();
+	Number getDuration();
 	
-	void setDuration(final Double duration);
+	void setDuration(final Number duration);
 	
-	default S withDuration(final Double duration)
+	default S withDuration(final Number duration)
 	{
 		this.setDuration(duration);
 		return this.self();
 	}
 	
-	Double getEaseLinearity();
+	Number getEaseLinearity();
 	
-	void setEaseLinearity(final Double easeLinearity);
+	void setEaseLinearity(final Number easeLinearity);
 	
-	default S withEaseLinearity(final Double easeLinearity)
+	default S withEaseLinearity(final Number easeLinearity)
 	{
 		this.setEaseLinearity(easeLinearity);
 		return this.self();

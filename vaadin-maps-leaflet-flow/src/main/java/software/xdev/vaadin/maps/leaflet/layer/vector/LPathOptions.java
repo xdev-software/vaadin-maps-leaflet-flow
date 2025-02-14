@@ -25,15 +25,15 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 {
 	private Boolean stroke;
 	private String color;
-	private Integer weight;
-	private Double opacity;
+	private Number weight;
+	private Number opacity;
 	private String lineCap;
 	private String lineJoin;
 	private String dashArray;
 	private String dashOffset;
 	private Boolean fill;
 	private String fillColor;
-	private Double fillOpacity;
+	private Number fillOpacity;
 	private String fillRule;
 	// No support for renderer as leaflet automatically selects the best renderer
 	private String className;
@@ -70,33 +70,33 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 		return this.self();
 	}
 	
-	public Integer getWeight()
+	public Number getWeight()
 	{
 		return this.weight;
 	}
 	
-	public void setWeight(final Integer weight)
+	public void setWeight(final Number weight)
 	{
 		this.weight = weight;
 	}
 	
-	public S withWeight(final Integer weight)
+	public S withWeight(final Number weight)
 	{
 		this.setWeight(weight);
 		return this.self();
 	}
 	
-	public Double getOpacity()
+	public Number getOpacity()
 	{
 		return this.opacity;
 	}
 	
-	public void setOpacity(final Double opacity)
+	public void setOpacity(final Number opacity)
 	{
 		this.opacity = opacity;
 	}
 	
-	public S withOpacity(final Double opacity)
+	public S withOpacity(final Number opacity)
 	{
 		this.setOpacity(opacity);
 		return this.self();
@@ -198,17 +198,17 @@ public abstract class LPathOptions<S extends LPathOptions<S>> extends LInteracti
 		return this.self();
 	}
 	
-	public Double getFillOpacity()
+	public Number getFillOpacity()
 	{
 		return this.fillOpacity;
 	}
 	
-	public void setFillOpacity(final Double fillOpacity)
+	public void setFillOpacity(final Number fillOpacity)
 	{
 		this.fillOpacity = fillOpacity;
 	}
 	
-	public S withFillOpacity(final Double fillOpacity)
+	public S withFillOpacity(final Number fillOpacity)
 	{
 		this.setFillOpacity(fillOpacity);
 		return this.self();

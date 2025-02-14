@@ -29,10 +29,10 @@ public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 	private Boolean keyboard;
 	private String title;
 	private String alt;
-	private Integer zIndexOffset;
-	private Double opacity;
+	private Number zIndexOffset;
+	private Number opacity;
 	private Boolean riseOnHover;
-	private Double riseOffset;
+	private Number riseOffset;
 	private String shadowPane;
 	private Boolean autoPanFocus;
 	private Boolean draggable;
@@ -101,33 +101,33 @@ public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 		return this.self();
 	}
 	
-	public Integer getzIndexOffset()
+	public Number getzIndexOffset()
 	{
 		return this.zIndexOffset;
 	}
 	
-	public void setzIndexOffset(final Integer zIndexOffset)
+	public void setzIndexOffset(final Number zIndexOffset)
 	{
 		this.zIndexOffset = zIndexOffset;
 	}
 	
-	public LMarkerOptions withzIndexOffset(final Integer zIndexOffset)
+	public LMarkerOptions withzIndexOffset(final Number zIndexOffset)
 	{
 		this.setzIndexOffset(zIndexOffset);
 		return this.self();
 	}
 	
-	public Double getOpacity()
+	public Number getOpacity()
 	{
 		return this.opacity;
 	}
 	
-	public void setOpacity(final Double opacity)
+	public void setOpacity(final Number opacity)
 	{
 		this.opacity = opacity;
 	}
 	
-	public LMarkerOptions withOpacity(final Double opacity)
+	public LMarkerOptions withOpacity(final Number opacity)
 	{
 		this.setOpacity(opacity);
 		return this.self();
@@ -149,17 +149,17 @@ public class LMarkerOptions extends LInteractiveLayerOptions<LMarkerOptions>
 		return this.self();
 	}
 	
-	public Double getRiseOffset()
+	public Number getRiseOffset()
 	{
 		return this.riseOffset;
 	}
 	
-	public void setRiseOffset(final Double riseOffset)
+	public void setRiseOffset(final Number riseOffset)
 	{
 		this.riseOffset = riseOffset;
 	}
 	
-	public LMarkerOptions withRiseOffset(final Double riseOffset)
+	public LMarkerOptions withRiseOffset(final Number riseOffset)
 	{
 		this.setRiseOffset(riseOffset);
 		return this.self();

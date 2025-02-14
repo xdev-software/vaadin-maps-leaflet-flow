@@ -23,8 +23,8 @@ import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
  */
 public abstract class LLayerOptions<S extends LLayerOptions<S>> implements LComponentOptions<S>
 {
-	String pane;
-	String attribution;
+	private String pane;
+	private String attribution;
 	
 	public String getPane()
 	{
