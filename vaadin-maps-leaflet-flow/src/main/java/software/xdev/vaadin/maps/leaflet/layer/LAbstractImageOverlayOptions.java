@@ -15,28 +15,29 @@
  */
 package software.xdev.vaadin.maps.leaflet.layer;
 
+@SuppressWarnings("unused")
 public abstract class LAbstractImageOverlayOptions<S extends LAbstractImageOverlayOptions<S>>
 	extends LInteractiveLayerOptions<S>
 {
-	private Double opacity;
+	private Number opacity;
 	private String alt;
 	// Boolean|String
 	private Object crossOrigin;
 	private String errorOverlayUrl;
-	private Integer zIndex;
+	private Number zIndex;
 	private String className;
 	
-	public Double getOpacity()
+	public Number getOpacity()
 	{
 		return this.opacity;
 	}
 	
-	public void setOpacity(final Double opacity)
+	public void setOpacity(final Number opacity)
 	{
 		this.opacity = opacity;
 	}
 	
-	public S withOpacity(final Double opacity)
+	public S withOpacity(final Number opacity)
 	{
 		this.setOpacity(opacity);
 		return this.self();
@@ -90,17 +91,17 @@ public abstract class LAbstractImageOverlayOptions<S extends LAbstractImageOverl
 		return this.self();
 	}
 	
-	public Integer getzIndex()
+	public Number getzIndex()
 	{
 		return this.zIndex;
 	}
 	
-	public void setzIndex(final Integer zIndex)
+	public void setzIndex(final Number zIndex)
 	{
 		this.zIndex = zIndex;
 	}
 	
-	public S withZIndex(final Integer zIndex)
+	public S withZIndex(final Number zIndex)
 	{
 		this.setzIndex(zIndex);
 		return this.self();

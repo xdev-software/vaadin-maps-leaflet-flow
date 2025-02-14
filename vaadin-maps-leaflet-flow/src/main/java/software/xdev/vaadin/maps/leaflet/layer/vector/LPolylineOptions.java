@@ -17,20 +17,20 @@ package software.xdev.vaadin.maps.leaflet.layer.vector;
 
 public class LPolylineOptions extends LPathOptions<LPolylineOptions>
 {
-	private Double smoothFactor;
+	private Number smoothFactor;
 	private Boolean noClip;
 	
-	public Double getSmoothFactor()
+	public Number getSmoothFactor()
 	{
 		return this.smoothFactor;
 	}
 	
-	public void setSmoothFactor(final Double smoothFactor)
+	public void setSmoothFactor(final Number smoothFactor)
 	{
 		this.smoothFactor = smoothFactor;
 	}
 	
-	public LPolylineOptions withSmoothFactor(final Double smoothFactor)
+	public LPolylineOptions withSmoothFactor(final Number smoothFactor)
 	{
 		this.setSmoothFactor(smoothFactor);
 		return this.self();

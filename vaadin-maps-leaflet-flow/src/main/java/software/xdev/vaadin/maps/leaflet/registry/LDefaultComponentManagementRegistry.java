@@ -17,6 +17,7 @@ package software.xdev.vaadin.maps.leaflet.registry;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UncheckedIOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -105,7 +106,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		}
 		catch(final JsonProcessingException e)
 		{
-			throw new RuntimeException(e);
+			throw new UncheckedIOException("Failed to write options", e);
 		}
 	}
 	

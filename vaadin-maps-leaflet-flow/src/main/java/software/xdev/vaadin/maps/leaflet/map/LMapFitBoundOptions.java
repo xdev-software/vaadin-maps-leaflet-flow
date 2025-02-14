@@ -21,6 +21,7 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LPoint;
 /**
  * @see <a href="https://leafletjs.com/reference.html#fitbounds-options-option">Leaflet docs</a>
  */
+@SuppressWarnings("unused")
 public class LMapFitBoundOptions extends AbstractLMapZoomPanOptions<LMapFitBoundOptions>
 	implements LMapPaddingBaseOptions<LMapFitBoundOptions>
 {
@@ -28,7 +29,7 @@ public class LMapFitBoundOptions extends AbstractLMapZoomPanOptions<LMapFitBound
 	private LPoint paddingBottomRight;
 	private LPoint padding;
 	
-	private Integer maxZoom;
+	private Number maxZoom;
 	
 	@Override
 	public LPoint getPaddingTopLeft()
@@ -66,17 +67,17 @@ public class LMapFitBoundOptions extends AbstractLMapZoomPanOptions<LMapFitBound
 		this.padding = padding;
 	}
 	
-	public Integer getMaxZoom()
+	public Number getMaxZoom()
 	{
 		return this.maxZoom;
 	}
 	
-	public void setMaxZoom(final Integer maxZoom)
+	public void setMaxZoom(final Number maxZoom)
 	{
 		this.maxZoom = maxZoom;
 	}
 	
-	public LMapFitBoundOptions withMaxZoom(final Integer maxZoom)
+	public LMapFitBoundOptions withMaxZoom(final Number maxZoom)
 	{
 		this.setMaxZoom(maxZoom);
 		return this.self();

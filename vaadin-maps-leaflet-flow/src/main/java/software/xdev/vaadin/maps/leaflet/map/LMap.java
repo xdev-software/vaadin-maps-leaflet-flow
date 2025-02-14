@@ -34,6 +34,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 /**
  * @see <a href="https://leafletjs.com/reference.html#map">Leaflet docs</a>
  */
+@SuppressWarnings("unused")
 public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 {
 	// region Init
@@ -213,7 +214,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-zoomin">Leaflet docs</a>
 	 */
-	public LMap zoomIn(final Integer delta, final LMapZoomOptions options)
+	public LMap zoomIn(final Number delta, final LMapZoomOptions options)
 	{
 		this.invokeSelf(".zoomIn("
 			+ (delta != null ? delta : "")
@@ -225,7 +226,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-zoomin">Leaflet docs</a>
 	 */
-	public LMap zoomIn(final Integer delta)
+	public LMap zoomIn(final Number delta)
 	{
 		return this.zoomIn(delta, null);
 	}
@@ -241,7 +242,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-zoomout">Leaflet docs</a>
 	 */
-	public LMap zoomOut(final Integer delta, final LMapZoomOptions options)
+	public LMap zoomOut(final Number delta, final LMapZoomOptions options)
 	{
 		this.invokeSelf(".zoomOut("
 			+ (delta != null ? delta : "")
@@ -253,7 +254,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-zoomout">Leaflet docs</a>
 	 */
-	public LMap zoomOut(final Integer delta)
+	public LMap zoomOut(final Number delta)
 	{
 		return this.zoomOut(delta, null);
 	}
@@ -398,7 +399,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-flyto">Leaflet docs</a>
 	 */
-	public LMap flyTo(final LLatLng latLng, final Integer zoom, final LMapZoomPanOptions options)
+	public LMap flyTo(final LLatLng latLng, final Number zoom, final LMapZoomPanOptions options)
 	{
 		this.invokeSelf(
 			".flyTo("
@@ -412,7 +413,7 @@ public class LMap extends LBaseComponent<LMap> implements LEvented<LMap>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#map-flyto">Leaflet docs</a>
 	 */
-	public LMap flyTo(final LLatLng latLng, final Integer zoom)
+	public LMap flyTo(final LLatLng latLng, final Number zoom)
 	{
 		return this.flyTo(latLng, zoom, null);
 	}

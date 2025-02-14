@@ -21,8 +21,9 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LLatLngBounds;
 import software.xdev.vaadin.maps.leaflet.layer.LLayer;
 
 /**
- * <a href="https://leafletjs.com/reference.html#map-example">Leaflet docs</a>
+ * <a href="https://leafletjs.com/reference.html#map-option">Leaflet docs</a>
  */
+@SuppressWarnings("unused")
 public class LMapOptions implements LComponentOptions<LMapOptions>
 {
 	private Boolean preferCanvas;
@@ -35,44 +36,44 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 	// Boolean|String
 	private Object doubleClickZoom;
 	private Boolean dragging;
-	private Integer zoomSnap;
-	private Integer zoomDelta;
+	private Number zoomSnap;
+	private Number zoomDelta;
 	private Boolean trackResize;
 	
 	private Boolean inertia;
-	private Integer inertiaDeceleration;
-	private Integer inertiaMaxSpeed;
-	private Double easeLinearity;
+	private Number inertiaDeceleration;
+	private Number inertiaMaxSpeed;
+	private Number easeLinearity;
 	private Boolean worldCopyJump;
-	private Double maxBoundsViscosity;
+	private Number maxBoundsViscosity;
 	
 	private Boolean keyboard;
-	private Integer keyboardPanDelta;
+	private Number keyboardPanDelta;
 	
 	// Boolean|String
 	private Object scrollWheelZoom;
-	private Integer wheelDebounceTime;
-	private Integer wheelPxPerZoomLevel;
+	private Number wheelDebounceTime;
+	private Number wheelPxPerZoomLevel;
 	
 	private Boolean tapHold;
-	private Integer tapTolerance;
+	private Number tapTolerance;
 	// Boolean|String
 	private Object touchZoom;
 	private Boolean bounceAtZoomLimits;
 	
 	private Object crs;
 	private LLatLng center;
-	private Integer zoom;
-	private Integer minZoom;
-	private Integer maxZoom;
+	private Number zoom;
+	private Number minZoom;
+	private Number maxZoom;
 	private LLayer<?>[] layers;
 	private LLatLngBounds maxBounds;
 	
 	private Boolean zoomAnimation;
-	private Integer zoomAnimationThreshold;
+	private Number zoomAnimationThreshold;
 	private Boolean fadeAnimation;
 	private Boolean markerZoomAnimation;
-	private Integer transform3DLimit;
+	private Number transform3DLimit;
 	
 	public Boolean getPreferCanvas()
 	{
@@ -154,19 +155,19 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Object getDoubleClickZoom()
+	public Object getNumberClickZoom()
 	{
 		return this.doubleClickZoom;
 	}
 	
-	public void setDoubleClickZoom(final Object doubleClickZoom)
+	public void setNumberClickZoom(final Object doubleClickZoom)
 	{
 		this.doubleClickZoom = doubleClickZoom;
 	}
 	
-	public LMapOptions withDoubleClickZoom(final Object doubleClickZoom)
+	public LMapOptions withNumberClickZoom(final Object doubleClickZoom)
 	{
-		this.setDoubleClickZoom(doubleClickZoom);
+		this.setNumberClickZoom(doubleClickZoom);
 		return this.self();
 	}
 	
@@ -186,33 +187,33 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getZoomSnap()
+	public Number getZoomSnap()
 	{
 		return this.zoomSnap;
 	}
 	
-	public void setZoomSnap(final Integer zoomSnap)
+	public void setZoomSnap(final Number zoomSnap)
 	{
 		this.zoomSnap = zoomSnap;
 	}
 	
-	public LMapOptions withZoomSnap(final Integer zoomSnap)
+	public LMapOptions withZoomSnap(final Number zoomSnap)
 	{
 		this.setZoomSnap(zoomSnap);
 		return this.self();
 	}
 	
-	public Integer getZoomDelta()
+	public Number getZoomDelta()
 	{
 		return this.zoomDelta;
 	}
 	
-	public void setZoomDelta(final Integer zoomDelta)
+	public void setZoomDelta(final Number zoomDelta)
 	{
 		this.zoomDelta = zoomDelta;
 	}
 	
-	public LMapOptions withZoomDelta(final Integer zoomDelta)
+	public LMapOptions withZoomDelta(final Number zoomDelta)
 	{
 		this.setZoomDelta(zoomDelta);
 		return this.self();
@@ -250,49 +251,49 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getInertiaDeceleration()
+	public Number getInertiaDeceleration()
 	{
 		return this.inertiaDeceleration;
 	}
 	
-	public void setInertiaDeceleration(final Integer inertiaDeceleration)
+	public void setInertiaDeceleration(final Number inertiaDeceleration)
 	{
 		this.inertiaDeceleration = inertiaDeceleration;
 	}
 	
-	public LMapOptions withInertiaDeceleration(final Integer inertiaDeceleration)
+	public LMapOptions withInertiaDeceleration(final Number inertiaDeceleration)
 	{
 		this.setInertiaDeceleration(inertiaDeceleration);
 		return this.self();
 	}
 	
-	public Integer getInertiaMaxSpeed()
+	public Number getInertiaMaxSpeed()
 	{
 		return this.inertiaMaxSpeed;
 	}
 	
-	public void setInertiaMaxSpeed(final Integer inertiaMaxSpeed)
+	public void setInertiaMaxSpeed(final Number inertiaMaxSpeed)
 	{
 		this.inertiaMaxSpeed = inertiaMaxSpeed;
 	}
 	
-	public LMapOptions withInertiaMaxSpeed(final Integer inertiaMaxSpeed)
+	public LMapOptions withInertiaMaxSpeed(final Number inertiaMaxSpeed)
 	{
 		this.setInertiaMaxSpeed(inertiaMaxSpeed);
 		return this.self();
 	}
 	
-	public Double getEaseLinearity()
+	public Number getEaseLinearity()
 	{
 		return this.easeLinearity;
 	}
 	
-	public void setEaseLinearity(final Double easeLinearity)
+	public void setEaseLinearity(final Number easeLinearity)
 	{
 		this.easeLinearity = easeLinearity;
 	}
 	
-	public LMapOptions withEaseLinearity(final Double easeLinearity)
+	public LMapOptions withEaseLinearity(final Number easeLinearity)
 	{
 		this.setEaseLinearity(easeLinearity);
 		return this.self();
@@ -314,17 +315,17 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Double getMaxBoundsViscosity()
+	public Number getMaxBoundsViscosity()
 	{
 		return this.maxBoundsViscosity;
 	}
 	
-	public void setMaxBoundsViscosity(final Double maxBoundsViscosity)
+	public void setMaxBoundsViscosity(final Number maxBoundsViscosity)
 	{
 		this.maxBoundsViscosity = maxBoundsViscosity;
 	}
 	
-	public LMapOptions withMaxBoundsViscosity(final Double maxBoundsViscosity)
+	public LMapOptions withMaxBoundsViscosity(final Number maxBoundsViscosity)
 	{
 		this.setMaxBoundsViscosity(maxBoundsViscosity);
 		return this.self();
@@ -346,17 +347,17 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getKeyboardPanDelta()
+	public Number getKeyboardPanDelta()
 	{
 		return this.keyboardPanDelta;
 	}
 	
-	public void setKeyboardPanDelta(final Integer keyboardPanDelta)
+	public void setKeyboardPanDelta(final Number keyboardPanDelta)
 	{
 		this.keyboardPanDelta = keyboardPanDelta;
 	}
 	
-	public LMapOptions withKeyboardPanDelta(final Integer keyboardPanDelta)
+	public LMapOptions withKeyboardPanDelta(final Number keyboardPanDelta)
 	{
 		this.setKeyboardPanDelta(keyboardPanDelta);
 		return this.self();
@@ -378,33 +379,33 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getWheelDebounceTime()
+	public Number getWheelDebounceTime()
 	{
 		return this.wheelDebounceTime;
 	}
 	
-	public void setWheelDebounceTime(final Integer wheelDebounceTime)
+	public void setWheelDebounceTime(final Number wheelDebounceTime)
 	{
 		this.wheelDebounceTime = wheelDebounceTime;
 	}
 	
-	public LMapOptions withWheelDebounceTime(final Integer wheelDebounceTime)
+	public LMapOptions withWheelDebounceTime(final Number wheelDebounceTime)
 	{
 		this.setWheelDebounceTime(wheelDebounceTime);
 		return this.self();
 	}
 	
-	public Integer getWheelPxPerZoomLevel()
+	public Number getWheelPxPerZoomLevel()
 	{
 		return this.wheelPxPerZoomLevel;
 	}
 	
-	public void setWheelPxPerZoomLevel(final Integer wheelPxPerZoomLevel)
+	public void setWheelPxPerZoomLevel(final Number wheelPxPerZoomLevel)
 	{
 		this.wheelPxPerZoomLevel = wheelPxPerZoomLevel;
 	}
 	
-	public LMapOptions withWheelPxPerZoomLevel(final Integer wheelPxPerZoomLevel)
+	public LMapOptions withWheelPxPerZoomLevel(final Number wheelPxPerZoomLevel)
 	{
 		this.setWheelPxPerZoomLevel(wheelPxPerZoomLevel);
 		return this.self();
@@ -426,17 +427,17 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getTapTolerance()
+	public Number getTapTolerance()
 	{
 		return this.tapTolerance;
 	}
 	
-	public void setTapTolerance(final Integer tapTolerance)
+	public void setTapTolerance(final Number tapTolerance)
 	{
 		this.tapTolerance = tapTolerance;
 	}
 	
-	public LMapOptions withTapTolerance(final Integer tapTolerance)
+	public LMapOptions withTapTolerance(final Number tapTolerance)
 	{
 		this.setTapTolerance(tapTolerance);
 		return this.self();
@@ -506,54 +507,55 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getZoom()
+	public Number getZoom()
 	{
 		return this.zoom;
 	}
 	
-	public void setZoom(final Integer zoom)
+	public void setZoom(final Number zoom)
 	{
 		this.zoom = zoom;
 	}
 	
-	public LMapOptions withZoom(final Integer zoom)
+	public LMapOptions withZoom(final Number zoom)
 	{
 		this.setZoom(zoom);
 		return this.self();
 	}
 	
-	public Integer getMinZoom()
+	public Number getMinZoom()
 	{
 		return this.minZoom;
 	}
 	
-	public void setMinZoom(final Integer minZoom)
+	public void setMinZoom(final Number minZoom)
 	{
 		this.minZoom = minZoom;
 	}
 	
-	public LMapOptions withMinZoom(final Integer minZoom)
+	public LMapOptions withMinZoom(final Number minZoom)
 	{
 		this.setMinZoom(minZoom);
 		return this.self();
 	}
 	
-	public Integer getMaxZoom()
+	public Number getMaxZoom()
 	{
 		return this.maxZoom;
 	}
 	
-	public void setMaxZoom(final Integer maxZoom)
+	public void setMaxZoom(final Number maxZoom)
 	{
 		this.maxZoom = maxZoom;
 	}
 	
-	public LMapOptions withMaxZoom(final Integer maxZoom)
+	public LMapOptions withMaxZoom(final Number maxZoom)
 	{
 		this.setMaxZoom(maxZoom);
 		return this.self();
 	}
 	
+	@SuppressWarnings("java:S1452") // No alternative
 	public LLayer<?>[] getLayers()
 	{
 		return this.layers;
@@ -602,17 +604,17 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getZoomAnimationThreshold()
+	public Number getZoomAnimationThreshold()
 	{
 		return this.zoomAnimationThreshold;
 	}
 	
-	public void setZoomAnimationThreshold(final Integer zoomAnimationThreshold)
+	public void setZoomAnimationThreshold(final Number zoomAnimationThreshold)
 	{
 		this.zoomAnimationThreshold = zoomAnimationThreshold;
 	}
 	
-	public LMapOptions withZoomAnimationThreshold(final Integer zoomAnimationThreshold)
+	public LMapOptions withZoomAnimationThreshold(final Number zoomAnimationThreshold)
 	{
 		this.setZoomAnimationThreshold(zoomAnimationThreshold);
 		return this.self();
@@ -650,17 +652,17 @@ public class LMapOptions implements LComponentOptions<LMapOptions>
 		return this.self();
 	}
 	
-	public Integer getTransform3DLimit()
+	public Number getTransform3DLimit()
 	{
 		return this.transform3DLimit;
 	}
 	
-	public void setTransform3DLimit(final Integer transform3DLimit)
+	public void setTransform3DLimit(final Number transform3DLimit)
 	{
 		this.transform3DLimit = transform3DLimit;
 	}
 	
-	public LMapOptions withTransform3DLimit(final Integer transform3DLimit)
+	public LMapOptions withTransform3DLimit(final Number transform3DLimit)
 	{
 		this.setTransform3DLimit(transform3DLimit);
 		return this.self();

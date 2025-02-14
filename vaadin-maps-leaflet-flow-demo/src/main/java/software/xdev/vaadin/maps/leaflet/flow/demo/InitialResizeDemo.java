@@ -32,11 +32,12 @@ public class InitialResizeDemo extends VerticalLayout
 			new LLatLng(reg, 50, 11)
 		);
 		
-		final MapContainer mapContainer = new MapContainer(reg, map -> {
+		final MapContainer mapContainer = new MapContainer(
+			reg, map ->
 			// This needs to be done after the map was initially resized
 			// otherwise the view is calculated incorrectly
-			map.fitBounds(bounds);
-		});
+			map.fitBounds(bounds)
+		);
 		mapContainer.setSizeFull();
 		this.add(mapContainer);
 		

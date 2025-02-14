@@ -26,7 +26,7 @@ public abstract class LAbstractTileLayerOptions<S extends LAbstractTileLayerOpti
 	// String|String[]
 	private Object subdomains;
 	private String errorTileUrl;
-	private Integer zoomOffset;
+	private Number zoomOffset;
 	private Boolean tms;
 	private Boolean zoomReverse;
 	private Boolean detectRetina;
@@ -67,17 +67,17 @@ public abstract class LAbstractTileLayerOptions<S extends LAbstractTileLayerOpti
 		return this.self();
 	}
 	
-	public Integer getZoomOffset()
+	public Number getZoomOffset()
 	{
 		return this.zoomOffset;
 	}
 	
-	public void setZoomOffset(final Integer zoomOffset)
+	public void setZoomOffset(final Number zoomOffset)
 	{
 		this.zoomOffset = zoomOffset;
 	}
 	
-	public S withZoomOffset(final Integer zoomOffset)
+	public S withZoomOffset(final Number zoomOffset)
 	{
 		this.setZoomOffset(zoomOffset);
 		return this.self();

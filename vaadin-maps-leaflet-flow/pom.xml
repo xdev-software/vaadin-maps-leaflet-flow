@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-maps-leaflet-flow</artifactId>
-	<version>4.5.1-SNAPSHOT</version>
+	<version>4.6.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>vaadin-maps-leaflet-flow</name>
@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.6.2</vaadin.version>
+		<vaadin.version>24.6.5</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -320,7 +320,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.21.1</version>
+								<version>10.21.2</version>
 							</dependency>
 						</dependencies>
 						<configuration>
@@ -357,12 +357,12 @@
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-core</artifactId>
-								<version>7.9.0</version>
+								<version>7.10.0</version>
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-java</artifactId>
-								<version>7.9.0</version>
+								<version>7.10.0</version>
 							</dependency>
 						</dependencies>
 					</plugin>

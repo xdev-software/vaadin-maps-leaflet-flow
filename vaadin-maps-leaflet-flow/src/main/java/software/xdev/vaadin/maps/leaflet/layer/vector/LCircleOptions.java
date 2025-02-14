@@ -21,19 +21,19 @@ package software.xdev.vaadin.maps.leaflet.layer.vector;
  */
 public class LCircleOptions extends LPathOptions<LCircleOptions>
 {
-	private Double radius;
+	private Number radius;
 	
-	public Double getRadius()
+	public Number getRadius()
 	{
 		return this.radius;
 	}
 	
-	public void setRadius(final Double radius)
+	public void setRadius(final Number radius)
 	{
 		this.radius = radius;
 	}
 	
-	public LCircleOptions withRadius(final Double radius)
+	public LCircleOptions withRadius(final Number radius)
 	{
 		this.setRadius(radius);
 		return this.self();

@@ -25,9 +25,9 @@ public class LMapLocateOptions implements LComponentOptions<LMapLocateOptions>
 {
 	private Boolean watch;
 	private Boolean setView;
-	private Integer maxZoom;
-	private Integer timeout;
-	private Integer maximumAge;
+	private Number maxZoom;
+	private Number timeout;
+	private Number maximumAge;
 	private Boolean enableHighAccuracy;
 	
 	public Boolean getWatch()
@@ -62,49 +62,49 @@ public class LMapLocateOptions implements LComponentOptions<LMapLocateOptions>
 		return this.self();
 	}
 	
-	public Integer getMaxZoom()
+	public Number getMaxZoom()
 	{
 		return this.maxZoom;
 	}
 	
-	public void setMaxZoom(final Integer maxZoom)
+	public void setMaxZoom(final Number maxZoom)
 	{
 		this.maxZoom = maxZoom;
 	}
 	
-	public LMapLocateOptions withMaxZoom(final Integer maxZoom)
+	public LMapLocateOptions withMaxZoom(final Number maxZoom)
 	{
 		this.setMaxZoom(maxZoom);
 		return this.self();
 	}
 	
-	public Integer getTimeout()
+	public Number getTimeout()
 	{
 		return this.timeout;
 	}
 	
-	public void setTimeout(final Integer timeout)
+	public void setTimeout(final Number timeout)
 	{
 		this.timeout = timeout;
 	}
 	
-	public LMapLocateOptions withTimeout(final Integer timeout)
+	public LMapLocateOptions withTimeout(final Number timeout)
 	{
 		this.setTimeout(timeout);
 		return this.self();
 	}
 	
-	public Integer getMaximumAge()
+	public Number getMaximumAge()
 	{
 		return this.maximumAge;
 	}
 	
-	public void setMaximumAge(final Integer maximumAge)
+	public void setMaximumAge(final Number maximumAge)
 	{
 		this.maximumAge = maximumAge;
 	}
 	
-	public LMapLocateOptions withMaximumAge(final Integer maximumAge)
+	public LMapLocateOptions withMaximumAge(final Number maximumAge)
 	{
 		this.setMaximumAge(maximumAge);
 		return this.self();

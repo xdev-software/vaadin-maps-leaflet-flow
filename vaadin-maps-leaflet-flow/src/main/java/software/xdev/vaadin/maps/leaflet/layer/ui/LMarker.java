@@ -52,7 +52,7 @@ public class LMarker extends LInteractiveLayer<LMarker>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#marker-setzindexoffset">Leaflet docs</a>
 	 */
-	public LMarker setZIndexOffset(final Integer offset)
+	public LMarker setZIndexOffset(final Number offset)
 	{
 		this.invokeSelf(".setZIndexOffset($0)", offset);
 		return this.self();

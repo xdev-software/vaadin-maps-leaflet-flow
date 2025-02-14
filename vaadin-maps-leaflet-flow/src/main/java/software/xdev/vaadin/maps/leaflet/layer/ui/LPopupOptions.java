@@ -20,8 +20,8 @@ import software.xdev.vaadin.maps.leaflet.basictypes.LPoint;
 
 public class LPopupOptions extends LDivOverlayOptions<LPopupOptions>
 {
-	private Integer maxWidth;
-	private Integer minWidth;
+	private Number maxWidth;
+	private Number minWidth;
 	private Boolean autoPan;
 	private LPoint autoPanPaddingTopLeft;
 	private LPoint autoPanPaddingBottomRight;
@@ -32,33 +32,33 @@ public class LPopupOptions extends LDivOverlayOptions<LPopupOptions>
 	private Boolean closeOnEscapeKey;
 	private Boolean closeOnClick;
 	
-	public Integer getMaxWidth()
+	public Number getMaxWidth()
 	{
 		return this.maxWidth;
 	}
 	
-	public void setMaxWidth(final Integer maxWidth)
+	public void setMaxWidth(final Number maxWidth)
 	{
 		this.maxWidth = maxWidth;
 	}
 	
-	public LPopupOptions withMaxWidth(final Integer maxWidth)
+	public LPopupOptions withMaxWidth(final Number maxWidth)
 	{
 		this.setMaxWidth(maxWidth);
 		return this.self();
 	}
 	
-	public Integer getMinWidth()
+	public Number getMinWidth()
 	{
 		return this.minWidth;
 	}
 	
-	public void setMinWidth(final Integer minWidth)
+	public void setMinWidth(final Number minWidth)
 	{
 		this.minWidth = minWidth;
 	}
 	
-	public LPopupOptions withMinWidth(final Integer minWidth)
+	public LPopupOptions withMinWidth(final Number minWidth)
 	{
 		this.setMinWidth(minWidth);
 		return this.self();

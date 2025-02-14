@@ -20,7 +20,7 @@ import software.xdev.vaadin.maps.leaflet.base.LComponent;
 
 public interface LHasOpacity<S extends LHasOpacity<S>> extends LComponent<S>
 {
-	default S setOpacity(final Double opacity)
+	default S setOpacity(final Number opacity)
 	{
 		this.invokeSelf(".setOpacity($0)", opacity);
 		return this.self();

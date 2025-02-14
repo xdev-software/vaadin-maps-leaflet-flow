@@ -22,6 +22,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 /**
  * @see <a href="https://leafletjs.com/reference.html#circle">Leaflet docs</a>
  */
+@SuppressWarnings("java:S110")
 public class LCircle extends LAbstractCircle<LCircle>
 {
 	public LCircle(
@@ -46,7 +47,7 @@ public class LCircle extends LAbstractCircle<LCircle>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#circle-setradius">Leaflet docs</a>
 	 */
-	public LCircle setRadius(final Double radius)
+	public LCircle setRadius(final Number radius)
 	{
 		this.invokeSelf(".setRadius($0)", radius);
 		return this.self();

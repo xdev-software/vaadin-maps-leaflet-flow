@@ -51,6 +51,10 @@ public class EventDemo extends VerticalLayout
 		
 		final HorizontalLayout hlButtons = new HorizontalLayout();
 		
+		// !!! NOTE !!!
+		// A more complex demo which also sends data back from the client to the server
+		// can be found in ComplexDemo#addEventDemo
+		
 		// Bind clickFunc to map so that it gets disposed when the map is disposed
 		final String clickFuncReference = map.clientComponentJsAccessor() + ".myCoolClickFunc";
 		reg.execJs(clickFuncReference + "=e => alert('You clicked: ' + e.latlng)");
