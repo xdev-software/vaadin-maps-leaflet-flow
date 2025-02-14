@@ -64,7 +64,7 @@ public class LTileLayer extends LAbstractTileLayer<LTileLayer>
 	{
 		return new LTileLayer(
 			compReg,
-			"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+			"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 			19,
 			"© <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
 		);
