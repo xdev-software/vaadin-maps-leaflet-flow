@@ -127,4 +127,4 @@ jobs:
         name: pmd-report
         if-no-files-found: ignore
         path: |
-          target/reports/*.html
+          target/reports/**
