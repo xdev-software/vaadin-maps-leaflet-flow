@@ -64,7 +64,7 @@ jobs:
       run: |
         mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
-        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        modules+=($(grep -oP '(?<=<module>)[^<]+' 'pom.xml'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
@@ -188,7 +188,7 @@ jobs:
       run: |
         mvnwPath=$(readlink -f ./mvnw)
         modules=("") # root
-        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        modules+=($(grep -oP '(?<=<module>)[^<]+' 'pom.xml'))
         for i in "${modules[@]}"
         do
             echo "Processing $i/pom.xml"
