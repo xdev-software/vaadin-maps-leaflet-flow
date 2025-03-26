@@ -89,7 +89,7 @@ jobs:
     
     - name: Create Release
       id: create_release
-      uses: shogo82148/actions-create-release@v1
+      uses: shogo82148/actions-create-release@e5f206451d4ace2da9916d01f1aef279997f8659 # v1
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
@@ -165,7 +165,7 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Deploy to Github pages
-      uses: peaceiris/actions-gh-pages@v4
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
