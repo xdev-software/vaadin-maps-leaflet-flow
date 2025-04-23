@@ -1,5 +1,8 @@
 vaadin:
   allowed-packages: software/xdev,com/vaadin/flow
+  devmode:
+    usageStatistics:
+      enabled: false
 
 spring:
   devtools:

@@ -84,6 +84,7 @@ public class MultiLayerWithPyramidDemo extends HorizontalLayout
 	
 	private LLayerGroup activeLayerGroup;
 	
+	@SuppressWarnings("PMD.UnusedAssignment") // FP activeLayerGroup is used
 	public MultiLayerWithPyramidDemo()
 	{
 		// Let the view use 100% of the site
