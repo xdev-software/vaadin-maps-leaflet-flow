@@ -1,3 +1,6 @@
+## 4.6.1
+* Updated dependencies
+
 ## 4.6.0
 * Changed all occurrences of ``Integer`` and ``Double`` to ``Number`` for improved compatibility with Leaflet's API
 * Updated OpenStreetMap's Tile-Server address to ``tile.openstreetmap.org`` [openstreetmap/operations#737](https://github.com/openstreetmap/operations/issues/737)
