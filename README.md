@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_vaadin-maps-leaflet-flow&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_vaadin-maps-leaflet-flow)
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
-# vaadin-maps-leaflet-flow
+# LeafletMap for Vaadin
 A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
 
 ![demo](assets/demo.png)

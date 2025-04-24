@@ -9,8 +9,8 @@
 	<version>4.6.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>vaadin-maps-leaflet-flow</name>
-	<description>vaadin-maps-leaflet-flow</description>
+	<name>LeafletMap for Vaadin</name>
+	<description>LeafletMap for Vaadin</description>
 	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
