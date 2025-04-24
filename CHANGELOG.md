@@ -1,3 +1,6 @@
+## 4.6.2
+* Fix naming so that Vaadin Directory sync works #526
+
 ## 4.6.1
 * Updated dependencies
 
