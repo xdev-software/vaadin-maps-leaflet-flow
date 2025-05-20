@@ -1,49 +1,53 @@
-## 4.6.2
-* Fix naming so that Vaadin Directory sync works #526
-
-## 4.6.1
+# 4.6.3
+* Migrated deployment to _Sonatype Maven Central Portal_ [#155](https://github.com/xdev-software/standard-maven-template/issues/155)
 * Updated dependencies
 
-## 4.6.0
+# 4.6.2
+* Fix naming so that Vaadin Directory sync works #526
+
+# 4.6.1
+* Updated dependencies
+
+# 4.6.0
 * Changed all occurrences of ``Integer`` and ``Double`` to ``Number`` for improved compatibility with Leaflet's API
 * Updated OpenStreetMap's Tile-Server address to ``tile.openstreetmap.org`` [openstreetmap/operations#737](https://github.com/openstreetmap/operations/issues/737)
 
-## 4.5.0
+# 4.5.0
 * Added support for [WMS](https://leafletjs.com/reference.html#tilelayer-wms) #486
 * Updated dependencies
 
-## 4.4.0
+# 4.4.0
 * Added support for [GeoJSON](https://leafletjs.com/reference.html#geojson) and [FeatureGroup](https://leafletjs.com/reference.html#featuregroup) #438
 * Add "draggable" property to LMarkerOptions #413 (thanks to @ChristianHoesel)
 
-## 4.3.0
+# 4.3.0
 * Updated to Vaadin 24.4
 * Deduplicated ``tLMapZoomPanOptions``
 
-## 4.2.1
+# 4.2.1
 * Handle ``LEvented#off`` in the same way as ``LEvented#on``
   * Fix incorrect formatting leading to JS error
 * Updated dependencies
 
-## 4.2.0
+# 4.2.0
 * Fixed some invalid built JavaScript commands #330
 * Add basic support for CRS #333
 * Added a few new showcase demos
 * Updated dependencies
 
-## 4.1.1
+# 4.1.1
 * ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
 * Updated dependencies
 
-## 4.1.0
+# 4.1.0
 * Provide a workaround that fixes a problem where certain methods didn't work instantly after the map was created #305
 * Moved some container specific methods to ``MapContainer``
 
-## 4.0.1
+# 4.0.1
 * Added shortcut method ``invokeSelfReturn`` #282
 * Updated dependencies
 
-## 4.0.0
+# 4.0.0
 ⚠️<i>This release contains breaking changes</i>
 
 * The complete API got reworked and now has the [same structure as Leaflet](https://leafletjs.com/reference.html).
@@ -63,39 +67,39 @@
   * However keep in mind when creating a lot of elements that you may have to free up memory on the client (manually)
 * Integrated default Leaflet resources
 
-## 3.0.2
+# 3.0.2
 * Added support for Polyline #266 (thanks to @blitzdose)
 
-## 3.0.1
+# 3.0.1
 * Fixed ``divIcon`` being displayed incorrectly [due to a default ``iconSize`` of ``12px``](https://github.com/Leaflet/Leaflet/issues/4238) #246
 * Updated dependencies
   * Updated leaflet to [``1.9.4``](https://github.com/Leaflet/Leaflet/blob/b6b56f6e707142c177fad2f67827a5007e56736a/CHANGELOG.md#194-2023-05-18) #247
 
-## 3.0.0
+# 3.0.0
 ⚠️<i>This release contains breaking changes</i>
 
 * Adds support for Vaadin 24+, drops support for Vaadin 23<br/>
   <i>If you are still using Vaadin 23, use the ``2.x`` versions.</i>
   * Requires Java 17+
 
-## 2.0.4
+# 2.0.4
 * Added method ``centerAndZoom`` in ``LMap``
 * Fixed a problem where an invalid ``iconSize`` was transferred to leaflet which caused a client side exception (#199)
 * Updated various dependencies
 
-## 2.0.3
+# 2.0.3
 * Updated dependencies
 * Fixed problem with setting lon/lan in LMarker
 * Added constructors for LMap
 
-## 2.0.2
+# 2.0.2
 * Updated dependencies
 
-## 2.0.1
+# 2.0.1
 * Updated dependencies
   * Vaadin 23.2
 
-## 2.0.0
+# 2.0.0
 ⚠️<i>This release contains breaking changes</i>
 
 * Update to Vaadin 23
