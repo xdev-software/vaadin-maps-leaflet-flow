@@ -194,4 +194,25 @@
 	</rule>
 
 	<rule ref="category/java/security.xml"/>
+
+	<rule name="VaadinNativeHTMLUnsafe"
+		language="java"
+		message="Unescaped native HTML is unsafe and will result in XSS vulnerabilities"
+		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" >
+		<description>
+			Do not used native HTML! Use Vaadin layouts and components to create required structure.
+			If you are 100% sure that you escaped the value properly and you have no better options you can suppress this.
+		</description>
+		<priority>2</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+<![CDATA[
+//ConstructorCall[pmd-java:typeIs('com.vaadin.flow.component.Html')] |
+//MethodCall[@MethodName='setAttribute' and //ImportDeclaration[starts-with(@PackageName,'com.vaadin')]]/ArgumentList/StringLiteral[1][contains(lower-case(@Image),'html')]
+]]>
+				</value>
+			</property>
+		</properties>
+	</rule>
 </ruleset>
