@@ -75,7 +75,7 @@
 							<includeTests>true</includeTests>
 							<printFailingErrors>true</printFailingErrors>
 							<rulesets>
-								<ruleset>.config/pmd/ruleset.xml</ruleset>
+								<ruleset>.config/pmd/java/ruleset.xml</ruleset>
 							</rulesets>
 						</configuration>
 						<dependencies>
