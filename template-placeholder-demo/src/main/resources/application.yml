@@ -1,0 +1,11 @@
+vaadin:
+  allowed-packages: software/xdev,com/vaadin/flow
+  devmode:
+    usageStatistics:
+      enabled: false
+
+spring:
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
