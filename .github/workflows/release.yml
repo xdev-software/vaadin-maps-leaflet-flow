@@ -51,7 +51,7 @@ jobs:
     needs: [check-code]
     timeout-minutes: 10
     outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      upload_url: ${{ steps.create-release.outputs.upload_url }}
     steps:
     - uses: actions/checkout@v4
       
@@ -88,7 +88,7 @@ jobs:
         git push origin --tags
     
     - name: Create Release
-      id: create_release
+      id: create-release
       uses: shogo82148/actions-create-release@4661dc54f7b4b564074e9fbf73884d960de569a3 # v1
       with:
         tag_name: v${{ steps.version.outputs.release }}
