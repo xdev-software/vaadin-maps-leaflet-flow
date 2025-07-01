@@ -32,7 +32,20 @@ You should have the following things installed:
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``
   * Ensure that the JDK/Java-Version is correct
+  * To enable AUTOMATIC reloading/restarting while developing and running the app do this (further information in "
+    SpringBoot-Devtools" section below; [Source](https://stackoverflow.com/q/33349456)):
+    * ``Settings > Build, Execution, Deployment > Compiler``:<br/>
+      Enable [``Build project automatically``](https://www.jetbrains.com/help/idea/compiling-applications.html#auto-build)
+    * ``Settings > Advanced Settings``:<br/>
+    Enable [``Allow auto-make to start even if developed application is currently running``](https://www.jetbrains.com/help/idea/advanced-settings.html#advanced_compiler)
+  * To launch the Demo execute the predefined (launch) configuration ``Run Demo``
 
+#### [SpringBoot-Developer-Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools) 
+... should automatically be enabled.<br/>
+If you are changing a file and build the project, parts of the app get  restarted.<br/>
+Bigger changes may require a complete restart.
+  * [Vaadin automatically reloads the UI on each restart](https://vaadin.com/docs/latest/configuration/live-reload/spring-boot).<br/>
+  You can control this behavior with the ``vaadin.devmode.liveReload.enabled`` property (default: ``true``).
 
 ## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/template-placeholder/release.yml?branch=master)](https://github.com/xdev-software/template-placeholder/actions/workflows/release.yml)
 
@@ -44,6 +57,7 @@ If the ``develop`` is ready for release, create a pull request to the ``master``
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
+* Ensure that [Vaadin Directory](https://vaadin.com/directory) syncs the update and maybe update the component / version there
 
 ### Release failures
 
