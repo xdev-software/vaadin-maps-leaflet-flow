@@ -61,15 +61,7 @@ jobs:
         git config --global user.name "GitHub Actions"
   
     - name: Un-SNAP 
-      run: |
-        mvnwPath=$(readlink -f ./mvnw)
-        modules=("") # root
-        modules+=($(grep -oP '(?<=<module>)[^<]+' 'pom.xml'))
-        for i in "${modules[@]}"
-        do
-            echo "Processing $i/pom.xml"
-            (cd "$i" && $mvnwPath -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
-        done
+      run: ./mvnw -B versions:set -DremoveSnapshot -DprocessAllModules -DgenerateBackupPoms=false
   
     - name: Get version
       id: version
@@ -185,15 +177,7 @@ jobs:
         git pull
 
     - name: Inc Version and SNAP 
-      run: |
-        mvnwPath=$(readlink -f ./mvnw)
-        modules=("") # root
-        modules+=($(grep -oP '(?<=<module>)[^<]+' 'pom.xml'))
-        for i in "${modules[@]}"
-        do
-            echo "Processing $i/pom.xml"
-            (cd "$i" && $mvnwPath -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true -DupdateMatchingVersions=false)
-        done
+      run: ./mvnw -B versions:set -DnextSnapshot -DprocessAllModules -DgenerateBackupPoms=false
 
     - name: Git Commit and Push
       run: |
