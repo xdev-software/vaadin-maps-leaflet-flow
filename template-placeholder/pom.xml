@@ -141,7 +141,7 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>publish-sonatype-central-portal</id>
+			<id>publish</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -183,7 +183,13 @@
 							</execution>
 						</executions>
 					</plugin>
-					
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>publish-sonatype-central-portal</id>
+			<build>
+				<plugins>
 					<plugin>
 						<groupId>org.sonatype.central</groupId>
 						<artifactId>central-publishing-maven-plugin</artifactId>
