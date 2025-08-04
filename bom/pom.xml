@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>software.xdev.vaadin.maps_leaflet</groupId>
+	<artifactId>bom</artifactId>
+	<version>5.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>bom</name>
+	<description>LeafletMap for Vaadin - BOM</description>
+	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
+
+	<scm>
+		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
+		<connection>scm:git:https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
+	</scm>
+
+	<inceptionYear>2019</inceptionYear>
+
+	<organization>
+		<name>XDEV Software</name>
+		<url>https://xdev.software</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>XDEV Software</name>
+			<organization>XDEV Software</organization>
+			<url>https://xdev.software</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>software.xdev.vaadin.maps_leaflet</groupId>
+				<artifactId>flow</artifactId>
+				<version>5.0.0-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>4.0.0-M16</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.9.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>publish</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>flatten-maven-plugin</artifactId>
+						<version>1.7.2</version>
+						<configuration>
+							<flattenMode>bom</flattenMode>
+						</configuration>
+						<executions>
+							<execution>
+								<id>flatten</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>flatten</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.2.8</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<!-- Fixes "gpg: signing failed: Inappropriate ioctl for device" -->
+									<!-- Prevent `gpg` from using pinentry programs -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>publish-sonatype-central-portal</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>0.8.0</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>sonatype-central-portal</publishingServerId>
+							<autoPublish>true</autoPublish>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

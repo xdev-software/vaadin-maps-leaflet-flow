@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>software.xdev</groupId>
-		<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
+		<groupId>software.xdev.vaadin.maps_leaflet</groupId>
+		<artifactId>root</artifactId>
 		<version>5.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>vaadin-maps-leaflet-flow-demo</artifactId>
+	<artifactId>flow-demo</artifactId>
 	<version>5.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
