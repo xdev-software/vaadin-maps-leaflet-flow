@@ -94,8 +94,8 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>software.xdev</groupId>
-			<artifactId>vaadin-maps-leaflet-flow</artifactId>
+			<groupId>software.xdev.vaadin.maps_leaflet</groupId>
+			<artifactId>flow</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

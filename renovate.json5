@@ -4,7 +4,7 @@
   "packageRules": [
     {
       "description": "Ignore project internal dependencies",
-      "packagePattern": "^software.xdev:vaadin-maps-leaflet-flow",
+      "packagePattern": "^software.xdev.vaadin.maps_leaflet:",
       "datasources": [
         "maven"
       ],
