@@ -90,7 +90,7 @@ jobs:
           Add the following lines to your pom:
           ```XML
           <dependency>
-             <groupId>software.xdev.vaadin.maps_leaflet</groupId>
+             <groupId>software.xdev.vaadin.maps-leaflet</groupId>
              <artifactId>flow</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>

@@ -18,6 +18,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.EventDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.GeoJSONDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.MaplibreGLDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
@@ -103,6 +104,11 @@ public class DemoView extends Composite<VerticalLayout>
 				FreeingUpResourceBenchmarkDemo.NAV,
 				"Freeing up resources Benchmark",
 				"Benchmark for showcasing how resources a freed up when handling huge amounts of components"
+			),
+			new Example(
+				MaplibreGLDemo.NAV,
+				"MapLibre GL Leaflet",
+				"Showcases how vector tile servers can be used with MapLibre GL Leaflet"
 			)
 		));
 	}

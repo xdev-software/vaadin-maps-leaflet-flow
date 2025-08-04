@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>software.xdev.vaadin.maps-leaflet</groupId>
-	<artifactId>flow</artifactId>
+	<groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
+	<artifactId>maplibre-gl-leaflet</artifactId>
 	<version>5.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LeafletMap for Vaadin</name>
-	<description>LeafletMap for Vaadin</description>
+	<name>LeafletMap for Vaadin - Plugins - maplibre-gl-leaflet</name>
+	<description>LeafletMap for Vaadin - Plugins - maplibre-gl-leaflet</description>
 	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
@@ -47,7 +47,6 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
 		<!-- Dependency-Versions -->
 		<vaadin.version>24.8.5</vaadin.version>
 	</properties>
@@ -66,20 +65,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-core</artifactId>
-		</dependency>
-		<!-- JSON JACKSON -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.19.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-text</artifactId>
-			<version>1.14.0</version>
+			<groupId>software.xdev.vaadin.maps-leaflet</groupId>
+			<artifactId>flow</artifactId>
+			<version>5.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -124,6 +112,21 @@
 							<goal>format</goal>
 						</goals>
 						<phase>process-sources</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Take care of synchronizing java dependencies and imports in package.json 
+				and main.js files. It also creates webpack.config.js if not exists yet. -->
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-frontend</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
