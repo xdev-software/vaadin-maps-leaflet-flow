@@ -1,4 +1,4 @@
-package software.xdev.vaadin.maps.leaflet.flow.demo;
+package software.xdev.vaadin.maps.leaflet.flow.demo.plugins;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;

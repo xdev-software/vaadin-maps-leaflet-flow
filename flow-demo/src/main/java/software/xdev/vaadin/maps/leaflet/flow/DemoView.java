@@ -18,11 +18,11 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.EventDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.FreeingUpResourceBenchmarkDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.GeoJSONDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.InitialResizeDemo;
-import software.xdev.vaadin.maps.leaflet.flow.demo.MaplibreGLDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.MaplibreGLDemo;
 
 
 @PageTitle("Leaflet + Vaadin demos")
@@ -107,7 +107,7 @@ public class DemoView extends Composite<VerticalLayout>
 			),
 			new Example(
 				MaplibreGLDemo.NAV,
-				"MapLibre GL Leaflet",
+				"Plugin: MapLibre GL Leaflet",
 				"Showcases how vector tile servers can be used with MapLibre GL Leaflet"
 			)
 		));
