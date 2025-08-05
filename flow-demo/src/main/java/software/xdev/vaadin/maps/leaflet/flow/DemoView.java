@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import software.xdev.vaadin.maps.leaflet.flow.demo.ComplexDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.EventDemo;
@@ -22,6 +23,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.LeafletMarkerClusterDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.MaplibreGLDemo;
 
 
@@ -42,6 +44,8 @@ public class DemoView extends Composite<VerticalLayout>
 				spDesc.getStyle().set("white-space", "pre");
 				
 				final VerticalLayout vl = new VerticalLayout(anchor, spDesc);
+				vl.addClassName(LumoUtility.Padding.SMALL);
+				vl.setPadding(false);
 				vl.setSpacing(false);
 				return vl;
 			}))
@@ -104,6 +108,11 @@ public class DemoView extends Composite<VerticalLayout>
 				FreeingUpResourceBenchmarkDemo.NAV,
 				"Freeing up resources Benchmark",
 				"Benchmark for showcasing how resources a freed up when handling huge amounts of components"
+			),
+			new Example(
+				LeafletMarkerClusterDemo.NAV,
+				"Plugin: Leaflet.markercluster",
+				"Showcases markers can be clustered using Leaflet.markercluster"
 			),
 			new Example(
 				MaplibreGLDemo.NAV,

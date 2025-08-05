@@ -7,6 +7,7 @@
 * Introduced support for Leaflet plugins #307
   * Plugins can be installed from ``software.xdev.vaadin.maps-leaflet.plugins:<artifactId>``
   * The following [plugins](./plugins/) are available:
+    * leaflet-markercluster
     * maplibre-gl-leaflet
   * You can also use the [``bom``](./bom/) for easier dependency management
 
