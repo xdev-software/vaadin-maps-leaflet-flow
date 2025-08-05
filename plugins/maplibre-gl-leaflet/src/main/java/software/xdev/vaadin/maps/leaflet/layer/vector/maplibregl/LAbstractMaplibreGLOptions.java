@@ -18,6 +18,9 @@ package software.xdev.vaadin.maps.leaflet.layer.vector.maplibregl;
 import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
+/**
+ * @see <a href="https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapOptions/">MapLibre docs</a>
+ */
 public abstract class LAbstractMaplibreGLOptions<S extends LAbstractMaplibreGLOptions<S>>
 	implements LComponentOptions<S>
 {

@@ -23,6 +23,11 @@ import software.xdev.vaadin.maps.leaflet.layer.LLayer;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 
 
+/**
+ * Layer for MaplibreGL
+ *
+ * @see <a href="https://github.com/maplibre/maplibre-gl-leaflet/blob/main/API.md">MapLibre-GL-Leaflet API docs</a>
+ */
 @NpmPackage(value = "maplibre-gl", version = "5.6.1")
 @NpmPackage(value = "@maplibre/maplibre-gl-leaflet", version = "0.1.3")
 @JsModule("maplibre-gl/dist/maplibre-gl.js")

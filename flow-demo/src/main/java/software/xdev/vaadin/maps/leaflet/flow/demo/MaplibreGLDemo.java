@@ -12,11 +12,6 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementRegistry;
 
 
-// @NpmPackage(value = "maplibre-gl", version = "5.6.1")
-// @NpmPackage(value = "@maplibre/maplibre-gl-leaflet", version = "0.1.3")
-// @JsModule("maplibre-gl/dist/maplibre-gl.js")
-// @CssImport("maplibre-gl/dist/maplibre-gl.css")
-// @JsModule("@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js")
 @Route(MaplibreGLDemo.NAV)
 @SuppressWarnings("checkstyle:MagicNumber")
 public class MaplibreGLDemo extends VerticalLayout
@@ -39,7 +34,7 @@ public class MaplibreGLDemo extends VerticalLayout
 		
 		final LMap map = mapContainer.getlMap();
 		
-		// Add a (default) TileLayer so that we can see something on the map
+		// Add maplibre layer
 		new LMaplibreGL(reg, "https://demotiles.maplibre.org/style.json").addTo(map);
 		
 		// Set what part of the world should be shown
