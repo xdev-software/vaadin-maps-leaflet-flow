@@ -280,7 +280,7 @@
 							</dependency>
 						</dependencies>
 						<configuration>
-							<configLocation>../.config/checkstyle/checkstyle.xml</configLocation>
+							<configLocation>../../.config/checkstyle/checkstyle.xml</configLocation>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						</configuration>
 						<executions>
@@ -306,7 +306,7 @@
 							<includeTests>true</includeTests>
 							<printFailingErrors>true</printFailingErrors>
 							<rulesets>
-								<ruleset>../.config/pmd/java/ruleset.xml</ruleset>
+								<ruleset>../../.config/pmd/java/ruleset.xml</ruleset>
 							</rulesets>
 						</configuration>
 						<dependencies>
