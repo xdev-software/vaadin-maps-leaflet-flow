@@ -13,6 +13,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with: # running setup-java overwrites the settings.xml
+        distribution: 'temurin'
+        java-version: '17'
+        server-id: github-central
+        server-password: PACKAGES_CENTRAL_TOKEN
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Only import once
+
     - name: Publish to GitHub Packages
       run: |
         modules_block=$(grep -ozP '<modules>(\r|\n|.)*<\/modules>' 'pom.xml' | tr -d '\0')
