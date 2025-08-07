@@ -1,3 +1,17 @@
+# 5.0.0
+
+> [!WARNING]
+> Breaking change - Artifact relocation: <br/>
+> ``software.xdev:vaadin-maps-leaflet-flow`` was moved to ``software.xdev.vaadin.maps-leaflet:flow``
+
+* Introduced support for Leaflet plugins #307
+  * Plugins can be installed from ``software.xdev.vaadin.maps-leaflet.plugins:<artifactId>``
+  * The following [plugins](./plugins/) are currently available:
+    * geoman
+    * leaflet-markercluster
+    * maplibre-gl-leaflet
+  * You can also use the [``bom``](./bom/) for easier dependency management
+
 # 4.6.4
 * Updated dependencies
 

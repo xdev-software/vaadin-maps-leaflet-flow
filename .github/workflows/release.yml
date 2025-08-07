@@ -4,9 +4,6 @@ on:
   push:
     branches: [ master ]
 
-env:
-  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
-
 permissions:
   contents: write
   pull-requests: write
@@ -66,10 +63,9 @@ jobs:
     - name: Get version
       id: version
       run: |
-        version=$(../mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+        version=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "release=$version" >> $GITHUB_OUTPUT
         echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Commit and Push
       run: |
@@ -94,8 +90,21 @@ jobs:
           Add the following lines to your pom:
           ```XML
           <dependency>
-             <groupId>software.xdev</groupId>
-             <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
+             <groupId>software.xdev.vaadin.maps-leaflet</groupId>
+             <artifactId>flow</artifactId>
+             <version>${{ steps.version.outputs.release }}</version>
+          </dependency>
+          ```
+
+          You can also use the [BOM](https://github.com/${{ github.repository }}/tree/develop/bom) for easier dependency management.
+
+          ### Plugins
+
+          You can also install [predefined plugins](https://github.com/${{ github.repository }}/tree/develop/plugins) using:
+          ```XML
+          <dependency>
+             <groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
+             <artifactId>...</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
@@ -125,14 +134,18 @@ jobs:
         server-password: PACKAGES_CENTRAL_TOKEN
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Only import once
-    
-    - name: Publish to GitHub Packages Central
-      run: ../mvnw -B deploy -P publish -DskipTests -DaltDeploymentRepository=github-central::https://maven.pkg.github.com/xdev-software/central
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+
+    - name: Publish to GitHub Packages
+      run: |
+        modules_block=$(grep -ozP '<modules>(\r|\n|.)*<\/modules>' 'pom.xml' | tr -d '\0')
+        modules=($(echo $modules_block | grep -oP '(?<=<module>)[^<]+' | grep -v demo))
+        printf -v modules_joined '%s,' "${modules[@]}"
+        modules_arg=$(echo "${modules_joined%,}")
+        ./mvnw -B deploy -pl "$modules_arg" -am -T2C -P publish -DskipTests -DaltDeploymentRepository=github-central::https://maven.pkg.github.com/xdev-software/central
       env:
         PACKAGES_CENTRAL_TOKEN: ${{ secrets.PACKAGES_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-
+  
     - name: Set up JDK
       uses: actions/setup-java@v4
       with: # running setup-java again overwrites the settings.xml
@@ -144,12 +157,16 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Publish to Central Portal
-      run: ../mvnw -B deploy -P publish,publish-sonatype-central-portal -DskipTests
+      run: |
+        modules_block=$(grep -ozP '<modules>(\r|\n|.)*<\/modules>' 'pom.xml' | tr -d '\0')
+        modules=($(echo $modules_block | grep -oP '(?<=<module>)[^<]+' | grep -v demo))
+        printf -v modules_joined '%s,' "${modules[@]}"
+        modules_arg=$(echo "${modules_joined%,}")
+        ./mvnw -B deploy -pl "$modules_arg" -am -T2C -P publish,publish-sonatype-central-portal -DskipTests
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
   publish-pages:
     runs-on: ubuntu-latest
@@ -172,14 +189,22 @@ jobs:
         cache: 'maven'
 
     - name: Build site
-      run: ../mvnw -B compile site -DskipTests -T2C
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      run: ./mvnw -B compile site -DskipTests -T2C
+
+    - name: Aggregate site
+      run: |
+        modules=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        for m in "${modules[@]}"
+        do
+            echo "$m/target/site -> ./target/site/$m"
+            cp -r $m/target/site ./target/site/$m
+        done
 
     - name: Deploy to Github pages
       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
+        publish_dir: ./target/site
         force_orphan: true
 
   after-release:

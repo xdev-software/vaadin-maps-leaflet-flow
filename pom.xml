@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>software.xdev</groupId>
-	<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
-	<version>4.6.5-SNAPSHOT</version>
+	<groupId>software.xdev.vaadin.maps-leaflet</groupId>
+	<artifactId>root</artifactId>
+	<version>5.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<organization>
@@ -15,8 +15,12 @@
 	</organization>
 
 	<modules>
-		<module>vaadin-maps-leaflet-flow</module>
-		<module>vaadin-maps-leaflet-flow-demo</module>
+		<module>bom</module>
+		<module>flow</module>
+		<module>flow-demo</module>
+		<module>plugins/geoman</module>
+		<module>plugins/leaflet-markercluster</module>
+		<module>plugins/maplibre-gl-leaflet</module>
 	</modules>
 
 	<properties>

@@ -20,8 +20,7 @@ on:
       - 'assets/**'
 
 env:
-  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
-  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
+  DEMO_MAVEN_MODULE: flow-demo
 
 jobs:
   build:
@@ -42,6 +41,15 @@ jobs:
         distribution: ${{ matrix.distribution }}
         java-version: ${{ matrix.java }}
         cache: 'maven'
+    
+    - name: Cache Vaadin prod bundles
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/bundles/prod.bundle
+        key: ${{ runner.os }}-vaadin-prod-bundles-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-vaadin-prod-bundles-
       
     - name: Build with Maven
       run: ./mvnw -B clean package -Pproduction
