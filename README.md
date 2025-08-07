@@ -35,7 +35,7 @@ To get started it's recommended to have a look at the [demo](./flow-demo), notab
 
 ### Plugins
 
-We also offer various [predefined plugins](./plugins/) which you can also utilize to enhance your Leaflet experience.
+We also offer various [predefined plugins](./plugins/) which you can utilize to enhance your Leaflet experience.
 
 ## Installation
 [Installation guide of the latest release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest#Installation)
