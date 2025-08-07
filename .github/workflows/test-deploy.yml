@@ -15,9 +15,8 @@ jobs:
 
     - name: Publish to GitHub Packages
       run: |
-        modules=("bom")
-        dependency_management_block=$(grep -ozP '<dependencyManagement>(\r|\n|.)*<\/dependencyManagement>' 'bom/pom.xml' | tr -d '\0')
-        modules+=($(echo $dependency_management_block | grep -oP '(?<=<artifactId>)[^<]+'))
+        modules_block=$(grep -ozP '<modules>(\r|\n|.)*<\/modules>' 'pom.xml' | tr -d '\0')
+        modules=($(echo $modules_block | grep -oP '(?<=<module>)[^<]+' | grep -v demo))
         printf -v modules_joined '%s,' "${modules[@]}"
         modules_arg=$(echo "${modules_joined%,}")
         ./mvnw -B deploy -pl "$modules_arg" -am -T2C -P publish -DskipTests -DaltDeploymentRepository=github-central::https://maven.pkg.github.com/xdev-software/central
@@ -37,9 +36,8 @@ jobs:
 
     - name: Publish to Central Portal
       run: |
-        modules=("bom")
-        dependency_management_block=$(grep -ozP '<dependencyManagement>(\r|\n|.)*<\/dependencyManagement>' 'bom/pom.xml' | tr -d '\0')
-        modules+=($(echo $dependency_management_block | grep -oP '(?<=<artifactId>)[^<]+'))
+        modules_block=$(grep -ozP '<modules>(\r|\n|.)*<\/modules>' 'pom.xml' | tr -d '\0')
+        modules=($(echo $modules_block | grep -oP '(?<=<module>)[^<]+' | grep -v demo))
         printf -v modules_joined '%s,' "${modules[@]}"
         modules_arg=$(echo "${modules_joined%,}")
         ./mvnw -B deploy -pl "$modules_arg" -am -T2C -P publish,publish-sonatype-central-portal -DskipTests
