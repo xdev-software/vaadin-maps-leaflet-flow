@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 	<artifactId>bom</artifactId>
-	<version>5.0.0-SNAPSHOT</version>
+	<version>5.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>LeafletMap for Vaadin - BOM</name>
@@ -51,22 +51,22 @@
 			<dependency>
 				<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 				<artifactId>flow</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
 				<artifactId>geoman</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
 				<artifactId>leaflet-markercluster</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
 				<artifactId>maplibre-gl-leaflet</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
