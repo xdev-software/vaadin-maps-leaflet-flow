@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 		<artifactId>root</artifactId>
-		<version>5.0.0</version>
+		<version>5.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>flow-demo</artifactId>
-	<version>5.0.0</version>
+	<version>5.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<organization>
