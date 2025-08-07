@@ -15,6 +15,8 @@
  */
 package software.xdev.vaadin.maps.leaflet.maplibregl.layer.vector;
 
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 
 import software.xdev.vaadin.maps.leaflet.layer.LLayer;
@@ -27,11 +29,9 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
  * @see <a href="https://github.com/maplibre/maplibre-gl-leaflet/blob/main/API.md">MapLibre-GL-Leaflet API docs</a>
  */
 @NpmPackage(value = "maplibre-gl", version = "5.6.1")
-@NpmPackage(value = "@maplibre/maplibre-gl-leaflet", version = "0.1.3")
-// TODO MAPLIBRE OVERWRITES EVERYTHING ELSE!
-// @JsModule("maplibre-gl/dist/maplibre-gl.js")
-// @CssImport("maplibre-gl/dist/maplibre-gl.css")
-// @JsModule("@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js")
+@JsModule("maplibre-gl/dist/maplibre-gl.js")
+@CssImport("maplibre-gl/dist/maplibre-gl.css")
+@JsModule("./src/leaflet-maplibre-gl.js") // Use bundled forked version to load it correctly
 public class LMaplibreGL extends LLayer<LMaplibreGL>
 {
 	public LMaplibreGL(
