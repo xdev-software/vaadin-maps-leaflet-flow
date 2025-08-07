@@ -197,6 +197,7 @@ jobs:
         for m in "${modules[@]}"
         do
             echo "$m/target/site -> ./target/site/$m"
+            mkdir -p ./target/site/$m
             cp -r $m/target/site ./target/site/$m
         done
 
