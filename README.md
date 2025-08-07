@@ -12,15 +12,15 @@ A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
 
 This API wraps the Leaflet API in a Vaadin friendly way.<br/>It uses a similar structure (classes, methods) as the [Leaflet JavaScript API](https://leafletjs.com/reference.html).
 
-To get started it's recommended to have a look at the [demo](./vaadin-maps-leaflet-flow-demo), notably the [minimalistic example](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/MinimalisticDemo.java).
+To get started it's recommended to have a look at the [demo](./flow-demo), notably the [minimalistic example](./flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/MinimalisticDemo.java).
 
 > [!NOTE]
 > **The API only supports sending instructions to the client**<br/>
 > Due to data integrity retrieving client-side data (that can be modified by users) is not supported.
 > 
-> Event listeners can still be registered but this needs to be done manually. An example is available [in the demo](./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/EventDemo.java).
+> Event listeners can still be registered but this needs to be done manually. An example is available [in the demo](./flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/EventDemo.java).
 > 
-> <details><summary>The following code snippet is a simplification of an even more <a href="./vaadin-maps-leaflet-flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/ComplexDemo.java#L251">complex example</a> which sends (unvalidated!) client side data back to the server (click to expand)</summary>
+> <details><summary>The following code snippet is a simplification of an even more <a href="./flow-demo/src/main/java/software/xdev/vaadin/maps/leaflet/flow/demo/ComplexDemo.java#L251">complex example</a> which sends (unvalidated!) client side data back to the server (click to expand)</summary>
 >
 > ```java
 > this.map.on("click", "e => document.getElementById('" + ID + "').$server.mapClicked(e.latlng.lat, e.latng.lng)");
@@ -38,7 +38,7 @@ To get started it's recommended to have a look at the [demo](./vaadin-maps-leafl
 
 #### Static resources
 Please note that Leaflet uses a few default icons for various components (e.g. Markers).<br/>
-These are also shipped with the library and can be found inside [``META-INF/resources``](./vaadin-maps-leaflet-flow/src/main/resources/META-INF/resources/).<br/>
+These are also shipped with the library and can be found inside [``META-INF/resources``](./flow/src/main/resources/META-INF/resources/).<br/>
 You might have to fine tune your security configuration to allow these.
 
 #### Compatibility with Vaadin
@@ -51,7 +51,7 @@ You might have to fine tune your security configuration to allow these.
 
 ## Run the Demo
 * Checkout the repo
-* Run ``mvn install && mvn -f vaadin-maps-leaflet-flow-demo spring-boot:run``
+* Run ``mvn install && mvn -f flow-demo spring-boot:run``
 * Open http://localhost:8080
 
 <details>
