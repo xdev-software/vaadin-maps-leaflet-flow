@@ -15,6 +15,7 @@
  */
 package software.xdev.vaadin.maps.leaflet.geoman;
 
+// Java has not multi-inheritance CPD-OFF
 /**
  * Combination of {@link LAbstractDrawOptions} and {@link LAbstractEditOptions}
  */
@@ -277,3 +278,4 @@ public abstract class LAbstractDrawEditOptions<S extends LAbstractDrawEditOption
 		return this.self();
 	}
 }
+// CPD-ON
