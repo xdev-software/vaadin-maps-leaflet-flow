@@ -13,32 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer.vector.maplibregl;
+package software.xdev.vaadin.maps.leaflet.markercluster.layer.other;
 
-import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
-
-
-/**
- * @see <a href="https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapOptions/">MapLibre docs</a>
- */
-public abstract class LAbstractMaplibreGLOptions<S extends LAbstractMaplibreGLOptions<S>>
-	implements LComponentOptions<S>
+public class LMarkerClusterGroupOptions extends LAbstractMarkerClusterGroupOptions<LMarkerClusterGroupOptions>
 {
-	private String style;
-	
-	public String getStyle()
-	{
-		return this.style;
-	}
-	
-	public void setStyle(final String style)
-	{
-		this.style = style;
-	}
-	
-	public S withStyle(final String style)
-	{
-		this.setStyle(style);
-		return this.self();
-	}
 }

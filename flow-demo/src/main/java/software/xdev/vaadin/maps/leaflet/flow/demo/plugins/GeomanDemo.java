@@ -1,25 +1,28 @@
 package software.xdev.vaadin.maps.leaflet.flow.demo.plugins;
 
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 import software.xdev.vaadin.maps.leaflet.MapContainer;
 import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
+import software.xdev.vaadin.maps.leaflet.geoman.LTextOptions;
+import software.xdev.vaadin.maps.leaflet.geoman.map.LMapPM;
 import software.xdev.vaadin.maps.leaflet.layer.raster.LTileLayer;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LMarker;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
-import software.xdev.vaadin.maps.leaflet.markercluster.layer.other.LMarkerClusterGroup;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementRegistry;
 
 
-@Route(LeafletMarkerClusterDemo.NAV)
+@Route(GeomanDemo.NAV)
 @SuppressWarnings("checkstyle:MagicNumber")
-public class LeafletMarkerClusterDemo extends VerticalLayout
+public class GeomanDemo extends VerticalLayout
 {
-	public static final String NAV = "/leaflet-markercluster";
+	public static final String NAV = "/geoman";
 	
-	public LeafletMarkerClusterDemo()
+	public GeomanDemo()
 	{
 		// Let the view use 100% of the site
 		this.setSizeFull();
@@ -39,27 +42,26 @@ public class LeafletMarkerClusterDemo extends VerticalLayout
 		map.addLayer(LTileLayer.createDefaultForOpenStreetMapTileServer(reg));
 		
 		// Set what part of the world should be shown
-		map.setView(new LLatLng(reg, 49.1, 12), 8);
+		map.setView(new LLatLng(reg, 49.6751, 12.1607), 17);
 		
-		final LMarkerClusterGroup markerClusterGroup = new LMarkerClusterGroup(reg);
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.6756, 12.1610))
-			.bindPopup("XDEV Software"));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.673800, 12.160113))
-			.bindPopup("Schnitzel"));
+		// Create a new marker
+		new LMarker(reg, new LLatLng(reg, 49.6756, 12.1610))
+			// Bind a popup which is displayed when clicking the marker
+			.bindPopup("XDEV Software")
+			// Add it to the map
+			.addTo(map);
 		
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.67, 12.16))
-			.bindPopup("Weiden i.d.OPf."));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.44, 11.86))
-			.bindPopup("Amberg"));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.33, 12.11))
-			.bindPopup("Schwandorf"));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.45, 11.08))
-			.bindPopup("Nürnberg"));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 49.02, 12.1))
-			.bindPopup("Regensburg"));
-		markerClusterGroup.addLayer(new LMarker(reg, new LLatLng(reg, 48.14, 11.57))
-			.bindPopup("München"));
+		// Add Geoman Controls
+		final LMapPM lMapPM = new LMapPM(map);
+		lMapPM.addControls();
 		
-		map.addLayer(markerClusterGroup);
+		final HorizontalLayout hlButtons = new HorizontalLayout();
+		this.add(hlButtons);
+		
+		final Button btnText = new Button(
+			"Add text", ev -> lMapPM.enableDrawText(new LTextOptions()
+			.withText("Some text")
+			.withTextMarkerCentered(true)));
+		hlButtons.add(btnText);
 	}
 }

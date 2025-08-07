@@ -13,8 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer.other;
+package software.xdev.vaadin.maps.leaflet.base;
 
-public class LMarkerClusterGroupOptions extends LAbstractMarkerClusterGroupOptions<LMarkerClusterGroupOptions>
+import java.util.Objects;
+
+import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
+
+
+public abstract class LAbstractComponent<S extends LComponent<S>> implements LComponent<S>
 {
+	private final LComponentManagementRegistry componentRegistry;
+	
+	protected LAbstractComponent(
+		final LComponentManagementRegistry compReg)
+	{
+		this.componentRegistry = Objects.requireNonNull(compReg);
+	}
+	
+	@Override
+	public LComponentManagementRegistry componentRegistry()
+	{
+		return this.componentRegistry;
+	}
 }

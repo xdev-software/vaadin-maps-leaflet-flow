@@ -9,8 +9,8 @@
 	<version>5.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LeafletMap for Vaadin - Plugins - leaflet-markercluster</name>
-	<description>LeafletMap for Vaadin - Plugins - leaflet-markercluster</description>
+	<name>LeafletMap for Vaadin - Plugin - leaflet-markercluster</name>
+	<description>LeafletMap for Vaadin - Plugin - leaflet-markercluster</description>
 	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
@@ -47,21 +47,7 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!-- Dependency-Versions -->
-		<vaadin.version>24.8.5</vaadin.version>
 	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-bom</artifactId>
-				<type>pom</type>
-				<scope>import</scope>
-				<version>${vaadin.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -112,21 +98,6 @@
 							<goal>format</goal>
 						</goals>
 						<phase>process-sources</phase>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- Take care of synchronizing java dependencies and imports in package.json 
-				and main.js files. It also creates webpack.config.js if not exists yet. -->
-			<plugin>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-maven-plugin</artifactId>
-				<version>${vaadin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-frontend</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>

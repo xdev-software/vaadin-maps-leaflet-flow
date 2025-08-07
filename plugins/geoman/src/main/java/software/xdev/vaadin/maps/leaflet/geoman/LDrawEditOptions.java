@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer.vector.maplibregl;
+package software.xdev.vaadin.maps.leaflet.geoman;
 
-public class LMaplibreGLOptions extends LAbstractMaplibreGLOptions<LMaplibreGLOptions>
+public class LDrawEditOptions extends LAbstractEditOptions<LDrawEditOptions>
 {
 }

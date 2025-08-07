@@ -13,27 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.base;
+package software.xdev.vaadin.maps.leaflet.maplibregl.layer.vector;
 
-import java.io.Serializable;
-
-import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
+import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 
 
-public abstract class LBaseComponent<S extends LComponent<S>> extends LAbstractComponent<S>
+/**
+ * @see <a href="https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapOptions/">MapLibre docs</a>
+ */
+public abstract class LAbstractMaplibreGLOptions<S extends LAbstractMaplibreGLOptions<S>>
+	implements LComponentOptions<S>
 {
-	protected LBaseComponent(
-		final LComponentManagementRegistry compReg,
-		final String jsConstructorCallExpression,
-		final Serializable... parameters)
+	private String style;
+	
+	public String getStyle()
 	{
-		super(compReg);
-		this.componentRegistry().add(this.self(), jsConstructorCallExpression, parameters);
+		return this.style;
 	}
 	
-	@Override
-	public String clientComponentJsAccessor()
+	public void setStyle(final String style)
 	{
-		return this.componentRegistry().clientComponentJsAccessor(this);
+		this.style = style;
+	}
+	
+	public S withStyle(final String style)
+	{
+		this.setStyle(style);
+		return this.self();
 	}
 }

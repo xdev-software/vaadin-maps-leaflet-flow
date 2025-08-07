@@ -26,10 +26,7 @@ public interface LComponent<S extends LComponent<S>>
 {
 	LComponentManagementRegistry componentRegistry();
 	
-	default String clientComponentJsAccessor()
-	{
-		return this.componentRegistry().clientComponentJsAccessor(this);
-	}
+	String clientComponentJsAccessor();
 	
 	default PendingJavaScriptResult invokeSelf(final String payload, final Serializable... params)
 	{

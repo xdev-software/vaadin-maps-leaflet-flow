@@ -23,6 +23,7 @@ import software.xdev.vaadin.maps.leaflet.flow.demo.MinimalisticDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.MultiLayerWithPyramidDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.NotOfThisEarthDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.WatermarkControlDemo;
+import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.GeomanDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.LeafletMarkerClusterDemo;
 import software.xdev.vaadin.maps.leaflet.flow.demo.plugins.MaplibreGLDemo;
 
@@ -118,6 +119,11 @@ public class DemoView extends Composite<VerticalLayout>
 				MaplibreGLDemo.NAV,
 				"Plugin: MapLibre GL Leaflet",
 				"Showcases how vector tile servers can be used with MapLibre GL Leaflet"
+			),
+			new Example(
+				GeomanDemo.NAV,
+				"Plugin: leaflet-geoman",
+				"Showcases how to created, edit, draw, cut, drag, cut, ... layers"
 			)
 		));
 	}

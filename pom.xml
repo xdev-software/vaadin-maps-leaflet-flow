@@ -18,6 +18,7 @@
 		<module>bom</module>
 		<module>flow</module>
 		<module>flow-demo</module>
+		<module>plugins/geoman</module>
 		<module>plugins/leaflet-markercluster</module>
 		<module>plugins/maplibre-gl-leaflet</module>
 	</modules>

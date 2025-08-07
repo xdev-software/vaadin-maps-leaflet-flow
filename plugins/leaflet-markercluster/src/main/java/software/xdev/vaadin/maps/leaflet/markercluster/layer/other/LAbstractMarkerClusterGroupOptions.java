@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.vaadin.maps.leaflet.layer.other;
+package software.xdev.vaadin.maps.leaflet.markercluster.layer.other;
 
 import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 import software.xdev.vaadin.maps.leaflet.base.RawString;

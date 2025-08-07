@@ -6,8 +6,8 @@ import com.vaadin.flow.router.Route;
 import software.xdev.vaadin.maps.leaflet.MapContainer;
 import software.xdev.vaadin.maps.leaflet.basictypes.LLatLng;
 import software.xdev.vaadin.maps.leaflet.layer.ui.LMarker;
-import software.xdev.vaadin.maps.leaflet.layer.vector.maplibregl.LMaplibreGL;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
+import software.xdev.vaadin.maps.leaflet.maplibregl.layer.vector.LMaplibreGL;
 import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementRegistry;
 

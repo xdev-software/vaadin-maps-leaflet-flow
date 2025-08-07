@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
-	<artifactId>maplibre-gl-leaflet</artifactId>
+	<artifactId>geoman</artifactId>
 	<version>5.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LeafletMap for Vaadin - Plugin - maplibre-gl-leaflet</name>
-	<description>LeafletMap for Vaadin - Plugin - maplibre-gl-leaflet</description>
+	<name>LeafletMap for Vaadin - Plugin - geoman</name>
+	<description>LeafletMap for Vaadin - Plugin - geoman</description>
 	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
 
 	<scm>
