@@ -4,7 +4,7 @@
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
 # LeafletMap for Vaadin
-A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/)
+A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/).
 
 ![demo](assets/demo.png)
 
@@ -32,6 +32,10 @@ To get started it's recommended to have a look at the [demo](./flow-demo), notab
 > }
 > ```
 > </details>
+
+### Plugins
+
+We also offer various [predefined plugins](./plugins/) which you can also utilize to enhance your Leaflet experience.
 
 ## Installation
 [Installation guide of the latest release](https://github.com/xdev-software/vaadin-maps-leaflet-flow/releases/latest#Installation)
