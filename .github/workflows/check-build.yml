@@ -20,7 +20,7 @@ on:
       - 'assets/**'
 
 env:
-  DEMO_MAVEN_MODULE: ${{ github.event.repository.name }}-demo
+  DEMO_MAVEN_MODULE: flow-demo
 
 jobs:
   build:
