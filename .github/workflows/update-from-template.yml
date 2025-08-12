@@ -35,7 +35,7 @@ jobs:
       update_branch_merged_commit: ${{ steps.manage-branches.outputs.update_branch_merged_commit }}
       create_update_branch_merged_pr: ${{ steps.manage-branches.outputs.create_update_branch_merged_pr }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Required because otherwise there are always changes detected when executing diff/rev-list
           fetch-depth: 0
@@ -181,7 +181,7 @@ jobs:
     if: needs.update.outputs.create_update_branch_merged_pr == 1
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Required because otherwise there are always changes detected when executing diff/rev-list
           fetch-depth: 0
