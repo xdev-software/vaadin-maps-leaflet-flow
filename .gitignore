@@ -33,6 +33,28 @@ hs_err_pid*
 .classpath
 .project
 
+#vaadin/node webpack/frontend stuff
+# Ignore Node
+node/
+
+# The following files are generated/updated by vaadin-maven-plugin
+node_modules/
+
+# Vaadin
+package.json
+package-lock.json
+webpack.generated.js
+webpack.config.js
+tsconfig.json
+types.d.ts
+vite.config.ts
+vite.generated.ts
+**/src/main/frontend/generated/
+**/src/main/frontend/index.html
+**/src/main/bundles/
+*.lock
+
+
 # == IntelliJ ==
 *.iml
 *.ipr

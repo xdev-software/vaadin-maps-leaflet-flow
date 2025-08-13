@@ -26,7 +26,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with Maven
-      run: ./mvnw -B clean package -T2C
+      run: ./mvnw -B clean package -Pproduction -T2C
       
     - name: Check for uncommited changes
       run: |
@@ -42,7 +42,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package -Pproduction"
           exit 1
         fi
 
@@ -99,6 +99,9 @@ jobs:
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
+
+          ### Additional notes
+          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
 
   publish-maven:
     runs-on: ubuntu-latest
