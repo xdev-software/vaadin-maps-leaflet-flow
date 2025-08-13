@@ -26,21 +26,153 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<mainClass>software.xdev.Application</mainClass>
+		<mainClass>software.xdev.vaadin.Application</mainClass>
+
+		<!-- Dependency-Versions -->
+		<vaadin.version>24.8.6</vaadin.version>
+
+		<org.springframework.boot.version>3.5.4</org.springframework.boot.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+				<version>${vaadin.version}</version>
+			</dependency>
+
+			<!-- Spring Boot -->
+			<!-- This bom provides versions for ~500 dependencies -->
+			<!-- Nearly at the end so that it doesn't accidentally overwrite other versions -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${org.springframework.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-core</artifactId>
+			<exclusions>
+				<!-- No Hilla is used -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>hilla-dev</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>copilot</artifactId>
+				</exclusion>
+				<!-- Lumo is used instead -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>vaadin-material-theme</artifactId>
+				</exclusion>
+				<!-- React is not enabled and thus not required -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>flow-react</artifactId>
+				</exclusion>
+				<!-- There is like 10 people on the planet that need this by default -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>collaboration-engine</artifactId>
+				</exclusion>
+				<!-- No Wildfly used here -->
+				<exclusion>
+					<groupId>com.vaadin.servletdetector</groupId>
+					<artifactId>throw-if-servlet3</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>software.xdev</groupId>
 			<artifactId>template-placeholder</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-spring-boot-starter</artifactId>
+			<exclusions>
+				<!-- No Hilla is used -->
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>hilla</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Temporarily excluded by Vaadin due to "security vulnerability" -->
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${org.springframework.boot.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		
 		<plugins>
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-frontend</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- Can only be true if hilla is used -->
+					<!-- Takes a few seconds to scan everything for hilla -->
+					<frontendHotdeploy>false</frontendHotdeploy>
+					<!-- Prevent scanning for react (not used) -->
+					<reactEnable>false</reactEnable>
+					<!-- Only scan required -->
+					<frontendScanner>
+						<includes>
+							<include>
+								<groupId>software.xdev</groupId>
+								<artifactId>*vaadin*</artifactId>
+							</include>
+							<include>
+								<groupId>com.vaadin</groupId>
+							</include>
+						</includes>
+						<excludes>
+							<exclude>
+								<groupId>com.vaadin.external*</groupId>
+							</exclude>
+						</excludes>
+					</frontendScanner>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -52,34 +184,58 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.7.1</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>${mainClass}</mainClass>
-						</manifest>
-						<manifestEntries>
-							<Multi-Release>true</Multi-Release>
-						</manifestEntries>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<appendAssemblyId>false</appendAssemblyId>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>production</id>
+			<dependencies>
+				<!-- Exclude development dependencies from production -->
+				<dependency>
+					<groupId>com.vaadin</groupId>
+					<artifactId>vaadin-core</artifactId>
+					<exclusions>
+						<exclusion>
+							<groupId>com.vaadin</groupId>
+							<artifactId>vaadin-dev</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.vaadin</groupId>
+						<artifactId>vaadin-maven-plugin</artifactId>
+						<version>${vaadin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-frontend</goal>
+									<goal>build-frontend</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<mainClass>${mainClass}</mainClass>
+						</configuration>
+						<executions>
+							<execution>
+								<id>repackage</id>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
