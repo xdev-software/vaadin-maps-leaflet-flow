@@ -218,6 +218,71 @@
 		</properties>
 	</rule>
 
+	<rule name="AvoidPostConstruct"
+		language="java"
+		message="Avoid @PostConstruct"
+		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+		<description>
+			Using a `@PostConstruct` method is usually only done when field injection is used and initialization needs to be performed after that.
+
+			It's better to do this directly in the constructor with constructor injection, so that all logic will be encapsulated there.
+			This also makes using the bean in environments where JavaEE is not present - for example in tests - a lot easier, as forgetting to call the `@PostConstruct` method is no longer possible.
+		</description>
+		<priority>3</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+					<![CDATA[
+//MethodDeclaration[pmd-java:hasAnnotation('jakarta.annotation.PostConstruct')]
+]]>
+				</value>
+			</property>
+		</properties>
+	</rule>
+
+	<rule name="AvoidPreDestroy"
+		language="java"
+		message="Avoid @PreDestroy"
+		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+		<description>
+			`@PreDestroy` should be replaced by implementing `AutoCloseable` and overwriting the `close` method instead.
+
+			This also makes using the bean in environments where JavaEE is not present - for example in tests - a lot easier, as forgetting to call the `@PreDestroy` method is no much more difficult.
+		</description>
+		<priority>3</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+					<![CDATA[
+//MethodDeclaration[pmd-java:hasAnnotation('jakarta.annotation.PreDestroy')]
+]]>
+				</value>
+			</property>
+		</properties>
+	</rule>
+
+	<rule name="AvoidUnmanagedThreads"
+		language="java"
+		message="Avoid unmanaged threads"
+		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+		<description>
+			Trying to manually manage threads usually gets quickly out of control and may result in various problems like uncontrollable spawning of threads.
+			Threads can also not be cancelled properly.
+
+			Use managed Thread services like `ExecutorService` and `CompletableFuture` instead.
+		</description>
+		<priority>3</priority>
+		<properties>
+			<property name="xpath">
+				<value>
+					<![CDATA[
+//MethodCall[pmd-java:matchesSig('java.lang.Thread#start()') or pmd-java:matchesSig('java.lang.Thread#startVirtualThread(java.lang.Runnable)') or pmd-java:matchesSig('java.lang.Thread$Builder#start(java.lang.Runnable)')]
+]]>
+				</value>
+			</property>
+		</properties>
+	</rule>
+
 	<rule name="JavaObjectSerializationIsUnsafe"
 		language="java"
 		message="Using Java Object (De-)Serialization is unsafe and has led to too many security vulnerabilities"

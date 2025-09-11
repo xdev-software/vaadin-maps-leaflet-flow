@@ -43,7 +43,7 @@ jobs:
           # If no PAT is used the following error occurs on a push:
           # refusing to allow a GitHub App to create or update workflow `.github/workflows/xxx.yml` without `workflows` permission
           token: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
-      
+
       - name: Init Git
         run: |
           git config --global user.email "111048771+xdev-gh-bot@users.noreply.github.com"
@@ -190,7 +190,7 @@ jobs:
           # If no PAT is used the following error occurs on a push:
           # refusing to allow a GitHub App to create or update workflow `.github/workflows/xxx.yml` without `workflows` permission
           token: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
-      
+
       - name: Init Git
         run: |
           git config --global user.email "111048771+xdev-gh-bot@users.noreply.github.com"

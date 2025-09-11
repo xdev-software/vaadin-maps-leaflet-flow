@@ -33,7 +33,7 @@ jobs:
       env:
         PACKAGES_CENTRAL_TOKEN: ${{ secrets.PACKAGES_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-  
+
     - name: Set up JDK
       uses: actions/setup-java@v5
       with: # running setup-java again overwrites the settings.xml
