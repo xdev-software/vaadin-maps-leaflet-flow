@@ -1,3 +1,6 @@
+# 5.0.1
+* Updated dependencies
+
 # 5.0.0
 
 > [!WARNING]
