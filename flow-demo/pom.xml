@@ -20,7 +20,7 @@
 	</organization>
 
 	<properties>
-		<javaVersion>17</javaVersion>
+		<javaVersion>21</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,9 +29,9 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.9.2</vaadin.version>
+		<vaadin.version>25.0.0-beta1</vaadin.version>
 
-		<org.springframework.boot.version>3.5.6</org.springframework.boot.version>
+		<org.springframework.boot.version>4.0.0-M3</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>

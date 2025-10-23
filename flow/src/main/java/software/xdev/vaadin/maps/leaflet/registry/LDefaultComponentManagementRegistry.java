@@ -125,7 +125,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		this.getElement()
 			.executeJs(
 				this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");",
-				parameters);
+				(Object[]) parameters);
 		this.clientMapSize.incrementAndGet();
 		this.componentIndexMap.put(component, currentId);
 		
@@ -143,7 +143,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	@Override
 	public PendingJavaScriptResult execJs(final String js, final Serializable... params)
 	{
-		return this.getElement().executeJs(js, params);
+		return this.getElement().executeJs(js, (Object[]) params);
 	}
 	
 	@Override
