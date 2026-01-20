@@ -48,7 +48,8 @@ You might have to fine tune your security configuration to allow these.
 #### Compatibility with Vaadin
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
-| Vaadin 24+ (latest) | ``3+`` |
+| Vaadin 25+ (latest) | ``6+`` |
+| Vaadin 24 | ``3-5.x`` |
 
 ### Spring-Boot
 * You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
