@@ -50,6 +50,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#evented-on">Leaflet docs</a>
 	 */
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	default S on(final String eventMap)
 	{
 		this.invokeSelf(".on($0)", eventMap);
@@ -120,6 +121,7 @@ public interface LEvented<S extends LEvented<S>> extends LComponent<S>
 	/**
 	 * @see <a href="https://leafletjs.com/reference.html#evented-once">Leaflet docs</a>
 	 */
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	default S once(final String eventMap)
 	{
 		this.invokeSelf(".once($0)", eventMap);

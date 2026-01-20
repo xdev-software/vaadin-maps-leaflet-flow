@@ -44,6 +44,7 @@ import software.xdev.vaadin.maps.leaflet.registry.LComponentManagementRegistry;
 @CssImport("leaflet/dist/leaflet.css")
 public class MapContainer extends Composite<Div> implements HasSize, HasStyle, HasComponents, HasText
 {
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	private final LMap lMap;
 	
 	private Consumer<LMap> afterInitialResize;
