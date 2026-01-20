@@ -20,7 +20,7 @@
 	</organization>
 
 	<properties>
-		<javaVersion>17</javaVersion>
+		<javaVersion>21</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,9 +29,9 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.9.3</vaadin.version>
+		<vaadin.version>25.0.3</vaadin.version>
 
-		<org.springframework.boot.version>3.5.6</org.springframework.boot.version>
+		<org.springframework.boot.version>4.0.1</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -62,37 +62,25 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
 			<exclusions>
-				<!-- No Hilla is used -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>hilla-dev</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>copilot</artifactId>
-				</exclusion>
-				<!-- Lumo is used instead -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>vaadin-material-theme</artifactId>
-				</exclusion>
-				<!-- React is not enabled and thus not required -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>flow-react</artifactId>
-				</exclusion>
 				<!-- There is like 10 people on the planet that need this by default -->
 				<exclusion>
 					<groupId>com.vaadin</groupId>
 					<artifactId>collaboration-engine</artifactId>
 				</exclusion>
-				<!-- No Wildfly used here -->
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-dev</artifactId>
+			<optional>true</optional>
+			<exclusions>
 				<exclusion>
-					<groupId>com.vaadin.servletdetector</groupId>
-					<artifactId>throw-if-servlet3</artifactId>
+					<groupId>com.vaadin</groupId>
+					<artifactId>copilot</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 			<artifactId>flow</artifactId>
@@ -118,18 +106,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-spring-boot-starter</artifactId>
-			<exclusions>
-				<!-- No Hilla is used -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>hilla</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- Temporarily excluded by Vaadin due to "security vulnerability" -->
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -153,40 +129,6 @@
 		
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.6.2</version>
-				<executions>
-					<execution>
-						<id>patch-package-json-overrides</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>
-						<configuration>
-							<mainClass>software.xdev.vaadin.vpjo.Launcher</mainClass>
-							<arguments>
-								<argument>${project.basedir}</argument>
-								<argument>${project.build.directory}</argument>
-							</arguments>
-							<includeProjectDependencies>false</includeProjectDependencies>
-							<includePluginDependencies>true</includePluginDependencies>
-							<executableDependency>
-								<groupId>software.xdev</groupId>
-								<artifactId>vaadin-package-json-optimizer</artifactId>
-							</executableDependency>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>software.xdev</groupId>
-						<artifactId>vaadin-package-json-optimizer</artifactId>
-						<version>1.0.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>
 				<version>${vaadin.version}</version>
@@ -198,11 +140,11 @@
 					</execution>
 				</executions>
 				<configuration>
+					<!-- Allows for greater control -->
+					<pnpmEnable>true</pnpmEnable>
 					<!-- Can only be true if hilla is used -->
 					<!-- Takes a few seconds to scan everything for hilla -->
 					<frontendHotdeploy>false</frontendHotdeploy>
-					<!-- Prevent scanning for react (not used) -->
-					<reactEnable>false</reactEnable>
 					<!-- Only scan required -->
 					<frontendScanner>
 						<includes>
@@ -242,13 +184,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>software.xdev</groupId>
-					<artifactId>vaadin-package-json-optimizer</artifactId>
-					<version>1.0.0</version>
-				</dependency>
-			</dependencies>
 		</profile>
 		<profile>
 			<id>production</id>
