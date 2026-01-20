@@ -300,7 +300,8 @@ public class ComplexDemo extends AbstractDemo
 	{
 		final LImageOverlay imageOverlay = new LImageOverlay(
 			this.reg,
-			"https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+			// https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg
+			"newark_nj_1922.jpg", // Workaround: Use locally hosted image because remote enters redirect loop?
 			new LLatLngBounds(
 				this.reg,
 				new LLatLng(this.reg, 40.712216, -74.22655),
