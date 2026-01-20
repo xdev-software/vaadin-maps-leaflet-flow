@@ -15,8 +15,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 
-import elemental.json.JsonObject;
-import elemental.json.JsonValue;
 import software.xdev.vaadin.maps.leaflet.MapContainer;
 import software.xdev.vaadin.maps.leaflet.basictypes.LDivIcon;
 import software.xdev.vaadin.maps.leaflet.basictypes.LDivIconOptions;
@@ -46,6 +44,8 @@ import software.xdev.vaadin.maps.leaflet.layer.vector.LPolyline;
 import software.xdev.vaadin.maps.leaflet.map.LMap;
 import software.xdev.vaadin.maps.leaflet.map.LMapLocateOptions;
 import software.xdev.vaadin.maps.leaflet.registry.LDefaultComponentManagementRegistry;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 
 @Route(ComplexDemo.NAV)
@@ -258,14 +258,14 @@ public class ComplexDemo extends AbstractDemo
 	
 	// This server side method will be called when the map is clicked
 	@ClientCallable
-	public void mapClicked(final JsonValue input)
+	public void mapClicked(final JsonNode input)
 	{
-		if(!(input instanceof final JsonObject obj))
+		if(!(input instanceof final ObjectNode obj))
 		{
 			return;
 		}
 		
-		LOG.info("Map clicked - lat: {}, lng: {}", obj.getNumber("lat"), obj.getNumber("lng"));
+		LOG.info("Map clicked - lat: {}, lng: {}", obj.get("lat").asDouble(), obj.get("lng").asDouble());
 	}
 	
 	private void addLocateDemo()
@@ -404,7 +404,7 @@ public class ComplexDemo extends AbstractDemo
 			new Button(
 				"Get bounds",
 				ev -> this.map.invokeSelfReturn(".getBounds()")
-					.then(v -> Notification.show(v.toJson())))
+					.then(v -> Notification.show(v.toString())))
 		);
 	}
 	
