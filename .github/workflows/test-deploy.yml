@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
 
     - name: Set up JDK
       uses: actions/setup-java@v5
       with: # running setup-java overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: github-central
         server-password: PACKAGES_CENTRAL_TOKEN
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
@@ -38,7 +38,7 @@ jobs:
       uses: actions/setup-java@v5
       with: # running setup-java again overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: sonatype-central-portal
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN

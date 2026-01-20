@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 	<artifactId>flow</artifactId>
-	<version>5.0.2-SNAPSHOT</version>
+	<version>6.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>LeafletMap for Vaadin</name>
@@ -42,14 +42,14 @@
 	</licenses>
 
 	<properties>
-		<javaVersion>17</javaVersion>
+		<javaVersion>21</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.9.2</vaadin.version>
+		<vaadin.version>25.0.3</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -69,17 +69,11 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
 		</dependency>
-		<!-- JSON JACKSON -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.20.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
-			<version>1.14.0</version>
+			<version>1.15.0</version>
 		</dependency>
 	</dependencies>
 
@@ -160,7 +154,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>3.4.0</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -174,7 +168,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.4.2</version>
+				<version>3.5.0</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -251,7 +245,7 @@
 					<plugin>
 						<groupId>org.sonatype.central</groupId>
 						<artifactId>central-publishing-maven-plugin</artifactId>
-						<version>0.9.0</version>
+						<version>0.10.0</version>
 						<extensions>true</extensions>
 						<configuration>
 							<publishingServerId>sonatype-central-portal</publishingServerId>
@@ -273,7 +267,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>11.1.0</version>
+								<version>13.0.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
@@ -298,7 +292,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-pmd-plugin</artifactId>
-						<version>3.27.0</version>
+						<version>3.28.0</version>
 						<configuration>
 							<analysisCache>true</analysisCache>
 							<includeTests>true</includeTests>
@@ -311,12 +305,12 @@
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-core</artifactId>
-								<version>7.17.0</version>
+								<version>7.20.0</version>
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-java</artifactId>
-								<version>7.17.0</version>
+								<version>7.20.0</version>
 							</dependency>
 						</dependencies>
 					</plugin>

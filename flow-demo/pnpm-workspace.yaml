@@ -1,0 +1,25 @@
+# Delay install of newly released packages to prevent supply chain attacks
+minimumReleaseAge: 180 # 3h
+overrides:
+  # Remove unused packages
+  # glob CLI unused
+  "jackspeak": "npm:empty-npm-package@1.0.0"
+  "foreground-child": "npm:empty-npm-package@1.0.0"
+  "package-json-from-dist": "npm:empty-npm-package@1.0.0"
+  # rollup-plugin-visualizer CLI unused
+  "yargs": "npm:empty-npm-package@1.0.0"
+  "open": "npm:empty-npm-package@1.0.0"
+  # transform-ast test only
+  "nanobench": "npm:empty-npm-package@1.0.0"
+  # Workbox unused
+  "workbox-google-analytics": "npm:empty-npm-package@1.0.0"
+  "@surma/rollup-plugin-off-main-thread": "npm:empty-npm-package@1.0.0"
+  "@babel/preset-env": "npm:empty-npm-package@1.0.0"
+  "@babel/runtime": "npm:empty-npm-package@1.0.0"
+  "@rollup/plugin-replace@2.4.2": "npm:empty-npm-package@1.0.0"
+  "@rollup/plugin-babel": "npm:empty-npm-package@1.0.0"
+  "@rollup/plugin-node-resolve": "npm:empty-npm-package@1.0.0"
+  "@rollup/plugin-terser": "npm:empty-npm-package@1.0.0"
+  "tempy": "npm:empty-npm-package@1.0.0"
+  # Disable telemetry
+  "@vaadin/vaadin-usage-statistics": "npm:empty-npm-package@1.0.0"

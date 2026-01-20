@@ -1,7 +1,7 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0?logo=vaadin)](https://vaadin.com/directory/component/leafletmap-for-vaadin)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/vaadin-maps-leaflet-flow?logo=apache%20maven)](https://mvnrepository.com/artifact/software.xdev/vaadin-maps-leaflet-flow)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-maps-leaflet-flow/check-build.yml?branch=develop)](https://github.com/xdev-software/vaadin-maps-leaflet-flow/actions/workflows/check-build.yml?query=branch%3Adevelop)
-![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
+![Vaadin 25+](https://img.shields.io/badge/Vaadin%20Platform/Flow-25+-00b4f0)
 
 # LeafletMap for Vaadin
 A Vaadin Flow Java API for [Leaflet](https://leafletjs.com/).
@@ -48,7 +48,8 @@ You might have to fine tune your security configuration to allow these.
 #### Compatibility with Vaadin
 | Vaadin version | vaadin-maps-leaflet-flow version |
 | --- | --- |
-| Vaadin 24+ (latest) | ``3+`` |
+| Vaadin 25+ (latest) | ``6+`` |
+| Vaadin 24 | ``3-5.x`` |
 
 ### Spring-Boot
 * You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
@@ -71,4 +72,4 @@ If you need support as soon as possible and you can't wait for any pull request,
 See the [contributing guide](./CONTRIBUTING.md) for detailed instructions on how to get started with our project.
 
 ## Dependencies and Licenses
-View the [license of the current project](LICENSE) or the [summary including all dependencies](https://xdev-software.github.io/vaadin-maps-leaflet-flow/dependencies)
+View the [license of the current project](LICENSE) or the [docs that contain a dependency summary (per module)](https://xdev-software.github.io/vaadin-maps-leaflet-flow/)
