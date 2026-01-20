@@ -15,8 +15,6 @@
  */
 package software.xdev.vaadin.maps.leaflet.registry;
 
-import java.io.Serializable;
-
 import com.vaadin.flow.component.page.PendingJavaScriptResult;
 
 import software.xdev.vaadin.maps.leaflet.base.LComponent;
@@ -55,7 +53,7 @@ public interface LComponentManagementRegistry
 	<C extends LComponent<C>> C add(
 		final C component,
 		final String jsConstructorCallExpression,
-		final Serializable... parameters);
+		final Object... parameters);
 	
 	/**
 	 * Returns an expression to access the component on the client with JavaScript
@@ -63,11 +61,11 @@ public interface LComponentManagementRegistry
 	String clientComponentJsAccessor(final LComponent<?> component);
 	
 	/**
-	 * Wrapper for {@link com.vaadin.flow.dom.Element#executeJs(String, Serializable...)}.
+	 * Wrapper for {@link com.vaadin.flow.dom.Element#executeJs(String, Object...)}.
 	 * <p/>
 	 * Usage is normally not recommended however there are some corner cases where it's required.
 	 */
-	PendingJavaScriptResult execJs(final String js, final Serializable... params);
+	PendingJavaScriptResult execJs(final String js, final Object... params);
 	
 	/**
 	 * Calls {@link #remove(LComponent, boolean)} with <code>freeUpClientWhenNoMatch = true</code>

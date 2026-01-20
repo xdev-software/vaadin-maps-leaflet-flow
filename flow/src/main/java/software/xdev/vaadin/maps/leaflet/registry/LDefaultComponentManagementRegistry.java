@@ -15,9 +15,6 @@
  */
 package software.xdev.vaadin.maps.leaflet.registry;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.io.UncheckedIOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -30,14 +27,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.html.Div;
@@ -46,13 +35,21 @@ import com.vaadin.flow.component.page.PendingJavaScriptResult;
 import software.xdev.vaadin.maps.leaflet.base.LComponent;
 import software.xdev.vaadin.maps.leaflet.base.LComponentOptions;
 import software.xdev.vaadin.maps.leaflet.base.RawString;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.ObjectWriter;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.ser.std.StdSerializer;
 
 
+@SuppressWarnings("java:S1948") // DO NOT SERIALIZE UI CLASSES!
 public class LDefaultComponentManagementRegistry extends Composite<Div> implements LComponentManagementRegistry
 {
 	protected static final AtomicLong NEXT_ID = new AtomicLong(1);
 	
-	protected Map<LComponent<?>, Integer> componentIndexMap = new WeakHashMap<>();
+	protected Map<LComponent<?>, Integer> componentIndices = new WeakHashMap<>();
 	protected AtomicInteger nextComponentId = new AtomicInteger(1);
 	protected AtomicInteger clientMapSize = new AtomicInteger(0);
 	
@@ -104,9 +101,9 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		{
 			return this.optionsWriter.writeValueAsString(options);
 		}
-		catch(final JsonProcessingException e)
+		catch(final JacksonException e)
 		{
-			throw new UncheckedIOException("Failed to write options", e);
+			throw new IllegalStateException("Failed to write options", e);
 		}
 	}
 	
@@ -119,15 +116,14 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	public <C extends LComponent<C>> C add(
 		final C component,
 		final String jsConstructorCallExpression,
-		final Serializable... parameters)
+		final Object... parameters)
 	{
 		final int currentId = this.nextComponentId.getAndIncrement();
-		this.getElement()
-			.executeJs(
-				this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");",
-				parameters);
+		this.getElement().executeJs(
+			this.clientComponents() + ".set(" + currentId + ", " + jsConstructorCallExpression + ");",
+			parameters);
 		this.clientMapSize.incrementAndGet();
-		this.componentIndexMap.put(component, currentId);
+		this.componentIndices.put(component, currentId);
 		
 		return component;
 	}
@@ -135,13 +131,13 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	@Override
 	public String clientComponentJsAccessor(final LComponent<?> component)
 	{
-		return Optional.ofNullable(this.componentIndexMap.get(component))
+		return Optional.ofNullable(this.componentIndices.get(component))
 			.map(id -> this.clientComponents() + ".get(" + id + ")")
 			.orElse(null);
 	}
 	
 	@Override
-	public PendingJavaScriptResult execJs(final String js, final Serializable... params)
+	public PendingJavaScriptResult execJs(final String js, final Object... params)
 	{
 		return this.getElement().executeJs(js, params);
 	}
@@ -149,7 +145,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	@Override
 	public <C extends LComponent<C>> void remove(final C component, final boolean freeUpClientWhenNoMatch)
 	{
-		final Integer removedId = this.componentIndexMap.remove(component);
+		final Integer removedId = this.componentIndices.remove(component);
 		if(removedId != null)
 		{
 			this.getElement().executeJs(this.clientComponents() + ".delete(" + removedId + ");");
@@ -167,9 +163,9 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	@Override
 	public void freeUpClient()
 	{
-		if(this.clientMapSize.get() != this.componentIndexMap.size())
+		if(this.clientMapSize.get() != this.componentIndices.size())
 		{
-			final Collection<Integer> ids = this.componentIndexMap.values();
+			final Collection<Integer> ids = this.componentIndices.values();
 			this.getElement().executeJs("""
 				let activeIds = [%s];
 				let components = %s;
@@ -190,16 +186,19 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	
 	protected static ObjectWriter getDefaultWriterForOptions()
 	{
-		return new ObjectMapper()
-			.setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
-			.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
-			.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE)
-			.setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE)
-			.setVisibility(PropertyAccessor.SETTER, JsonAutoDetect.Visibility.NONE)
-			.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.NONE)
-			.registerModule(new SimpleModule()
+		return JsonMapper.builder()
+			.changeDefaultPropertyInclusion(v -> v
+				.withValueInclusion(JsonInclude.Include.NON_EMPTY))
+			.changeDefaultVisibility(vc -> vc
+				.withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+				.withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+				.withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
+				.withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+				.withCreatorVisibility(JsonAutoDetect.Visibility.NONE))
+			.addModule(new SimpleModule()
 				.addSerializer(RawString.class, new RawSerializer<>(RawString::getValue))
 				.addSerializer(LComponent.class, new RawSerializer<>(LComponent::clientComponentJsAccessor)))
+			.build()
 			.writer();
 	}
 	
@@ -214,8 +213,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 		}
 		
 		@Override
-		public void serialize(final V value, final JsonGenerator gen, final SerializerProvider provider)
-			throws IOException
+		public void serialize(final V value, final JsonGenerator gen, final SerializationContext ctx)
 		{
 			gen.writeRawValue(this.rawValueExtractor.apply(value));
 		}
