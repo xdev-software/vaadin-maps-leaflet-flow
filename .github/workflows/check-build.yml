@@ -78,7 +78,7 @@ jobs:
         fi
 
     - name: Upload demo files
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: demo-files-java-${{ matrix.java }}
         path: ${{ env.DEMO_MAVEN_MODULE }}/target/${{ env.DEMO_MAVEN_MODULE }}.jar
@@ -160,8 +160,8 @@ jobs:
       run: ./mvnw -B pmd:aggregate-cpd pmd:cpd-check -P pmd -DskipTests -T2C
 
     - name: Upload report
-      if: always()
-      uses: actions/upload-artifact@v6
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v7
       with:
         name: pmd-report
         if-no-files-found: ignore
