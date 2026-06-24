@@ -25,7 +25,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -199,7 +199,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}

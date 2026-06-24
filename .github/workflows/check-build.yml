@@ -40,7 +40,7 @@ jobs:
         java-version: ${{ matrix.java }}
 
     - name: Cache Maven
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -48,7 +48,7 @@ jobs:
           ${{ runner.os }}-mvn-build-
 
     - name: Cache Vaadin prod bundles
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: |
           **/bundles/prod.bundle
@@ -102,7 +102,7 @@ jobs:
         java-version: ${{ matrix.java }}
 
     - name: Cache Maven
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-checkstyle-${{ hashFiles('**/pom.xml') }}
@@ -110,7 +110,7 @@ jobs:
           ${{ runner.os }}-mvn-checkstyle-
 
     - name: CheckStyle Cache
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: '**/target/checkstyle-cachefile'
         key: ${{ runner.os }}-checkstyle-${{ hashFiles('**/pom.xml') }}
@@ -138,7 +138,7 @@ jobs:
         java-version: ${{ matrix.java }}
 
     - name: Cache Maven
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-pmd-${{ hashFiles('**/pom.xml') }}
@@ -146,7 +146,7 @@ jobs:
           ${{ runner.os }}-mvn-pmd-
 
     - name: PMD Cache
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: '**/target/pmd/pmd.cache'
         key: ${{ runner.os }}-pmd-${{ hashFiles('**/pom.xml') }}
