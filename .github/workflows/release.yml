@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Set up JDK
       uses: actions/setup-java@v5
@@ -25,7 +25,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -60,7 +60,7 @@ jobs:
     outputs:
       upload_url: ${{ steps.create-release.outputs.upload_url }}
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Configure Git
       run: |
@@ -127,7 +127,7 @@ jobs:
     needs: [prepare-release]
     timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |
@@ -183,7 +183,7 @@ jobs:
     needs: [prepare-release]
     timeout-minutes: 15
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |
@@ -199,7 +199,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -231,7 +231,7 @@ jobs:
     needs: [publish-maven]
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |

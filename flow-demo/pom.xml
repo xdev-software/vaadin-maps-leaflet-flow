@@ -29,9 +29,9 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>25.1.5</vaadin.version>
+		<vaadin.version>25.2.3</vaadin.version>
 
-		<org.springframework.boot.version>4.0.6</org.springframework.boot.version>
+		<org.springframework.boot.version>4.1.0</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -166,6 +166,12 @@
 							</exclude>
 						</excludes>
 					</frontendScanner>
+					<!-- Disable not required post installs -->
+					<excludePostinstallPackages>
+						<package>.</package>
+						<package>esbuild</package>
+						<package>@vaadin/vaadin-usage-statistics</package>
+					</excludePostinstallPackages>
 				</configuration>
 			</plugin>
 			<plugin>

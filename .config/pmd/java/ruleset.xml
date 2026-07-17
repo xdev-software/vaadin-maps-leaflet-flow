@@ -141,6 +141,7 @@
 		</properties>
 	</rule>
 
+	<rule ref="category/java/errorprone.xml/AssertEqualsArgumentOrder"/>
 	<rule ref="category/java/errorprone.xml/AssignmentToNonFinalStatic"/>
 	<rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor"/>
 	<rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators"/>
