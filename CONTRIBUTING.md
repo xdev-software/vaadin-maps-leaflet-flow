@@ -23,14 +23,14 @@ You should have the following things installed:
 * Maven (Note that the [Maven Wrapper](https://maven.apache.org/wrapper/) is shipped with the repo)
 
 ### Recommended setup
-* Install ``IntelliJ`` (Community Edition is sufficient)
-  * Install the following plugins:
-    * [Save Actions](https://plugins.jetbrains.com/plugin/22113) - Provides save actions, like running the formatter or adding ``final`` to fields
-    * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
-      * You may consider disabling telemetry in the settings under ``Tools > Sonarlint -> About``
-    * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
+* Install `IntelliJ`
+  * Recommended setup actions
+    * Disable not needed plugins
+    * Disable [telemetry](https://www.jetbrains.com/help/idea/settings-usage-statistics.html)
+    * Configure the available memory
   * Import the project
-  * Ensure that everything is encoded in ``UTF-8``
+  * You will get prompted to install the required plugins
+  * Ensure that everything is encoded in `UTF-8`
   * Ensure that the JDK/Java-Version is correct
   * To enable AUTOMATIC reloading/restarting while developing and running the app do this (further information in "
     SpringBoot-Devtools" section below; [Source](https://stackoverflow.com/q/33349456)):

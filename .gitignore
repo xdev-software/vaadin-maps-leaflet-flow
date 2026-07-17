@@ -43,6 +43,8 @@ node_modules/
 # Vaadin
 package.json
 package-lock.json
+.npmrc
+pnpm-lock.yaml
 webpack.generated.js
 webpack.config.js
 tsconfig.json

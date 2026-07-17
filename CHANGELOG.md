@@ -1,3 +1,7 @@
+# 6.0.1
+* Updated to Vaadin 25.2
+* Migrated resources from deprecated location
+
 # 6.0.0
 * Updated to Vaadin 25
 

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Set up JDK
       uses: actions/setup-java@v5
@@ -25,7 +25,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -33,7 +33,7 @@ jobs:
           ${{ runner.os }}-mvn-build-
 
     - name: Build with Maven
-      run: ./mvnw -B clean package -Pproduction -T2C
+      run: ./mvnw -B clean package -T2C
       
     - name: Check for uncommited changes
       run: |
@@ -60,7 +60,7 @@ jobs:
     outputs:
       upload_url: ${{ steps.create-release.outputs.upload_url }}
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Configure Git
       run: |
@@ -87,7 +87,7 @@ jobs:
 
     - name: Create Release
       id: create-release
-      uses: shogo82148/actions-create-release@559c27ce7eb834825e2b55927c64f6d1bd1db716 # v1
+      uses: shogo82148/actions-create-release@6a396031bc74c57403da1018fec74d24c6aa03cd # v1
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
@@ -127,7 +127,7 @@ jobs:
     needs: [prepare-release]
     timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |
@@ -183,7 +183,7 @@ jobs:
     needs: [prepare-release]
     timeout-minutes: 15
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |
@@ -199,7 +199,7 @@ jobs:
 
     # Try to reuse existing cache from check-build
     - name: Try restore Maven Cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mvn-build-${{ hashFiles('**/pom.xml') }}
@@ -220,7 +220,7 @@ jobs:
         done
 
     - name: Deploy to Github pages
-      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+      uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./target/site
@@ -231,7 +231,7 @@ jobs:
     needs: [publish-maven]
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Init Git and pull
       run: |

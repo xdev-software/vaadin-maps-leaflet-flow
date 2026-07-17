@@ -206,7 +206,7 @@ public class LDefaultComponentManagementRegistry extends Composite<Div> implemen
 	{
 		private final Function<V, String> rawValueExtractor;
 		
-		public RawSerializer(final Function<V, String> rawValueExtractor)
+		protected RawSerializer(final Function<V, String> rawValueExtractor)
 		{
 			super((Class<V>)null);
 			this.rawValueExtractor = Objects.requireNonNull(rawValueExtractor);
