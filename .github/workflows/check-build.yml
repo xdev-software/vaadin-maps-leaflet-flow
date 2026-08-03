@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        java: [17, 21, 25]
+        java: [21, 25]
         distribution: [temurin]
     steps:
     - uses: actions/checkout@v7
@@ -47,6 +47,15 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-mvn-build-
 
+    - name: Cache Vaadin prod bundles
+      uses: actions/cache@v6
+      with:
+        path: |
+          **/bundles/prod.bundle
+        key: ${{ runner.os }}-vaadin-prod-bundles-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-vaadin-prod-bundles-
+
     - name: Build with Maven
       run: ./mvnw -B clean package
 
@@ -64,7 +73,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package -Pproduction"
           exit 1
         fi
 
@@ -117,7 +126,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        java: [17]
+        java: [21]
         distribution: [temurin]
     steps:
     - uses: actions/checkout@v7
