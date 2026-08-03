@@ -12,7 +12,7 @@ We would absolutely love to get the community involved, and we welcome any form 
 * **Send pull requests**<br/>If you want to contribute code, check out the development instructions below.
   * However when contributing larger new features, please first discuss the change you wish to make via issue with the owners of this repository before making it.<br/>Otherwise your work might be rejected and your effort was pointless.
 
-We also encourage you to read the [contribution instructions by GitHub](https://docs.github.com/en/get-started/quickstart/contributing-to-projects).
+We also encourage you to read the [contribution instructions by GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
 
 ## Developing
 
@@ -20,7 +20,7 @@ We also encourage you to read the [contribution instructions by GitHub](https://
 You should have the following things installed:
 * Git
 * Java 25 - should be as unmodified as possible (Recommended: [Eclipse Adoptium](https://adoptium.net/temurin/releases/))
-* Maven (Note that the [Maven Wrapper](https://maven.apache.org/wrapper/) is shipped with the repo)
+* Maven (Note that the [Maven Wrapper](https://maven.apache.org/tools/wrapper/) is shipped with the repo)
 
 ### Recommended setup
 * Install `IntelliJ`
