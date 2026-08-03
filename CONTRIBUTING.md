@@ -4,7 +4,7 @@ We would absolutely love to get the community involved, and we welcome any form 
 
 ### Communication channels
 * Communication is primarily done using issues.
-* If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
+* If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services-products/support).
 * As a last resort measure or on otherwise important matter you may also [contact us directly](https://xdev.software/en/about-us/contact).
 
 ### Ways to help
@@ -42,9 +42,9 @@ You should have the following things installed:
 
 #### [SpringBoot-Developer-Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools) 
 ... should automatically be enabled.<br/>
-If you are changing a file and build the project, parts of the app get  restarted.<br/>
+If you are changing a file and build the project, parts of the app get restarted.<br/>
 Bigger changes may require a complete restart.
-  * [Vaadin automatically reloads the UI on each restart](https://vaadin.com/docs/latest/configuration/live-reload/spring-boot).<br/>
+  * [Vaadin automatically reloads the UI on each restart](https://vaadin.com/docs/latest/flow/configuration/live-reload/spring-boot).<br/>
   You can control this behavior with the ``vaadin.devmode.liveReload.enabled`` property (default: ``true``).
 
 ## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/template-placeholder/release.yml?branch=master)](https://github.com/xdev-software/template-placeholder/actions/workflows/release.yml)
@@ -57,7 +57,7 @@ If the ``develop`` is ready for release, create a pull request to the ``master``
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
-* Ensure that [Vaadin Directory](https://vaadin.com/directory) syncs the update and maybe update the component / version there
+* Ensure that [Vaadin Directory](https://vaadin.com/directory/) syncs the update and maybe update the component / version there
 
 ### Release failures
 
