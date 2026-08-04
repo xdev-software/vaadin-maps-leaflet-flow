@@ -4,7 +4,7 @@ We would absolutely love to get the community involved, and we welcome any form 
 
 ### Communication channels
 * Communication is primarily done using issues.
-* If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
+* If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services-products/support).
 * As a last resort measure or on otherwise important matter you may also [contact us directly](https://xdev.software/en/about-us/contact).
 
 ### Ways to help
