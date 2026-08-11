@@ -23,7 +23,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v5
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
 
     # Try to reuse existing cache from check-build
@@ -52,7 +52,7 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package -Pproduction"
           exit 1
         fi
 
@@ -110,6 +110,9 @@ jobs:
           </dependency>
           ```
 
+          ### Additional notes
+          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.allowed-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
+
   publish-maven:
     runs-on: ubuntu-latest
     needs: [prepare-release]
@@ -127,7 +130,7 @@ jobs:
       uses: actions/setup-java@v5
       with: # running setup-java overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: github-central
         server-password: PACKAGES_CENTRAL_TOKEN
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
@@ -144,7 +147,7 @@ jobs:
       uses: actions/setup-java@v5
       with: # running setup-java again overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: sonatype-central-portal
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN
@@ -174,7 +177,7 @@ jobs:
     - name: Setup - Java
       uses: actions/setup-java@v5
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
 
     # Try to reuse existing cache from check-build
