@@ -31,7 +31,7 @@
 		<!-- Dependency-Versions -->
 		<vaadin.version>25.2.3</vaadin.version>
 
-		<org.springframework.boot.version>4.1.0</org.springframework.boot.version>
+		<org.springframework.boot.version>4.1.1</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
