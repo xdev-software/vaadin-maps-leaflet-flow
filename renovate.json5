@@ -3,6 +3,16 @@
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
+      "description": "Don't manage Java version in actions",
+      "matchDepTypes": [
+        "uses-with"
+      ],
+      "matchDatasources": [
+        "java-version"
+      ],
+      "enabled": false
+    },
+    {
       "description": "Ignore project internal dependencies",
       "packagePattern": "^software.xdev:template-placeholder",
       "datasources": [
