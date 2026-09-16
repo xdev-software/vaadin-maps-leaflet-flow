@@ -19,12 +19,6 @@ We also encourage you to read the [contribution instructions by GitHub](https://
 
 Project specific development instructions can be found in [DEVELOPING.md](./DEVELOPING.md)
 
-#### [SpringBoot-Developer-Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools) 
-... should automatically be enabled.<br/>
-If you are changing a file and build the project, parts of the app get restarted.<br/>
-Bigger changes may require a complete restart.
-  * [Vaadin automatically reloads the UI on each restart](https://vaadin.com/docs/latest/flow/configuration/live-reload/spring-boot).<br/>
-  You can control this behavior with the ``vaadin.devmode.liveReload.enabled`` property (default: ``true``).
 
 ## On AI use / LLM generated content
 
