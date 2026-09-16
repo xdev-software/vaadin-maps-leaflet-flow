@@ -19,6 +19,7 @@ We also encourage you to read the [contribution instructions by GitHub](https://
 
 Project specific development instructions can be found in [DEVELOPING.md](./DEVELOPING.md)
 
+
 ## On AI use / LLM generated content
 
 _Our reason for the strict policy is due to [unqualified people using the technology](https://en.wikipedia.org/wiki/AI_slop)._
