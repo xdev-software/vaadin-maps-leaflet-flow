@@ -6,7 +6,7 @@
 
 	<parent>
 		<groupId>software.xdev</groupId>
-		<artifactId>template-placeholder-root</artifactId>
+		<artifactId>demos</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
