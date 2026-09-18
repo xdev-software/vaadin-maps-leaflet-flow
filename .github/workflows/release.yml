@@ -148,11 +148,11 @@ jobs:
 
     - name: Publish to Central Portal
       run: ../mvnw -B deploy -P publish,publish-sonatype-central-portal
+      working-directory: src
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: src
 
   build-pages:
     runs-on: ubuntu-latest
