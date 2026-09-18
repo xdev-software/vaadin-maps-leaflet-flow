@@ -4,13 +4,6 @@ on:
   push:
     branches: [ master ]
 
-env:
-  PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
-
-permissions:
-  contents: write
-  pull-requests: write
-
 # DO NOT RESTORE CACHE for critical release steps to prevent a (extremely unlikely) scenario 
 # where a supply chain attack could be achieved due to poisoned cache
 jobs:
@@ -37,7 +30,8 @@ jobs:
             ${{ runner.os }}-mvn-build-
 
     - name: Build with Maven
-      run: ./mvnw -B clean package -T2C
+      run: ../mvnw -B clean package -T2C
+      working-directory: src
       
     - name: Check for uncommited changes
       run: |
@@ -61,6 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check-code]
     timeout-minutes: 10
+    permissions:
+      contents: write
     outputs:
       upload_url: ${{ steps.create-release.outputs.upload_url }}
     steps:
@@ -77,10 +73,9 @@ jobs:
     - name: Get version
       id: version
       run: |
-        version=$(../mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+        version=$(mvnw -B help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "release=$version" >> $GITHUB_OUTPUT
         echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Commit and Push
       run: |
@@ -106,7 +101,7 @@ jobs:
           ```XML
           <dependency>
              <groupId>software.xdev</groupId>
-             <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
+             <artifactId>${{ github.event.repository.name }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
@@ -135,8 +130,8 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Only import once
 
     - name: Publish to GitHub Packages Central
-      run: ../mvnw -B deploy -P publish -DskipTests -DaltDeploymentRepository=github-central::https://maven.pkg.github.com/xdev-software/central
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      run: ../mvnw -B deploy -P publish -DaltDeploymentRepository=github-central::https://maven.pkg.github.com/xdev-software/central
+      working-directory: src
       env:
         PACKAGES_CENTRAL_TOKEN: ${{ secrets.PACKAGES_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
@@ -152,14 +147,14 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Publish to Central Portal
-      run: ../mvnw -B deploy -P publish,publish-sonatype-central-portal -DskipTests
+      run: ../mvnw -B deploy -P publish,publish-sonatype-central-portal
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.SONATYPE_MAVEN_CENTRAL_PORTAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      working-directory: src
 
-  publish-pages:
+  build-pages:
     runs-on: ubuntu-latest
     needs: [prepare-release]
     timeout-minutes: 15
@@ -188,20 +183,57 @@ jobs:
           ${{ runner.os }}-mvn-build-
 
     - name: Build site
-      run: ../mvnw -B compile site -DskipTests -T2C
-      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+      run: ../mvnw -B compile site -P site -T2C
+      working-directory: src
+    
+    - name: Aggregate site
+      run: |
+        module_dirs=$(../mvnw -B -q --also-make exec:exec -Dexec.executable="pwd")
+        for m in "${module_dirs[@]}"
+        do
+          echo "$m/target/site -> ./target/$m"
+          mkdir -p ./target/$m
+          cp -r $m/target/site ./target/$m
+        done
+      working-directory: src
+    
+    - name: Upload pages artifact
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: src/target/site
 
     - name: Deploy to Github pages
       uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
+        publish_dir: ./src/target/site
         force_orphan: true
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    needs: [build-pages]
+    timeout-minutes: 10
+    concurrency:
+      group: 'pages'
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
 
   after-release:
     runs-on: ubuntu-latest
     needs: [publish-maven]
     timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v7
 
