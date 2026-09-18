@@ -73,7 +73,7 @@ jobs:
     - name: Get version
       id: version
       run: |
-        version=$(mvnw -B help:evaluate -Dexpression=project.version -q -DforceStdout)
+        version=$(./mvnw -B help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "release=$version" >> $GITHUB_OUTPUT
         echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
 
