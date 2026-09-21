@@ -202,7 +202,7 @@ jobs:
         is_first=true
         for full_module_path in "${module_dirs[@]}"
         do
-          if [ $is_first ]; then
+          if [ $is_first = true ]; then
             echo "Skipping initial/base module"
             is_first=false
             continue
