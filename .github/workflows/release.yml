@@ -188,9 +188,28 @@ jobs:
     
     - name: Aggregate site
       run: |
-        module_dirs=$(../mvnw -B -q --also-make exec:exec -Dexec.executable="pwd")
-        for m in "${module_dirs[@]}"
+        # Compile is required, otherwise dep resolution failure
+        echo "Looking up modules"
+        module_dirs=($(../mvnw -B -q --also-make compile exec:exec -Dexec.executable="pwd" -Dmaven.main.skip))
+        base_module_full="${module_dirs[0]}"
+
+        echo "Found modules - Src: $base_module_full"
+
+        base_cut_away_length=$((${#base_module_full}+1))
+
+        echo "BasePathLengthToCutAway: $base_cut_away_length"
+
+        is_first=true
+        for full_module_path in "${module_dirs[@]}"
         do
+          if [ $is_first ]; then
+            echo "Skipping initial/base module"
+            is_first=false
+            continue
+          fi
+
+          m=${full_module_path:$base_cut_away_length}
+
           echo "$m/target/site -> ./target/$m"
           mkdir -p ./target/$m
           cp -r $m/target/site ./target/$m
