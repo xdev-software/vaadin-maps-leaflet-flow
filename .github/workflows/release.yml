@@ -190,7 +190,7 @@ jobs:
       run: |
         # Compile is required, otherwise dep resolution failure
         echo "Looking up modules"
-        module_dirs=($(../mvnw -B -q --also-make compile exec:exec -Dexec.executable="pwd" -Dmaven.main.skip))
+        module_dirs=($(../mvnw -B -q --also-make compile exec:exec -P site -Dexec.executable="pwd" -Dmaven.main.skip))
         base_module_full="${module_dirs[0]}"
 
         echo "Found modules - Src: $base_module_full"
