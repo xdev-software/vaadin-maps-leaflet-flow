@@ -14,7 +14,7 @@ jobs:
       uses: actions/setup-java@v6
       with: # running setup-java overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: github-central
         server-password-env-var: PACKAGES_CENTRAL_TOKEN
         gpg-passphrase-env-var: MAVEN_GPG_PASSPHRASE
@@ -31,7 +31,7 @@ jobs:
       uses: actions/setup-java@v6
       with: # running setup-java again overwrites the settings.xml
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         server-id: sonatype-central-portal
         server-username-env-var: MAVEN_CENTRAL_USERNAME
         server-password-env-var: MAVEN_CENTRAL_TOKEN

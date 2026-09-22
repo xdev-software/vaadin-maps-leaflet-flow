@@ -17,6 +17,23 @@
 		<module>template-placeholder</module>
 	</modules>
 
+	<properties>
+		<!-- Dependency-Versions -->
+		<vaadin.version>25.2.3</vaadin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+				<version>${vaadin.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
 		<pluginManagement>
 			<plugins>
