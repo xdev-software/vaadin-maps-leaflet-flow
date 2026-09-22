@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	child.project.url.inherit.append.path="false">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>software.xdev</groupId>
-	<artifactId>template-placeholder-root</artifactId>
+	<artifactId>root</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<url>https://github.com/xdev-software/template-placeholder</url>
+
+	<modules>
+		<module>src</module>
+		<module>demos</module>
+	</modules>
+
+	<properties>
+		<javaVersion>17</javaVersion>
+		<maven.compiler.release>${javaVersion}</maven.compiler.release>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<scm
+		child.scm.connection.inherit.append.path="false"
+		child.scm.developerConnection.inherit.append.path="false"
+		child.scm.url.inherit.append.path="false">
+		<url>https://github.com/xdev-software/template-placeholder</url>
+		<connection>scm:git:https://github.com/xdev-software/template-placeholder.git</connection>
+	</scm>
+
+	<inceptionYear>2026</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
 		<url>https://xdev.software</url>
 	</organization>
 
-	<modules>
-		<module>template-placeholder</module>
-		<module>template-placeholder-demo</module>
-	</modules>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
+	<developers>
+		<developer>
+			<name>XDEV Software</name>
+			<organization>XDEV Software</organization>
+			<url>https://xdev.software</url>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
@@ -31,6 +54,24 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.16.0</version>
+					<configuration>
+						<release>${maven.compiler.release}</release>
+						<compilerArgs>
+							<arg>-proc:none</arg>
+						</compilerArgs>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<profiles>
 		<profile>
