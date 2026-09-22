@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>software.xdev</groupId>
+		<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 		<artifactId>src</artifactId>
 		<version>6.0.2-SNAPSHOT</version>
 	</parent>
