@@ -4,44 +4,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-<<<<<<<< HEAD:flow/pom.xml
-	<groupId>software.xdev.vaadin.maps-leaflet</groupId>
-	<artifactId>flow</artifactId>
-	<version>6.0.2-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>LeafletMap for Vaadin</name>
-	<description>LeafletMap for Vaadin</description>
-	<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
-
-	<scm>
-		<url>https://github.com/xdev-software/vaadin-maps-leaflet-flow</url>
-		<connection>scm:git:https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
-	</scm>
-
-	<inceptionYear>2019</inceptionYear>
-
-	<organization>
-		<name>XDEV Software</name>
-		<url>https://xdev.software</url>
-	</organization>
-
-	<developers>
-		<developer>
-			<name>XDEV Software</name>
-			<organization>XDEV Software</organization>
-			<url>https://xdev.software</url>
-		</developer>
-	</developers>
-
-	<licenses>
-		<license>
-			<name>Apache-2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-========
 	<parent>
 		<groupId>software.xdev</groupId>
 		<artifactId>root</artifactId>
@@ -52,9 +14,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>template-placeholder</module>
+		<module>flow</module>
 	</modules>
->>>>>>>> origin/update-from-template-github_com_xdev-software_vaadin-addon-template_master:src/pom.xml
 
 	<properties>
 		<!-- Dependency-Versions -->
@@ -73,22 +34,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-<<<<<<<< HEAD:flow/pom.xml
-	<dependencies>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-text</artifactId>
-			<version>1.15.0</version>
-		</dependency>
-	</dependencies>
-
-========
->>>>>>>> origin/update-from-template-github_com_xdev-software_vaadin-addon-template_master:src/pom.xml
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -202,33 +147,6 @@
 					</execution>
 				</executions>
 			</plugin>
-<<<<<<<< HEAD:flow/pom.xml
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<archive>
-						<index>true</index>
-						<manifest>
-							<addClasspath>false</addClasspath>
-							<addDefaultImplementationEntries>true
-							</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<Vaadin-Package-Version>1</Vaadin-Package-Version>
-						</manifestEntries>
-					</archive>
-					<!-- VAADIN files that shouldn't be included in add-ons -->
-					<excludes>
-						<exclude>
-							META-INF/VAADIN/
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-========
->>>>>>>> origin/update-from-template-github_com_xdev-software_vaadin-addon-template_master:src/pom.xml
 		</plugins>
 	</build>
 	<profiles>
