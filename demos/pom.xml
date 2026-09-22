@@ -14,6 +14,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>template-placeholder-demo</module>
+		<module>flow-demo</module>
 	</modules>
 </project>
