@@ -1,3 +1,7 @@
+# 6.1.0
+* Internal restructuring
+* Updated dependencies
+
 # 6.0.1
 * Updated to Vaadin 25.2
 * Migrated resources from deprecated location
