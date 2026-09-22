@@ -210,9 +210,9 @@ jobs:
 
           m=${full_module_path:$base_cut_away_length}
 
-          echo "$m/target/site -> ./target/$m"
-          mkdir -p ./target/$m
-          cp -r $m/target/site ./target/$m
+          echo "$m/target/site/. -> ./target/site/$m"
+          mkdir -p ./target/site/$m
+          cp -r $m/target/site/. ./target/site/$m
         done
       working-directory: src
     
