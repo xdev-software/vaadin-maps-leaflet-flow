@@ -10,6 +10,7 @@
 		<version>6.0.2-SNAPSHOT</version>
 	</parent>
 
+    <groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
 	<artifactId>plugins</artifactId>
 	<packaging>pom</packaging>
 
