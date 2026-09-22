@@ -32,7 +32,7 @@
 		<connection>scm:git:https://github.com/xdev-software/vaadin-maps-leaflet-flow.git</connection>
 	</scm>
 
-	<inceptionYear>2026</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
