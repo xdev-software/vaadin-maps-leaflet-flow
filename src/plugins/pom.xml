@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 		<artifactId>src</artifactId>
-		<version>6.0.2-SNAPSHOT</version>
+		<version>6.1.0-SNAPSHOT</version>
 	</parent>
 
     <groupId>software.xdev.vaadin.maps-leaflet.plugins</groupId>
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 			<artifactId>flow</artifactId>
-			<version>6.0.2-SNAPSHOT</version>
+			<version>6.1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
