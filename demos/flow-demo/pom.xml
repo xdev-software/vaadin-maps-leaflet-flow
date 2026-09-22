@@ -5,22 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-<<<<<<<< HEAD:flow-demo/pom.xml
 		<groupId>software.xdev.vaadin.maps-leaflet</groupId>
-		<artifactId>root</artifactId>
+		<artifactId>demos</artifactId>
 		<version>6.0.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>flow-demo</artifactId>
-	<version>6.0.2-SNAPSHOT</version>
-========
-		<groupId>software.xdev</groupId>
-		<artifactId>demos</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
-
-	<artifactId>template-placeholder-demo</artifactId>
->>>>>>>> origin/update-from-template-github_com_xdev-software_vaadin-addon-template_master:demos/template-placeholder-demo/pom.xml
 	<packaging>jar</packaging>
 
 	<properties>
