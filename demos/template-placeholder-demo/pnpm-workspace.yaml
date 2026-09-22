@@ -1,0 +1,13 @@
+# Delay install of newly released packages to prevent supply chain attacks
+minimumReleaseAge: 180 # 3h
+minimumReleaseAgeExclude:
+  - "@xdevsoftware/*"
+overrides:
+  # Remove unused packages
+  # rollup-plugin-visualizer CLI unused
+  "yargs": "npm:empty-npm-package@1.0.0"
+  "open": "npm:empty-npm-package@1.0.0"
+  # transform-ast test only
+  "nanobench": "npm:empty-npm-package@1.0.0"
+  # Usage statistics
+  "@vaadin/vaadin-usage-statistics": "npm:@xdevsoftware/vaadin-usage-statistics-opt-out@1.0.2"
