@@ -14,6 +14,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>bom</module>
 		<module>flow</module>
 	</modules>
 
