@@ -5,15 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>software.xdev</groupId>
+		<groupId>software.xdev.vaadin.maps-leaflet</groupId>
 		<artifactId>root</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>6.1.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>demos</artifactId>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>template-placeholder-demo</module>
+		<module>flow-demo</module>
 	</modules>
 </project>
