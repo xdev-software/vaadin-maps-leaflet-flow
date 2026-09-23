@@ -19,7 +19,7 @@
 
 	<properties>
 		<!-- Dependency-Versions -->
-		<vaadin.version>25.2.3</vaadin.version>
+		<vaadin.version>25.3.0</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
