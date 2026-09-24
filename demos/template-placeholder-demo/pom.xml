@@ -70,6 +70,10 @@
 					<groupId>com.vaadin</groupId>
 					<artifactId>copilot</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>flow-devloop-daemon</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
