@@ -1,0 +1,15 @@
+vaadin:
+  allowed-packages: software/xdev/vaadin
+  devmode:
+    usageStatistics:
+      enabled: false
+  # This is not propagated by prepare-frontend
+  npm:
+    # Also exclude <empty string>
+    excludePostinstallPackages: ',.,esbuild,@vaadin/vaadin-usage-statistics'
+
+spring:
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
