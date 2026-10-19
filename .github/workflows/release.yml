@@ -136,11 +136,6 @@ jobs:
         PACKAGES_CENTRAL_TOKEN: ${{ secrets.PACKAGES_CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
-    # Required or Sonatype plugin 0.11.0 will fail
-    - name: Downgrade Maven version to 3.9
-      run: |
-        sed -i -E '/^distributionUrl=/s/[0-9]+\.[0-9]+\.[0-9]+/3.9.11/g' .mvn/wrapper/maven-wrapper.properties
-
     - name: Set up JDK
       uses: actions/setup-java@v6
       with: # running setup-java again overwrites the settings.xml
