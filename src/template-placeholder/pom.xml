@@ -16,4 +16,10 @@
 	<name>template-placeholder</name>
 	<description>template-placeholder</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-core</artifactId>
+		</dependency>
+	</dependencies>
 </project>
